@@ -1,0 +1,3 @@
+# example.com/probe
+calc_test.go:6:2: no required module provides package example.com/nosuch; to add it:
+	go get example.com/nosuch

@@ -1,0 +1,10 @@
+
+ RUN  v5.0.4 /tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/vitest/setup_error
+
+ ❯ test/calc.test.js (1 test | 1 skipped) 3ms
+
+ Test Files  1 failed (1)
+      Tests  1 skipped (1)
+   Start at  19:30:11
+   Duration  114ms (import 42%, transform 23%, tests 17%, worker 17%, environment 1%)
+

@@ -1,0 +1,19 @@
+{
+  "session_id": "d55c9ebe-f592-4fa2-899d-256c2eca3f08",
+  "transcript_path": "<claude_projects>/<project_slug>/d55c9ebe-f592-4fa2-899d-256c2eca3f08.jsonl",
+  "cwd": "<cwd>",
+  "prompt_id": "28fc7950-08ea-4860-92bf-c5b5b9757f32",
+  "permission_mode": "bypassPermissions",
+  "effort": {
+    "level": "medium"
+  },
+  "hook_event_name": "PreToolUse",
+  "tool_name": "Agent",
+  "tool_input": {
+    "description": "Say hi",
+    "prompt": "say hi",
+    "subagent_type": "general-purpose",
+    "run_in_background": false
+  },
+  "tool_use_id": "toolu_01N8yWRxAe7vRQ2bPHzMUF6F"
+}

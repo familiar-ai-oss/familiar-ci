@@ -1,0 +1,69 @@
+Fatal Python error: Aborted
+
+Current thread 0x00007f906b8d8b80 [python3] (most recent call first):
+  File "/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/pytest/killed_abort/tests/test_calc.py", line 12 in test_crash
+  File "/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/.cache/venv/lib64/python3.14/site-packages/_pytest/python.py", line 167 in pytest_pyfunc_call
+  File "/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/.cache/venv/lib64/python3.14/site-packages/pluggy/_callers.py", line 121 in _multicall
+  File "/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/.cache/venv/lib64/python3.14/site-packages/pluggy/_manager.py", line 120 in _hookexec
+  File "/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/.cache/venv/lib64/python3.14/site-packages/pluggy/_hooks.py", line 512 in __call__
+  File "/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/.cache/venv/lib64/python3.14/site-packages/_pytest/python.py", line 1707 in runtest
+  File "/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/.cache/venv/lib64/python3.14/site-packages/_pytest/runner.py", line 184 in pytest_runtest_call
+  File "/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/.cache/venv/lib64/python3.14/site-packages/pluggy/_callers.py", line 121 in _multicall
+  File "/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/.cache/venv/lib64/python3.14/site-packages/pluggy/_manager.py", line 120 in _hookexec
+  File "/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/.cache/venv/lib64/python3.14/site-packages/pluggy/_hooks.py", line 512 in __call__
+  File "/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/.cache/venv/lib64/python3.14/site-packages/_pytest/runner.py", line 250 in <lambda>
+  File "/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/.cache/venv/lib64/python3.14/site-packages/_pytest/runner.py", line 361 in from_call
+  File "/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/.cache/venv/lib64/python3.14/site-packages/_pytest/runner.py", line 249 in call_and_report
+  File "/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/.cache/venv/lib64/python3.14/site-packages/_pytest/runner.py", line 139 in runtestprotocol
+  File "/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/.cache/venv/lib64/python3.14/site-packages/_pytest/runner.py", line 118 in pytest_runtest_protocol
+  File "/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/.cache/venv/lib64/python3.14/site-packages/pluggy/_callers.py", line 121 in _multicall
+  File "/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/.cache/venv/lib64/python3.14/site-packages/pluggy/_manager.py", line 120 in _hookexec
+  File "/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/.cache/venv/lib64/python3.14/site-packages/pluggy/_hooks.py", line 512 in __call__
+  File "/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/.cache/venv/lib64/python3.14/site-packages/_pytest/main.py", line 408 in pytest_runtestloop
+  File "/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/.cache/venv/lib64/python3.14/site-packages/pluggy/_callers.py", line 121 in _multicall
+  File "/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/.cache/venv/lib64/python3.14/site-packages/pluggy/_manager.py", line 120 in _hookexec
+  File "/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/.cache/venv/lib64/python3.14/site-packages/pluggy/_hooks.py", line 512 in __call__
+  File "/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/.cache/venv/lib64/python3.14/site-packages/_pytest/main.py", line 384 in _main
+  File "/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/.cache/venv/lib64/python3.14/site-packages/_pytest/main.py", line 330 in wrap_session
+  File "/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/.cache/venv/lib64/python3.14/site-packages/_pytest/main.py", line 377 in pytest_cmdline_main
+  File "/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/.cache/venv/lib64/python3.14/site-packages/pluggy/_callers.py", line 121 in _multicall
+  File "/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/.cache/venv/lib64/python3.14/site-packages/pluggy/_manager.py", line 120 in _hookexec
+  File "/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/.cache/venv/lib64/python3.14/site-packages/pluggy/_hooks.py", line 512 in __call__
+  File "/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/.cache/venv/lib64/python3.14/site-packages/_pytest/config/__init__.py", line 229 in _main
+  File "/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/.cache/venv/lib64/python3.14/site-packages/_pytest/config/__init__.py", line 253 in _console_main
+  File "/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/.cache/venv/bin/pytest", line 8 in <module>
+
+Current thread's C stack trace (most recent call first):
+  Binary file "/lib64/libpython3.14.so.1.0", at _Py_DumpStack+0x4c [0x7f906b33ee6c]
+  Binary file "/lib64/libpython3.14.so.1.0", at +0x1495b8 [0x7f906b3495b8]
+  Binary file "/lib64/libc.so.6", at +0x1a470 [0x7f906b01f470]
+  Binary file "/lib64/libc.so.6", at +0x759ac [0x7f906b07a9ac]
+  Binary file "/lib64/libc.so.6", at gsignal+0x1e [0x7f906b01f34e]
+  Binary file "/lib64/libc.so.6", at abort+0x26 [0x7f906b0067b3]
+  Binary file "/lib64/libpython3.14.so.1.0", at +0x14f63a [0x7f906b34f63a]
+  Binary file "/lib64/libpython3.14.so.1.0", at +0x26c69 [0x7f906b226c69]
+  Binary file "/lib64/libpython3.14.so.1.0", at +0x1bfa84 [0x7f906b3bfa84]
+  Binary file "/lib64/libpython3.14.so.1.0", at +0x309c47 [0x7f906b509c47]
+  Binary file "/lib64/libpython3.14.so.1.0", at _PyObject_MakeTpCall+0x89 [0x7f906b381ce9]
+  Binary file "/lib64/libpython3.14.so.1.0", at +0x2ca0b [0x7f906b22ca0b]
+  Binary file "/lib64/libpython3.14.so.1.0", at +0x1bfa84 [0x7f906b3bfa84]
+  Binary file "/lib64/libpython3.14.so.1.0", at +0x309c47 [0x7f906b509c47]
+  Binary file "/lib64/libpython3.14.so.1.0", at +0x1d7624 [0x7f906b3d7624]
+  Binary file "/lib64/libpython3.14.so.1.0", at +0x2a8a0 [0x7f906b22a8a0]
+  Binary file "/lib64/libpython3.14.so.1.0", at +0x1bfa84 [0x7f906b3bfa84]
+  Binary file "/lib64/libpython3.14.so.1.0", at +0x309c47 [0x7f906b509c47]
+  Binary file "/lib64/libpython3.14.so.1.0", at _PyObject_MakeTpCall+0x89 [0x7f906b381ce9]
+  Binary file "/lib64/libpython3.14.so.1.0", at +0x2ca0b [0x7f906b22ca0b]
+  Binary file "/lib64/libpython3.14.so.1.0", at +0x1bfa84 [0x7f906b3bfa84]
+  Binary file "/lib64/libpython3.14.so.1.0", at +0x309c47 [0x7f906b509c47]
+  Binary file "/lib64/libpython3.14.so.1.0", at _PyObject_MakeTpCall+0x89 [0x7f906b381ce9]
+  Binary file "/lib64/libpython3.14.so.1.0", at +0x30057 [0x7f906b230057]
+  Binary file "/lib64/libpython3.14.so.1.0", at +0x1bfa84 [0x7f906b3bfa84]
+  Binary file "/lib64/libpython3.14.so.1.0", at +0x309c47 [0x7f906b509c47]
+  Binary file "/lib64/libpython3.14.so.1.0", at _PyObject_MakeTpCall+0x89 [0x7f906b381ce9]
+  Binary file "/lib64/libpython3.14.so.1.0", at +0x30057 [0x7f906b230057]
+  Binary file "/lib64/libpython3.14.so.1.0", at +0x194b72 [0x7f906b394b72]
+  Binary file "/lib64/libpython3.14.so.1.0", at PyEval_EvalCode+0xad [0x7f906b4a04dd]
+  Binary file "/lib64/libpython3.14.so.1.0", at +0x2ea925 [0x7f906b4ea925]
+  Binary file "/lib64/libpython3.14.so.1.0", at +0x2e9e76 [0x7f906b4e9e76]
+  <truncated rest of calls>

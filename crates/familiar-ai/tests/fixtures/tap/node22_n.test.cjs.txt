@@ -1,0 +1,11 @@
+const { describe, it, test } = require('node:test');
+const assert = require('node:assert');
+describe('calc', () => {
+  describe('add', () => {
+    it('adds small numbers', () => { assert.strictEqual(1 + 1, 2); });
+    it('is skipped', { skip: 'later' }, () => {});
+  });
+  it('fails on purpose', () => { assert.strictEqual(1 + 1, 3); });
+});
+test('todo item', { todo: 'not yet' }, () => {});
+test('has - a dash and # a hash', () => {});

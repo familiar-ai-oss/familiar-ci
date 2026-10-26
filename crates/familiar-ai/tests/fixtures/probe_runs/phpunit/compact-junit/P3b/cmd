@@ -1,0 +1,1 @@
+/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/a0-spike/bin/dock composer:2 'vendor/bin/phpunit --log-junit /tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/a0-spike/.tmp/rep-qd4vgp36/junit.xml'

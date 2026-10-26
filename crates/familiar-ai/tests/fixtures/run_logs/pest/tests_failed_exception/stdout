@@ -1,0 +1,25 @@
+
+   FAIL  Tests\CalcTest
+  ⨯ Parse
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  Tests\CalcTest > Parse                    InvalidArgumentException   
+  not a number: x1
+
+  at src/Calc.php:17
+     13▕ 
+     14▕     public static function parse(string $s): int
+     15▕     {
+     16▕         if (preg_match('/^\d+$/', $s) !== 1) {
+  ➜  17▕             throw new \InvalidArgumentException("not a number: $s");
+     18▕         }
+     19▕         return (int) $s;
+     20▕     }
+     21▕ }
+
+  1   src/Calc.php:17
+  2   tests/CalcTest.php:10
+
+
+  Tests:    1 failed (0 assertions)
+  Duration: 0.03s
+

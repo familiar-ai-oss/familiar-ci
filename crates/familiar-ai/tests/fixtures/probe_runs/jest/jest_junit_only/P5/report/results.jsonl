@@ -1,0 +1,4 @@
+{"type":"session","v":1,"runner":"jest","runner_version":"30.5.2","language":"javascript","language_version":"22.22.0","plugins":["default"]}
+{"type":"test","id":"test/p5.test.js::adds","file":"test/p5.test.js","line":null,"outcome":"passed","skip_reason":null,"error":null}
+{"type":"test","id":"test/p5.test.js::later","file":"test/p5.test.js","line":null,"outcome":"skipped","skip_reason":null,"error":null}
+{"type":"end","exit":0,"counts":{"passed":1,"failed":0,"skipped":1,"deselected":0,"errors":0}}

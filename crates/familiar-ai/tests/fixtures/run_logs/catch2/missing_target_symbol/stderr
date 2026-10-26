@@ -1,0 +1,16 @@
+In file included from /tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/.cache/cpp-prefix/include/catch2/catch_tostring.hpp:17,
+                 from /tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/.cache/cpp-prefix/include/catch2/internal/catch_decomposer.hpp:11,
+                 from /tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/.cache/cpp-prefix/include/catch2/internal/catch_assertion_handler.hpp:12,
+                 from /tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/.cache/cpp-prefix/include/catch2/internal/catch_test_macro_impl.hpp:12,
+                 from /tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/.cache/cpp-prefix/include/catch2/catch_test_macros.hpp:11,
+                 from /tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/catch2/missing_target_symbol/tests/calc_test.cpp:1:
+/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/catch2/missing_target_symbol/tests/calc_test.cpp: In function ‘void CATCH2_INTERNAL_TEST_0()’:
+/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/catch2/missing_target_symbol/tests/calc_test.cpp:6:13: error: ‘mul’ was not declared in this scope
+    6 |     REQUIRE(mul(2, 3) == 6);
+      |             ^~~
+/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/catch2/missing_target_symbol/tests/calc_test.cpp:6:13: error: ‘mul’ was not declared in this scope
+    6 |     REQUIRE(mul(2, 3) == 6);
+      |             ^~~
+gmake[2]: *** [CMakeFiles/calc_test.dir/build.make:79: CMakeFiles/calc_test.dir/tests/calc_test.cpp.o] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:122: CMakeFiles/calc_test.dir/all] Error 2
+gmake: *** [Makefile:91: all] Error 2

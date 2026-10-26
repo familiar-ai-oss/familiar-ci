@@ -1,0 +1,1 @@
+npx vitest related test/calc.test.js --run -t nomatch

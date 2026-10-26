@@ -1,0 +1,3 @@
+signal: killed
+FAIL	example.com/calc	0.001s
+FAIL

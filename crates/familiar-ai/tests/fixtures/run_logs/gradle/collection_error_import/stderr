@@ -1,0 +1,16 @@
+/r/gradle/collection_error_import/src/test/java/calc/CalcTest.java:6: error: package org.nosuch does not exist
+import org.nosuch.Helper;
+                 ^
+1 error
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':compileTestJava'.
+> Compilation failed; see the compiler error output for details.
+
+* Try:
+> Run with --info option to get more log output.
+> Run with --scan to get full insights.
+
+BUILD FAILED in 2s

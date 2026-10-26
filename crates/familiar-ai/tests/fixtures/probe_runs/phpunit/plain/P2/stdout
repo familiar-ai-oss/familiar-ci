@@ -1,0 +1,18 @@
+PHPUnit 13.4.2 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 8.5.9
+Configuration: /tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/a0-spike/projects/php/P2/phpunit.xml
+
+F                                                                   1 / 1 (100%)
+
+Time: 00:00, Memory: 20.00 MB
+
+There was 1 failure:
+
+1) ProbeTest::testAdd
+Failed asserting that 4 is identical to 5.
+
+/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/a0-spike/projects/php/P2/tests/ProbeTest.php:15
+
+FAILURES!
+Tests: 1, Assertions: 1, Failures: 1.

@@ -1,0 +1,22 @@
+PHP 8.5.9 (cli) (built: Jul 30 2026 22:44:00) (NTS)
+
+  [41;1m PHPUnit\TextUI\Configuration\ConfigurationCannotBeBuiltException [49;22m
+
+[39;1m  
+Opening and ending tag mismatch: testsuite line 4 and testsuites
+
+Opening and ending tag mismatch: testsuites line 3 and phpunit[39;22m
+
+  at [32mvendor/phpunit/phpunit/src/TextUI/Configuration/Builder.php[39m:[32m50[39m
+     46▕                 $xmlConfiguration,
+     47▕                 $emitter,
+     48▕             );
+     49▕         } catch (CliConfigurationException|XmlConfigurationException $e) {
+  ➜  50▕             throw new ConfigurationCannotBeBuiltException(
+     51▕                 $e->getMessage(),
+     52▕                 $e->getCode(),
+     53▕                 $e,
+     54▕             );
+
+
+

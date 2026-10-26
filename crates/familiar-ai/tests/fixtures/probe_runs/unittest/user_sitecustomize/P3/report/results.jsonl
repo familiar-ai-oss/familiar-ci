@@ -1,0 +1,3 @@
+{"type": "session", "v": 1, "runner": "unittest", "runner_version": "3.14.4", "language": "python", "language_version": "3.14.4", "plugins": []}
+{"type": "collect_error", "file": "tests/test_p3.py", "error": {"type": "ImportError", "message": "cannot import name 'mul' from 'calc' (/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/a0-spike/projects/unittest-user_sitecustomize/P3/calc.py)", "kind": "missing_name", "frames": [{"file": "tests/test_p3.py", "line": 2, "function": "<module>"}]}}
+{"type": "end", "exit": 1, "counts": {"passed": 0, "failed": 0, "skipped": 0, "deselected": 0, "errors": 1, "xfailed": 0, "xpassed": 0}}

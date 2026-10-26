@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TestRun id="a83f875b-d3a6-4e4f-854d-27b23ceed8f9" name="@734be6a96da9 2026-10-19 17:55:47" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <Times creation="2026-10-19T17:55:47.7404046+00:00" queuing="2026-10-19T17:55:47.7404046+00:00" start="2026-10-19T17:55:47.4782070+00:00" finish="2026-10-19T17:55:47.7435222+00:00" />
+  <TestSettings name="default" id="78b1c396-746f-45b9-b57c-3ffc819c9141">
+    <Deployment runDeploymentRoot="_734be6a96da9_2026-10-19_17_55_47" />
+  </TestSettings>
+  <Results>
+    <UnitTestResult executionId="b306d377-8054-4d76-9092-87dfef1e20d5" testId="ecc93764-7b68-6fb2-197b-737226aa32fb" testName="Tests.ProbeTests.Parses" computerName="734be6a96da9" duration="00:00:00.0015060" startTime="2026-10-19T17:55:47.6948736+00:00" endTime="2026-10-19T17:55:47.6948811+00:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="b306d377-8054-4d76-9092-87dfef1e20d5">
+      <Output>
+        <ErrorInfo>
+          <Message>System.FormatException : The input string 'x1' was not in a correct format.</Message>
+          <StackTrace>   at System.Number.ThrowFormatException[TChar](ReadOnlySpan`1 value)
+   at System.Int32.Parse(String s)
+   at CalcLib.Calc.Parse(String s) in /tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/a0-spike/projects/dotnet/P7/src/Calc.cs:line 9
+   at Tests.ProbeTests.Parses() in /tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/a0-spike/projects/dotnet/P7/tests/ProbeTests.cs:line 11
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+  </Results>
+  <TestDefinitions>
+    <UnitTest name="Tests.ProbeTests.Parses" storage="/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/a0-spike/projects/dotnet/p7/bin/debug/net8.0/calc.tests.dll" id="ecc93764-7b68-6fb2-197b-737226aa32fb">
+      <Execution id="b306d377-8054-4d76-9092-87dfef1e20d5" />
+      <TestMethod codeBase="/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/a0-spike/projects/dotnet/P7/bin/Debug/net8.0/Calc.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Tests.ProbeTests" name="Parses" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestEntries>
+    <TestEntry testId="ecc93764-7b68-6fb2-197b-737226aa32fb" executionId="b306d377-8054-4d76-9092-87dfef1e20d5" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <ResultSummary outcome="Failed">
+    <Counters total="1" executed="1" passed="0" failed="1" error="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+    <Output>
+      <StdOut>[xUnit.net 00:00:00.00] xUnit.net VSTest Adapter v2.8.2+699d445a1a (64-bit .NET 8.0.32)
+[xUnit.net 00:00:00.02]   Discovering: Calc.Tests
+[xUnit.net 00:00:00.04]   Discovered:  Calc.Tests
+[xUnit.net 00:00:00.04]   Starting:    Calc.Tests
+[xUnit.net 00:00:00.06]       System.FormatException : The input string 'x1' was not in a correct format.
+[xUnit.net 00:00:00.06]       Stack Trace:
+[xUnit.net 00:00:00.06]            at System.Number.ThrowFormatException[TChar](ReadOnlySpan`1 value)
+[xUnit.net 00:00:00.06]            at System.Int32.Parse(String s)
+[xUnit.net 00:00:00.06]         /tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/a0-spike/projects/dotnet/P7/src/Calc.cs(9,0): at CalcLib.Calc.Parse(String s)
+[xUnit.net 00:00:00.06]         /tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/a0-spike/projects/dotnet/P7/tests/ProbeTests.cs(11,0): at Tests.ProbeTests.Parses()
+[xUnit.net 00:00:00.06]            at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+[xUnit.net 00:00:00.06]            at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+[xUnit.net 00:00:00.06]   Finished:    Calc.Tests
+</StdOut>
+    </Output>
+    <RunInfos>
+      <RunInfo computerName="734be6a96da9" outcome="Error" timestamp="2026-10-19T17:55:47.6940206+00:00">
+        <Text>[xUnit.net 00:00:00.06]     Tests.ProbeTests.Parses [FAIL]</Text>
+      </RunInfo>
+    </RunInfos>
+  </ResultSummary>
+</TestRun>

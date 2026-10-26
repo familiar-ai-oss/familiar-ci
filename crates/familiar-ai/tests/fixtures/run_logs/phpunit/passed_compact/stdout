@@ -1,0 +1,6 @@
+PHPUnit 13.4.2 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 8.5.9
+Configuration: /r/phpunit/passed_compact/phpunit.xml
+
+OK (1 test, 1 assertion)

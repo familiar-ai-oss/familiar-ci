@@ -1,0 +1,3 @@
+{"type": "session", "v": 1, "runner": "maven-surefire", "runner_version": null, "language": null, "plugins": [], "converted_from": "junit", "files": 1}
+{"type": "test", "id": "calc.ProbeTest::adds", "file": null, "line": null, "outcome": "failed", "skip_reason": null, "error": {"type": "org.opentest4j.AssertionFailedError", "message": "expected: <5> but was: <4>", "kind": "assertion", "frames": [{"file": "ProbeTest.java", "line": 10, "function": "calc.ProbeTest.adds"}]}}
+{"type": "end", "exit": null, "counts": {"passed": 0, "failed": 1, "skipped": 0, "deselected": 0, "errors": 0}}

@@ -1,0 +1,15 @@
+
+  [41;1m ParseError [49;22m
+
+[39;1m  syntax error, unexpected token "}"[39;22m
+
+  at [32mtests/CalcTest.php[39m:[32m11[39m
+      7▕ use App\Calc;
+      8▕ 
+      9▕ test('Add', function () {
+     10▕     expect(Calc::add(2, 2))->toBe(4)
+  ➜  11▕ });
+     12▕
+
+
+

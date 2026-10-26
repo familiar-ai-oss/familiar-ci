@@ -1,0 +1,16 @@
+{
+  "session_id": "37851b76",
+  "transcript_path": "<claude_projects>/<project_slug>/37851b76.jsonl",
+  "cwd": "<cwd>",
+  "prompt_id": "b6374fda",
+  "hook_event_name": "PreModelSwitch",
+  "from_model": "claude-haiku-4-5-20251001",
+  "to_model": "claude-sonnet-5-5",
+  "requested_model": "sonnet",
+  "source": "command",
+  "context_tokens": 0,
+  "prompt_cache_warm": false,
+  "cache_ttl": "1h",
+  "estimated_cache_write_usd": 0,
+  "pricing": "catalog"
+}

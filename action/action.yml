@@ -1,0 +1,29 @@
+name: familiar-ai
+description: >-
+  Install a checksum-verified familiar-ai release and run `familiar-ai verify`.
+inputs:
+  version:
+    description: Release version without the leading v.
+    required: true
+runs:
+  using: composite
+  steps:
+    - name: Install familiar-ai
+      shell: bash
+      env:
+        INPUT_VERSION: ${{ inputs.version }}
+      run: |
+        "$GITHUB_ACTION_PATH/install.sh" "$INPUT_VERSION" "$RUNNER_TEMP/familiar-ai"
+    # Name the calling job `familiar-verify` so Familiar can identify its check.
+    - name: familiar-verify
+      id: familiar-verify
+      shell: bash
+      run: |
+        "$RUNNER_TEMP/familiar-ai/familiar-ai" verify
+    - name: Upload the familiar-verify report
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: familiar-verify-report
+        path: .familiar/verify-report.json
+        if-no-files-found: ignore

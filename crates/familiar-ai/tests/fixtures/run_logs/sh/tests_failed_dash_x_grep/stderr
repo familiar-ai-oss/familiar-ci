@@ -1,0 +1,3 @@
++familiar-ai		printf alpha\nbeta\n
++familiar-ai		echo checking
++familiar-ai		grep -q gamma /tmp/a0-sh-8.txt

@@ -1,0 +1,9 @@
+   Compiling calc v0.1.0 (/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/cargo-nextest/no_tests_collected_filter)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.07s
+────────────
+ Nextest run ID bd5e0655-beb1-413e-b378-78bb0ee14202 with nextest profile: default
+    Starting 0 tests across 2 binaries (1 test skipped)
+────────────
+     Summary [   0.000s] 0 tests run: 0 passed, 1 skipped
+error: no tests to run
+(hint: use `--no-tests` to customize)

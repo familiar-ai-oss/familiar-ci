@@ -1,0 +1,12 @@
+PHPUnit 13.4.2 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 8.5.9
+Configuration: /r/phpunit/setup_error_compact/phpunit.xml
+
+
+--- ERROR: CalcTest
+RuntimeException: db down
+
+/r/phpunit/setup_error_compact/tests/CalcTest.php:14
+
+ERRORS (1 test, 0 assertions, 1 error)

@@ -1,0 +1,6 @@
+err	3245416	1	tests/s_grep_sete.sh	5	grep -q gamma /tmp/a0-sh-$$.txt
+ran	3245416	0	tests/s_grep_sete.sh	2	set -e
+ran	3245416	0	tests/s_grep_sete.sh	3	printf 'alpha\nbeta\n' > /tmp/a0-sh-$$.txt
+ran	3245416	0	tests/s_grep_sete.sh	4	echo checking
+fail	3245416	1	tests/s_grep_sete.sh	5	grep -q gamma /tmp/a0-sh-$$.txt
+exit	3245416	1	tests/s_grep_sete.sh	5	grep -q gamma /tmp/a0-sh-$$.txt

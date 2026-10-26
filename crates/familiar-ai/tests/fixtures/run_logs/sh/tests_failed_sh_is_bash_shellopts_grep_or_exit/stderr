@@ -1,0 +1,3 @@
+sh: BASH_XTRACEFD: 9: invalid value for trace file descriptor
++familiar-ai		1	exec
++familiar-ai		1	sh posix/s_grep_or_exit.sh

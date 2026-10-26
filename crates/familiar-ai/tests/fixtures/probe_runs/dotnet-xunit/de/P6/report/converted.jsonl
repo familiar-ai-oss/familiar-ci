@@ -1,0 +1,2 @@
+{"type": "session", "v": 1, "runner": "dotnet-vstest", "runner_version": null, "language": "csharp", "plugins": [], "converted_from": "trx", "files": 1}
+{"type": "end", "exit": null, "counts": {"passed": 0, "failed": 0, "skipped": 0, "deselected": 0, "errors": 0}}

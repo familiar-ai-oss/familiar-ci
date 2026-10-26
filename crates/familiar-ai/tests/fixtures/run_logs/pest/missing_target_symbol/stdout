@@ -1,0 +1,22 @@
+
+   FAIL  Tests\CalcTest
+  ⨯ Mul
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  Tests\CalcTest > Mul                                         Error   
+  Call to undefined method App\Calc::mul()
+
+  at tests/CalcTest.php:10
+      6▕ 
+      7▕ use App\Calc;
+      8▕ 
+      9▕ test('Mul', function () {
+  ➜  10▕     expect(Calc::mul(2, 3))->toBe(6);
+     11▕ });
+     12▕
+
+  1   tests/CalcTest.php:10
+
+
+  Tests:    1 failed (0 assertions)
+  Duration: 0.03s
+

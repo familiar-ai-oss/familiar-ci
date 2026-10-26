@@ -1,0 +1,39 @@
+============================= test session starts ==============================
+platform linux -- Python 3.14.4, pytest-9.1.1, pluggy-1.7.0
+rootdir: /tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/pytest/tests_failed_two_pretty
+configfile: pyproject.toml
+testpaths: tests
+plugins: pretty-1.3.0
+collected 2 items
+
+tests/test_calc.py F                                                     [ 50%]
+tests/test_calc.py:3 test_add - assert 4 == 5  +  where 4 = add(2, 2…
+tests/test_calc.py F                                                     [100%]
+tests/test_calc.py:7 test_add_again - assert 2 == 3  +  where 2 = ad…    [100%]
+=================================== FAILURES ===================================
+___________________________________ test_add ___________________________________
+
+    def test_add():
+>       assert add(2, 2) == 5
+E       assert 4 == 5
+E        +  where 4 = add(2, 2)
+
+tests/test_calc.py:5: AssertionError
+________________________________ test_add_again ________________________________
+
+    def test_add_again():
+>       assert add(1, 1) == 3
+E       assert 2 == 3
+E        +  where 2 = add(1, 1)
+
+tests/test_calc.py:9: AssertionError
+                              Summary of Failures                               
+┏━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━┓
+┃               ┃               ┃  Function     ┃              ┃               ┃
+┃  File         ┃  Function     ┃  Line         ┃  Error Line  ┃  Error        ┃
+┡━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━┩
+│  tests/test…  │  test_add     │  4            │  5           │  AssertionE…  │
+│  tests/test…  │  test_add_a…  │  8            │  9           │  AssertionE…  │
+└───────────────┴───────────────┴───────────────┴──────────────┴───────────────┘
+Results (0.01s):
+         2 failed

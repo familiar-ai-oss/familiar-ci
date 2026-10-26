@@ -1,0 +1,1 @@
+/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/a0-spike/bin/dock maven:3.9-eclipse-temurin-21 'mvn -q test'; rc=$?; cp -r target/surefire-reports /tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/a0-spike/.tmp/rep-w_pedlxo/ 2>/dev/null; exit $rc

@@ -1,0 +1,23 @@
+
+FAILURE: Build failed with an exception.
+
+* Where:
+Build file '/r/gradle/runner_crash/build.gradle' line: 1
+
+* What went wrong:
+Could not compile build file '/r/gradle/runner_crash/build.gradle'.
+> startup failed:
+  build file '/r/gradle/runner_crash/build.gradle': 1: Unexpected input: '{' @ line 1, column 9.
+     plugins {
+             ^
+  
+  1 error
+
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 1s

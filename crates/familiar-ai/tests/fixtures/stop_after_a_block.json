@@ -1,0 +1,12 @@
+{
+  "session_id": "c7def47b-7d7c-47b0-8769-4dd6cc266dbe",
+  "transcript_path": "/home/dev/.claude/projects/-home-dev-project/c7def47b-7d7c-47b0-8769-4dd6cc266dbe.jsonl",
+  "cwd": "/home/dev/project",
+  "prompt_id": "821faeab-1a21-4445-afd4-85d7daecc6b4",
+  "permission_mode": "acceptEdits",
+  "hook_event_name": "Stop",
+  "stop_hook_active": true,
+  "last_assistant_message": "pineapple",
+  "background_tasks": [],
+  "session_crons": []
+}

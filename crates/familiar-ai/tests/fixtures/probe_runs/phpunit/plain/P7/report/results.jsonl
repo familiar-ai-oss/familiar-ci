@@ -1,0 +1,3 @@
+{"type":"session","v":1,"runner":"phpunit","runner_version":"13.4.2","language":"php","language_version":"8.5.9","plugins":[],"loaded_by":"extension"}
+{"type":"test","id":"ProbeTest::testParse","file":"tests/ProbeTest.php","line":13,"outcome":"error","skip_reason":null,"error":{"type":"InvalidArgumentException","message":"not a number: x1","kind":"exception","frames":[{"file":"tests/ProbeTest.php","line":15,"function":null},{"file":"src/Calc.php","line":17,"function":null}]}}
+{"type":"end","exit":null,"counts":{"passed":0,"failed":0,"skipped":0,"deselected":0,"errors":1}}

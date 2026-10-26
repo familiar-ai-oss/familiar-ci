@@ -1,0 +1,20 @@
+✖ multiplies (0.313662ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 31.792968
+
+✖ failing tests:
+
+test at test/p3.test.js:6:1
+✖ multiplies (0.313662ms)
+  TypeError [Error]: mul is not a function
+      at TestContext.<anonymous> (/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/a0-spike/projects/js/node-test/node24_noinject/P3/test/p3.test.js:7:22)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)

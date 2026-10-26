@@ -1,0 +1,3 @@
+  Determining projects to restore...
+  Restored /r/dotnet-xunit/missing_target_symbol/Calc.Tests.csproj (in 108 ms).
+/r/dotnet-xunit/missing_target_symbol/tests/CalcTests.cs(11,30): error CS0117: 'Calc' does not contain a definition for 'Mul' [/r/dotnet-xunit/missing_target_symbol/Calc.Tests.csproj]

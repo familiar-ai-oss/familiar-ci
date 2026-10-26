@@ -1,0 +1,14 @@
+error: failed to get `helper` as a dependency of package `calc v0.1.0 (/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/cargo-nextest/environment_error_missing_dep)`
+
+Caused by:
+  failed to load source for dependency `helper`
+
+Caused by:
+  Unable to update /tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/cargo-nextest/nosuch-helper
+
+Caused by:
+  failed to read `/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/cargo-nextest/nosuch-helper/Cargo.toml`
+
+Caused by:
+  No such file or directory (os error 2)
+error: command `/home/user/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/cargo metadata '--format-version=1' --all-features --filter-platform x86_64-unknown-linux-gnu` failed with exit status: 101

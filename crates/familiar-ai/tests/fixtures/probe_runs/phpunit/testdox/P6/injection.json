@@ -1,0 +1,15 @@
+{
+ "env": [
+  [
+   "set",
+   "PHP_INI_SCAN_DIR",
+   ":/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/a0-spike/kit/phpunit/ini"
+  ]
+ ],
+ "flags": "--extension \"Familiar\\PhpunitExtension\"",
+ "report_dir": "/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/a0-spike/.tmp/rep-mui97oyc",
+ "final_env": {
+  "FAMILIAR_AI_REPORT": "/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/a0-spike/.tmp/rep-mui97oyc/results.jsonl",
+  "PHP_INI_SCAN_DIR": ":/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/a0-spike/kit/phpunit/ini"
+ }
+}

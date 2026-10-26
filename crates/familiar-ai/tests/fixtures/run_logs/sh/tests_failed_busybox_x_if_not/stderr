@@ -1,0 +1,5 @@
++familiar-ai	8	printf 'alpha\n'
++familiar-ai	9	check /tmp/a0-sh-1.txt
++familiar-ai	3	grep -q gamma /tmp/a0-sh-1.txt
++familiar-ai	4	echo FAIL
++familiar-ai	5	exit 1

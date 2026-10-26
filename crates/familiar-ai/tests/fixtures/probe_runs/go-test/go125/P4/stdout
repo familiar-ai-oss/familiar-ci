@@ -1,0 +1,7 @@
+{"ImportPath":"example.com/nosuch","Action":"build-output","Output":"# example.com/probe\n"}
+{"ImportPath":"example.com/nosuch","Action":"build-output","Output":"calc_test.go:6:2: no required module provides package example.com/nosuch; to add it:\n"}
+{"ImportPath":"example.com/nosuch","Action":"build-output","Output":"\tgo get example.com/nosuch\n"}
+{"ImportPath":"example.com/nosuch","Action":"build-fail"}
+{"Time":"2026-10-19T17:47:25.241894869Z","Action":"start","Package":"example.com/probe"}
+{"Time":"2026-10-19T17:47:25.241912799Z","Action":"output","Package":"example.com/probe","Output":"FAIL\texample.com/probe [setup failed]\n"}
+{"Time":"2026-10-19T17:47:25.241915699Z","Action":"fail","Package":"example.com/probe","Elapsed":0,"FailedBuild":"example.com/nosuch"}

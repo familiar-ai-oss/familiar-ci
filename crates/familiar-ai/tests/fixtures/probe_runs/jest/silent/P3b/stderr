@@ -1,0 +1,6 @@
+PASS test/p3b.test.js
+
+Test Suites: 1 passed, 1 total
+Tests:       1 passed, 1 total
+Snapshots:   0 total
+Time:        0.19 s

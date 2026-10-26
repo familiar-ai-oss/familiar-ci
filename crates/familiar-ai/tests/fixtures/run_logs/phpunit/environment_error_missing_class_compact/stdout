@@ -1,0 +1,13 @@
+PHPUnit 13.4.2 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 8.5.9
+Configuration: /r/phpunit/environment_error_missing_class_compact/phpunit.xml
+
+
+--- ERROR: CalcTest::testAdd
+Error: Class "Carbon\CarbonImmutable" not found
+
+/r/phpunit/environment_error_missing_class_compact/src/Calc.php:11
+/r/phpunit/environment_error_missing_class_compact/tests/CalcTest.php:14
+
+ERRORS (1 test, 0 assertions, 1 error)

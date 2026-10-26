@@ -1,0 +1,13 @@
+Starting a Gradle Daemon, 1 incompatible and 4 stopped Daemons could not be reused, use --status for details
+> Task :compileJava
+> Task :processResources NO-SOURCE
+> Task :classes
+> Task :compileTestJava
+> Task :processTestResources NO-SOURCE
+> Task :testClasses
+
+> Task :test FAILED
+
+CalcTest > initializationError FAILED
+    java.lang.IllegalStateException at CalcTest.java:11
+3 actionable tasks: 3 executed

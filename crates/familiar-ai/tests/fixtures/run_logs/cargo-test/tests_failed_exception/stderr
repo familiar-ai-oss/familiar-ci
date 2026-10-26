@@ -1,0 +1,5 @@
+   Compiling calc v0.1.0 (/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/cargo-test/tests_failed_exception)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.07s
+     Running unittests src/lib.rs (target/debug/deps/calc-d7664887798fc4c6)
+     Running tests/calc_test.rs (target/debug/deps/calc_test-b0fd59ed03fc73e7)
+error: test failed, to rerun pass `--test calc_test`

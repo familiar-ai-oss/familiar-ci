@@ -1,0 +1,7 @@
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.00s
+────────────
+ Nextest run ID b8c7a1fe-648a-4506-99c6-c84c21c42d5a with nextest profile: default
+    Starting 1 test across 2 binaries
+        PASS [   0.003s] (1/1) probe::familiar_probe_p3b muls
+────────────
+     Summary [   0.003s] 1 test run: 1 passed, 0 skipped

@@ -1,0 +1,3 @@
+{"type":"session","v":1,"runner":"vitest","runner_version":"5.0.5","language":"javascript","language_version":"22.22.0","plugins":["default"]}
+{"type":"test","id":"test/p3.test.js::multiplies","file":"test/p3.test.js","line":null,"outcome":"failed","skip_reason":null,"error":{"type":"TypeError","message":"mul is not a function","kind":"missing_name","frames":[{"file":"test/p3.test.js","line":5,"function":null}]}}
+{"type":"end","exit":1,"counts":{"passed":0,"failed":1,"skipped":0,"deselected":0,"errors":0},"reason":"failed"}

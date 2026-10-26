@@ -1,0 +1,21 @@
+============================= test session starts ==============================
+platform linux -- Python 3.14.4, pytest-9.1.1, pluggy-1.6.0
+rootdir: /tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/pytest/setup_error
+configfile: pyproject.toml
+testpaths: tests
+collected 1 item
+
+tests/test_calc.py E                                                     [100%]
+
+==================================== ERRORS ====================================
+__________________________ ERROR at setup of test_add __________________________
+
+    @pytest.fixture
+    def db():
+>       raise RuntimeError("db down")
+E       RuntimeError: db down
+
+tests/test_calc.py:7: RuntimeError
+=========================== short test summary info ============================
+ERROR tests/test_calc.py::test_add - RuntimeError: db down
+=============================== 1 error in 0.01s ===============================

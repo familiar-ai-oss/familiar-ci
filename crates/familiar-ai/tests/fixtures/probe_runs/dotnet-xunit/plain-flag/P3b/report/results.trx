@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TestRun id="b93b27c0-f60e-4900-a42d-ec760becb781" name="@227dc52140b4 2026-10-19 17:55:24" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <Times creation="2026-10-19T17:55:24.5667821+00:00" queuing="2026-10-19T17:55:24.5667821+00:00" start="2026-10-19T17:55:24.2704826+00:00" finish="2026-10-19T17:55:24.5699821+00:00" />
+  <TestSettings name="default" id="27d1cf8e-f765-4b99-8ee7-38020014e894">
+    <Deployment runDeploymentRoot="_227dc52140b4_2026-10-19_17_55_24" />
+  </TestSettings>
+  <Results>
+    <UnitTestResult executionId="962d324d-d459-4ac0-b8a6-cdf668489a16" testId="69da912d-e235-e5e3-f97f-f5cbfa1e5fd9" testName="Tests.ProbeTests.Multiplies" computerName="227dc52140b4" duration="00:00:00.0028477" startTime="2026-10-19T17:55:24.5177167+00:00" endTime="2026-10-19T17:55:24.5177248+00:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="962d324d-d459-4ac0-b8a6-cdf668489a16" />
+  </Results>
+  <TestDefinitions>
+    <UnitTest name="Tests.ProbeTests.Multiplies" storage="/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/a0-spike/projects/dotnet/p3b/bin/debug/net8.0/calc.tests.dll" id="69da912d-e235-e5e3-f97f-f5cbfa1e5fd9">
+      <Execution id="962d324d-d459-4ac0-b8a6-cdf668489a16" />
+      <TestMethod codeBase="/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/a0-spike/projects/dotnet/P3b/bin/Debug/net8.0/Calc.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Tests.ProbeTests" name="Multiplies" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestEntries>
+    <TestEntry testId="69da912d-e235-e5e3-f97f-f5cbfa1e5fd9" executionId="962d324d-d459-4ac0-b8a6-cdf668489a16" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <ResultSummary outcome="Completed">
+    <Counters total="1" executed="1" passed="1" failed="0" error="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+    <Output>
+      <StdOut>[xUnit.net 00:00:00.00] xUnit.net VSTest Adapter v2.8.2+699d445a1a (64-bit .NET 8.0.32)
+[xUnit.net 00:00:00.03]   Discovering: Calc.Tests
+[xUnit.net 00:00:00.04]   Discovered:  Calc.Tests
+[xUnit.net 00:00:00.04]   Starting:    Calc.Tests
+[xUnit.net 00:00:00.06]   Finished:    Calc.Tests
+</StdOut>
+    </Output>
+  </ResultSummary>
+</TestRun>

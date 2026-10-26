@@ -1,0 +1,14 @@
+[package]
+name = "familiar-ai-git"
+description = "Git reads: commits seen, changed lines, a file at a sha."
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+homepage.workspace = true
+authors.workspace = true
+
+[dependencies]
+familiar-ai-facts = { version = "0.1.0-prod", path = "../familiar-ai-facts" }
+gix = { version = "0.88.0", default-features = false, features = ["sha1", "revision", "blob-diff", "excludes"] }
+sha2 = "0.11.0"

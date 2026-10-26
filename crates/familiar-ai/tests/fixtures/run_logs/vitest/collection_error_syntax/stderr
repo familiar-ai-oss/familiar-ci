@@ -1,0 +1,19 @@
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  test/calc.test.js [ test/calc.test.js ]
+Error: Failed to parse source for import analysis because the content contains invalid JS syntax. If you are using JSX, make sure to name the file with the .jsx or .tsx extension.
+  Plugin: vite:import-analysis
+  File: /tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/vitest/collection_error_syntax/test/calc.test.js:1:0
+  1  |  import { expect, test } from 'vitest';
+     |  ^
+  2  |  import { add } from '../src/calc.js';
+  3  |  
+ ❯ TransformPluginContext._formatLog ../../.cache/node/node_modules/vite/dist/node/chunks/node.js:8766:39
+ ❯ TransformPluginContext.error ../../.cache/node/node_modules/vite/dist/node/chunks/node.js:8763:14
+ ❯ TransformPluginContext.transform ../../.cache/node/node_modules/vite/dist/node/chunks/node.js:26596:10
+ ❯ EnvironmentPluginContainer.transform ../../.cache/node/node_modules/vite/dist/node/chunks/node.js:8545:14
+ ❯ loadAndTransform ../../.cache/node/node_modules/vite/dist/node/chunks/node.js:20184:26
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+

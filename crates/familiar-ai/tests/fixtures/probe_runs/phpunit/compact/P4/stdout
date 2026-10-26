@@ -1,0 +1,19 @@
+
+
+An error occurred inside PHPUnit.
+
+Message:  Failed opening required '/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/a0-spike/projects/php/P4/tests/../src/NosuchHelper.php' (include_path='.:/usr/local/lib/php')
+Location: /tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/a0-spike/projects/php/P4/tests/ProbeTest.php:6
+
+#0 /tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/.cache/php/phpunit/vendor/phpunit/phpunit/src/Runner/TestSuiteLoader.php(134): require_once()
+#1 /tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/.cache/php/phpunit/vendor/phpunit/phpunit/src/Runner/TestSuiteLoader.php(56): PHPUnit\Runner\TestSuiteLoader->loadSuiteClassFile('/tmp/claude-100...')
+#2 /tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/.cache/php/phpunit/vendor/phpunit/phpunit/src/Framework/TestSuite.php(276): PHPUnit\Runner\TestSuiteLoader->load('/tmp/claude-100...')
+#3 /tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/.cache/php/phpunit/vendor/phpunit/phpunit/src/TextUI/Configuration/Xml/TestSuiteMapper.php(129): PHPUnit\Framework\TestSuite->addTestFile('/tmp/claude-100...', Array, 1, 1)
+#4 /tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/.cache/php/phpunit/vendor/phpunit/phpunit/src/Runner/TestIndex/NullTestFileSkipper.php(43): PHPUnit\TextUI\XmlConfiguration\TestSuiteMapper::{closure:PHPUnit\TextUI\XmlConfiguration\TestSuiteMapper::map():127}()
+#5 /tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/.cache/php/phpunit/vendor/phpunit/phpunit/src/TextUI/Configuration/Xml/TestSuiteMapper.php(125): PHPUnit\Runner\TestIndex\NullTestFileSkipper->record('/tmp/claude-100...', Object(Closure))
+#6 /tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/.cache/php/phpunit/vendor/phpunit/phpunit/src/TextUI/Configuration/TestSuiteBuilder.php(139): PHPUnit\TextUI\XmlConfiguration\TestSuiteMapper->map('/tmp/claude-100...', Object(PHPUnit\TextUI\Configuration\TestSuiteCollection), Array, Array, 1, 1)
+#7 /tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/.cache/php/phpunit/vendor/phpunit/phpunit/src/TextUI/Application.php(472): PHPUnit\TextUI\Configuration\TestSuiteBuilder->build(Object(PHPUnit\TextUI\Configuration\Configuration))
+#8 /tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/.cache/php/phpunit/vendor/phpunit/phpunit/src/TextUI/Application.php(235): PHPUnit\TextUI\Application->buildTestSuite(Object(PHPUnit\TextUI\Configuration\Configuration), Object(PHPUnit\TextUI\CliArguments\Configuration))
+#9 /tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/.cache/php/phpunit/vendor/phpunit/phpunit/phpunit(104): PHPUnit\TextUI\Application->run(Array)
+#10 /tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/.cache/php/phpunit/vendor/bin/phpunit(122): include('/tmp/claude-100...')
+#11 {main}

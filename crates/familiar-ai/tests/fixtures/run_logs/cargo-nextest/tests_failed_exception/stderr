@@ -1,0 +1,29 @@
+   Compiling calc v0.1.0 (/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/cargo-nextest/tests_failed_exception)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.07s
+────────────
+ Nextest run ID 18cddb33-1e58-4a54-8049-e7e87dd0bb5f with nextest profile: default
+    Starting 1 test across 2 binaries
+        FAIL [   0.002s] (1/1) calc::calc_test parses
+  stdout ───
+
+    running 1 test
+    test parses ... FAILED
+
+    failures:
+
+    failures:
+        parses
+
+    test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+  stderr ───
+
+    thread 'parses' (449966) panicked at src/calc.rs:6:22:
+    called `Result::unwrap()` on an `Err` value: ParseIntError { kind: InvalidDigit }
+    note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+  Cancelling due to test failure: 
+────────────
+     Summary [   0.002s] 1 test run: 0 passed, 1 failed, 0 skipped
+        FAIL [   0.002s] (1/1) calc::calc_test parses
+error: test run failed

@@ -1,0 +1,16 @@
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  test/calc.test.js > parses
+Error: not a number: x1
+ ❯ parse src/calc.js:7:11
+      5| export function parse(s) {
+      6|   if (!/^\d+$/.test(s)) {
+      7|     throw new Error(`not a number: ${s}`);
+       |           ^
+      8|   }
+      9|   return Number(s);
+ ❯ test/calc.test.js:5:10
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+

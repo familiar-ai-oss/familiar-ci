@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="calc.CalcTest" tests="1" skipped="0" failures="1" errors="0" timestamp="2026-10-14T23:32:19" hostname="f5e0c8144b0b" time="0.007">
+  <properties/>
+  <testcase name="parses()" classname="calc.CalcTest" time="0.007">
+    <failure message="java.lang.NumberFormatException: For input string: &quot;x1&quot;" type="java.lang.NumberFormatException">java.lang.NumberFormatException: For input string: &quot;x1&quot;
+	at java.base/java.lang.NumberFormatException.forInputString(NumberFormatException.java:67)
+	at java.base/java.lang.Integer.parseInt(Integer.java:662)
+	at java.base/java.lang.Integer.parseInt(Integer.java:778)
+	at calc.Calc.parse(Calc.java:9)
+	at calc.CalcTest.parses(CalcTest.java:10)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+</failure>
+  </testcase>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

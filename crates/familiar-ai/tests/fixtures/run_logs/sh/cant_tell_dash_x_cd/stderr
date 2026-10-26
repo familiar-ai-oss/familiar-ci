@@ -1,0 +1,3 @@
++familiar-ai		set -e
++familiar-ai		cd /nonexistent/dir/a0
+posix/s_cd.sh: 3: cd: can't cd to /nonexistent/dir/a0

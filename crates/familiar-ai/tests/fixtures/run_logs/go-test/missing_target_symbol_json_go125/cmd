@@ -1,0 +1,1 @@
+../../_bin/dock golang:1.25-bookworm 'go test -json ./...'

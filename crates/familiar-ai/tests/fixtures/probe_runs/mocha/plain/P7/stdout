@@ -1,0 +1,15 @@
+
+
+  1) parses
+
+  0 passing (3ms)
+  1 failing
+
+  1) parses:
+     Error: not a number: x1
+      at parse (src/calc.js:9:11)
+      at Context.<anonymous> (test/p7.test.js:6:22)
+      at process.processImmediate (node:internal/timers:485:21)
+
+
+

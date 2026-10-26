@@ -1,0 +1,7 @@
+CMake Error at CTestTestfile.cmake:1:
+  Parse error.  Function missing ending ")".  End of file reached.
+
+
+Errors while running CTest
+Output from these tests are in: /tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/ctest/runner_crash/broken/Testing/Temporary/LastTest.log
+Use "--rerun-failed --output-on-failure" to re-run the failed cases verbosely.

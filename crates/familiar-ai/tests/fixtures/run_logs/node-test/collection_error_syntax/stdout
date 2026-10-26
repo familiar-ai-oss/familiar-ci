@@ -1,0 +1,36 @@
+TAP version 13
+# /tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/node-test/collection_error_syntax/test/calc.test.js:7
+# );
+# ^
+# SyntaxError: Unexpected token ')'
+#     at wrapSafe (node:internal/modules/cjs/loader:1638:18)
+#     at Module._compile (node:internal/modules/cjs/loader:1680:20)
+#     at Module._extensions..js (node:internal/modules/cjs/loader:1839:10)
+#     at Module.load (node:internal/modules/cjs/loader:1441:32)
+#     at Module._load (node:internal/modules/cjs/loader:1263:12)
+#     at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+#     at wrapModuleLoad (node:internal/modules/cjs/loader:237:24)
+#     at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:171:5)
+#     at node:internal/main/run_main_module:36:49
+# Node.js v22.22.0
+# Subtest: test/calc.test.js
+not ok 1 - test/calc.test.js
+  ---
+  duration_ms: 50.349364
+  type: 'test'
+  location: '/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/node-test/collection_error_syntax/test/calc.test.js:1:1'
+  failureType: 'testCodeFailure'
+  exitCode: 1
+  signal: ~
+  error: 'test failed'
+  code: 'ERR_TEST_FAILURE'
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 0
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 60.337601

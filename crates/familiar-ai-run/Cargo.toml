@@ -1,0 +1,15 @@
+[package]
+name = "familiar-ai-run"
+description = "Runs the announced test_command; the result is passed or failed."
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+homepage.workspace = true
+authors.workspace = true
+
+[dependencies]
+# libc is used for two purposes: ending the whole process group of a
+# timed-out command (setpgid + killpg), and giving a shell script's trace its
+# descriptor in the child (dup2, H-2). It compiles no C itself.
+libc = "0.2"

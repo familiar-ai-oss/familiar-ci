@@ -1,0 +1,4 @@
++familiar-ai	posix/s_func_test.sh	2	set -e
+++familiar-ai	posix/s_func_test.sh	4	echo 2
++familiar-ai	posix/s_func_test.sh	4	assert_eq 2 3
++familiar-ai	posix/s_func_test.sh	3	'[' 2 = 3 ']'

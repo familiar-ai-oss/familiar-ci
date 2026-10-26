@@ -1,0 +1,366 @@
+   Compiling calc v0.1.0 (/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/cargo-nextest/big_run)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.39s
+────────────
+ Nextest run ID 93f69991-82b3-4cad-9ae0-9c017fcd9536 with nextest profile: default
+    Starting 600 tests across 2 binaries
+        PASS [   0.002s] (  1/600) calc::calc_test add_003
+        PASS [   0.002s] (  2/600) calc::calc_test add_023
+        PASS [   0.002s] (  3/600) calc::calc_test add_013
+        PASS [   0.002s] (  4/600) calc::calc_test add_007
+        PASS [   0.002s] (  5/600) calc::calc_test add_005
+        PASS [   0.002s] (  6/600) calc::calc_test add_020
+        PASS [   0.002s] (  7/600) calc::calc_test add_002
+        PASS [   0.002s] (  8/600) calc::calc_test add_027
+        PASS [   0.002s] (  9/600) calc::calc_test add_004
+        PASS [   0.003s] ( 10/600) calc::calc_test add_000
+        PASS [   0.003s] ( 11/600) calc::calc_test add_012
+        PASS [   0.002s] ( 12/600) calc::calc_test add_042
+        PASS [   0.002s] ( 13/600) calc::calc_test add_032
+        PASS [   0.002s] ( 14/600) calc::calc_test add_034
+        PASS [   0.002s] ( 15/600) calc::calc_test add_035
+        PASS [   0.002s] ( 16/600) calc::calc_test add_038
+        PASS [   0.002s] ( 17/600) calc::calc_test add_039
+        PASS [   0.002s] ( 18/600) calc::calc_test add_033
+        PASS [   0.002s] ( 19/600) calc::calc_test add_036
+        PASS [   0.003s] ( 20/600) calc::calc_test add_040
+        PASS [   0.002s] ( 21/600) calc::calc_test add_043
+        PASS [   0.002s] ( 22/600) calc::calc_test add_044
+        PASS [   0.002s] ( 23/600) calc::calc_test add_045
+        PASS [   0.002s] ( 24/600) calc::calc_test add_050
+        PASS [   0.002s] ( 25/600) calc::calc_test add_048
+        PASS [   0.002s] ( 26/600) calc::calc_test add_047
+        PASS [   0.002s] ( 27/600) calc::calc_test add_046
+        PASS [   0.002s] ( 28/600) calc::calc_test add_051
+        PASS [   0.002s] ( 29/600) calc::calc_test add_054
+        PASS [   0.002s] ( 30/600) calc::calc_test add_055
+        PASS [   0.002s] ( 31/600) calc::calc_test add_052
+        PASS [   0.002s] ( 32/600) calc::calc_test add_053
+        PASS [   0.002s] ( 33/600) calc::calc_test add_058
+        PASS [   0.002s] ( 34/600) calc::calc_test add_057
+        PASS [   0.002s] ( 35/600) calc::calc_test add_056
+        PASS [   0.001s] ( 36/600) calc::calc_test add_059
+        PASS [   0.001s] ( 37/600) calc::calc_test add_060
+        PASS [   0.001s] ( 38/600) calc::calc_test add_062
+        PASS [   0.002s] ( 39/600) calc::calc_test add_063
+        PASS [   0.002s] ( 40/600) calc::calc_test add_061
+        PASS [   0.002s] ( 41/600) calc::calc_test add_066
+        PASS [   0.002s] ( 42/600) calc::calc_test add_065
+        PASS [   0.002s] ( 43/600) calc::calc_test add_064
+        PASS [   0.002s] ( 44/600) calc::calc_test add_067
+        PASS [   0.001s] ( 45/600) calc::calc_test add_069
+        PASS [   0.002s] ( 46/600) calc::calc_test add_068
+        PASS [   0.001s] ( 47/600) calc::calc_test add_070
+        PASS [   0.002s] ( 48/600) calc::calc_test add_071
+        PASS [   0.002s] ( 49/600) calc::calc_test add_074
+        PASS [   0.001s] ( 50/600) calc::calc_test add_075
+        PASS [   0.002s] ( 51/600) calc::calc_test add_072
+        PASS [   0.002s] ( 52/600) calc::calc_test add_073
+        PASS [   0.012s] ( 53/600) calc::calc_test add_001
+        PASS [   0.012s] ( 54/600) calc::calc_test add_006
+        PASS [   0.012s] ( 55/600) calc::calc_test add_010
+        PASS [   0.002s] ( 56/600) calc::calc_test add_076
+        PASS [   0.002s] ( 57/600) calc::calc_test add_077
+        PASS [   0.002s] ( 58/600) calc::calc_test add_078
+        PASS [   0.002s] ( 59/600) calc::calc_test add_083
+        PASS [   0.002s] ( 60/600) calc::calc_test add_080
+        PASS [   0.003s] ( 61/600) calc::calc_test add_079
+        PASS [   0.002s] ( 62/600) calc::calc_test add_082
+        PASS [   0.002s] ( 63/600) calc::calc_test add_081
+        PASS [   0.010s] ( 64/600) calc::calc_test add_049
+        PASS [   0.014s] ( 65/600) calc::calc_test add_021
+        PASS [   0.014s] ( 66/600) calc::calc_test add_030
+        PASS [   0.014s] ( 67/600) calc::calc_test add_019
+        PASS [   0.012s] ( 68/600) calc::calc_test add_037
+        PASS [   0.015s] ( 69/600) calc::calc_test add_016
+        PASS [   0.003s] ( 70/600) calc::calc_test add_029
+        PASS [   0.015s] ( 71/600) calc::calc_test add_015
+        PASS [   0.015s] ( 72/600) calc::calc_test add_026
+        PASS [   0.003s] ( 73/600) calc::calc_test add_008
+        PASS [   0.015s] ( 74/600) calc::calc_test add_014
+        PASS [   0.013s] ( 75/600) calc::calc_test add_041
+        PASS [   0.016s] ( 76/600) calc::calc_test add_018
+        PASS [   0.016s] ( 77/600) calc::calc_test add_031
+        PASS [   0.004s] ( 78/600) calc::calc_test add_087
+        PASS [   0.004s] ( 79/600) calc::calc_test add_011
+        PASS [   0.004s] ( 80/600) calc::calc_test add_086
+        PASS [   0.016s] ( 81/600) calc::calc_test add_022
+        PASS [   0.016s] ( 82/600) calc::calc_test add_028
+        PASS [   0.004s] ( 83/600) calc::calc_test add_089
+        PASS [   0.004s] ( 84/600) calc::calc_test add_088
+        PASS [   0.003s] ( 85/600) calc::calc_test add_097
+        PASS [   0.003s] ( 86/600) calc::calc_test add_096
+        PASS [   0.018s] ( 87/600) calc::calc_test add_017
+        PASS [   0.003s] ( 88/600) calc::calc_test add_095
+        PASS [   0.003s] ( 89/600) calc::calc_test add_098
+        PASS [   0.004s] ( 90/600) calc::calc_test add_093
+        PASS [   0.004s] ( 91/600) calc::calc_test add_091
+        PASS [   0.004s] ( 92/600) calc::calc_test add_094
+        PASS [   0.003s] ( 93/600) calc::calc_test add_100
+        PASS [   0.003s] ( 94/600) calc::calc_test add_099
+        PASS [   0.004s] ( 95/600) calc::calc_test add_092
+        PASS [   0.004s] ( 96/600) calc::calc_test add_090
+        PASS [   0.003s] ( 97/600) calc::calc_test add_102
+        PASS [   0.003s] ( 98/600) calc::calc_test add_103
+        PASS [   0.003s] ( 99/600) calc::calc_test add_104
+        PASS [   0.003s] (100/600) calc::calc_test add_105
+        PASS [   0.002s] (101/600) calc::calc_test add_106
+        PASS [   0.002s] (102/600) calc::calc_test add_107
+        PASS [   0.002s] (103/600) calc::calc_test add_108
+        PASS [   0.002s] (104/600) calc::calc_test add_109
+        PASS [   0.002s] (105/600) calc::calc_test add_114
+        PASS [   0.003s] (106/600) calc::calc_test add_110
+        PASS [   0.004s] (107/600) calc::calc_test add_101
+        PASS [   0.003s] (108/600) calc::calc_test add_111
+        PASS [   0.003s] (109/600) calc::calc_test add_112
+        PASS [   0.003s] (110/600) calc::calc_test add_113
+        PASS [   0.002s] (111/600) calc::calc_test add_115
+        PASS [   0.002s] (112/600) calc::calc_test add_123
+        PASS [   0.002s] (113/600) calc::calc_test add_121
+        PASS [   0.002s] (114/600) calc::calc_test add_117
+        PASS [   0.002s] (115/600) calc::calc_test add_119
+        PASS [   0.002s] (116/600) calc::calc_test add_122
+        PASS [   0.002s] (117/600) calc::calc_test add_116
+        PASS [   0.002s] (118/600) calc::calc_test add_118
+        PASS [   0.002s] (119/600) calc::calc_test add_120
+        PASS [   0.003s] (120/600) calc::calc_test add_128
+        PASS [   0.003s] (121/600) calc::calc_test add_127
+        PASS [   0.003s] (122/600) calc::calc_test add_124
+        PASS [   0.003s] (123/600) calc::calc_test add_126
+        PASS [   0.003s] (124/600) calc::calc_test add_131
+        PASS [   0.003s] (125/600) calc::calc_test add_129
+        PASS [   0.004s] (126/600) calc::calc_test add_125
+        PASS [   0.005s] (127/600) calc::calc_test add_130
+        PASS [   0.004s] (128/600) calc::calc_test add_139
+        PASS [   0.004s] (129/600) calc::calc_test add_137
+        PASS [   0.003s] (130/600) calc::calc_test add_152
+        PASS [   0.004s] (131/600) calc::calc_test add_141
+        PASS [   0.003s] (132/600) calc::calc_test add_143
+        PASS [   0.003s] (133/600) calc::calc_test add_145
+        PASS [   0.004s] (134/600) calc::calc_test add_142
+        PASS [   0.003s] (135/600) calc::calc_test add_153
+        PASS [   0.004s] (136/600) calc::calc_test add_144
+        PASS [   0.005s] (137/600) calc::calc_test add_135
+        PASS [   0.005s] (138/600) calc::calc_test add_136
+        PASS [   0.005s] (139/600) calc::calc_test add_133
+        PASS [   0.003s] (140/600) calc::calc_test add_150
+        PASS [   0.005s] (141/600) calc::calc_test add_134
+        PASS [   0.005s] (142/600) calc::calc_test add_140
+        PASS [   0.003s] (143/600) calc::calc_test add_154
+        PASS [   0.006s] (144/600) calc::calc_test add_132
+        PASS [   0.003s] (145/600) calc::calc_test add_151
+        PASS [   0.003s] (146/600) calc::calc_test add_155
+        PASS [   0.003s] (147/600) calc::calc_test add_156
+        PASS [   0.003s] (148/600) calc::calc_test add_149
+        PASS [   0.005s] (149/600) calc::calc_test add_138
+        PASS [   0.003s] (150/600) calc::calc_test add_157
+        PASS [   0.013s] (151/600) calc::calc_test add_024
+        PASS [   0.013s] (152/600) calc::calc_test add_084
+        PASS [   0.013s] (153/600) calc::calc_test add_009
+        PASS [   0.006s] (154/600) calc::calc_test add_146
+        PASS [   0.014s] (155/600) calc::calc_test add_085
+        PASS [   0.003s] (156/600) calc::calc_test add_158
+        PASS [   0.003s] (157/600) calc::calc_test add_160
+        PASS [   0.003s] (158/600) calc::calc_test add_163
+        PASS [   0.004s] (159/600) calc::calc_test add_162
+        PASS [   0.003s] (160/600) calc::calc_test add_171
+        PASS [   0.004s] (161/600) calc::calc_test add_161
+        PASS [   0.003s] (162/600) calc::calc_test add_179
+        PASS [   0.003s] (163/600) calc::calc_test add_167
+        PASS [   0.003s] (164/600) calc::calc_test add_169
+        PASS [   0.006s] (165/600) calc::calc_test add_148
+        PASS [   0.004s] (166/600) calc::calc_test add_165
+        PASS [   0.003s] (167/600) calc::calc_test add_174
+        PASS [   0.003s] (168/600) calc::calc_test add_166
+        PASS [   0.003s] (169/600) calc::calc_test add_180
+        PASS [   0.003s] (170/600) calc::calc_test add_170
+        PASS [   0.003s] (171/600) calc::calc_test add_172
+        PASS [   0.003s] (172/600) calc::calc_test add_176
+        PASS [   0.004s] (173/600) calc::calc_test add_159
+        PASS [   0.003s] (174/600) calc::calc_test add_173
+        PASS [   0.003s] (175/600) calc::calc_test add_175
+        PASS [   0.004s] (176/600) calc::calc_test add_168
+        PASS [   0.027s] (177/600) calc::calc_test add_025
+        PASS [   0.004s] (178/600) calc::calc_test add_177
+        PASS [   0.003s] (179/600) calc::calc_test add_178
+        PASS [   0.008s] (180/600) calc::calc_test add_147
+        PASS [   0.003s] (181/600) calc::calc_test add_181
+        PASS [   0.002s] (182/600) calc::calc_test add_185
+        PASS [   0.003s] (183/600) calc::calc_test add_183
+        PASS [   0.002s] (184/600) calc::calc_test add_187
+        PASS [   0.002s] (185/600) calc::calc_test add_188
+        PASS [   0.002s] (186/600) calc::calc_test add_189
+        PASS [   0.003s] (187/600) calc::calc_test add_186
+        PASS [   0.004s] (188/600) calc::calc_test add_164
+        PASS [   0.002s] (189/600) calc::calc_test add_184
+        PASS [   0.003s] (190/600) calc::calc_test add_182
+        PASS [   0.002s] (191/600) calc::calc_test add_192
+        PASS [   0.002s] (192/600) calc::calc_test add_193
+        PASS [   0.002s] (193/600) calc::calc_test add_199
+        PASS [   0.002s] (194/600) calc::calc_test add_197
+        PASS [   0.003s] (195/600) calc::calc_test add_190
+        PASS [   0.003s] (196/600) calc::calc_test add_205
+        PASS [   0.003s] (197/600) calc::calc_test add_195
+        PASS [   0.003s] (198/600) calc::calc_test add_191
+        PASS [   0.002s] (199/600) calc::calc_test add_210
+        PASS [   0.003s] (200/600) calc::calc_test add_212
+        PASS [   0.002s] (201/600) calc::calc_test add_213
+        PASS [   0.003s] (202/600) calc::calc_test add_211
+        PASS [   0.003s] (203/600) calc::calc_test add_207
+        PASS [   0.002s] (204/600) calc::calc_test add_214
+        PASS [   0.003s] (205/600) calc::calc_test add_194
+        PASS [   0.004s] (206/600) calc::calc_test add_203
+        PASS [   0.004s] (207/600) calc::calc_test add_201
+        PASS [   0.004s] (208/600) calc::calc_test add_196
+        PASS [   0.005s] (209/600) calc::calc_test add_198
+        PASS [   0.005s] (210/600) calc::calc_test add_202
+        PASS [   0.004s] (211/600) calc::calc_test add_209
+        PASS [   0.003s] (212/600) calc::calc_test add_221
+        PASS [   0.005s] (213/600) calc::calc_test add_200
+        PASS [   0.003s] (214/600) calc::calc_test add_216
+        PASS [   0.003s] (215/600) calc::calc_test add_219
+        PASS [   0.005s] (216/600) calc::calc_test add_206
+        PASS [   0.004s] (217/600) calc::calc_test add_208
+        PASS [   0.003s] (218/600) calc::calc_test add_215
+        PASS [   0.005s] (219/600) calc::calc_test add_204
+        PASS [   0.003s] (220/600) calc::calc_test add_220
+        PASS [   0.003s] (221/600) calc::calc_test add_222
+        PASS [   0.003s] (222/600) calc::calc_test add_218
+        PASS [   0.002s] (223/600) calc::calc_test add_226
+        PASS [   0.003s] (224/600) calc::calc_test add_229
+        PASS [   0.003s] (225/600) calc::calc_test add_227
+        PASS [   0.003s] (226/600) calc::calc_test add_230
+        PASS [   0.004s] (227/600) calc::calc_test add_217
+        PASS [   0.003s] (228/600) calc::calc_test add_228
+        PASS [   0.003s] (229/600) calc::calc_test add_236
+        PASS [   0.003s] (230/600) calc::calc_test add_234
+        PASS [   0.003s] (231/600) calc::calc_test add_233
+        PASS [   0.004s] (232/600) calc::calc_test add_223
+        PASS [   0.004s] (233/600) calc::calc_test add_225
+        PASS [   0.004s] (234/600) calc::calc_test add_232
+        PASS [   0.004s] (235/600) calc::calc_test add_235
+        PASS [   0.003s] (236/600) calc::calc_test add_237
+        PASS [   0.003s] (237/600) calc::calc_test add_238
+        PASS [   0.005s] (238/600) calc::calc_test add_224
+        PASS [   0.002s] (239/600) calc::calc_test add_249
+        PASS [   0.003s] (240/600) calc::calc_test add_239
+        PASS [   0.003s] (241/600) calc::calc_test add_241
+        PASS [   0.003s] (242/600) calc::calc_test add_242
+        PASS [   0.003s] (243/600) calc::calc_test add_243
+        PASS [   0.003s] (244/600) calc::calc_test add_245
+        PASS [   0.003s] (245/600) calc::calc_test add_246
+        PASS [   0.003s] (246/600) calc::calc_test add_251
+        PASS [   0.003s] (247/600) calc::calc_test add_250
+        PASS [   0.004s] (248/600) calc::calc_test add_240
+        PASS [   0.003s] (249/600) calc::calc_test add_247
+        PASS [   0.003s] (250/600) calc::calc_test add_248
+        PASS [   0.003s] (251/600) calc::calc_test add_254
+        PASS [   0.003s] (252/600) calc::calc_test add_253
+        PASS [   0.003s] (253/600) calc::calc_test add_256
+        PASS [   0.003s] (254/600) calc::calc_test add_255
+        PASS [   0.003s] (255/600) calc::calc_test add_252
+        PASS [   0.004s] (256/600) calc::calc_test add_244
+        PASS [   0.003s] (257/600) calc::calc_test add_259
+        PASS [   0.006s] (258/600) calc::calc_test add_231
+        PASS [   0.003s] (259/600) calc::calc_test add_262
+        PASS [   0.003s] (260/600) calc::calc_test add_257
+        PASS [   0.003s] (261/600) calc::calc_test add_258
+        PASS [   0.003s] (262/600) calc::calc_test add_266
+        PASS [   0.003s] (263/600) calc::calc_test add_263
+        PASS [   0.003s] (264/600) calc::calc_test add_267
+        PASS [   0.003s] (265/600) calc::calc_test add_274
+        PASS [   0.003s] (266/600) calc::calc_test add_264
+        PASS [   0.003s] (267/600) calc::calc_test add_269
+        PASS [   0.003s] (268/600) calc::calc_test add_270
+        PASS [   0.004s] (269/600) calc::calc_test add_261
+        PASS [   0.004s] (270/600) calc::calc_test add_260
+        PASS [   0.003s] (271/600) calc::calc_test add_268
+        PASS [   0.003s] (272/600) calc::calc_test add_272
+        PASS [   0.003s] (273/600) calc::calc_test add_278
+        PASS [   0.003s] (274/600) calc::calc_test add_275
+        PASS [   0.003s] (275/600) calc::calc_test add_273
+        PASS [   0.003s] (276/600) calc::calc_test add_277
+        PASS [   0.003s] (277/600) calc::calc_test add_280
+        PASS [   0.004s] (278/600) calc::calc_test add_265
+        PASS [   0.003s] (279/600) calc::calc_test add_281
+        PASS [   0.003s] (280/600) calc::calc_test add_279
+        PASS [   0.003s] (281/600) calc::calc_test add_284
+        PASS [   0.003s] (282/600) calc::calc_test add_286
+        PASS [   0.003s] (283/600) calc::calc_test add_282
+        PASS [   0.004s] (284/600) calc::calc_test add_276
+        PASS [   0.002s] (285/600) calc::calc_test add_288
+        PASS [   0.003s] (286/600) calc::calc_test add_283
+        PASS [   0.003s] (287/600) calc::calc_test add_285
+        PASS [   0.002s] (288/600) calc::calc_test add_291
+        PASS [   0.004s] (289/600) calc::calc_test add_271
+        PASS [   0.003s] (290/600) calc::calc_test add_290
+        PASS [   0.002s] (291/600) calc::calc_test add_292
+        PASS [   0.003s] (292/600) calc::calc_test add_287
+        PASS [   0.002s] (293/600) calc::calc_test add_294
+        PASS [   0.003s] (294/600) calc::calc_test add_289
+        PASS [   0.002s] (295/600) calc::calc_test add_295
+        PASS [   0.003s] (296/600) calc::calc_test add_293
+        PASS [   0.003s] (297/600) calc::calc_test add_296
+        PASS [   0.003s] (298/600) calc::calc_test add_297
+        PASS [   0.002s] (299/600) calc::calc_test add_318
+        PASS [   0.002s] (300/600) calc::calc_test add_304
+        PASS [   0.003s] (301/600) calc::calc_test add_299
+        PASS [   0.003s] (302/600) calc::calc_test add_314
+        PASS [   0.003s] (303/600) calc::calc_test add_310
+        FAIL [   0.002s] (304/600) calc::calc_test add_300
+  stdout ───
+
+    running 1 test
+    test add_300 ... FAILED
+
+    failures:
+
+    failures:
+        add_300
+
+    test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 599 filtered out; finished in 0.00s
+
+  stderr ───
+
+    thread 'add_300' (446507) panicked at tests/calc_test.rs:1505:5:
+    assertion `left == right` failed
+      left: 301
+     right: -1
+    note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+  Cancelling due to test failure: 31 tests still running
+        PASS [   0.003s] (305/600) calc::calc_test add_298
+        PASS [   0.003s] (306/600) calc::calc_test add_306
+        PASS [   0.003s] (307/600) calc::calc_test add_315
+        PASS [   0.003s] (308/600) calc::calc_test add_316
+        PASS [   0.003s] (309/600) calc::calc_test add_301
+        PASS [   0.003s] (310/600) calc::calc_test add_317
+        PASS [   0.003s] (311/600) calc::calc_test add_311
+        PASS [   0.003s] (312/600) calc::calc_test add_312
+        PASS [   0.003s] (313/600) calc::calc_test add_305
+        PASS [   0.003s] (314/600) calc::calc_test add_307
+        PASS [   0.003s] (315/600) calc::calc_test add_302
+        PASS [   0.004s] (316/600) calc::calc_test add_321
+        PASS [   0.003s] (317/600) calc::calc_test add_319
+        PASS [   0.004s] (318/600) calc::calc_test add_323
+        PASS [   0.004s] (319/600) calc::calc_test add_313
+        PASS [   0.002s] (320/600) calc::calc_test add_329
+        PASS [   0.003s] (321/600) calc::calc_test add_327
+        PASS [   0.005s] (322/600) calc::calc_test add_303
+        PASS [   0.005s] (323/600) calc::calc_test add_308
+        PASS [   0.005s] (324/600) calc::calc_test add_309
+        PASS [   0.003s] (325/600) calc::calc_test add_328
+        PASS [   0.005s] (326/600) calc::calc_test add_320
+        PASS [   0.002s] (327/600) calc::calc_test add_330
+        PASS [   0.003s] (328/600) calc::calc_test add_326
+        PASS [   0.004s] (329/600) calc::calc_test add_324
+        PASS [   0.004s] (330/600) calc::calc_test add_325
+        PASS [   0.003s] (331/600) calc::calc_test add_331
+        PASS [   0.002s] (332/600) calc::calc_test add_334
+        PASS [   0.003s] (333/600) calc::calc_test add_333
+        PASS [   0.003s] (334/600) calc::calc_test add_332
+        PASS [   0.005s] (335/600) calc::calc_test add_322
+────────────
+     Summary [   0.045s] 335/600 tests run: 334 passed, 1 failed, 0 skipped
+        FAIL [   0.002s] (304/600) calc::calc_test add_300
+warning: 265/600 tests were not run due to test failure (run with --no-fail-fast to run all tests, or run with --max-fail)
+error: test run failed

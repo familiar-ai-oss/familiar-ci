@@ -1,0 +1,1 @@
+cargo nextest run --message-format human

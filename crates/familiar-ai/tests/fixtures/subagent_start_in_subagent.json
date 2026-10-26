@@ -1,0 +1,9 @@
+{
+  "session_id": "09633c87",
+  "transcript_path": "<claude_projects>/<project_slug>/09633c87.jsonl",
+  "cwd": "<cwd>",
+  "prompt_id": "4f6bb89a",
+  "agent_id": "a7829af4",
+  "agent_type": "general-purpose",
+  "hook_event_name": "SubagentStart"
+}

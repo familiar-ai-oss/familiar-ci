@@ -1,0 +1,2 @@
+go: errors parsing go.mod:
+go.mod:5: syntax error (unterminated block started at go.mod:4:1)

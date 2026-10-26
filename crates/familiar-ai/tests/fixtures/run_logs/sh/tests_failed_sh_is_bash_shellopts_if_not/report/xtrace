@@ -1,0 +1,5 @@
++familiar-ai	posix/s_if_not.sh	8	printf 'alpha\n'
++familiar-ai	posix/s_if_not.sh	9	check /tmp/a0-sh-3246309.txt
++familiar-ai	posix/s_if_not.sh	3	grep -q gamma /tmp/a0-sh-3246309.txt
++familiar-ai	posix/s_if_not.sh	4	echo FAIL
++familiar-ai	posix/s_if_not.sh	5	exit 1

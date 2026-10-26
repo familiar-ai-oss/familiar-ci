@@ -1,0 +1,1 @@
+posix/s_cd.sh: line 3: cd: /nonexistent/dir/a0: No such file or directory

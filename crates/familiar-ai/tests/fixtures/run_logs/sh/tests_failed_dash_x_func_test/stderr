@@ -1,0 +1,4 @@
++familiar-ai		set -e
++familiar-ai		echo 2
++familiar-ai		assert_eq 2 3
++familiar-ai		[ 2 = 3 ]

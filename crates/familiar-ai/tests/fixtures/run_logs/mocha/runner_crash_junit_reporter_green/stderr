@@ -1,0 +1,6 @@
+
+ Exception during run: TypeError: Class constructor Base cannot be invoked without 'new'
+    at new MochaJUnitReporter (/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/plugin-research/lab/node_modules/mocha-junit-reporter/index.js:221:8)
+    at Mocha.run (/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/plugin-research/lab/node_modules/mocha/lib/mocha.cjs:1002:18)
+    at singleRun (/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/plugin-research/lab/node_modules/mocha/lib/cli/run-helpers.cjs:175:16)
+    at async exports.handler (/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/plugin-research/lab/node_modules/mocha/lib/cli/run.cjs:143:5)

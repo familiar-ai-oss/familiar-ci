@@ -1,0 +1,21 @@
+E
+======================================================================
+ERROR: tests.test_calc (unittest.loader._FailedTest.tests.test_calc)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: tests.test_calc
+Traceback (most recent call last):
+  File "/usr/lib64/python3.14/unittest/loader.py", line 426, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "/usr/lib64/python3.14/unittest/loader.py", line 367, in _get_module_from_name
+    __import__(name)
+    ~~~~~~~~~~^^^^^^
+  File "/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/unittest/collection_error_syntax/tests/test_calc.py", line 5
+    def test_add(self:
+                ^
+SyntaxError: '(' was never closed
+
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+FAILED (errors=1)

@@ -1,0 +1,15 @@
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  test/calc.test.js [ test/calc.test.js ]
+Error: db down
+ ❯ test/calc.test.js:5:9
+      3|
+      4| beforeAll(() => {
+      5|   throw new Error('db down');
+       |         ^
+      6| });
+      7|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+

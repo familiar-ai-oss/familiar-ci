@@ -1,0 +1,19 @@
+[workspace]
+resolver = "2"
+members = ["crates/*"]
+
+[workspace.package]
+version = "0.1.0-prod"
+edition = "2021"
+license = "Apache-2.0"
+repository = "https://github.com/familiar-ai-oss/familiar-ci"
+homepage = "https://familiar-ai.com"
+authors = ["Familiar AI LLC"]
+
+# An encrypted key's bcrypt-pbkdf rounds are slow unoptimised; `approve` and
+# its tests decrypt one per answer.
+[profile.dev.package.bcrypt-pbkdf]
+opt-level = 3
+
+[profile.dev.package.blowfish]
+opt-level = 3

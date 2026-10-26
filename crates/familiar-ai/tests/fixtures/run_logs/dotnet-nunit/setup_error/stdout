@@ -1,0 +1,23 @@
+  Determining projects to restore...
+  Restored /r/dotnet-nunit/setup_error/Calc.Tests.csproj (in 112 ms).
+  Calc.Tests -> /r/dotnet-nunit/setup_error/bin/Debug/net8.0/Calc.Tests.dll
+Test run for /r/dotnet-nunit/setup_error/bin/Debug/net8.0/Calc.Tests.dll (.NETCoreApp,Version=v8.0)
+VSTest version 17.11.1 (x64)
+
+Starting test execution, please wait...
+A total of 1 test files matched the specified pattern.
+Setup failed for test fixture Tests.CalcTests
+System.InvalidOperationException : db down
+StackTrace:    at Tests.CalcTests.Connect() in /r/dotnet-nunit/setup_error/tests/CalcTests.cs:line 12
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Failed Adds [4 ms]
+  Error Message:
+   OneTimeSetUp: System.InvalidOperationException : db down
+  Stack Trace:
+     at Tests.CalcTests.Connect() in /r/dotnet-nunit/setup_error/tests/CalcTests.cs:line 12
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+
+
+Failed!  - Failed:     1, Passed:     0, Skipped:     0, Total:     1, Duration: 4 ms - Calc.Tests.dll (net8.0)

@@ -1,0 +1,10 @@
+PHPUnit 13.4.2 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 8.5.9
+Configuration: /r/phpunit/no_tests_collected_file/phpunit.xml
+
+There was 1 PHPUnit test runner warning:
+
+1) No tests found in class "CalcTest".
+
+No tests executed!

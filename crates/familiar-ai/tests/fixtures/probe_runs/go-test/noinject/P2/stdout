@@ -1,0 +1,5 @@
+--- FAIL: TestAdd (0.00s)
+    calc_test.go:7: Add(2, 2) = 4, want 5
+FAIL
+FAIL	example.com/probe	0.001s
+FAIL

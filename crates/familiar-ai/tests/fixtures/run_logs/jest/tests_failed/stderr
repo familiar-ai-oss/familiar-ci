@@ -1,0 +1,22 @@
+FAIL test/calc.test.js
+  ● adds
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 5
+    Received: 4
+
+      2 |
+      3 | test('adds', () => {
+    > 4 |   expect(add(2, 2)).toBe(5);
+        |                     ^
+      5 | });
+      6 |
+
+      at Object.toBe (test/calc.test.js:4:21)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        0.189 s
+Ran all test suites.

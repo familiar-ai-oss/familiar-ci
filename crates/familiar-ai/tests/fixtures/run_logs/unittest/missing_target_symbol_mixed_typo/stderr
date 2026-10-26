@@ -1,0 +1,23 @@
+FE
+======================================================================
+ERROR: test_mul (tests.test_calc.CalcTest.test_mul)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/unittest/missing_target_symbol_mixed_typo/tests/test_calc.py", line 12, in test_mul
+    self.assertEqual(calc.mull(2, 3), 6)
+                     ^^^^^^^^^
+AttributeError: module 'calc' has no attribute 'mull'
+
+======================================================================
+FAIL: test_add (tests.test_calc.CalcTest.test_add)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/unittest/missing_target_symbol_mixed_typo/tests/test_calc.py", line 9, in test_add
+    self.assertEqual(add(2, 2), 5)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+AssertionError: 4 != 5
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.001s
+
+FAILED (failures=1, errors=1)

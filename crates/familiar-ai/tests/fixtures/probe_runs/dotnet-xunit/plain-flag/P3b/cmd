@@ -1,0 +1,1 @@
+/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/a0-spike/bin/dock mcr.microsoft.com/dotnet/sdk:8.0 'dotnet test --logger "trx;LogFileName=/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/a0-spike/.tmp/rep-fcw_4740/results.trx"'

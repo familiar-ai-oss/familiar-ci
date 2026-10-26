@@ -1,0 +1,3 @@
+{"type": "session", "v": 1, "runner": "unittest", "runner_version": "3.14.4", "language": "python", "language_version": "3.14.4", "plugins": []}
+{"type": "test", "id": "tests.test_p1.T.test_add", "file": "tests/test_p1.py", "line": null, "outcome": "passed", "skip_reason": null, "error": null}
+{"type": "end", "exit": 0, "counts": {"passed": 1, "failed": 0, "skipped": 0, "deselected": 0, "errors": 0, "xfailed": 0, "xpassed": 0}}

@@ -1,0 +1,10 @@
+============================= test session starts ==============================
+platform linux -- Python 3.14.4, pytest-9.1.1, pluggy-1.7.0
+rootdir: /tmp/proj
+plugins: pretty-1.3.0
+collected 2 items
+
+tests/test_m.py .s                                                       [100%]
+Results (0.00s):
+         1 passed
+         1 skipped

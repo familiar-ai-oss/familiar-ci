@@ -1,0 +1,8 @@
+{
+ "env": [],
+ "flags": "",
+ "report_dir": "/a0-spike/.tmp/rep-9xdyftr1",
+ "final_env": {
+  "FAMILIAR_AI_REPORT": "/a0-spike/.tmp/rep-9xdyftr1/results.jsonl"
+ }
+}

@@ -1,0 +1,3 @@
++familiar-ai	2	echo start
++familiar-ai	3	frobnicate_widget --all
+posix/s_notfound.sh: line 3: frobnicate_widget: not found

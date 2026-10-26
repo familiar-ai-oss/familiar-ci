@@ -1,0 +1,25 @@
+
+   FAIL  Tests\CalcTest
+  ⨯ Add
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  Tests\CalcTest > Add                                         Error   
+  Class "Carbon\CarbonImmutable" not found
+
+  at src/Calc.php:11
+      7▕ final class Calc
+      8▕ {
+      9▕     public static function add(int $a, int $b): int
+     10▕     {
+  ➜  11▕         return (new \Carbon\CarbonImmutable())->year * 0 + $a + $b;
+     12▕     }
+     13▕ 
+     14▕     public static function parse(string $s): int
+     15▕     {
+
+  1   src/Calc.php:11
+  2   tests/CalcTest.php:10
+
+
+  Tests:    1 failed (0 assertions)
+  Duration: 0.03s
+

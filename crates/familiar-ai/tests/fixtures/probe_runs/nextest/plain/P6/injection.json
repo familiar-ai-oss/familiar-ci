@@ -1,0 +1,21 @@
+{
+ "env": [
+  [
+   "set",
+   "NEXTEST_EXPERIMENTAL_LIBTEST_JSON",
+   "1"
+  ],
+  [
+   "set",
+   "NEXTEST_MESSAGE_FORMAT",
+   "libtest-json-plus"
+  ]
+ ],
+ "flags": "",
+ "report_dir": "/a0-spike/.tmp/rep-j5ce6a7w",
+ "final_env": {
+  "FAMILIAR_AI_REPORT": "/a0-spike/.tmp/rep-j5ce6a7w/results.jsonl",
+  "NEXTEST_EXPERIMENTAL_LIBTEST_JSON": "1",
+  "NEXTEST_MESSAGE_FORMAT": "libtest-json-plus"
+ }
+}

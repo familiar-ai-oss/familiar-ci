@@ -1,0 +1,42 @@
+TAP version 13
+# Subtest: suite
+    # Subtest: inner
+    not ok 1 - inner
+      ---
+      type: 'test'
+      location: '/w/h.test.cjs:5:3'
+      failureType: 'cancelledByParent'
+      error: 'test did not finish before its parent and was cancelled'
+      code: 'ERR_TEST_FAILURE'
+      ...
+    1..1
+not ok 1 - suite
+  ---
+  type: 'suite'
+  location: '/w/h.test.cjs:3:1'
+  failureType: 'hookFailed'
+  error: 'boom in before'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    SuiteContext.<anonymous> (/w/h.test.cjs:4:24)
+    TestHook.runInAsyncScope (node:async_hooks:214:14)
+    TestHook.run (node:internal/test_runner/test:1047:25)
+    TestHook.run (node:internal/test_runner/test:1354:18)
+    TestHook.run (node:internal/util:564:20)
+    Suite.runHook (node:internal/test_runner/test:965:20)
+    Suite.run (node:internal/test_runner/test:1436:18)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:296:3)
+  ...
+# Subtest: top
+ok 2 - top
+  ---
+  type: 'test'
+  ...
+1..2
+# tests 2
+# suites 1
+# pass 1
+# fail 0
+# cancelled 1
+# skipped 0
+# todo 0

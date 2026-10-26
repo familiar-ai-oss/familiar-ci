@@ -1,0 +1,1 @@
+node --test --test-reporter=dot --test-reporter-destination=stdout --test-reporter=/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/a0-spike/kit/node/reporter.mjs --test-reporter-destination=/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/a0-spike/.tmp/rep-b05bkq6e/node.out

@@ -1,0 +1,4 @@
+error: failed to parse nextest config at `/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/cargo-nextest/runner_crash_config/.config/nextest.toml`
+
+Caused by:
+  profile.default.retries: invalid type: string "many", expected a table ({ backoff = "fixed", count = 5 }) or a number (5)

@@ -1,0 +1,17 @@
+
+  ● adds
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 5
+    Received: 4
+
+      2 |
+      3 | test('adds', () => {
+    > 4 |   expect(add(2, 2)).toBe(5);
+        |                     ^
+      5 | });
+      6 |
+
+      at Object.toBe (test/calc.test.js:4:21)
+

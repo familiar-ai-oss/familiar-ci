@@ -1,0 +1,48 @@
+============================= test session starts ==============================
+platform linux -- Python 3.14.4, pytest-9.1.1, pluggy-1.6.0
+rootdir: /tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/pytest/tests_failed_exception_two
+configfile: pyproject.toml
+testpaths: tests
+collected 2 items
+
+tests/test_calc.py FF                                                    [100%]
+
+=================================== FAILURES ===================================
+__________________________________ test_parse __________________________________
+
+    def test_parse():
+>       assert parse("x1") == 1
+               ^^^^^^^^^^^
+
+tests/test_calc.py:5: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+s = 'x1'
+
+    def parse(s):
+        if not s.isdigit():
+>           raise ValueError(f"not a number: {s!r}")
+E           ValueError: not a number: 'x1'
+
+src/calc.py:7: ValueError
+_______________________________ test_parse_again _______________________________
+
+    def test_parse_again():
+>       assert parse("y2") == 2
+               ^^^^^^^^^^^
+
+tests/test_calc.py:9: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+s = 'y2'
+
+    def parse(s):
+        if not s.isdigit():
+>           raise ValueError(f"not a number: {s!r}")
+E           ValueError: not a number: 'y2'
+
+src/calc.py:7: ValueError
+=========================== short test summary info ============================
+FAILED tests/test_calc.py::test_parse - ValueError: not a number: 'x1'
+FAILED tests/test_calc.py::test_parse_again - ValueError: not a number: 'y2'
+============================== 2 failed in 0.01s ===============================

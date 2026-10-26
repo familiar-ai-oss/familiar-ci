@@ -1,0 +1,27 @@
+TAP version 13
+# Subtest: top
+not ok 1 - top
+  ---
+  type: 'test'
+  location: '/w/e.test.cjs:4:1'
+  failureType: 'hookFailed'
+  error: 'boom in beforeEach'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    TestContext.<anonymous> (/w/e.test.cjs:3:26)
+    TestHook.runInAsyncScope (node:async_hooks:214:14)
+    TestHook.run (node:internal/test_runner/test:1047:25)
+    TestHook.run (node:internal/test_runner/test:1354:18)
+    Test.runHook (node:internal/test_runner/test:965:20)
+    Test.run (node:internal/test_runner/test:1022:27)
+    Test.start (node:internal/test_runner/test:944:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:296:17)
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 0
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0

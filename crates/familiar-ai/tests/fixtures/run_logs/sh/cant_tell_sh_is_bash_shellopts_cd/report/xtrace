@@ -1,0 +1,2 @@
++familiar-ai	posix/s_cd.sh	2	set -e
++familiar-ai	posix/s_cd.sh	3	cd /nonexistent/dir/a0

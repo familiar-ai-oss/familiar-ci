@@ -1,0 +1,6 @@
+cargo-nextest 0.9.143 (60fa45f63 2026-08-04)
+release: 0.9.143
+commit-hash: 60fa45f638ffc3f35e74afa65737f45fcd32db2a
+commit-date: 2026-08-04
+host: x86_64-unknown-linux-gnu
+rustc 1.94.0 (4a4ef493e 2026-03-02)

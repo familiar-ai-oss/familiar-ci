@@ -1,0 +1,31 @@
+
+✖ ERROR: TypeError: Could not load reporter "nosuchreporter":
+
+ Error: Cannot find module '/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/mocha/runner_crash/nosuchreporter'
+Require stack:
+- /tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/.cache/node/node_modules/mocha/lib/cli/run-helpers.cjs
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1383:15)
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1025:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1030:22)
+    at Module._load (node:internal/modules/cjs/loader:1192:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:237:24)
+    at Module.require (node:internal/modules/cjs/loader:1463:12)
+    at require (node:internal/modules/helpers:147:16)
+    at exports.validateLegacyPlugin (/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/.cache/node/node_modules/mocha/lib/cli/run-helpers.cjs:295:25)
+    at Object.prepareRunOptions (/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/.cache/node/node_modules/mocha/lib/cli/run.cjs:127:3)
+    at async runCommand (file:///tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/.cache/node/node_modules/mocha/lib/cli/cli.js:91:5) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/.cache/node/node_modules/mocha/lib/cli/run-helpers.cjs'
+  ]
+}
+    at createInvalidReporterError (file:///tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/.cache/node/node_modules/mocha/lib/errors.js:48:13)
+    at createInvalidLegacyPluginError (file:///tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/.cache/node/node_modules/mocha/lib/errors.js:182:14)
+    at createUnknownError (/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/.cache/node/node_modules/mocha/lib/cli/run-helpers.cjs:278:5)
+    at exports.validateLegacyPlugin (/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/.cache/node/node_modules/mocha/lib/cli/run-helpers.cjs:297:15)
+    at Object.prepareRunOptions (/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/.cache/node/node_modules/mocha/lib/cli/run.cjs:127:3)
+    at async runCommand (file:///tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/.cache/node/node_modules/mocha/lib/cli/cli.js:91:5) {
+  code: 'ERR_MOCHA_INVALID_REPORTER',
+  reporter: 'nosuchreporter'
+}

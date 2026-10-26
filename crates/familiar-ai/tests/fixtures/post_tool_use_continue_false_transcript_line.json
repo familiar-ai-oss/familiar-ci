@@ -1,0 +1,26 @@
+{
+  "parentUuid": "52bc0fca-7333-4a96-a68b-3f1626271585",
+  "isSidechain": false,
+  "attachment": {
+    "type": "hook_stopped_continuation",
+    "message": "escalated to the investigator",
+    "hookName": "PostToolUse:Bash",
+    "toolUseID": "toolu_01JrESwPX9FygSWnRLaawmQ8",
+    "hookEvent": "PostToolUse"
+  },
+  "type": "attachment",
+  "uuid": "b0395dee-e86f-4987-9e3d-3b5f8c26752e",
+  "timestamp": "2026-10-07T14:14:05.019Z",
+  "rendered": [
+    {
+      "content": "<system-reminder>\nPostToolUse:Bash hook stopped continuation: escalated to the investigator\n</system-reminder>"
+    }
+  ],
+  "renderedRole": "system",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/tmp/claude-1000/-home-dev-projects-example/00000000-0000-4000-8000-000000000000/scratchpad/step0/proj",
+  "sessionId": "44ad3302-44fe-4a9d-8c02-3fff00202a15",
+  "version": "2.1.289",
+  "gitBranch": "master"
+}

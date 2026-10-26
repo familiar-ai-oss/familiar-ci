@@ -1,0 +1,23 @@
+In file included from /tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/.cache/cpp-prefix/include/gtest/gtest-message.h:57,
+                 from /tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/.cache/cpp-prefix/include/gtest/gtest-assertion-result.h:46,
+                 from /tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/.cache/cpp-prefix/include/gtest/gtest.h:63,
+                 from /tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/googletest/collection_error/tests/calc_test.cpp:1:
+/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/googletest/collection_error/tests/calc_test.cpp: In member function ‘virtual void Calc_Adds_Test::TestBody()’:
+/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/googletest/collection_error/tests/calc_test.cpp:7:5: error: expected ‘,’ or ‘;’ before ‘switch’
+    7 |     EXPECT_EQ(got, 4);
+      |     ^~~~~~~~~
+In file included from /tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/.cache/cpp-prefix/include/gtest/gtest.h:71:
+/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/googletest/collection_error/tests/calc_test.cpp:7:5: error: ‘else’ without a previous ‘if’
+    7 |     EXPECT_EQ(got, 4);
+      |     ^~~~~~~~~
+In file included from /tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/.cache/cpp-prefix/include/gtest/gtest-printers.h:122,
+                 from /tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/.cache/cpp-prefix/include/gtest/gtest-matchers.h:49,
+                 from /tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/.cache/cpp-prefix/include/gtest/internal/gtest-death-test-internal.h:47,
+                 from /tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/.cache/cpp-prefix/include/gtest/gtest-death-test.h:43,
+                 from /tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/.cache/cpp-prefix/include/gtest/gtest.h:64:
+/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/googletest/collection_error/tests/calc_test.cpp:7:5: error: ‘gtest_ar’ was not declared in this scope
+    7 |     EXPECT_EQ(got, 4);
+      |     ^~~~~~~~~
+gmake[2]: *** [CMakeFiles/calc_test.dir/build.make:79: CMakeFiles/calc_test.dir/tests/calc_test.cpp.o] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:122: CMakeFiles/calc_test.dir/all] Error 2
+gmake: *** [Makefile:91: all] Error 2

@@ -1,0 +1,4 @@
+{"type": "session", "v": 1, "runner": "phpunit", "runner_version": null, "language": "php", "plugins": [], "converted_from": "junit", "files": 1}
+{"type": "test", "id": "ProbeTest::testAdd", "file": "tests/ProbeTest.php", "line": 13, "outcome": "passed", "skip_reason": null, "error": null}
+{"type": "test", "id": "ProbeTest::testLater", "file": "tests/ProbeTest.php", "line": 17, "outcome": "skipped", "skip_reason": null, "error": null}
+{"type": "end", "exit": null, "counts": {"passed": 1, "failed": 0, "skipped": 1, "deselected": 0, "errors": 0}}

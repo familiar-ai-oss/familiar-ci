@@ -1,0 +1,18 @@
+
+  [41;1m Error [49;22m
+
+[39;1m  Failed opening required '/r/pest/collection_error_import/tests/../src/NosuchHelper.php' (include_path='.:/usr/local/lib/php')[39;22m
+
+  at [32mtests/CalcTest.php[39m:[32m6[39m
+      2▕ 
+      3▕ declare(strict_types=1);
+      4▕ 
+      5▕ require_once __DIR__ . '/../src/Calc.php';
+  ➜   6▕ require_once __DIR__ . '/../src/NosuchHelper.php';
+      7▕ 
+      8▕ use App\Calc;
+      9▕ 
+     10▕ test('Add', function () {
+
+
+

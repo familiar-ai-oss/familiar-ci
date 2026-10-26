@@ -1,0 +1,4 @@
+ImportError while loading conftest '/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/pytest/runner_crash_conftest/tests/conftest.py'.
+tests/conftest.py:1: in <module>
+    raise RuntimeError("conftest blew up at import")
+E   RuntimeError: conftest blew up at import

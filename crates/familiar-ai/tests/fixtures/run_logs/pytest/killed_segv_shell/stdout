@@ -1,0 +1,8 @@
+============================= test session starts ==============================
+platform linux -- Python 3.14.4, pytest-9.1.1, pluggy-1.6.0
+rootdir: /tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/pytest/killed_segv_shell
+configfile: pyproject.toml
+testpaths: tests
+collected 2 items
+
+tests/test_calc.py .

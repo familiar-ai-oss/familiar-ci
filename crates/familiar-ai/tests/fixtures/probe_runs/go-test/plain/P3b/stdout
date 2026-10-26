@@ -1,0 +1,8 @@
+{"Time":"2026-10-19T17:47:04.164146951Z","Action":"start","Package":"example.com/probe"}
+{"Time":"2026-10-19T17:47:04.164882225Z","Action":"run","Package":"example.com/probe","Test":"TestMul"}
+{"Time":"2026-10-19T17:47:04.164893775Z","Action":"output","Package":"example.com/probe","Test":"TestMul","Output":"=== RUN   TestMul\n"}
+{"Time":"2026-10-19T17:47:04.164913165Z","Action":"output","Package":"example.com/probe","Test":"TestMul","Output":"--- PASS: TestMul (0.00s)\n"}
+{"Time":"2026-10-19T17:47:04.164915425Z","Action":"pass","Package":"example.com/probe","Test":"TestMul","Elapsed":0}
+{"Time":"2026-10-19T17:47:04.164918245Z","Action":"output","Package":"example.com/probe","Output":"PASS\n"}
+{"Time":"2026-10-19T17:47:04.164962405Z","Action":"output","Package":"example.com/probe","Output":"ok  \texample.com/probe\t0.001s\n"}
+{"Time":"2026-10-19T17:47:04.165168656Z","Action":"pass","Package":"example.com/probe","Elapsed":0.001}

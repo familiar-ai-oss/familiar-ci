@@ -1,0 +1,10 @@
+-------------------------------------------------------------------------------
+Test set: calc.CalcTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.010 s <<< FAILURE! -- in calc.CalcTest
+calc.CalcTest -- Time elapsed: 0.010 s <<< ERROR!
+java.lang.IllegalStateException: db down
+	at calc.CalcTest.connect(CalcTest.java:11)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+

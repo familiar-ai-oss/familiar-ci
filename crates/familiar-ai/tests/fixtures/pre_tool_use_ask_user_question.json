@@ -1,0 +1,29 @@
+{
+  "session_id": "d925ef40-8c5a-4ff1-a3f9-84909cb79d71",
+  "transcript_path": "/home/dev/.claude/projects/-home-dev-project/d925ef40-8c5a-4ff1-a3f9-84909cb79d71.jsonl",
+  "cwd": "/home/dev/project",
+  "prompt_id": "ca994d3c-669b-4405-a9a2-ad13e84e285e",
+  "permission_mode": "default",
+  "hook_event_name": "PreToolUse",
+  "tool_name": "AskUserQuestion",
+  "tool_input": {
+    "questions": [
+      {
+        "question": "Continue?",
+        "header": "x",
+        "options": [
+          {
+            "label": "yes",
+            "description": "Continue"
+          },
+          {
+            "label": "no",
+            "description": "Do not continue"
+          }
+        ],
+        "multiSelect": false
+      }
+    ]
+  },
+  "tool_use_id": "toolu_017zRKmPZ152V4qtez5mdqPZ"
+}

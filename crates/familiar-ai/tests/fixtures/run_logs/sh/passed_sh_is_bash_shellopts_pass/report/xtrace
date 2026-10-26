@@ -1,0 +1,6 @@
+++familiar-ai	posix/s_pass.sh	2	printf 'hello\n'
++familiar-ai	posix/s_pass.sh	2	out=hello
++familiar-ai	posix/s_pass.sh	3	'[' hello = hello ']'
++familiar-ai	posix/s_pass.sh	4	echo hello
++familiar-ai	posix/s_pass.sh	4	grep -q hello
++familiar-ai	posix/s_pass.sh	5	echo ok

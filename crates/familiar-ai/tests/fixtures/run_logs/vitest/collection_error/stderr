@@ -1,0 +1,15 @@
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  test/calc.test.js [ test/calc.test.js ]
+Error: Cannot find module './nosuchhelper.js' imported from /tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/vitest/collection_error/test/calc.test.js
+ ❯ test/calc.test.js:3:1
+      1| import { expect, test } from 'vitest';
+      2| import { add } from '../src/calc.js';
+      3| import { helper } from './nosuchhelper.js';
+       | ^
+      4|
+      5| test('adds', () => {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+

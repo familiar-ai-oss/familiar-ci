@@ -1,0 +1,35 @@
+-- The CXX compiler identification is GNU 16.0.1
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Configuring done (0.1s)
+-- Generating done (0.0s)
+-- Build files have been written to: /tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/catch2/setup_error/build
+[ 25%] Building CXX object CMakeFiles/calc.dir/src/calc.cpp.o
+[ 50%] Linking CXX static library libcalc.a
+[ 50%] Built target calc
+[ 75%] Building CXX object CMakeFiles/calc_test.dir/tests/calc_test.cpp.o
+[100%] Linking CXX executable calc_test
+[100%] Built target calc_test
+Randomness seeded to: 2489393322
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+calc_test is a Catch2 v3.8.1 host application.
+Run with -? for options
+
+-------------------------------------------------------------------------------
+Adds
+-------------------------------------------------------------------------------
+/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/catch2/setup_error/tests/calc_test.cpp:11
+...............................................................................
+
+/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/catch2/setup_error/tests/calc_test.cpp:11: FAILED:
+due to unexpected exception with message:
+  db down
+
+===============================================================================
+test cases: 1 | 1 failed
+assertions: 1 | 1 failed
+

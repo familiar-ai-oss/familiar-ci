@@ -1,0 +1,16 @@
+info: experimental features enabled: setup-scripts
+   Compiling calc v0.1.0 (/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/cargo-nextest/setup_error)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.07s
+────────────
+ Nextest run ID ce3a40a3-6984-4117-a10d-400c74b8d163 with nextest profile: default
+    Starting 1 test across 2 binaries
+       SETUP [      1/1] db: sh -c 'echo db unavailable >&2; exit 3'
+db unavailable
+  SETUP FAIL [   0.002s] db: sh -c 'echo db unavailable >&2; exit 3'
+
+    (script failed with exit code 3)
+
+  Cancelling due to setup script failure: 
+────────────
+     Summary [   0.002s] 0/1 tests run: 0 passed, 0 skipped
+error: setup script failed

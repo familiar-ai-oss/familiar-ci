@@ -1,0 +1,4 @@
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.00s
+     Running unittests src/lib.rs (target/debug/deps/probe-9e60ea5904fece19)
+     Running tests/familiar_probe_p3b.rs (target/debug/deps/familiar_probe_p3b-12f1074a63ba2926)
+   Doc-tests probe

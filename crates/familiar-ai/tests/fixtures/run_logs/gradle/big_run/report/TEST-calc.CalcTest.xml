@@ -1,0 +1,676 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="calc.CalcTest" tests="600" skipped="0" failures="1" errors="0" timestamp="2026-10-14T23:31:20" hostname="43da08a6daea" time="0.135">
+  <properties/>
+  <testcase name="[1] 0" classname="calc.CalcTest" time="0.008"/>
+  <testcase name="[2] 1" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="[3] 2" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[4] 3" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[5] 4" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="[6] 5" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[7] 6" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="[8] 7" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[9] 8" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="[10] 9" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[11] 10" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="[12] 11" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="[13] 12" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[14] 13" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="[15] 14" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[16] 15" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[17] 16" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[18] 17" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[19] 18" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[20] 19" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[21] 20" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="[22] 21" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[23] 22" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="[24] 23" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[25] 24" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[26] 25" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[27] 26" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[28] 27" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[29] 28" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[30] 29" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[31] 30" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[32] 31" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[33] 32" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[34] 33" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[35] 34" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[36] 35" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[37] 36" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[38] 37" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[39] 38" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[40] 39" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[41] 40" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[42] 41" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[43] 42" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[44] 43" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[45] 44" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[46] 45" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[47] 46" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[48] 47" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[49] 48" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[50] 49" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[51] 50" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[52] 51" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="[53] 52" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[54] 53" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[55] 54" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[56] 55" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="[57] 56" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[58] 57" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[59] 58" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[60] 59" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[61] 60" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[62] 61" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="[63] 62" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[64] 63" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="[65] 64" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[66] 65" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[67] 66" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="[68] 67" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[69] 68" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[70] 69" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[71] 70" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="[72] 71" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[73] 72" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[74] 73" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[75] 74" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[76] 75" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[77] 76" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[78] 77" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="[79] 78" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[80] 79" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[81] 80" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[82] 81" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="[83] 82" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[84] 83" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[85] 84" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="[86] 85" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[87] 86" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[88] 87" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[89] 88" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="[90] 89" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[91] 90" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[92] 91" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[93] 92" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[94] 93" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[95] 94" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[96] 95" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[97] 96" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[98] 97" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[99] 98" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[100] 99" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[101] 100" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[102] 101" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="[103] 102" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[104] 103" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[105] 104" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[106] 105" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[107] 106" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="[108] 107" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[109] 108" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[110] 109" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[111] 110" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[112] 111" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="[113] 112" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[114] 113" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[115] 114" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[116] 115" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[117] 116" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[118] 117" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[119] 118" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[120] 119" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[121] 120" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="[122] 121" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[123] 122" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[124] 123" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[125] 124" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="[126] 125" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[127] 126" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="[128] 127" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="[129] 128" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[130] 129" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[131] 130" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[132] 131" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[133] 132" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[134] 133" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[135] 134" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="[136] 135" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[137] 136" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[138] 137" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[139] 138" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[140] 139" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="[141] 140" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[142] 141" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[143] 142" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[144] 143" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[145] 144" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[146] 145" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[147] 146" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[148] 147" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[149] 148" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[150] 149" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="[151] 150" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[152] 151" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[153] 152" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[154] 153" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[155] 154" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[156] 155" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[157] 156" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[158] 157" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[159] 158" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[160] 159" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[161] 160" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="[162] 161" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[163] 162" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[164] 163" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[165] 164" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[166] 165" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[167] 166" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[168] 167" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[169] 168" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[170] 169" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[171] 170" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[172] 171" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="[173] 172" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[174] 173" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[175] 174" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[176] 175" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[177] 176" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[178] 177" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[179] 178" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[180] 179" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[181] 180" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[182] 181" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[183] 182" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[184] 183" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[185] 184" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[186] 185" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[187] 186" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[188] 187" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[189] 188" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="[190] 189" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[191] 190" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[192] 191" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[193] 192" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[194] 193" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[195] 194" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[196] 195" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[197] 196" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[198] 197" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[199] 198" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[200] 199" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[201] 200" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[202] 201" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[203] 202" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[204] 203" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[205] 204" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[206] 205" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[207] 206" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[208] 207" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[209] 208" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[210] 209" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="[211] 210" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[212] 211" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[213] 212" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[214] 213" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[215] 214" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[216] 215" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[217] 216" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[218] 217" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[219] 218" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[220] 219" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[221] 220" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[222] 221" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="[223] 222" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[224] 223" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[225] 224" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[226] 225" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[227] 226" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[228] 227" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[229] 228" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[230] 229" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[231] 230" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[232] 231" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[233] 232" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[234] 233" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[235] 234" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[236] 235" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[237] 236" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[238] 237" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[239] 238" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[240] 239" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="[241] 240" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[242] 241" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[243] 242" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[244] 243" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[245] 244" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[246] 245" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[247] 246" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[248] 247" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[249] 248" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[250] 249" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[251] 250" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[252] 251" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[253] 252" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[254] 253" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[255] 254" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[256] 255" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[257] 256" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="[258] 257" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[259] 258" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[260] 259" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[261] 260" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[262] 261" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="[263] 262" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[264] 263" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[265] 264" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[266] 265" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[267] 266" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[268] 267" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[269] 268" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[270] 269" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[271] 270" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[272] 271" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[273] 272" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[274] 273" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[275] 274" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[276] 275" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[277] 276" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[278] 277" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[279] 278" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[280] 279" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[281] 280" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[282] 281" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[283] 282" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[284] 283" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[285] 284" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[286] 285" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[287] 286" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[288] 287" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[289] 288" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[290] 289" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[291] 290" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[292] 291" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[293] 292" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[294] 293" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[295] 294" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[296] 295" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[297] 296" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="[298] 297" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[299] 298" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[300] 299" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[301] 300" classname="calc.CalcTest" time="0.005">
+    <failure message="org.opentest4j.AssertionFailedError: expected: &lt;-1&gt; but was: &lt;301&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: expected: &lt;-1&gt; but was: &lt;301&gt;
+	at app//org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at app//org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at app//org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at app//org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:150)
+	at app//org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:145)
+	at app//org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:531)
+	at app//calc.CalcTest.adds(CalcTest.java:18)
+	at java.base@21.0.5/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base@21.0.5/java.util.stream.ForEachOps$ForEachOp$OfRef.accept(ForEachOps.java:184)
+	at java.base@21.0.5/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+	at java.base@21.0.5/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:179)
+	at java.base@21.0.5/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+	at java.base@21.0.5/java.util.stream.ForEachOps$ForEachOp$OfRef.accept(ForEachOps.java:184)
+	at java.base@21.0.5/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+	at java.base@21.0.5/java.util.stream.ForEachOps$ForEachOp$OfRef.accept(ForEachOps.java:184)
+	at java.base@21.0.5/java.util.stream.ForEachOps$ForEachOp$OfRef.accept(ForEachOps.java:184)
+	at java.base@21.0.5/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+	at java.base@21.0.5/java.util.stream.ForEachOps$ForEachOp$OfRef.accept(ForEachOps.java:184)
+	at java.base@21.0.5/java.util.stream.IntPipeline$1$1.accept(IntPipeline.java:180)
+	at java.base@21.0.5/java.util.stream.Streams$RangeIntSpliterator.forEachRemaining(Streams.java:104)
+	at java.base@21.0.5/java.util.Spliterator$OfInt.forEachRemaining(Spliterator.java:712)
+	at java.base@21.0.5/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
+	at java.base@21.0.5/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
+	at java.base@21.0.5/java.util.stream.ForEachOps$ForEachOp.evaluateSequential(ForEachOps.java:151)
+	at java.base@21.0.5/java.util.stream.ForEachOps$ForEachOp$OfRef.evaluateSequential(ForEachOps.java:174)
+	at java.base@21.0.5/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+	at java.base@21.0.5/java.util.stream.ReferencePipeline.forEach(ReferencePipeline.java:596)
+	at java.base@21.0.5/java.util.stream.ReferencePipeline$7$1.accept(ReferencePipeline.java:276)
+	at java.base@21.0.5/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+	at java.base@21.0.5/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+	at java.base@21.0.5/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+	at java.base@21.0.5/java.util.Spliterators$ArraySpliterator.forEachRemaining(Spliterators.java:1024)
+	at java.base@21.0.5/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
+	at java.base@21.0.5/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
+	at java.base@21.0.5/java.util.stream.ForEachOps$ForEachOp.evaluateSequential(ForEachOps.java:151)
+	at java.base@21.0.5/java.util.stream.ForEachOps$ForEachOp$OfRef.evaluateSequential(ForEachOps.java:174)
+	at java.base@21.0.5/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+	at java.base@21.0.5/java.util.stream.ReferencePipeline.forEach(ReferencePipeline.java:596)
+	at java.base@21.0.5/java.util.stream.ReferencePipeline$7$1.accept(ReferencePipeline.java:276)
+	at java.base@21.0.5/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1708)
+	at java.base@21.0.5/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
+	at java.base@21.0.5/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
+	at java.base@21.0.5/java.util.stream.ForEachOps$ForEachOp.evaluateSequential(ForEachOps.java:151)
+	at java.base@21.0.5/java.util.stream.ForEachOps$ForEachOp$OfRef.evaluateSequential(ForEachOps.java:174)
+	at java.base@21.0.5/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+	at java.base@21.0.5/java.util.stream.ReferencePipeline.forEach(ReferencePipeline.java:596)
+	at java.base@21.0.5/java.util.stream.ReferencePipeline$7$1.accept(ReferencePipeline.java:276)
+	at java.base@21.0.5/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+	at java.base@21.0.5/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+	at java.base@21.0.5/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+	at java.base@21.0.5/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1708)
+	at java.base@21.0.5/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
+	at java.base@21.0.5/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
+	at java.base@21.0.5/java.util.stream.ForEachOps$ForEachOp.evaluateSequential(ForEachOps.java:151)
+	at java.base@21.0.5/java.util.stream.ForEachOps$ForEachOp$OfRef.evaluateSequential(ForEachOps.java:174)
+	at java.base@21.0.5/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+	at java.base@21.0.5/java.util.stream.ReferencePipeline.forEach(ReferencePipeline.java:596)
+	at java.base@21.0.5/java.util.stream.ReferencePipeline$7$1.accept(ReferencePipeline.java:276)
+	at java.base@21.0.5/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1708)
+	at java.base@21.0.5/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
+	at java.base@21.0.5/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
+	at java.base@21.0.5/java.util.stream.ForEachOps$ForEachOp.evaluateSequential(ForEachOps.java:151)
+	at java.base@21.0.5/java.util.stream.ForEachOps$ForEachOp$OfRef.evaluateSequential(ForEachOps.java:174)
+	at java.base@21.0.5/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+	at java.base@21.0.5/java.util.stream.ReferencePipeline.forEach(ReferencePipeline.java:596)
+	at java.base@21.0.5/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base@21.0.5/java.util.ArrayList.forEach(ArrayList.java:1596)
+</failure>
+  </testcase>
+  <testcase name="[302] 301" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[303] 302" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="[304] 303" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[305] 304" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[306] 305" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[307] 306" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[308] 307" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="[309] 308" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[310] 309" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[311] 310" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[312] 311" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[313] 312" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="[314] 313" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[315] 314" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[316] 315" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[317] 316" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[318] 317" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[319] 318" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[320] 319" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[321] 320" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[322] 321" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[323] 322" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="[324] 323" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[325] 324" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[326] 325" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[327] 326" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[328] 327" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[329] 328" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[330] 329" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="[331] 330" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[332] 331" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[333] 332" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[334] 333" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[335] 334" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[336] 335" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[337] 336" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[338] 337" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[339] 338" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[340] 339" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[341] 340" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[342] 341" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[343] 342" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[344] 343" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[345] 344" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[346] 345" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[347] 346" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[348] 347" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="[349] 348" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[350] 349" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[351] 350" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[352] 351" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[353] 352" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[354] 353" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[355] 354" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[356] 355" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[357] 356" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[358] 357" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[359] 358" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[360] 359" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[361] 360" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[362] 361" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="[363] 362" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[364] 363" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[365] 364" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[366] 365" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[367] 366" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[368] 367" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[369] 368" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[370] 369" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[371] 370" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[372] 371" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[373] 372" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[374] 373" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[375] 374" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[376] 375" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[377] 376" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[378] 377" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[379] 378" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[380] 379" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[381] 380" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[382] 381" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="[383] 382" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[384] 383" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[385] 384" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[386] 385" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[387] 386" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[388] 387" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[389] 388" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[390] 389" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="[391] 390" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[392] 391" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[393] 392" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[394] 393" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[395] 394" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[396] 395" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[397] 396" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="[398] 397" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[399] 398" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[400] 399" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[401] 400" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[402] 401" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[403] 402" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[404] 403" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[405] 404" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[406] 405" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[407] 406" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[408] 407" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[409] 408" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[410] 409" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[411] 410" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[412] 411" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[413] 412" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[414] 413" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[415] 414" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[416] 415" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[417] 416" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[418] 417" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[419] 418" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[420] 419" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[421] 420" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[422] 421" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[423] 422" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[424] 423" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[425] 424" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[426] 425" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[427] 426" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[428] 427" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[429] 428" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[430] 429" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[431] 430" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[432] 431" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[433] 432" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[434] 433" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[435] 434" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="[436] 435" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[437] 436" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[438] 437" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[439] 438" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[440] 439" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[441] 440" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[442] 441" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[443] 442" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="[444] 443" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[445] 444" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[446] 445" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[447] 446" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[448] 447" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[449] 448" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[450] 449" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[451] 450" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="[452] 451" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[453] 452" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[454] 453" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[455] 454" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[456] 455" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[457] 456" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[458] 457" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[459] 458" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[460] 459" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[461] 460" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[462] 461" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[463] 462" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[464] 463" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[465] 464" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[466] 465" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[467] 466" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[468] 467" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[469] 468" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="[470] 469" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[471] 470" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[472] 471" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[473] 472" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[474] 473" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[475] 474" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[476] 475" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[477] 476" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[478] 477" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="[479] 478" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[480] 479" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[481] 480" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[482] 481" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[483] 482" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[484] 483" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[485] 484" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[486] 485" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[487] 486" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="[488] 487" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[489] 488" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[490] 489" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[491] 490" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[492] 491" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[493] 492" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[494] 493" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[495] 494" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[496] 495" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[497] 496" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[498] 497" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[499] 498" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[500] 499" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[501] 500" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[502] 501" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[503] 502" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[504] 503" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="[505] 504" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[506] 505" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[507] 506" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[508] 507" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[509] 508" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[510] 509" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[511] 510" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="[512] 511" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[513] 512" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[514] 513" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[515] 514" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[516] 515" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[517] 516" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[518] 517" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[519] 518" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[520] 519" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[521] 520" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[522] 521" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[523] 522" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[524] 523" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[525] 524" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[526] 525" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[527] 526" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[528] 527" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[529] 528" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[530] 529" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[531] 530" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[532] 531" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[533] 532" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[534] 533" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[535] 534" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[536] 535" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[537] 536" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[538] 537" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[539] 538" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[540] 539" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[541] 540" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[542] 541" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[543] 542" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[544] 543" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[545] 544" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[546] 545" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[547] 546" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[548] 547" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[549] 548" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[550] 549" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[551] 550" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[552] 551" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[553] 552" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="[554] 553" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[555] 554" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[556] 555" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[557] 556" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[558] 557" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[559] 558" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[560] 559" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[561] 560" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[562] 561" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[563] 562" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[564] 563" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[565] 564" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[566] 565" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[567] 566" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[568] 567" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[569] 568" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[570] 569" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[571] 570" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[572] 571" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[573] 572" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[574] 573" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="[575] 574" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[576] 575" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[577] 576" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[578] 577" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[579] 578" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[580] 579" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[581] 580" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[582] 581" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[583] 582" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="[584] 583" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[585] 584" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[586] 585" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[587] 586" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[588] 587" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[589] 588" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[590] 589" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[591] 590" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[592] 591" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[593] 592" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[594] 593" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[595] 594" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[596] 595" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[597] 596" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[598] 597" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[599] 598" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="[600] 599" classname="calc.CalcTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

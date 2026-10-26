@@ -1,0 +1,3 @@
+{"type":"session","v":1,"runner":"jest","runner_version":"30.5.2","language":"javascript","language_version":"22.22.0","plugins":["default"]}
+{"type":"test","id":"test/p2.test.js::adds","file":"test/p2.test.js","line":null,"outcome":"failed","skip_reason":null,"error":{"type":"JestAssertionError","message":"expect(received).toBe(expected) // Object.is equality\n\nExpected: 5\nReceived: 4","kind":"assertion","frames":[{"file":"test/p2.test.js","line":5,"function":"Object.toBe"}]}}
+{"type":"end","exit":1,"counts":{"passed":0,"failed":1,"skipped":0,"deselected":0,"errors":0}}

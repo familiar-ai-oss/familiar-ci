@@ -1,0 +1,71 @@
+{
+  "session_id": "f8e35268-a062-408e-ab2c-1f3b3311cc2d",
+  "transcript_path": "<claude_projects>/<project_slug>/f8e35268-a062-408e-ab2c-1f3b3311cc2d.jsonl",
+  "cwd": "<cwd>",
+  "prompt_id": "f61410fa-f8bb-4dbd-9386-0fb1edf3db12",
+  "permission_mode": "bypassPermissions",
+  "effort": {
+    "level": "medium"
+  },
+  "hook_event_name": "PostToolUse",
+  "tool_name": "Agent",
+  "tool_input": {
+    "description": "Say hi",
+    "prompt": "<the binary's brief>",
+    "subagent_type": "familiar-ai:case-finder",
+    "run_in_background": false,
+    "model": "sonnet"
+  },
+  "tool_response": {
+    "status": "completed",
+    "prompt": "<the binary's brief>",
+    "agentId": "a09dfaf2a8482404c",
+    "agentType": "familiar-ai:case-finder",
+    "harnessNoteCount": 0,
+    "harnessTailCount": 0,
+    "harnessSectionHash": "445016cc82d1d083",
+    "content": [
+      {
+        "type": "text",
+        "text": "```json\n{\n \"cases\": [\n  {\n   \"short\": \"the same with a name in capitals\",\n   \"given\": \"the name ADA\",\n   \"expect\": \"hello ADA, the name as given\",\n   \"why\": \"the person asked for the name as typed\"\n  },\n  {\n   \"short\": \"a name with a space\",\n   \"given\": \"the name Ada Lovelace\",\n   \"expect\": \"hello Ada Lovelace\",\n   \"why\": \"greet reads its whole argument\"\n  },\n  {\n   \"short\": \"the plain greeting with no name stays as it is\",\n   \"given\": \"greet called with no name\",\n   \"expect\": \"hi, as before\",\n   \"why\": \"src/app.sh calls greet with no name\"\n  }\n ],\n \"none_because\": \"\"\n}\n```"
+      }
+    ],
+    "resolvedModel": "claude-sonnet-5-5",
+    "totalDurationMs": 4320,
+    "totalTokens": 31250,
+    "totalToolUseCount": 9,
+    "usage": {
+      "output_tokens_details": {
+        "thinking_tokens": 28
+      },
+      "input_tokens": 8,
+      "cache_creation_input_tokens": 186,
+      "cache_read_input_tokens": 5034,
+      "output_tokens": 92,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 186
+      },
+      "inference_geo": "not_available",
+      "iterations": [],
+      "speed": "standard",
+      "fallback_credit": null
+    },
+    "toolStats": {
+      "readCount": 3,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 0
+    }
+  },
+  "tool_use_id": "toolu_01Jw7SEwhCQ6mpSZ5udMLLu7",
+  "duration_ms": 4320
+}

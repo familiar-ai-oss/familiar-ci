@@ -1,0 +1,22 @@
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  test/part2.test.js > add 2-60
+AssertionError: expected 61 to be -1 // Object.is equality
+
+- Expected
++ Received
+
+- -1
++ 61
+
+ ❯ test/part2.test.js:245:22
+    243|
+    244| test('add 2-60', () => {
+    245|   expect(add(60, 1)).toBe(-1);
+       |                      ^
+    246| });
+    247|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+

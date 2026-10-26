@@ -1,0 +1,1 @@
+/a0-spike/bin/dock golang:1.23-bookworm 'go test ./...'

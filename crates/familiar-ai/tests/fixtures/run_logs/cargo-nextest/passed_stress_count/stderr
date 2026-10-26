@@ -1,0 +1,15 @@
+   Compiling calc v0.1.0 (/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/cargo-nextest/passed_stress_count)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.08s
+────────────
+ Nextest run ID a1c24d4b-ca43-4664-ad89-abd99ca57874 with nextest profile: default
+    Starting 1 test across 2 binaries
+────────────
+ Stress test iteration 1/2 (00:00:00 elapsed so far, 2 iterations remaining)
+        PASS [   0.002s] [1/2] (1/1) calc::calc_test adds
+ Stress test [   0.002s] iteration 1/2: 1 test run: 1 passed, 0 skipped
+────────────
+ Stress test iteration 2/2 (00:00:00 elapsed so far, 1 iteration remaining)
+        PASS [   0.002s] [2/2] (1/1) calc::calc_test adds
+ Stress test [   0.002s] iteration 2/2: 1 test run: 1 passed, 0 skipped
+────────────
+     Summary [   0.003s] 2/2 stress run iterations: 2 passed

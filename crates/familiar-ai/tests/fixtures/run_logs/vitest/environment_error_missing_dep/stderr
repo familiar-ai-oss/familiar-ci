@@ -1,0 +1,14 @@
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  test/calc.test.js [ test/calc.test.js ]
+Error: Cannot find package 'left-pad' imported from /tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/vitest/environment_error_missing_dep/src/calc.js
+ ❯ src/calc.js:1:1
+      1| import leftPad from 'left-pad';
+       | ^
+      2|
+      3| export function add(a, b) {
+ ❯ test/calc.test.js:2:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+

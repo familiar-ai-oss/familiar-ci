@@ -1,0 +1,10 @@
+
+ RUN  v5.0.4 /tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/vitest/killed_abort
+
+
+ Test Files   (1)
+      Tests   (2)
+     Errors  1 error
+   Start at  19:30:03
+   Duration  331ms (import 50%, transform 28%, worker 21%, environment 1%)
+

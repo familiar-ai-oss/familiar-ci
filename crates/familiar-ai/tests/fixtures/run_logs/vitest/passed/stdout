@@ -1,0 +1,9 @@
+
+ RUN  v5.0.4 /tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/vitest/passed
+
+
+ Test Files  1 passed (1)
+      Tests  1 passed (1)
+   Start at  19:30:10
+   Duration  110ms (import 44%, transform 26%, worker 16%, tests 14%, environment 1%)
+

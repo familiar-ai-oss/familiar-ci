@@ -1,0 +1,54 @@
+# Created at 2026-10-14T23:30:57.598
+Corrupted channel by directly writing to native stream in forked JVM 1. Stream '#'.
+
+# Created at 2026-10-14T23:30:57.598
+Corrupted channel by directly writing to native stream in forked JVM 1. Stream '# A fatal error has been detected by the Java Runtime Environment:'.
+
+# Created at 2026-10-14T23:30:57.598
+Corrupted channel by directly writing to native stream in forked JVM 1. Stream '#'.
+
+# Created at 2026-10-14T23:30:57.599
+Corrupted channel by directly writing to native stream in forked JVM 1. Stream '#  SIGSEGV (0xb) at pc=0x00007f31fec70e4f (sent by kill), pid=115, tid=115'.
+
+# Created at 2026-10-14T23:30:57.599
+Corrupted channel by directly writing to native stream in forked JVM 1. Stream '#'.
+
+# Created at 2026-10-14T23:30:57.599
+Corrupted channel by directly writing to native stream in forked JVM 1. Stream '# JRE version: OpenJDK Runtime Environment Temurin-21.0.12.1+1 (21.0.12.1+1) (build 21.0.12.1+1-LTS)'.
+
+# Created at 2026-10-14T23:30:57.599
+Corrupted channel by directly writing to native stream in forked JVM 1. Stream '# Java VM: OpenJDK 64-Bit Server VM Temurin-21.0.12.1+1 (21.0.12.1+1-LTS, mixed mode, sharing, tiered, compressed oops, compressed class ptrs, g1 gc, linux-amd64)'.
+
+# Created at 2026-10-14T23:30:57.600
+Corrupted channel by directly writing to native stream in forked JVM 1. Stream '# Problematic frame:'.
+
+# Created at 2026-10-14T23:30:57.600
+Corrupted channel by directly writing to native stream in forked JVM 1. Stream '# C  [libc.so.6+0x98e4f]'.
+
+# Created at 2026-10-14T23:30:57.600
+Corrupted channel by directly writing to native stream in forked JVM 1. Stream '#'.
+
+# Created at 2026-10-14T23:30:57.600
+Corrupted channel by directly writing to native stream in forked JVM 1. Stream '# Core dump will be written. Default location: Determined by the following: "/usr/lib/systemd/systemd-coredump %P %u %g %s %t %c %h %d %F" (alternatively, falling back to /r/maven/killed_segv_shell/core.115)'.
+
+# Created at 2026-10-14T23:30:57.600
+Corrupted channel by directly writing to native stream in forked JVM 1. Stream '#'.
+
+# Created at 2026-10-14T23:30:57.600
+Corrupted channel by directly writing to native stream in forked JVM 1. Stream '# An error report file with more information is saved as:'.
+
+# Created at 2026-10-14T23:30:57.600
+Corrupted channel by directly writing to native stream in forked JVM 1. Stream '# /r/maven/killed_segv_shell/hs_err_pid115.log'.
+
+# Created at 2026-10-14T23:30:57.600
+Corrupted channel by directly writing to native stream in forked JVM 1. Stream '#'.
+
+# Created at 2026-10-14T23:30:57.601
+Corrupted channel by directly writing to native stream in forked JVM 1. Stream '# If you would like to submit a bug report, please visit:'.
+
+# Created at 2026-10-14T23:30:59.381
+Corrupted channel by directly writing to native stream in forked JVM 1. Stream '#   https://github.com/adoptium/adoptium-support/issues'.
+
+# Created at 2026-10-14T23:30:59.381
+Corrupted channel by directly writing to native stream in forked JVM 1. Stream '#'.
+

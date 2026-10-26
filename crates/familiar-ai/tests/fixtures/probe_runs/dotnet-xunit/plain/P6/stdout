@@ -1,0 +1,12 @@
+  Determining projects to restore...
+  Restored /tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/a0-spike/projects/dotnet/P6/Calc.Tests.csproj (in 104 ms).
+  Calc.Tests -> /tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/a0-spike/projects/dotnet/P6/bin/Debug/net8.0/Calc.Tests.dll
+Test run for /tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/a0-spike/projects/dotnet/P6/bin/Debug/net8.0/Calc.Tests.dll (.NETCoreApp,Version=v8.0)
+VSTest version 17.11.1 (x64)
+
+Starting test execution, please wait...
+A total of 1 test files matched the specified pattern.
+No test is available in /tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/a0-spike/projects/dotnet/P6/bin/Debug/net8.0/Calc.Tests.dll. Make sure that test discoverer & executors are registered and platform & framework version settings are appropriate and try again.
+Results File: /tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/a0-spike/.tmp/rep-ncxba7d7/results.trx
+
+Additionally, path to test adapters can be specified using /TestAdapterPath command. Example  /TestAdapterPath:<pathToCustomAdapters>.

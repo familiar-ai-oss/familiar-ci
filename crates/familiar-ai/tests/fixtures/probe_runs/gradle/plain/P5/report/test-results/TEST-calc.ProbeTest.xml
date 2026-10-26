@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="calc.ProbeTest" tests="2" skipped="1" failures="0" errors="0" timestamp="2026-10-19T17:52:38" hostname="dfcf901a1f0e" time="0.007">
+  <properties/>
+  <testcase name="adds()" classname="calc.ProbeTest" time="0.006"/>
+  <testcase name="later()" classname="calc.ProbeTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,20 @@
+FAIL test/calc.test.js
+  ● Test suite failed to run
+
+    Cannot find module './nosuchhelper' from 'test/calc.test.js'
+
+      1 | const { add } = require('../src/calc');
+    > 2 | const helper = require('./nosuchhelper');
+        |                ^
+      3 |
+      4 | test('adds', () => {
+      5 |   expect(add(2, 2)).toBe(4);
+
+      at Resolver._throwModNotFoundError (../../.cache/node/node_modules/jest-resolve/build/index.js:1031:11)
+      at Object.require (test/calc.test.js:2:16)
+
+Test Suites: 1 failed, 1 total
+Tests:       0 total
+Snapshots:   0 total
+Time:        0.187 s
+Ran all test suites.

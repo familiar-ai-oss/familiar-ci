@@ -1,0 +1,22 @@
+
+   FAIL  Tests\CalcTest
+  ⨯ Add
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  Tests\CalcTest > Add                                                 
+  Failed asserting that 4 is identical to 5.
+
+  at tests/CalcTest.php:10
+      6▕ 
+      7▕ use App\Calc;
+      8▕ 
+      9▕ test('Add', function () {
+  ➜  10▕     expect(Calc::add(2, 2))->toBe(5);
+     11▕ });
+     12▕
+
+  1   tests/CalcTest.php:10
+
+
+  Tests:    1 failed (1 assertions)
+  Duration: 0.03s
+

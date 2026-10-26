@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/a0-spike/projects/php/P7/phpunit.xml" tests="1" assertions="0" errors="1" failures="0" skipped="0" time="0.000642">
+    <testsuite name="default" tests="1" assertions="0" errors="1" failures="0" skipped="0" time="0.000642">
+      <testsuite name="ProbeTest" file="/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/a0-spike/projects/php/P7/tests/ProbeTest.php" tests="1" assertions="0" errors="1" failures="0" skipped="0" time="0.000642">
+        <testcase name="testParse" file="/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/a0-spike/projects/php/P7/tests/ProbeTest.php" line="13" class="ProbeTest" classname="ProbeTest" assertions="0" time="0.000642">
+          <error type="InvalidArgumentException">ProbeTest::testParse
+InvalidArgumentException: not a number: x1
+
+/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/a0-spike/projects/php/P7/src/Calc.php:17
+/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/a0-spike/projects/php/P7/tests/ProbeTest.php:15</error>
+        </testcase>
+      </testsuite>
+    </testsuite>
+  </testsuite>
+</testsuites>

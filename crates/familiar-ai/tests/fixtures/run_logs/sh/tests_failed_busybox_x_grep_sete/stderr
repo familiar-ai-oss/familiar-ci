@@ -1,0 +1,4 @@
++familiar-ai	2	set -e
++familiar-ai	3	printf 'alpha\nbeta\n'
++familiar-ai	4	echo checking
++familiar-ai	5	grep -q gamma /tmp/a0-sh-1.txt

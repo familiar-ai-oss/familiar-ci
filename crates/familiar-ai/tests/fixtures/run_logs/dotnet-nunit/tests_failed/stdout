@@ -1,0 +1,22 @@
+  Determining projects to restore...
+  Restored /r/dotnet-nunit/tests_failed/Calc.Tests.csproj (in 112 ms).
+  Calc.Tests -> /r/dotnet-nunit/tests_failed/bin/Debug/net8.0/Calc.Tests.dll
+Test run for /r/dotnet-nunit/tests_failed/bin/Debug/net8.0/Calc.Tests.dll (.NETCoreApp,Version=v8.0)
+VSTest version 17.11.1 (x64)
+
+Starting test execution, please wait...
+A total of 1 test files matched the specified pattern.
+  Failed Adds [14 ms]
+  Error Message:
+     Assert.That(Calc.Add(2, 2), Is.EqualTo(5))
+  Expected: 5
+  But was:  4
+
+  Stack Trace:
+     at Tests.CalcTests.Adds() in /r/dotnet-nunit/tests_failed/tests/CalcTests.cs:line 12
+
+1)    at Tests.CalcTests.Adds() in /r/dotnet-nunit/tests_failed/tests/CalcTests.cs:line 12
+
+
+
+Failed!  - Failed:     1, Passed:     0, Skipped:     0, Total:     1, Duration: 14 ms - Calc.Tests.dll (net8.0)

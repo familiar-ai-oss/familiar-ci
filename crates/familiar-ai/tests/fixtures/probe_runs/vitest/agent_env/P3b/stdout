@@ -1,0 +1,10 @@
+
+ RUN  v5.0.5 /tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/a0-spike/projects/js/vitest/agent_env/P3b
+
+ ✓ test/p3b.test.js (1 test) 2ms
+
+ Test Files  1 passed (1)
+      Tests  1 passed (1)
+   Start at  13:50:57
+   Duration  115ms (import 37%, transform 34%, worker 16%, tests 12%, environment 1%)
+

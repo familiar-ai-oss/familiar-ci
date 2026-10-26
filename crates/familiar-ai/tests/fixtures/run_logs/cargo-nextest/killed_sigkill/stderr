@@ -1,0 +1,18 @@
+   Compiling calc v0.1.0 (/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/cargo-nextest/killed_sigkill)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.08s
+────────────
+ Nextest run ID dd665dd6-3888-4eee-9bae-8403eae24f11 with nextest profile: default
+    Starting 2 tests across 2 binaries
+        PASS [   0.002s] (1/2) calc::calc_test adds
+     SIGKILL [   0.002s] (2/2) calc::calc_test crashes
+  stdout ───
+
+    running 1 test
+
+    (test aborted with signal 9: SIGKILL)
+
+  Cancelling due to test failure: 
+────────────
+     Summary [   0.002s] 2 tests run: 1 passed, 1 failed, 0 skipped
+     SIGKILL [   0.002s] (2/2) calc::calc_test crashes
+error: test run failed

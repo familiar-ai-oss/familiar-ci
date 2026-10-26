@@ -1,0 +1,6 @@
+MSBUILD : error MSB1001: Unknown switch.
+    Full command line: '/usr/share/dotnet/sdk/8.0.426/MSBuild.dll -maxcpucount -verbosity:m -nologo -restore -target:VSTest -nodereuse:false -nologo --nosuchflag -property:VSTestArtifactsProcessingMode=collect -property:VSTestSessionCorrelationId=7_17988d23-2018-4d96-93a6-b7b956f7b5de'
+  Switches appended by response files:
+Switch: --nosuchflag
+
+For switch syntax, type "MSBuild -help"

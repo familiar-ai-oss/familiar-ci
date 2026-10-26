@@ -1,0 +1,2 @@
+# example.com/probe [example.com/probe.test]
+./calc_test.go:6:12: undefined: Mul

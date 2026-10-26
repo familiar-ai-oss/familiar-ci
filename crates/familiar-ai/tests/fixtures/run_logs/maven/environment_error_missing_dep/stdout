@@ -1,0 +1,26 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------------------< com.example:calc >--------------------------
+[INFO] Building calc 1.0
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+Downloading from central: https://repo.maven.apache.org/maven2/com/example/nosuch/nosuch-helper/9.9.9/nosuch-helper-9.9.9.pom
+[WARNING] The POM for com.example.nosuch:nosuch-helper:jar:9.9.9 is missing, no dependency information available
+Downloading from central: https://repo.maven.apache.org/maven2/com/example/nosuch/nosuch-helper/9.9.9/nosuch-helper-9.9.9.jar
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  0.363 s
+[INFO] Finished at: 2026-10-14T23:35:15Z
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal on project calc: Could not resolve dependencies for project com.example:calc:jar:1.0
+[ERROR] dependency: com.example.nosuch:nosuch-helper:jar:9.9.9 (compile)
+[ERROR] 	Could not find artifact com.example.nosuch:nosuch-helper:jar:9.9.9 in central (https://repo.maven.apache.org/maven2)
+[ERROR] 
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/DependencyResolutionException

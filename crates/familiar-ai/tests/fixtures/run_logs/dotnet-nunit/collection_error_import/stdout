@@ -1,0 +1,3 @@
+  Determining projects to restore...
+  Restored /r/dotnet-nunit/collection_error_import/Calc.Tests.csproj (in 114 ms).
+/r/dotnet-nunit/collection_error_import/tests/CalcTests.cs(1,7): error CS0246: The type or namespace name 'Nosuch' could not be found (are you missing a using directive or an assembly reference?) [/r/dotnet-nunit/collection_error_import/Calc.Tests.csproj]

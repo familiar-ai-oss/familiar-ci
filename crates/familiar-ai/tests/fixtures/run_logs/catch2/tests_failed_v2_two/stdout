@@ -1,0 +1,47 @@
+-- The CXX compiler identification is GNU 16.0.1
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Configuring done (0.2s)
+-- Generating done (0.0s)
+-- Build files have been written to: /tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/catch2/tests_failed_v2_two/build
+[ 20%] Building CXX object CMakeFiles/calc.dir/src/calc.cpp.o
+[ 40%] Linking CXX static library libcalc.a
+[ 40%] Built target calc
+[ 60%] Building CXX object CMakeFiles/calc_test.dir/tests/main.cpp.o
+[ 80%] Building CXX object CMakeFiles/calc_test.dir/tests/calc_test.cpp.o
+[100%] Linking CXX executable calc_test
+[100%] Built target calc_test
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+calc_test is a Catch v2.13.10 host application.
+Run with -? for options
+
+-------------------------------------------------------------------------------
+Adds 5
+-------------------------------------------------------------------------------
+/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/catch2/tests_failed_v2_two/tests/calc_test.cpp:5
+...............................................................................
+
+/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/catch2/tests_failed_v2_two/tests/calc_test.cpp:6: FAILED:
+  REQUIRE( add(2, 2) == 5 )
+with expansion:
+  4 == 5
+
+-------------------------------------------------------------------------------
+Adds 6
+-------------------------------------------------------------------------------
+/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/catch2/tests_failed_v2_two/tests/calc_test.cpp:9
+...............................................................................
+
+/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/catch2/tests_failed_v2_two/tests/calc_test.cpp:10: FAILED:
+  REQUIRE( add(2, 2) == 6 )
+with expansion:
+  4 == 6
+
+===============================================================================
+test cases: 2 | 2 failed
+assertions: 2 | 2 failed
+

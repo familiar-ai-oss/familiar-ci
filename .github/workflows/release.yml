@@ -1,0 +1,89 @@
+name: release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build:
+    name: build ${{ matrix.target }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            target: x86_64-unknown-linux-gnu
+            add_target: false
+          - os: ubuntu-24.04-arm
+            target: aarch64-unknown-linux-gnu
+            add_target: false
+          - os: macos-latest
+            target: aarch64-apple-darwin
+            add_target: false
+          - os: macos-latest
+            target: x86_64-apple-darwin
+            add_target: true
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Add Rust target
+        if: matrix.add_target
+        run: rustup target add ${{ matrix.target }}
+
+      - name: Check the tag matches the crate version
+        shell: bash
+        run: |
+          tag="${GITHUB_REF_NAME#v}"
+          crate="$(cargo metadata --format-version 1 --no-deps --locked | jq -r '.packages[] | select(.name == "familiar-ai") | .version')"
+          if [ -z "$crate" ] || [ "$tag" != "$crate" ]; then
+            echo "tag v$tag does not match the familiar-ai crate's version '$crate'" >&2
+            exit 1
+          fi
+
+      - name: Build familiar-ai
+        run: cargo build --release --locked -p familiar-ai --target ${{ matrix.target }}
+
+      - name: 100% Rust check
+        run: scripts/check-no-c.sh
+
+      - name: Pack the release asset
+        shell: bash
+        working-directory: target/${{ matrix.target }}/release
+        run: |
+          asset="familiar-ai-${{ matrix.target }}.tar.gz"
+          mkdir -p "$GITHUB_WORKSPACE/artifacts"
+          tar -czf "$GITHUB_WORKSPACE/artifacts/$asset" familiar-ai
+          cd "$GITHUB_WORKSPACE/artifacts"
+          if command -v sha256sum >/dev/null 2>&1; then
+            sha256sum "$asset" > "$asset.sha256"
+          else
+            shasum -a 256 "$asset" > "$asset.sha256"
+          fi
+
+      - name: Upload the asset
+        uses: actions/upload-artifact@v4
+        with:
+          name: familiar-ai-${{ matrix.target }}
+          path: artifacts/
+          if-no-files-found: error
+
+  release:
+    name: create the GitHub release
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Download all assets
+        uses: actions/download-artifact@v4
+        with:
+          pattern: familiar-ai-*
+          path: assets
+          merge-multiple: true
+
+      - name: Create the release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh release create "$GITHUB_REF_NAME" --repo "$GITHUB_REPOSITORY" --title "$GITHUB_REF_NAME" assets/*

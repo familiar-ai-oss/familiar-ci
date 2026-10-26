@@ -1,0 +1,3 @@
+  Determining projects to restore...
+  Restored /tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/a0-spike/projects/dotnet/P4/Calc.Tests.csproj (in 112 ms).
+/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/a0-spike/projects/dotnet/P4/tests/ProbeTests.cs(1,7): error CS0246: The type or namespace name 'Nosuch' could not be found (are you missing a using directive or an assembly reference?) [/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/a0-spike/projects/dotnet/P4/Calc.Tests.csproj]

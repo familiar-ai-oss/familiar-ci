@@ -1,0 +1,1 @@
+cargo nextest run --stress-count 2

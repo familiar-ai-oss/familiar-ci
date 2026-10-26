@@ -1,0 +1,6 @@
+{"ImportPath":"example.com/calc [example.com/calc.test]","Action":"build-output","Output":"# example.com/calc [example.com/calc.test]\n"}
+{"ImportPath":"example.com/calc [example.com/calc.test]","Action":"build-output","Output":"./calc_test.go:6:12: undefined: Mul\n"}
+{"ImportPath":"example.com/calc [example.com/calc.test]","Action":"build-fail"}
+{"Time":"2026-10-19T19:44:26.284785061Z","Action":"start","Package":"example.com/calc"}
+{"Time":"2026-10-19T19:44:26.284852991Z","Action":"output","Package":"example.com/calc","Output":"FAIL\texample.com/calc [build failed]\n"}
+{"Time":"2026-10-19T19:44:26.284858531Z","Action":"fail","Package":"example.com/calc","Elapsed":0,"FailedBuild":"example.com/calc [example.com/calc.test]"}

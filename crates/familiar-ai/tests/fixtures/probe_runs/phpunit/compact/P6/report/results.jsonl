@@ -1,0 +1,3 @@
+{"type":"session","v":1,"runner":"phpunit","runner_version":"13.4.2","language":"php","language_version":"8.5.9","plugins":[],"loaded_by":"extension"}
+{"type":"note","source":"runner_warning","message":"No tests found in class \"ProbeTest\"."}
+{"type":"end","exit":null,"counts":{"passed":0,"failed":0,"skipped":0,"deselected":0,"errors":0}}

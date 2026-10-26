@@ -1,0 +1,19 @@
+
+
+An error occurred inside PHPUnit.
+
+Message:  Failed opening required '/r/phpunit/collection_error_import/tests/../src/NosuchHelper.php' (include_path='.:/usr/local/lib/php')
+Location: /r/phpunit/collection_error_import/tests/CalcTest.php:6
+
+#0 /r/.cache/php/phpunit/vendor/phpunit/phpunit/src/Runner/TestSuiteLoader.php(134): require_once()
+#1 /r/.cache/php/phpunit/vendor/phpunit/phpunit/src/Runner/TestSuiteLoader.php(56): PHPUnit\Runner\TestSuiteLoader->loadSuiteClassFile('/r/phpunit/coll...')
+#2 /r/.cache/php/phpunit/vendor/phpunit/phpunit/src/Framework/TestSuite.php(276): PHPUnit\Runner\TestSuiteLoader->load('/r/phpunit/coll...')
+#3 /r/.cache/php/phpunit/vendor/phpunit/phpunit/src/TextUI/Configuration/Xml/TestSuiteMapper.php(129): PHPUnit\Framework\TestSuite->addTestFile('/r/phpunit/coll...', Array, 1, 1)
+#4 /r/.cache/php/phpunit/vendor/phpunit/phpunit/src/Runner/TestIndex/NullTestFileSkipper.php(43): PHPUnit\TextUI\XmlConfiguration\TestSuiteMapper::{closure:PHPUnit\TextUI\XmlConfiguration\TestSuiteMapper::map():127}()
+#5 /r/.cache/php/phpunit/vendor/phpunit/phpunit/src/TextUI/Configuration/Xml/TestSuiteMapper.php(125): PHPUnit\Runner\TestIndex\NullTestFileSkipper->record('/r/phpunit/coll...', Object(Closure))
+#6 /r/.cache/php/phpunit/vendor/phpunit/phpunit/src/TextUI/Configuration/TestSuiteBuilder.php(139): PHPUnit\TextUI\XmlConfiguration\TestSuiteMapper->map('/r/phpunit/coll...', Object(PHPUnit\TextUI\Configuration\TestSuiteCollection), Array, Array, 1, 1)
+#7 /r/.cache/php/phpunit/vendor/phpunit/phpunit/src/TextUI/Application.php(472): PHPUnit\TextUI\Configuration\TestSuiteBuilder->build(Object(PHPUnit\TextUI\Configuration\Configuration))
+#8 /r/.cache/php/phpunit/vendor/phpunit/phpunit/src/TextUI/Application.php(235): PHPUnit\TextUI\Application->buildTestSuite(Object(PHPUnit\TextUI\Configuration\Configuration), Object(PHPUnit\TextUI\CliArguments\Configuration))
+#9 /r/.cache/php/phpunit/vendor/phpunit/phpunit/phpunit(104): PHPUnit\TextUI\Application->run(Array)
+#10 /r/.cache/php/phpunit/vendor/bin/phpunit(122): include('/r/.cache/php/p...')
+#11 {main}

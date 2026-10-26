@@ -1,0 +1,9 @@
+   Compiling probe v0.1.0 (/a0-spike/projects/rust/P3)
+error[E0425]: cannot find function `mul` in crate `probe`
+ --> tests/familiar_probe_p3.rs:3:23
+  |
+3 |     assert_eq!(probe::mul(2, 3), 6);
+  |                       ^^^ not found in `probe`
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `probe` (test "familiar_probe_p3") due to 1 previous error

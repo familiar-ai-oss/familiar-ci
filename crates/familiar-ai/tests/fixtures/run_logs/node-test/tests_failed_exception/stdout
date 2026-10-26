@@ -1,0 +1,27 @@
+TAP version 13
+# Subtest: parses
+not ok 1 - parses
+  ---
+  duration_ms: 0.798135
+  type: 'test'
+  location: '/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/node-test/tests_failed_exception/test/calc.test.js:5:1'
+  failureType: 'testCodeFailure'
+  error: 'not a number: x1'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    parse (/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/node-test/tests_failed_exception/src/calc.js:7:11)
+    TestContext.<anonymous> (/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/node-test/tests_failed_exception/test/calc.test.js:6:22)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.start (node:internal/test_runner/test:944:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:296:17)
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 0
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 71.624907

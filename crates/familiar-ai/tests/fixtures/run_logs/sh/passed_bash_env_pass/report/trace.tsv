@@ -1,0 +1,4 @@
+ran	3243230	0	tests/s_pass.sh	3	[ "$out" = hello ]
+ran	3243230	0	tests/s_pass.sh	4	echo "$out"
+ran	3243230	0	tests/s_pass.sh	4	grep -q hello
+exit	3243230	0	tests/s_pass.sh	5	echo ok

@@ -1,0 +1,40 @@
+-- The CXX compiler identification is GNU 16.0.1
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Configuring done (0.1s)
+-- Generating done (0.0s)
+-- Build files have been written to: /tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/catch2/big_run/build
+[ 12%] Building CXX object CMakeFiles/calc.dir/src/calc.cpp.o
+[ 25%] Linking CXX static library libcalc.a
+[ 25%] Built target calc
+[ 37%] Building CXX object CMakeFiles/calc_test.dir/tests/part0_test.cpp.o
+[ 50%] Building CXX object CMakeFiles/calc_test.dir/tests/part1_test.cpp.o
+[ 62%] Building CXX object CMakeFiles/calc_test.dir/tests/part2_test.cpp.o
+[ 75%] Building CXX object CMakeFiles/calc_test.dir/tests/part3_test.cpp.o
+[ 87%] Building CXX object CMakeFiles/calc_test.dir/tests/part4_test.cpp.o
+[100%] Linking CXX executable calc_test
+[100%] Built target calc_test
+Randomness seeded to: 817168931
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+calc_test is a Catch2 v3.8.1 host application.
+Run with -? for options
+
+-------------------------------------------------------------------------------
+add 2-60
+-------------------------------------------------------------------------------
+/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/catch2/big_run/tests/part2_test.cpp:245
+...............................................................................
+
+/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/catch2/big_run/tests/part2_test.cpp:246: FAILED:
+  REQUIRE( add(60, 1) == -1 )
+with expansion:
+  61 == -1
+
+===============================================================================
+test cases: 600 | 599 passed | 1 failed
+assertions: 600 | 599 passed | 1 failed
+

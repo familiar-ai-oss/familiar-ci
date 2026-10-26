@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/a0-spike/projects/php/P2/phpunit.xml" tests="1" assertions="1" errors="0" failures="1" skipped="0" time="0.000686">
+    <testsuite name="default" tests="1" assertions="1" errors="0" failures="1" skipped="0" time="0.000686">
+      <testsuite name="ProbeTest" file="/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/a0-spike/projects/php/P2/tests/ProbeTest.php" tests="1" assertions="1" errors="0" failures="1" skipped="0" time="0.000686">
+        <testcase name="testAdd" file="/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/a0-spike/projects/php/P2/tests/ProbeTest.php" line="13" class="ProbeTest" classname="ProbeTest" assertions="1" time="0.000686">
+          <failure type="PHPUnit\Framework\ExpectationFailedException">ProbeTest::testAdd
+Failed asserting that 4 is identical to 5.
+
+/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/a0-spike/projects/php/P2/tests/ProbeTest.php:15</failure>
+        </testcase>
+      </testsuite>
+    </testsuite>
+  </testsuite>
+</testsuites>

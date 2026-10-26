@@ -1,0 +1,32 @@
+TAP version 13
+# ----- Native stack trace -----
+#  1: 0x7f320aad961c  [/lib64/libnode.so.127]
+#  2: 0x7f31ac88f5e2 
+# ----- JavaScript stack trace -----
+# 1: /tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/node-test/killed_abort/test/calc.test.js:10:11
+# 2: runInAsyncScope (node:async_hooks:214:14)
+# 3: run (node:internal/test_runner/test:1047:25)
+# 4: processPendingSubtests (node:internal/test_runner/test:744:18)
+# 5: postRun (node:internal/test_runner/test:1173:19)
+# 6: run (node:internal/test_runner/test:1101:12)
+# Subtest: test/calc.test.js
+not ok 1 - test/calc.test.js
+  ---
+  duration_ms: 470.571353
+  type: 'test'
+  location: '/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/node-test/killed_abort/test/calc.test.js:1:1'
+  failureType: 'testCodeFailure'
+  exitCode: ~
+  signal: 'SIGABRT'
+  error: 'test failed'
+  code: 'ERR_TEST_FAILURE'
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 0
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 480.501461

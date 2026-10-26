@@ -1,0 +1,15 @@
+{
+ "env": [
+  [
+   "append",
+   "GOFLAGS",
+   "-json"
+  ]
+ ],
+ "flags": "",
+ "report_dir": "/a0-spike/.tmp/rep-8r6n2xlb",
+ "final_env": {
+  "FAMILIAR_AI_REPORT": "/a0-spike/.tmp/rep-8r6n2xlb/results.jsonl",
+  "GOFLAGS": "-json"
+ }
+}

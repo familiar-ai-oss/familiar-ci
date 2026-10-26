@@ -1,0 +1,1 @@
+../../_bin/dock composer:2 'vendor/bin/pest --compact'

@@ -1,0 +1,15 @@
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  test/p4.test.js [ test/p4.test.js ]
+Error: Cannot find module '../src/nosuch.js' imported from /tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/a0-spike/projects/js/vitest/agent_env_noinject/P4/test/p4.test.js
+ ❯ test/p4.test.js:3:1
+      1| import { test, expect } from 'vitest';
+      2| import { add } from '../src/calc.js';
+      3| import { helper } from '../src/nosuch.js';
+       | ^
+      4|
+      5| test('adds', () => {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+

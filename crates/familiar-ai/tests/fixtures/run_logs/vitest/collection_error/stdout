@@ -1,0 +1,10 @@
+
+ RUN  v5.0.4 /tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/vitest/collection_error
+
+ ❯ test/calc.test.js (0 test)
+
+ Test Files  1 failed (1)
+      Tests  no tests
+   Start at  19:30:00
+   Duration  113ms (worker 97%, environment 3%)
+

@@ -1,0 +1,9 @@
+  Determining projects to restore...
+  Restored /r/dotnet-mstest/killed_segv/Calc.Tests.csproj (in 121 ms).
+  Calc.Tests -> /r/dotnet-mstest/killed_segv/bin/Debug/net8.0/Calc.Tests.dll
+Test run for /r/dotnet-mstest/killed_segv/bin/Debug/net8.0/Calc.Tests.dll (.NETCoreApp,Version=v8.0)
+VSTest version 17.11.1 (x64)
+
+Starting test execution, please wait...
+A total of 1 test files matched the specified pattern.
+

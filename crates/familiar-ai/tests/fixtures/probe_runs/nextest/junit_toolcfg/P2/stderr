@@ -1,0 +1,30 @@
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.00s
+────────────
+ Nextest run ID 6d24cc7a-cefd-4c52-9ac8-a554895ebd67 with nextest profile: default
+    Starting 1 test across 2 binaries
+        FAIL [   0.002s] (1/1) probe::familiar_probe_p2 adds
+  stdout ───
+
+    running 1 test
+    test adds ... FAILED
+
+    failures:
+
+    failures:
+        adds
+
+    test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+  stderr ───
+
+    thread 'adds' (3214422) panicked at tests/familiar_probe_p2.rs:3:5:
+    assertion `left == right` failed
+      left: 4
+     right: 5
+    note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+  Cancelling due to test failure: 
+────────────
+     Summary [   0.002s] 1 test run: 0 passed, 1 failed, 0 skipped
+        FAIL [   0.002s] (1/1) probe::familiar_probe_p2 adds
+error: test run failed

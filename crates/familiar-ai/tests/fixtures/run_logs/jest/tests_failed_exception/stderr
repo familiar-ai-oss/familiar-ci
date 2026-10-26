@@ -1,0 +1,21 @@
+FAIL test/calc.test.js
+  ● parses
+
+    not a number: x1
+
+       5 | function parse(s) {
+       6 |   if (!/^\d+$/.test(s)) {
+    >  7 |     throw new Error(`not a number: ${s}`);
+         |           ^
+       8 |   }
+       9 |   return Number(s);
+      10 | }
+
+      at parse (src/calc.js:7:11)
+      at Object.parse (test/calc.test.js:4:10)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        0.188 s
+Ran all test suites.

@@ -1,0 +1,12 @@
+{
+  "name": "familiar-ai",
+  "description": "The familiar-ai plugin for Claude Code, from this repository.",
+  "owner": { "name": "Familiar AI LLC" },
+  "plugins": [
+    {
+      "name": "familiar-ai",
+      "source": "./plugin",
+      "description": "Proof that an AI coding agent's work is done: each requirement has a test that failed first, was not changed, and passes."
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+nf	3246909	127	tests/s_notfound.sh	3	frobnicate_widget --all
+err	3246909	127	tests/s_notfound.sh	3	frobnicate_widget --all
+ran	3246909	0	tests/s_notfound.sh	2	echo start
+fail	3246909	127	tests/s_notfound.sh	3	frobnicate_widget --all
+exit	3246909	127	tests/s_notfound.sh	3	frobnicate_widget --all

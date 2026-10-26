@@ -1,0 +1,18 @@
+{
+  "session_id": "627c0a59",
+  "transcript_path": "<claude_projects>/<project_slug>/627c0a59.jsonl",
+  "cwd": "<cwd>",
+  "prompt_id": "05aca3bc",
+  "permission_mode": "default",
+  "agent_id": "a0693f4e",
+  "agent_type": "investigator",
+  "effort": {
+    "level": "medium"
+  },
+  "hook_event_name": "SubagentStop",
+  "stop_hook_active": false,
+  "agent_transcript_path": "<claude_projects>/<project_slug>/627c0a59/subagents/agent-a0693f4e.jsonl",
+  "last_assistant_message": "The command ran once and printed `hi`.",
+  "background_tasks": [],
+  "session_crons": []
+}

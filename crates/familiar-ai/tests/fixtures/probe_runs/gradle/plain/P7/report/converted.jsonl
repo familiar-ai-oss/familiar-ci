@@ -1,0 +1,3 @@
+{"type": "session", "v": 1, "runner": "gradle", "runner_version": null, "language": "java", "plugins": [], "converted_from": "junit", "files": 1}
+{"type": "test", "id": "calc.ProbeTest::parses()", "file": null, "line": null, "outcome": "failed", "skip_reason": null, "error": {"type": "java.lang.NumberFormatException", "message": "java.lang.NumberFormatException: For input string: \"x1\"", "kind": "exception", "frames": [{"file": "ProbeTest.java", "line": 10, "function": "calc.ProbeTest.parses"}, {"file": "Calc.java", "line": 9, "function": "calc.Calc.parse"}]}}
+{"type": "end", "exit": null, "counts": {"passed": 0, "failed": 1, "skipped": 0, "deselected": 0, "errors": 0}}

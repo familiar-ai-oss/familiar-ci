@@ -1,0 +1,5 @@
+err	3243959	1	./tests/s_grep.sh	4	grep -q gamma /tmp/a0-sh-$$.txt
+ran	3243959	0	./tests/s_grep.sh	2	printf 'alpha\nbeta\n' > /tmp/a0-sh-$$.txt
+ran	3243959	0	./tests/s_grep.sh	3	echo checking
+fail	3243959	1	./tests/s_grep.sh	4	grep -q gamma /tmp/a0-sh-$$.txt
+exit	3243959	1	./tests/s_grep.sh	4	grep -q gamma /tmp/a0-sh-$$.txt

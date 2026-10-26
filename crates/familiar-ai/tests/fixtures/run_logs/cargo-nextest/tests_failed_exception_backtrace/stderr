@@ -1,0 +1,48 @@
+   Compiling calc v0.1.0 (/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/cargo-nextest/tests_failed_exception_backtrace)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.07s
+────────────
+ Nextest run ID 1fd8bca0-60e7-4392-b82a-9facad0fd891 with nextest profile: default
+    Starting 1 test across 2 binaries
+        FAIL [   0.006s] (1/1) calc::calc_test parses
+  stdout ───
+
+    running 1 test
+    test parses ... FAILED
+
+    failures:
+
+    failures:
+        parses
+
+    test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+  stderr ───
+
+    thread 'parses' (449617) panicked at src/calc.rs:6:22:
+    called `Result::unwrap()` on an `Err` value: ParseIntError { kind: InvalidDigit }
+    stack backtrace:
+       0: __rustc::rust_begin_unwind
+                 at /rustc/4a4ef493e3a1488c6e321570238084b38948f6db/library/std/src/panicking.rs:689:5
+       1: core::panicking::panic_fmt
+                 at /rustc/4a4ef493e3a1488c6e321570238084b38948f6db/library/core/src/panicking.rs:80:14
+       2: core::result::unwrap_failed
+                 at /rustc/4a4ef493e3a1488c6e321570238084b38948f6db/library/core/src/result.rs:1867:5
+       3: core::result::Result<T,E>::unwrap
+                 at /home/user/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/result.rs:1233:23
+       4: calc::calc::parse
+                 at ./src/calc.rs:6:22
+       5: calc_test::parses
+                 at ./tests/calc_test.rs:5:16
+       6: calc_test::parses::{{closure}}
+                 at ./tests/calc_test.rs:4:12
+       7: core::ops::function::FnOnce::call_once
+                 at /home/user/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/ops/function.rs:250:5
+       8: core::ops::function::FnOnce::call_once
+                 at /rustc/4a4ef493e3a1488c6e321570238084b38948f6db/library/core/src/ops/function.rs:250:5
+    note: Some details are omitted, run with `RUST_BACKTRACE=full` for a verbose backtrace.
+
+  Cancelling due to test failure: 
+────────────
+     Summary [   0.007s] 1 test run: 0 passed, 1 failed, 0 skipped
+        FAIL [   0.006s] (1/1) calc::calc_test parses
+error: test run failed

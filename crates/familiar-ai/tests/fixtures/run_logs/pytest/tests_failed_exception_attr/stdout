@@ -1,0 +1,30 @@
+============================= test session starts ==============================
+platform linux -- Python 3.14.4, pytest-9.1.1, pluggy-1.6.0
+rootdir: /tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/pytest/tests_failed_exception_attr
+configfile: pyproject.toml
+testpaths: tests
+collected 1 item
+
+tests/test_calc.py F                                                     [100%]
+
+=================================== FAILURES ===================================
+__________________________________ test_parse __________________________________
+
+    def test_parse():
+>       assert parse("x1") == 1
+               ^^^^^^^^^^^
+
+tests/test_calc.py:5: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+s = 'x1'
+
+    def parse(s):
+>       return os.mul(s)
+               ^^^^^^
+E       AttributeError: module 'os' has no attribute 'mul'
+
+src/calc.py:9: AttributeError
+=========================== short test summary info ============================
+FAILED tests/test_calc.py::test_parse - AttributeError: module 'os' has no at...
+============================== 1 failed in 0.01s ===============================

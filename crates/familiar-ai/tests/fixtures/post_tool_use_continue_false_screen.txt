@@ -1,0 +1,19 @@
+ ▐▛███▛█   Claude Code v2.1.289
+▝▜██████▀  Haiku 4.5 · Claude Max
+ ▝▝   ▝▝   /…/-home-dev-projects-example/00000000-0000-4000-8000-000000000000/scratchpad/step0/proj
+
+▎ ※ You've been granted a $250 bonus credit for cloud sessions, on top of your plan limits · /claim-credit
+
+❯ Make two separate Bash tool calls, one after the other: first run exactly echo hi; after it returns, run exactly echo
+  there in a second, separate call. Never combine them. Then reply done.
+
+● Bash(echo hi)
+  ⎿  hi
+  ⎿  PostToolUse:Bash hook stopped continuation: escalated to the investigator
+
+✻ Cooked for 2s · done 10:14 AM
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+❯ 
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+  ⏸ manual mode on · ? for shortcuts · ← 1 agent

@@ -1,0 +1,10 @@
+   Compiling calc v0.1.0 (/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/cargo-test/setup_error_build_rs)
+error: failed to run custom build command for `calc v0.1.0 (/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/cargo-test/setup_error_build_rs)`
+
+Caused by:
+  process didn't exit successfully: `/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/cargo-test/setup_error_build_rs/target/debug/build/calc-a38c2435f50bf3f3/build-script-build` (exit status: 101)
+  --- stderr
+
+  thread 'main' (419203) panicked at build.rs:2:5:
+  setup failed: required tool not found
+  note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace

@@ -1,0 +1,3 @@
+["start",{"total":1}]
+["pass",{"title":"adds","fullTitle":"calc adds","file":"/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/mocha/passed_reporter_json_stream/test/calc.test.js","duration":0,"currentRetry":0,"speed":"fast"}]
+["end",{"suites":1,"tests":1,"passes":1,"pending":0,"failures":0,"start":"2026-10-19T19:40:51.004Z","end":"2026-10-19T19:40:51.005Z","duration":1}]

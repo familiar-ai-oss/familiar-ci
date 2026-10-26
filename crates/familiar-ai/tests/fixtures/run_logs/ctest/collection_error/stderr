@@ -1,0 +1,7 @@
+/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/ctest/collection_error/tests/calc_test.cpp: In function ‘int main()’:
+/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/ctest/collection_error/tests/calc_test.cpp:5:5: error: expected ‘,’ or ‘;’ before ‘return’
+    5 |     return got == 4 ? 0 : 1;
+      |     ^~~~~~
+gmake[2]: *** [CMakeFiles/calc_test.dir/build.make:79: CMakeFiles/calc_test.dir/tests/calc_test.cpp.o] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:122: CMakeFiles/calc_test.dir/all] Error 2
+gmake: *** [Makefile:101: all] Error 2

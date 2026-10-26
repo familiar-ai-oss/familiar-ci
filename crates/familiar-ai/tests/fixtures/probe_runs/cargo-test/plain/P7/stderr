@@ -1,0 +1,4 @@
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.00s
+     Running unittests src/lib.rs (target/debug/deps/probe-9e60ea5904fece19)
+     Running tests/familiar_probe_p7.rs (target/debug/deps/familiar_probe_p7-c0968052696626cf)
+error: test failed, to rerun pass `--test familiar_probe_p7`

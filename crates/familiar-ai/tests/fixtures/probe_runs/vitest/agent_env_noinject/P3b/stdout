@@ -1,0 +1,9 @@
+
+ RUN  v5.0.5 /tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/a0-spike/projects/js/vitest/agent_env_noinject/P3b
+
+
+ Test Files  1 passed (1)
+      Tests  1 passed (1)
+   Start at  13:51:04
+   Duration  233ms (transform 66%, import 20%, worker 7%, tests 6%)
+

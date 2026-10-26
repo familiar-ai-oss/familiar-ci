@@ -1,0 +1,15 @@
+
+[31m⎯⎯⎯⎯⎯⎯⎯[39m[1m[41m Failed Tests 1 [49m[22m[31m⎯⎯⎯⎯⎯⎯⎯[39m
+
+[41m[1m FAIL [22m[49m test/p3.test.js[2m > [22mmultiplies
+[31m[1mTypeError[22m: mul is not a function[39m
+[36m [2m❯[22m test/p3.test.js:[2m5:10[22m[39m
+    [90m  3|[39m
+    [90m  4|[39m test('multiplies', () => {
+    [90m  5|[39m   expect(mul(2, 3)).toBe(6);
+    [90m   |[39m          [31m^[39m
+    [90m  6|[39m });
+    [90m  7|[39m
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯[22m[39m
+

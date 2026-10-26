@@ -1,0 +1,9 @@
+   Compiling calc v0.1.0 (/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/cargo-test/missing_target_symbol)
+error[E0425]: cannot find function `mul` in module `calc`
+ --> tests/calc_test.rs:5:22
+  |
+5 |     assert_eq!(calc::mul(2, 3), 6);
+  |                      ^^^ not found in `calc`
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `calc` (test "calc_test") due to 1 previous error

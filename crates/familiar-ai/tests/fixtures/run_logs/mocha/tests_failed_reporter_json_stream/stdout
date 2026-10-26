@@ -1,0 +1,3 @@
+["start",{"total":1}]
+["fail",{"title":"adds","fullTitle":"calc adds","file":"/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/mocha/tests_failed_reporter_json_stream/test/calc.test.js","duration":1,"currentRetry":0,"err":"Expected values to be strictly equal:\n\n4 !== 5\n","stack":"AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n4 !== 5\n\n    at Context.<anonymous> (test/calc.test.js:6:12)\n    at process.processImmediate (node:internal/timers:485:21)"}]
+["end",{"suites":1,"tests":1,"passes":0,"pending":0,"failures":1,"start":"2026-10-19T19:40:50.473Z","end":"2026-10-19T19:40:50.476Z","duration":3}]

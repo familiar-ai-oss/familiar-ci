@@ -1,0 +1,3 @@
+  Wiederherzustellende Projekte werden ermittelt...
+  "/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/a0-spike/projects/dotnet/P3/Calc.Tests.csproj" wiederhergestellt (in 106 ms.).
+/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/a0-spike/projects/dotnet/P3/tests/ProbeTests.cs(11,30): error CS0117: "Calc" enthält keine Definition für "Mul". [/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/a0-spike/projects/dotnet/P3/Calc.Tests.csproj]

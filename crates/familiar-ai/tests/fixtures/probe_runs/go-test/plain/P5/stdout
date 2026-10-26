@@ -1,0 +1,13 @@
+{"Time":"2026-10-19T17:47:02.521531484Z","Action":"start","Package":"example.com/probe"}
+{"Time":"2026-10-19T17:47:02.522309378Z","Action":"run","Package":"example.com/probe","Test":"TestAdd"}
+{"Time":"2026-10-19T17:47:02.522324518Z","Action":"output","Package":"example.com/probe","Test":"TestAdd","Output":"=== RUN   TestAdd\n"}
+{"Time":"2026-10-19T17:47:02.522342638Z","Action":"output","Package":"example.com/probe","Test":"TestAdd","Output":"--- PASS: TestAdd (0.00s)\n"}
+{"Time":"2026-10-19T17:47:02.522344688Z","Action":"pass","Package":"example.com/probe","Test":"TestAdd","Elapsed":0}
+{"Time":"2026-10-19T17:47:02.522347668Z","Action":"run","Package":"example.com/probe","Test":"TestLater"}
+{"Time":"2026-10-19T17:47:02.522348798Z","Action":"output","Package":"example.com/probe","Test":"TestLater","Output":"=== RUN   TestLater\n"}
+{"Time":"2026-10-19T17:47:02.522349858Z","Action":"output","Package":"example.com/probe","Test":"TestLater","Output":"    calc_test.go:12: not yet\n"}
+{"Time":"2026-10-19T17:47:02.522351338Z","Action":"output","Package":"example.com/probe","Test":"TestLater","Output":"--- SKIP: TestLater (0.00s)\n"}
+{"Time":"2026-10-19T17:47:02.522353438Z","Action":"skip","Package":"example.com/probe","Test":"TestLater","Elapsed":0}
+{"Time":"2026-10-19T17:47:02.522354528Z","Action":"output","Package":"example.com/probe","Output":"PASS\n"}
+{"Time":"2026-10-19T17:47:02.522420638Z","Action":"output","Package":"example.com/probe","Output":"ok  \texample.com/probe\t0.001s\n"}
+{"Time":"2026-10-19T17:47:02.522563219Z","Action":"pass","Package":"example.com/probe","Elapsed":0.001}

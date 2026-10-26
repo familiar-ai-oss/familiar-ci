@@ -1,0 +1,13 @@
+======================================================================
+FAIL: test_add (tests.test_p2.T.test_add)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/a0-spike/projects/unittest-q/P2/tests/test_p2.py", line 7, in test_add
+    self.assertEqual(add(2, 2), 5)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+AssertionError: 4 != 5
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+FAILED (failures=1)

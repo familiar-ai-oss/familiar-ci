@@ -1,0 +1,3 @@
++familiar-ai	posix/s_grep.sh	2	printf 'alpha\nbeta\n'
++familiar-ai	posix/s_grep.sh	3	echo checking
++familiar-ai	posix/s_grep.sh	4	grep -q gamma /tmp/a0-sh-3243982.txt

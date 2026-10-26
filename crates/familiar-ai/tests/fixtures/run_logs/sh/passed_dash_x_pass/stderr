@@ -1,0 +1,6 @@
++familiar-ai		printf hello\n
++familiar-ai		out=hello
++familiar-ai		[ hello = hello ]
++familiar-ai		echo hello
++familiar-ai		grep -q hello
++familiar-ai		echo ok

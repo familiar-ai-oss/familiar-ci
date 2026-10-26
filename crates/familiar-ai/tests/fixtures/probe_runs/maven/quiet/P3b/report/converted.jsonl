@@ -1,0 +1,3 @@
+{"type": "session", "v": 1, "runner": "maven-surefire", "runner_version": null, "language": "java", "plugins": [], "converted_from": "junit", "files": 1}
+{"type": "test", "id": "calc.ProbeTest::multiplies", "file": null, "line": null, "outcome": "passed", "skip_reason": null, "error": null}
+{"type": "end", "exit": null, "counts": {"passed": 1, "failed": 0, "skipped": 0, "deselected": 0, "errors": 0}}

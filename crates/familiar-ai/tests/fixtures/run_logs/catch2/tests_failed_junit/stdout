@@ -1,0 +1,34 @@
+-- The CXX compiler identification is GNU 16.0.1
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Configuring done (0.1s)
+-- Generating done (0.0s)
+-- Build files have been written to: /tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/catch2/tests_failed_junit/build
+[ 25%] Building CXX object CMakeFiles/calc.dir/src/calc.cpp.o
+[ 50%] Linking CXX static library libcalc.a
+[ 50%] Built target calc
+[ 75%] Building CXX object CMakeFiles/calc_test.dir/tests/calc_test.cpp.o
+[100%] Linking CXX executable calc_test
+[100%] Built target calc_test
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="calc_test" errors="0" failures="1" skipped="0" tests="1" hostname="tbd" time="0.000" timestamp="2026-10-19T19:48:40Z">
+    <properties>
+      <property name="random-seed" value="2782097015"/>
+    </properties>
+    <testcase classname="calc_test.global" name="Adds" time="0.000" status="run">
+      <failure message="add(2, 2) == 5" type="REQUIRE">
+FAILED:
+  REQUIRE( add(2, 2) == 5 )
+with expansion:
+  4 == 5
+at /tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/catch2/tests_failed_junit/tests/calc_test.cpp:6
+      </failure>
+    </testcase>
+    <system-out/>
+    <system-err/>
+  </testsuite>
+</testsuites>

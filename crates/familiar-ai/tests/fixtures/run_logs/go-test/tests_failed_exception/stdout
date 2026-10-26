@@ -1,0 +1,21 @@
+--- FAIL: TestParse (0.00s)
+panic: strconv.Atoi: parsing "x1": invalid syntax [recovered]
+	panic: strconv.Atoi: parsing "x1": invalid syntax
+
+goroutine 18 [running]:
+testing.tRunner.func1.2({0x537380, 0xc00012e420})
+	/usr/local/go/src/testing/testing.go:1632 +0x230
+testing.tRunner.func1()
+	/usr/local/go/src/testing/testing.go:1635 +0x35e
+panic({0x537380?, 0xc00012e420?})
+	/usr/local/go/src/runtime/panic.go:791 +0x132
+example.com/calc.Parse(...)
+	/r/go-test/tests_failed_exception/calc.go:12
+example.com/calc.TestParse(0xc0001504e0)
+	/r/go-test/tests_failed_exception/calc_test.go:6 +0x8b
+testing.tRunner(0xc0001504e0, 0x5641d8)
+	/usr/local/go/src/testing/testing.go:1690 +0xf4
+created by testing.(*T).Run in goroutine 1
+	/usr/local/go/src/testing/testing.go:1743 +0x390
+FAIL	example.com/calc	0.003s
+FAIL

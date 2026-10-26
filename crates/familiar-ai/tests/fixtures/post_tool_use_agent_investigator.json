@@ -1,0 +1,79 @@
+{
+  "session_id": "627c0a59",
+  "transcript_path": "<claude_projects>/<project_slug>/627c0a59.jsonl",
+  "cwd": "<cwd>",
+  "prompt_id": "05aca3bc",
+  "permission_mode": "default",
+  "hook_event_name": "PostToolUse",
+  "tool_name": "Agent",
+  "tool_input": {
+    "description": "Run echo hi command",
+    "prompt": "Run the shell command: echo hi",
+    "subagent_type": "investigator",
+    "run_in_background": false
+  },
+  "tool_response": {
+    "status": "completed",
+    "prompt": "Run the shell command: echo hi",
+    "agentId": "a0693f4e",
+    "agentType": "investigator",
+    "harnessNoteCount": 0,
+    "harnessTailCount": 0,
+    "harnessSectionHash": "f0764357e478fe5c",
+    "content": [
+      {
+        "type": "text",
+        "text": "The command ran once and printed `hi`."
+      }
+    ],
+    "resolvedModel": "claude-sonnet-5-5",
+    "totalDurationMs": 2202,
+    "totalTokens": 2769,
+    "totalToolUseCount": 1,
+    "usage": {
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 133,
+      "cache_read_input_tokens": 2619,
+      "output_tokens": 15,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 133
+      },
+      "inference_geo": "not_available",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 15,
+          "cache_read_input_tokens": 2619,
+          "cache_creation_input_tokens": 133,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 133,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard",
+      "fallback_credit": null
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 1,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 0
+    }
+  },
+  "tool_use_id": "toolu_01",
+  "duration_ms": 2203
+}

@@ -1,0 +1,752 @@
+[
+{
+"at": 1791387711.0980985,
+"kind": "person_said",
+"t": 0,
+"tenant": "_default_",
+"text": "Fix application of nested operators in pipeline API (#13363)\n\nCo-authored-by: Abhijeetsingh Meena <abhijeet040403@gmail.com>\n\nFix this in the repository in the current directory. When you are finished, stop."
+},
+{
+"at": 1791387711.0980985,
+"kind": "intent_submitted",
+"sha": "05470ef62d8c12ffc614be612dc4e12244c56792",
+"t": 1,
+"tenant": "_default_",
+"text": "Fix application of nested operators in pipeline API (#13363)\n\nCo-authored-by: Abhijeetsingh Meena <abhijeet040403@gmail.com>\n\nFix this in the repository in the current directory. When you are finished, stop."
+},
+{
+"at": 1791387733.472144,
+"kind": "intent_submitted",
+"sha": "05470ef62d8c12ffc614be612dc4e12244c56792",
+"t": 2,
+"tenant": "_default_",
+"text": "Fix application of nested operators in pipeline API"
+},
+{
+"at": 1791387740.0824196,
+"criterion_id": "c1",
+"kind": "criterion",
+"path": "light",
+"t": 3,
+"tenant": "_default_",
+"text": "nested operators in pipeline API work correctly"
+},
+{
+"at": 1791387741.7530422,
+"criterion_id": "c1",
+"kind": "place_chosen",
+"places": [
+{
+"file_path": "pydantic/experimental/pipeline.py",
+"line_end": 431,
+"line_start": 417,
+"symbol": "_apply_step"
+}
+],
+"t": 4,
+"tenant": "_default_"
+},
+{
+"at": 1791387741.7530422,
+"checked_at": "planning",
+"criterion_id": "c1",
+"file_path": "pydantic/experimental/pipeline.py",
+"kind": "anchor_sha_matched",
+"line_end": 431,
+"line_start": 417,
+"lines_hash": "741812ad9425977cd3b4eaa32363ea80f2669e96e9f1878db5c6a792cce81f94",
+"matched": true,
+"sha": "05470ef62d8c12ffc614be612dc4e12244c56792",
+"symbol": "_apply_step",
+"t": 5,
+"tenant": "_default_"
+},
+{
+"at": 1791387743.2687552,
+"criterion_id": "c1",
+"file_path": "tests/test_pipeline.py",
+"kind": "test_planned",
+"t": 6,
+"tenant": "_default_",
+"will": "modify"
+},
+{
+"at": 1791387744.6608496,
+"codebase_id": "repo",
+"kind": "test_stack_detected",
+"project_root": "",
+"t": 7,
+"tenant": "_default_",
+"test_command": "pytest -q tests/test_pipeline.py::test_nested_operators",
+"test_stack": "pytest"
+},
+{
+"at": 1791387745.917501,
+"criterion_id": "c1",
+"kind": "criterion_head",
+"t": 8,
+"tenant": "_default_"
+},
+{
+"agent_conversation_id": "a1ca016e-4afd-4c62-a519-b6c20ee11e88",
+"at": 1791387747.2042933,
+"criterion_id": "c1",
+"kind": "criterion_assigned",
+"t": 9,
+"tenant": "_default_"
+},
+{
+"at": 1791387747.2042933,
+"checked_at": "start",
+"criterion_id": "c1",
+"file_path": "pydantic/experimental/pipeline.py",
+"kind": "anchor_sha_matched",
+"line_end": 431,
+"line_start": 417,
+"lines_hash": "741812ad9425977cd3b4eaa32363ea80f2669e96e9f1878db5c6a792cce81f94",
+"matched": true,
+"sha": "05470ef62d8c12ffc614be612dc4e12244c56792",
+"symbol": "_apply_step",
+"t": 10,
+"tenant": "_default_"
+},
+{
+"anchor_overlap": [],
+"at": 1791387755.8354504,
+"by": "agent",
+"commit": "9a4f795c1d144f04669d6c93a096c3c15e83c851",
+"files": [
+"tests/test_pipeline.py"
+],
+"kind": "commit_seen",
+"t": 11,
+"tenant": "_default_",
+"tests_hash": "b74fe16fe239edfe8d8e9f5742a74ee4c60f37a7238f5c6caede38dad40e6ec0",
+"touches_code": false,
+"touches_tests": true
+},
+{
+"at": 1791387755.8354504,
+"criterion_id": "c1",
+"file_path": "tests/test_pipeline.py",
+"kind": "test_written",
+"t": 12,
+"tenant": "_default_",
+"test_name": ""
+},
+{
+"at": 1791387755.8354504,
+"commit": "9a4f795c1d144f04669d6c93a096c3c15e83c851",
+"criterion_id": "c1",
+"file_path": "tests/test_pipeline.py",
+"kind": "pass_please_pass",
+"outcome": "failed",
+"ran_in": "laptop",
+"t": 13,
+"tenant": "_default_"
+},
+{
+"at": 1791387755.8354504,
+"commit": "9a4f795c1d144f04669d6c93a096c3c15e83c851",
+"criterion_id": "c1",
+"kind": "fingerprint_stamped",
+"proof_not_tampered": "b74fe16fe239edfe8d8e9f5742a74ee4c60f37a7238f5c6caede38dad40e6ec0",
+"ran_in": "laptop",
+"t": 14,
+"tenant": "_default_"
+},
+{
+"agent_conversation_id": "a1ca016e-4afd-4c62-a519-b6c20ee11e88",
+"at": 1791387755.8354504,
+"kind": "model_seen",
+"model": "anthropic.claude-haiku-4-5-20251001-v1:0",
+"t": 15,
+"tenant": "_default_"
+},
+{
+"answers_intent": "yes",
+"at": 1791387755.8354504,
+"criterion_id": "c1",
+"kind": "judge_verdict",
+"model": "us.anthropic.claude-opus-4-6-v1",
+"reason": "The person's words ask to fix nested operators (| and &) in the pipeline API. Paths: (1) nested OR `(a | b) | c` — expected to accept values matching any branch — exercised by `test_nested_operators` (nested OR section, validates 1, 7, 15 pass and 9 fails); (2) nested AND `(a & b) & c` — expected to require all conditions — exercised by `test_nested_operators` (nested AND section, validates 0 and 5 pass, 10/-1/25 fail); (3) mixed operators `(a | b) & c` — expected to combine union and chain correctly — exercised by `test_nested_operators` (mixed section, validates 1 and 20 pass, 3 and 10 fail). All nested-operator paths described by the intent have corresponding test assertions.",
+"t": 16,
+"tenant": "_default_"
+},
+{
+"at": 1791387796.4538398,
+"criterion_id": "c1",
+"kind": "test_change_announced",
+"reason": "used wrong method name for not_eq constraint",
+"t": 17,
+"tenant": "_default_"
+},
+{
+"anchor_overlap": [],
+"at": 1791387802.278213,
+"by": "agent",
+"commit": "13c1583801ff4ffa020640eb0530cd66c928e838",
+"files": [
+"tests/test_pipeline.py"
+],
+"kind": "commit_seen",
+"t": 18,
+"tenant": "_default_",
+"tests_hash": "74d4a66c1c673736002c2c8e77e7ce10cd7d296b686dae14bdd9a9a0a789d313",
+"touches_code": false,
+"touches_tests": true
+},
+{
+"at": 1791387802.278213,
+"commit": "13c1583801ff4ffa020640eb0530cd66c928e838",
+"criterion_id": "c1",
+"file_path": "tests/test_pipeline.py",
+"kind": "pass_please_pass",
+"outcome": "passed",
+"ran_in": "laptop",
+"t": 19,
+"tenant": "_default_"
+},
+{
+"at": 1791387802.278213,
+"commit": "13c1583801ff4ffa020640eb0530cd66c928e838",
+"criterion_id": "c1",
+"kind": "fingerprint_stamped",
+"proof_not_tampered": "74d4a66c1c673736002c2c8e77e7ce10cd7d296b686dae14bdd9a9a0a789d313",
+"ran_in": "laptop",
+"t": 20,
+"tenant": "_default_"
+},
+{
+"anchor_overlap": [
+"c1"
+],
+"at": 1791387810.5281217,
+"by": "agent",
+"commit": "87915252658a7756436ec82e78dcf4a637ce14c8",
+"files": [
+"pydantic/experimental/pipeline.py"
+],
+"kind": "commit_seen",
+"t": 21,
+"tenant": "_default_",
+"tests_hash": "74d4a66c1c673736002c2c8e77e7ce10cd7d296b686dae14bdd9a9a0a789d313",
+"touches_code": true,
+"touches_tests": false
+},
+{
+"at": 1791387810.5281217,
+"commit": "87915252658a7756436ec82e78dcf4a637ce14c8",
+"criterion_id": "c1",
+"file_path": "tests/test_pipeline.py",
+"kind": "pass_please_pass",
+"outcome": "passed",
+"ran_in": "laptop",
+"t": 22,
+"tenant": "_default_"
+},
+{
+"at": 1791387810.5281217,
+"commit": "87915252658a7756436ec82e78dcf4a637ce14c8",
+"criterion_id": "c1",
+"kind": "fingerprint_stamped",
+"proof_not_tampered": "74d4a66c1c673736002c2c8e77e7ce10cd7d296b686dae14bdd9a9a0a789d313",
+"ran_in": "laptop",
+"t": 23,
+"tenant": "_default_"
+},
+{
+"anchor_overlap": [
+"c1"
+],
+"at": 1791387839.1990724,
+"by": "agent",
+"commit": "8d2ea882ce42baa69f3d8db97bf8a3c531763c82",
+"files": [
+"pydantic/experimental/pipeline.py"
+],
+"kind": "commit_seen",
+"t": 24,
+"tenant": "_default_",
+"tests_hash": "74d4a66c1c673736002c2c8e77e7ce10cd7d296b686dae14bdd9a9a0a789d313",
+"touches_code": true,
+"touches_tests": false
+},
+{
+"at": 1791387839.1990724,
+"commit": "8d2ea882ce42baa69f3d8db97bf8a3c531763c82",
+"criterion_id": "c1",
+"file_path": "tests/test_pipeline.py",
+"kind": "pass_please_pass",
+"outcome": "failed",
+"ran_in": "laptop",
+"t": 25,
+"tenant": "_default_"
+},
+{
+"at": 1791387839.1990724,
+"commit": "8d2ea882ce42baa69f3d8db97bf8a3c531763c82",
+"criterion_id": "c1",
+"kind": "fingerprint_stamped",
+"proof_not_tampered": "74d4a66c1c673736002c2c8e77e7ce10cd7d296b686dae14bdd9a9a0a789d313",
+"ran_in": "laptop",
+"t": 26,
+"tenant": "_default_"
+},
+{
+"anchor_overlap": [
+"c1"
+],
+"at": 1791387854.9730484,
+"by": "agent",
+"commit": "4fb74fc617d986b2d8f5a78dc102f03dd1abd9ed",
+"files": [
+"pydantic/experimental/pipeline.py"
+],
+"kind": "commit_seen",
+"t": 27,
+"tenant": "_default_",
+"tests_hash": "74d4a66c1c673736002c2c8e77e7ce10cd7d296b686dae14bdd9a9a0a789d313",
+"touches_code": true,
+"touches_tests": false
+},
+{
+"at": 1791387854.9730484,
+"commit": "4fb74fc617d986b2d8f5a78dc102f03dd1abd9ed",
+"criterion_id": "c1",
+"file_path": "tests/test_pipeline.py",
+"kind": "pass_please_pass",
+"outcome": "passed",
+"ran_in": "laptop",
+"t": 28,
+"tenant": "_default_"
+},
+{
+"at": 1791387854.9730484,
+"commit": "4fb74fc617d986b2d8f5a78dc102f03dd1abd9ed",
+"criterion_id": "c1",
+"kind": "fingerprint_stamped",
+"proof_not_tampered": "74d4a66c1c673736002c2c8e77e7ce10cd7d296b686dae14bdd9a9a0a789d313",
+"ran_in": "laptop",
+"t": 29,
+"tenant": "_default_"
+},
+{
+"anchor_overlap": [
+"c1"
+],
+"at": 1791387899.9806633,
+"by": "agent",
+"commit": "8ced1cdd944abd6e0149b2bf6a75ecdd90a1d05f",
+"files": [
+"pydantic/experimental/pipeline.py"
+],
+"kind": "commit_seen",
+"t": 30,
+"tenant": "_default_",
+"tests_hash": "74d4a66c1c673736002c2c8e77e7ce10cd7d296b686dae14bdd9a9a0a789d313",
+"touches_code": true,
+"touches_tests": false
+},
+{
+"at": 1791387899.9806633,
+"commit": "8ced1cdd944abd6e0149b2bf6a75ecdd90a1d05f",
+"criterion_id": "c1",
+"file_path": "tests/test_pipeline.py",
+"kind": "pass_please_pass",
+"outcome": "failed",
+"ran_in": "laptop",
+"t": 31,
+"tenant": "_default_"
+},
+{
+"at": 1791387899.9806633,
+"commit": "8ced1cdd944abd6e0149b2bf6a75ecdd90a1d05f",
+"criterion_id": "c1",
+"kind": "fingerprint_stamped",
+"proof_not_tampered": "74d4a66c1c673736002c2c8e77e7ce10cd7d296b686dae14bdd9a9a0a789d313",
+"ran_in": "laptop",
+"t": 32,
+"tenant": "_default_"
+},
+{
+"anchor_overlap": [
+"c1"
+],
+"at": 1791387912.9498403,
+"by": "agent",
+"commit": "b86cfa0050238282031a67d31191ee9e643f88e4",
+"files": [
+"pydantic/experimental/pipeline.py"
+],
+"kind": "commit_seen",
+"t": 33,
+"tenant": "_default_",
+"tests_hash": "74d4a66c1c673736002c2c8e77e7ce10cd7d296b686dae14bdd9a9a0a789d313",
+"touches_code": true,
+"touches_tests": false
+},
+{
+"at": 1791387912.9498403,
+"commit": "b86cfa0050238282031a67d31191ee9e643f88e4",
+"criterion_id": "c1",
+"file_path": "tests/test_pipeline.py",
+"kind": "pass_please_pass",
+"outcome": "passed",
+"ran_in": "laptop",
+"t": 34,
+"tenant": "_default_"
+},
+{
+"at": 1791387912.9498403,
+"commit": "b86cfa0050238282031a67d31191ee9e643f88e4",
+"criterion_id": "c1",
+"kind": "fingerprint_stamped",
+"proof_not_tampered": "74d4a66c1c673736002c2c8e77e7ce10cd7d296b686dae14bdd9a9a0a789d313",
+"ran_in": "laptop",
+"t": 35,
+"tenant": "_default_"
+},
+{
+"anchor_overlap": [
+"c1"
+],
+"at": 1791387951.317072,
+"by": "agent",
+"commit": "8e9e4fb41c6795931f7ea365ebaa76322f41a70f",
+"files": [
+"pydantic/experimental/pipeline.py"
+],
+"kind": "commit_seen",
+"t": 36,
+"tenant": "_default_",
+"tests_hash": "74d4a66c1c673736002c2c8e77e7ce10cd7d296b686dae14bdd9a9a0a789d313",
+"touches_code": true,
+"touches_tests": false
+},
+{
+"at": 1791387951.317072,
+"commit": "8e9e4fb41c6795931f7ea365ebaa76322f41a70f",
+"criterion_id": "c1",
+"file_path": "tests/test_pipeline.py",
+"kind": "pass_please_pass",
+"outcome": "failed",
+"ran_in": "laptop",
+"t": 37,
+"tenant": "_default_"
+},
+{
+"at": 1791387951.317072,
+"commit": "8e9e4fb41c6795931f7ea365ebaa76322f41a70f",
+"criterion_id": "c1",
+"kind": "fingerprint_stamped",
+"proof_not_tampered": "74d4a66c1c673736002c2c8e77e7ce10cd7d296b686dae14bdd9a9a0a789d313",
+"ran_in": "laptop",
+"t": 38,
+"tenant": "_default_"
+},
+{
+"anchor_overlap": [
+"c1"
+],
+"at": 1791387963.0985148,
+"by": "agent",
+"commit": "7b0378e386e8f9c777d40df47c958a68ce12f258",
+"files": [
+"pydantic/experimental/pipeline.py"
+],
+"kind": "commit_seen",
+"t": 39,
+"tenant": "_default_",
+"tests_hash": "74d4a66c1c673736002c2c8e77e7ce10cd7d296b686dae14bdd9a9a0a789d313",
+"touches_code": true,
+"touches_tests": false
+},
+{
+"at": 1791387963.0985148,
+"commit": "7b0378e386e8f9c777d40df47c958a68ce12f258",
+"criterion_id": "c1",
+"file_path": "tests/test_pipeline.py",
+"kind": "pass_please_pass",
+"outcome": "passed",
+"ran_in": "laptop",
+"t": 40,
+"tenant": "_default_"
+},
+{
+"at": 1791387963.0985148,
+"commit": "7b0378e386e8f9c777d40df47c958a68ce12f258",
+"criterion_id": "c1",
+"kind": "fingerprint_stamped",
+"proof_not_tampered": "74d4a66c1c673736002c2c8e77e7ce10cd7d296b686dae14bdd9a9a0a789d313",
+"ran_in": "laptop",
+"t": 41,
+"tenant": "_default_"
+},
+{
+"anchor_overlap": [
+"c1"
+],
+"at": 1791388003.4830062,
+"by": "agent",
+"commit": "b1c7cb39b64ca8c027e652fb3330acad5a738381",
+"files": [
+"pydantic/experimental/pipeline.py"
+],
+"kind": "commit_seen",
+"t": 42,
+"tenant": "_default_",
+"tests_hash": "74d4a66c1c673736002c2c8e77e7ce10cd7d296b686dae14bdd9a9a0a789d313",
+"touches_code": true,
+"touches_tests": false
+},
+{
+"at": 1791388003.4830062,
+"commit": "b1c7cb39b64ca8c027e652fb3330acad5a738381",
+"criterion_id": "c1",
+"file_path": "tests/test_pipeline.py",
+"kind": "pass_please_pass",
+"outcome": "failed",
+"ran_in": "laptop",
+"t": 43,
+"tenant": "_default_"
+},
+{
+"at": 1791388003.4830062,
+"commit": "b1c7cb39b64ca8c027e652fb3330acad5a738381",
+"criterion_id": "c1",
+"kind": "fingerprint_stamped",
+"proof_not_tampered": "74d4a66c1c673736002c2c8e77e7ce10cd7d296b686dae14bdd9a9a0a789d313",
+"ran_in": "laptop",
+"t": 44,
+"tenant": "_default_"
+},
+{
+"anchor_overlap": [
+"c1"
+],
+"at": 1791388014.0193543,
+"by": "agent",
+"commit": "e2706a61118926bc32003d0b79215a5c309b321a",
+"files": [
+"pydantic/experimental/pipeline.py"
+],
+"kind": "commit_seen",
+"t": 45,
+"tenant": "_default_",
+"tests_hash": "74d4a66c1c673736002c2c8e77e7ce10cd7d296b686dae14bdd9a9a0a789d313",
+"touches_code": true,
+"touches_tests": false
+},
+{
+"at": 1791388014.0193543,
+"commit": "e2706a61118926bc32003d0b79215a5c309b321a",
+"criterion_id": "c1",
+"file_path": "tests/test_pipeline.py",
+"kind": "pass_please_pass",
+"outcome": "passed",
+"ran_in": "laptop",
+"t": 46,
+"tenant": "_default_"
+},
+{
+"at": 1791388014.0193543,
+"commit": "e2706a61118926bc32003d0b79215a5c309b321a",
+"criterion_id": "c1",
+"kind": "fingerprint_stamped",
+"proof_not_tampered": "74d4a66c1c673736002c2c8e77e7ce10cd7d296b686dae14bdd9a9a0a789d313",
+"ran_in": "laptop",
+"t": 47,
+"tenant": "_default_"
+},
+{
+"anchor_overlap": [
+"c1"
+],
+"at": 1791388070.5043426,
+"by": "agent",
+"commit": "d2bf8d9809e55b83c3e034c69ba13b519f75d2c9",
+"files": [
+"pydantic/experimental/pipeline.py"
+],
+"kind": "commit_seen",
+"t": 48,
+"tenant": "_default_",
+"tests_hash": "74d4a66c1c673736002c2c8e77e7ce10cd7d296b686dae14bdd9a9a0a789d313",
+"touches_code": true,
+"touches_tests": false
+},
+{
+"at": 1791388070.5043426,
+"commit": "d2bf8d9809e55b83c3e034c69ba13b519f75d2c9",
+"criterion_id": "c1",
+"file_path": "tests/test_pipeline.py",
+"kind": "pass_please_pass",
+"outcome": "failed",
+"ran_in": "laptop",
+"t": 49,
+"tenant": "_default_"
+},
+{
+"at": 1791388070.5043426,
+"commit": "d2bf8d9809e55b83c3e034c69ba13b519f75d2c9",
+"criterion_id": "c1",
+"kind": "fingerprint_stamped",
+"proof_not_tampered": "74d4a66c1c673736002c2c8e77e7ce10cd7d296b686dae14bdd9a9a0a789d313",
+"ran_in": "laptop",
+"t": 50,
+"tenant": "_default_"
+},
+{
+"anchor_overlap": [
+"c1"
+],
+"at": 1791388081.641159,
+"by": "agent",
+"commit": "791a06ceed6f6dc4a61fc1fad57e7c51f9844da2",
+"files": [
+"pydantic/experimental/pipeline.py"
+],
+"kind": "commit_seen",
+"t": 51,
+"tenant": "_default_",
+"tests_hash": "74d4a66c1c673736002c2c8e77e7ce10cd7d296b686dae14bdd9a9a0a789d313",
+"touches_code": true,
+"touches_tests": false
+},
+{
+"at": 1791388081.641159,
+"commit": "791a06ceed6f6dc4a61fc1fad57e7c51f9844da2",
+"criterion_id": "c1",
+"file_path": "tests/test_pipeline.py",
+"kind": "pass_please_pass",
+"outcome": "passed",
+"ran_in": "laptop",
+"t": 52,
+"tenant": "_default_"
+},
+{
+"at": 1791388081.641159,
+"commit": "791a06ceed6f6dc4a61fc1fad57e7c51f9844da2",
+"criterion_id": "c1",
+"kind": "fingerprint_stamped",
+"proof_not_tampered": "74d4a66c1c673736002c2c8e77e7ce10cd7d296b686dae14bdd9a9a0a789d313",
+"ran_in": "laptop",
+"t": 53,
+"tenant": "_default_"
+},
+{
+"anchor_overlap": [
+"c1"
+],
+"at": 1791388130.3359551,
+"by": "agent",
+"commit": "3db9f9ebba23e266bfc1dfbfa7d15ee7a0e800cc",
+"files": [
+"pydantic/experimental/pipeline.py"
+],
+"kind": "commit_seen",
+"t": 54,
+"tenant": "_default_",
+"tests_hash": "74d4a66c1c673736002c2c8e77e7ce10cd7d296b686dae14bdd9a9a0a789d313",
+"touches_code": true,
+"touches_tests": false
+},
+{
+"at": 1791388130.3359551,
+"commit": "3db9f9ebba23e266bfc1dfbfa7d15ee7a0e800cc",
+"criterion_id": "c1",
+"file_path": "tests/test_pipeline.py",
+"kind": "pass_please_pass",
+"outcome": "failed",
+"ran_in": "laptop",
+"t": 55,
+"tenant": "_default_"
+},
+{
+"at": 1791388130.3359551,
+"commit": "3db9f9ebba23e266bfc1dfbfa7d15ee7a0e800cc",
+"criterion_id": "c1",
+"kind": "fingerprint_stamped",
+"proof_not_tampered": "74d4a66c1c673736002c2c8e77e7ce10cd7d296b686dae14bdd9a9a0a789d313",
+"ran_in": "laptop",
+"t": 56,
+"tenant": "_default_"
+},
+{
+"anchor_overlap": [
+"c1"
+],
+"at": 1791388142.8338332,
+"by": "agent",
+"commit": "6eddf72e7f7c33ecb507428f9cb54674761b227e",
+"files": [
+"pydantic/experimental/pipeline.py"
+],
+"kind": "commit_seen",
+"t": 57,
+"tenant": "_default_",
+"tests_hash": "74d4a66c1c673736002c2c8e77e7ce10cd7d296b686dae14bdd9a9a0a789d313",
+"touches_code": true,
+"touches_tests": false
+},
+{
+"at": 1791388142.8338332,
+"commit": "6eddf72e7f7c33ecb507428f9cb54674761b227e",
+"criterion_id": "c1",
+"file_path": "tests/test_pipeline.py",
+"kind": "pass_please_pass",
+"outcome": "passed",
+"ran_in": "laptop",
+"t": 58,
+"tenant": "_default_"
+},
+{
+"at": 1791388142.8338332,
+"commit": "6eddf72e7f7c33ecb507428f9cb54674761b227e",
+"criterion_id": "c1",
+"kind": "fingerprint_stamped",
+"proof_not_tampered": "74d4a66c1c673736002c2c8e77e7ce10cd7d296b686dae14bdd9a9a0a789d313",
+"ran_in": "laptop",
+"t": 59,
+"tenant": "_default_"
+},
+{
+"anchor_overlap": [
+"c1"
+],
+"at": 1791388292.6137197,
+"by": "agent",
+"commit": "ded26454e3408d2cbbd22c5d387b7bf2aa8eb0f3",
+"files": [
+"pydantic/experimental/pipeline.py"
+],
+"kind": "commit_seen",
+"t": 60,
+"tenant": "_default_",
+"tests_hash": "74d4a66c1c673736002c2c8e77e7ce10cd7d296b686dae14bdd9a9a0a789d313",
+"touches_code": true,
+"touches_tests": false
+},
+{
+"at": 1791388292.6137197,
+"commit": "ded26454e3408d2cbbd22c5d387b7bf2aa8eb0f3",
+"criterion_id": "c1",
+"file_path": "tests/test_pipeline.py",
+"kind": "pass_please_pass",
+"outcome": "passed",
+"ran_in": "laptop",
+"t": 61,
+"tenant": "_default_"
+},
+{
+"at": 1791388292.6137197,
+"commit": "ded26454e3408d2cbbd22c5d387b7bf2aa8eb0f3",
+"criterion_id": "c1",
+"kind": "fingerprint_stamped",
+"proof_not_tampered": "74d4a66c1c673736002c2c8e77e7ce10cd7d296b686dae14bdd9a9a0a789d313",
+"ran_in": "laptop",
+"t": 62,
+"tenant": "_default_"
+}
+]

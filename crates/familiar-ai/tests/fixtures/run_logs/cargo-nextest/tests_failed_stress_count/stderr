@@ -1,0 +1,34 @@
+   Compiling calc v0.1.0 (/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/cargo-nextest/tests_failed_stress_count)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.07s
+────────────
+ Nextest run ID af42cb33-aad8-4b8e-849b-3f635943c738 with nextest profile: default
+    Starting 1 test across 2 binaries
+────────────
+ Stress test iteration 1/2 (00:00:00 elapsed so far, 2 iterations remaining)
+        FAIL [   0.001s] [1/2] (1/1) calc::calc_test adds
+  stdout ───
+
+    running 1 test
+    test adds ... FAILED
+
+    failures:
+
+    failures:
+        adds
+
+    test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+  stderr ───
+
+    thread 'adds' (344332) panicked at tests/calc_test.rs:5:5:
+    assertion `left == right` failed
+      left: 4
+     right: 5
+    note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+  Cancelling due to test failure: 
+ Stress test [   0.002s] iteration 1/2: 1 test run: 0 passed, 1 failed, 0 skipped
+────────────
+     Summary [   0.002s] 1/2 stress run iterations: 0 passed, 1 failed
+        FAIL [   0.001s] [1/2] (1/1) calc::calc_test adds
+error: test run failed

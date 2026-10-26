@@ -1,0 +1,38 @@
+-- The CXX compiler identification is GNU 16.0.1
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Configuring done (0.1s)
+-- Generating done (0.0s)
+-- Build files have been written to: /tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/ctest/environment_error_missing_dep/build
+[ 50%] Building CXX object CMakeFiles/calc.dir/src/calc.cpp.o
+[100%] Linking CXX static library libcalc.a
+[100%] Built target calc
+Test project /tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/ctest/environment_error_missing_dep/build
+    Start 1: calc_tool_test
+Could not find executable nosuch_tool
+Looked in the following places:
+nosuch_tool
+nosuch_tool
+Release/nosuch_tool
+Release/nosuch_tool
+Debug/nosuch_tool
+Debug/nosuch_tool
+MinSizeRel/nosuch_tool
+MinSizeRel/nosuch_tool
+RelWithDebInfo/nosuch_tool
+RelWithDebInfo/nosuch_tool
+Deployment/nosuch_tool
+Deployment/nosuch_tool
+Development/nosuch_tool
+Development/nosuch_tool
+1/1 Test #1: calc_tool_test ...................***Not Run   0.00 sec
+
+0% tests passed, 1 tests failed out of 1
+
+Total Test time (real) =   0.00 sec
+
+The following tests FAILED:
+	  1 - calc_tool_test (Not Run)

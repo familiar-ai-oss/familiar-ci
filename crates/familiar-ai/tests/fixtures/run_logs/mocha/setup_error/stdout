@@ -1,0 +1,17 @@
+
+
+  calc
+    1) "before all" hook for "adds"
+
+
+  0 passing (1ms)
+  1 failing
+
+  1) calc
+       "before all" hook for "adds":
+     Error: db down
+      at Context.<anonymous> (test/calc.test.js:6:11)
+      at process.processImmediate (node:internal/timers:485:21)
+
+
+

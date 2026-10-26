@@ -1,0 +1,10 @@
+
+ RUN  v5.0.5 /tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/a0-spike/projects/js/vitest/agent_env/P5
+
+ ✓ test/p5.test.js (2 tests | 1 skipped) 2ms
+
+ Test Files  1 passed (1)
+      Tests  1 passed | 1 skipped (2)
+   Start at  13:50:55
+   Duration  108ms (import 36%, transform 35%, worker 15%, tests 13%, environment 1%)
+

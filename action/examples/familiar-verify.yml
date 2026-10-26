@@ -1,0 +1,22 @@
+# Runs `familiar-ai verify` on every pull request.
+# Keep the job named familiar-verify: the pull
+# request's check takes the job's name, and
+# `familiar-ai status` looks for that check.
+name: familiar
+on:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  familiar-verify:
+    name: familiar-verify
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # verify reads the branch's history
+          ref: ${{ github.event.pull_request.head.sha }}
+      # Install your project's dependencies here.
+      - uses: familiar-ai-oss/familiar-ci/action@v0.1.0-prod
+        with:
+          version: 0.1.0-prod

@@ -1,0 +1,3 @@
+setup: db down
+FAIL	example.com/calc	0.001s
+FAIL

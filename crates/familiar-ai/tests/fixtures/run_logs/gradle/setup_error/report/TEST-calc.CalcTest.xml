@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="calc.CalcTest" tests="1" skipped="0" failures="1" errors="0" timestamp="2026-10-14T23:32:15" hostname="5e7dc49a4219" time="0.001">
+  <properties/>
+  <testcase name="initializationError" classname="calc.CalcTest" time="0.001">
+    <failure message="java.lang.IllegalStateException: db down" type="java.lang.IllegalStateException">java.lang.IllegalStateException: db down
+	at calc.CalcTest.connect(CalcTest.java:11)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+</failure>
+  </testcase>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

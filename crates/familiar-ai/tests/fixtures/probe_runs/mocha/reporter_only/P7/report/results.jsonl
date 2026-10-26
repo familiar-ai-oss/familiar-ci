@@ -1,0 +1,3 @@
+{"type":"session","v":1,"runner":"mocha","runner_version":"12.0.3","language":"javascript","language_version":"22.22.0","plugins":[]}
+{"type":"test","id":"test/p7.test.js::parses","file":"test/p7.test.js","line":null,"outcome":"failed","skip_reason":null,"error":{"type":"Error","message":"not a number: x1","kind":"exception","frames":[{"file":"test/p7.test.js","line":6,"function":"Context.<anonymous>"},{"file":"src/calc.js","line":9,"function":"parse"}]}}
+{"type":"end","exit":1,"counts":{"passed":0,"failed":1,"skipped":0,"deselected":0,"errors":0}}

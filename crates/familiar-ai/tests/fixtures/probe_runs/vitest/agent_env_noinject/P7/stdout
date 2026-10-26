@@ -1,0 +1,11 @@
+
+ RUN  v5.0.5 /tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/a0-spike/projects/js/vitest/agent_env_noinject/P7
+
+ ❯ test/p7.test.js (1 test | 1 failed) 3ms
+   × parses 3ms
+
+ Test Files  1 failed (1)
+      Tests  1 failed (1)
+   Start at  13:51:05
+   Duration  172ms (transform 50%, import 29%, tests 12%, worker 9%)
+

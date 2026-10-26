@@ -1,0 +1,6 @@
+/usr/bin/bash
+GNU bash, version 5.3.9(1)-release (x86_64-redhat-linux-gnu)
+sh: BASH_XTRACEFD: 9: invalid value for trace file descriptor
++familiar-ai		1	readlink -f /bin/sh
++familiar-ai		1	sh --version
++familiar-ai		1	head -1

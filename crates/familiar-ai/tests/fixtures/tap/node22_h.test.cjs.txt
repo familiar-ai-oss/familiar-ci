@@ -1,0 +1,7 @@
+const { test, before, describe, it } = require('node:test');
+const assert = require('node:assert');
+describe('suite', () => {
+  before(() => { throw new Error('boom in before'); });
+  it('inner', () => { assert.strictEqual(1, 1); });
+});
+test('top', () => { assert.strictEqual(2, 2); });

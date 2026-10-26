@@ -1,0 +1,3 @@
+{"type": "session", "v": 1, "runner": "dotnet-vstest", "runner_version": null, "language": "csharp", "plugins": [], "converted_from": "trx", "files": 1}
+{"type": "test", "id": "Tests.ProbeTests.Parses", "file": "tests/ProbeTests.cs", "line": 11, "outcome": "failed", "skip_reason": null, "error": {"type": "System.FormatException", "message": "The input string 'x1' was not in a correct format.", "kind": "exception", "frames": [{"file": "tests/ProbeTests.cs", "line": 11, "function": "Tests.ProbeTests.Parses()"}, {"file": "src/Calc.cs", "line": 9, "function": "CalcLib.Calc.Parse(String s)"}]}}
+{"type": "end", "exit": null, "counts": {"passed": 0, "failed": 1, "skipped": 0, "deselected": 0, "errors": 0}}

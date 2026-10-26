@@ -1,0 +1,16 @@
+[package]
+name = "familiar-ai-plan"
+description = "Reads and writes the plan file under .familiar/."
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+homepage.workspace = true
+authors.workspace = true
+
+[dependencies]
+familiar-ai-facts = { version = "0.1.0-prod", path = "../familiar-ai-facts" }
+serde = { version = "1", features = ["derive"] }
+# `preserve_order` keeps each claim's keys in the form's field order, so a
+# pull request shows one changed line per changed claim. Pure Rust.
+serde_json = { version = "1", features = ["preserve_order"] }

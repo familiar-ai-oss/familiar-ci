@@ -1,0 +1,3 @@
+{"type": "session", "v": 1, "runner": "unittest", "runner_version": "3.14.4", "language": "python", "language_version": "3.14.4", "plugins": []}
+{"type": "test", "id": "tests.test_p7.T.test_parse", "file": "tests/test_p7.py", "line": null, "outcome": "failed", "skip_reason": null, "error": {"type": "ValueError", "message": "invalid literal for int() with base 10: 'x1'", "kind": "exception", "frames": [{"file": "tests/test_p7.py", "line": 7, "function": "test_parse"}, {"file": "calc.py", "line": 6, "function": "parse"}]}}
+{"type": "end", "exit": 1, "counts": {"passed": 0, "failed": 1, "skipped": 0, "deselected": 0, "errors": 0, "xfailed": 0, "xpassed": 0}}

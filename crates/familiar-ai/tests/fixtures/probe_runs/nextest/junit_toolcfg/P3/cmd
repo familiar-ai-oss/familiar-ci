@@ -1,0 +1,1 @@
+nice -n 10 cargo nextest run --tool-config-file familiar-ai:/a0-spike/kit/nextest/junit-default.toml

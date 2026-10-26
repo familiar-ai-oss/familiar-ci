@@ -1,0 +1,10 @@
+
+ RUN  v5.0.5 /tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/a0-spike/projects/js/vitest/agent_env_noinject/P4
+
+ ❯ test/p4.test.js (0 test)
+
+ Test Files  1 failed (1)
+      Tests  no tests
+   Start at  13:51:01
+   Duration  181ms (worker 96%, environment 4%)
+

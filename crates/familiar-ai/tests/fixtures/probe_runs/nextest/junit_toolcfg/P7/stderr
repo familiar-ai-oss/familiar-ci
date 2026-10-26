@@ -1,0 +1,28 @@
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.00s
+────────────
+ Nextest run ID 7add778d-fb71-44dc-a51c-7b7217cf9fe6 with nextest profile: default
+    Starting 1 test across 2 binaries
+        FAIL [   0.002s] (1/1) probe::familiar_probe_p7 parses
+  stdout ───
+
+    running 1 test
+    test parses ... FAILED
+
+    failures:
+
+    failures:
+        parses
+
+    test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+  stderr ───
+
+    thread 'parses' (3215189) panicked at src/lib.rs:8:19:
+    not a number: x1
+    note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+  Cancelling due to test failure: 
+────────────
+     Summary [   0.002s] 1 test run: 0 passed, 1 failed, 0 skipped
+        FAIL [   0.002s] (1/1) probe::familiar_probe_p7 parses
+error: test run failed

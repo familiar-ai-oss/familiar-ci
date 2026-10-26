@@ -1,0 +1,13 @@
+package calc;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
+import org.nosuch.Helper;
+
+class CalcTest {
+    @Test
+    void adds() {
+        assertEquals(4, Calc.add(2, 2));
+    }
+}

@@ -1,0 +1,73 @@
+{
+  "session_id": "d925ef40-8c5a-4ff1-a3f9-84909cb79d71",
+  "transcript_path": "/home/dev/.claude/projects/-home-dev-project/d925ef40-8c5a-4ff1-a3f9-84909cb79d71.jsonl",
+  "cwd": "/home/dev/project",
+  "prompt_id": "c52e7086-ca31-4393-9042-9a274f775c72",
+  "permission_mode": "default",
+  "hook_event_name": "PostToolUse",
+  "tool_name": "AskUserQuestion",
+  "tool_input": {
+    "questions": [
+      {
+        "question": "\"greet says hello\": the code at src/app.sh greet changed after the plan was made. What now?",
+        "header": "familiar-ai",
+        "options": [
+          {
+            "label": "plan it again",
+            "description": "re-plan this criterion"
+          },
+          {
+            "label": "keep going as planned",
+            "description": "keep going as planned"
+          },
+          {
+            "label": "release it",
+            "description": "release it: it stops blocking the string"
+          },
+          {
+            "label": "something else",
+            "description": "type what to do; it is recorded as your words"
+          }
+        ],
+        "multiSelect": false
+      }
+    ],
+    "answers": {
+      "\"greet says hello\": the code at src/app.sh greet changed after the plan was made. What now?": "keep going as planned"
+    },
+    "annotations": {}
+  },
+  "tool_response": {
+    "questions": [
+      {
+        "question": "\"greet says hello\": the code at src/app.sh greet changed after the plan was made. What now?",
+        "header": "familiar-ai",
+        "options": [
+          {
+            "label": "plan it again",
+            "description": "re-plan this criterion"
+          },
+          {
+            "label": "keep going as planned",
+            "description": "keep going as planned"
+          },
+          {
+            "label": "release it",
+            "description": "release it: it stops blocking the string"
+          },
+          {
+            "label": "something else",
+            "description": "type what to do; it is recorded as your words"
+          }
+        ],
+        "multiSelect": false
+      }
+    ],
+    "answers": {
+      "\"greet says hello\": the code at src/app.sh greet changed after the plan was made. What now?": "keep going as planned"
+    },
+    "annotations": {}
+  },
+  "tool_use_id": "toolu_01CAnp2xH7B3fLtS87BLLQtz",
+  "duration_ms": 1
+}

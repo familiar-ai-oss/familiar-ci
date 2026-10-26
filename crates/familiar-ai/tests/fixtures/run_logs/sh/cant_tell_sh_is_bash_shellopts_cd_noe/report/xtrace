@@ -1,0 +1,2 @@
++familiar-ai	posix/s_cd_noe.sh	2	cd /nonexistent/dir/a0
++familiar-ai	posix/s_cd_noe.sh	2	exit 3

@@ -1,0 +1,18 @@
+PHPUnit 13.4.2 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 8.5.9
+Configuration: /r/phpunit/tests_failed/phpunit.xml
+
+F                                                                   1 / 1 (100%)
+
+Time: 00:00, Memory: 20.00 MB
+
+There was 1 failure:
+
+1) CalcTest::testAdd
+Failed asserting that 4 is identical to 5.
+
+/r/phpunit/tests_failed/tests/CalcTest.php:14
+
+FAILURES!
+Tests: 1, Assertions: 1, Failures: 1.

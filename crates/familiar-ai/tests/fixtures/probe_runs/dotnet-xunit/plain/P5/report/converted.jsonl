@@ -1,0 +1,4 @@
+{"type": "session", "v": 1, "runner": "dotnet-vstest", "runner_version": null, "language": "csharp", "plugins": [], "converted_from": "trx", "files": 1}
+{"type": "test", "id": "Tests.ProbeTests.Later", "file": null, "line": null, "outcome": "skipped", "skip_reason": "not yet", "error": null}
+{"type": "test", "id": "Tests.ProbeTests.Adds", "file": null, "line": null, "outcome": "passed", "skip_reason": null, "error": null}
+{"type": "end", "exit": null, "counts": {"passed": 1, "failed": 0, "skipped": 1, "deselected": 0, "errors": 0}}

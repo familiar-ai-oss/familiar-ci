@@ -1,0 +1,2 @@
+npm error npx canceled due to missing packages and no YES option: ["jest@30.5.2"]
+npm error A complete log of this run can be found in: /home/user/.npm/_logs/2026-10-14T23_29_42_050Z-debug-0.log

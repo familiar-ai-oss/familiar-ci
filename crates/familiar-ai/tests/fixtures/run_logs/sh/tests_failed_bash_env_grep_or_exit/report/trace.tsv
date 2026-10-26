@@ -1,0 +1,5 @@
+ran	3244746	0	tests/s_grep_or_exit.sh	3	echo checking
+ran	3244746	1	tests/s_grep_or_exit.sh	4	grep -q gamma /tmp/a0-sh-$$.txt
+ran	3244746	0	tests/s_grep_or_exit.sh	4	echo "FAIL: no gamma"
+fail	3244746	1	tests/s_grep_or_exit.sh	4	exit 1
+exit	3244746	1	tests/s_grep_or_exit.sh	4	exit 1

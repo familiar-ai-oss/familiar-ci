@@ -1,0 +1,16 @@
+
+[31m⎯⎯⎯⎯⎯⎯⎯[39m[1m[41m Failed Tests 1 [49m[22m[31m⎯⎯⎯⎯⎯⎯⎯[39m
+
+[41m[1m FAIL [22m[49m test/p7.test.js[2m > [22mparses
+[31m[1mError[22m: not a number: x1[39m
+[36m [2m❯[22m parse src/calc.js:[2m7:11[22m[39m
+    [90m  5|[39m export function parse(s) {
+    [90m  6|[39m   if (!/^\d+$/.test(s)) {
+    [90m  7|[39m     throw new Error('not a number: ' + s);
+    [90m   |[39m           [31m^[39m
+    [90m  8|[39m   }
+    [90m  9|[39m   return Number(s);
+[90m [2m❯[22m test/p7.test.js:[2m5:10[22m[39m
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯[22m[39m
+

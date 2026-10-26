@@ -1,0 +1,49 @@
+setup	probe	exit	file	read	truth	verdict	vs_plain	why
+b	P1	0	results.jsonl	passed	passed	right	same	1 passed
+b	P2	1	results.jsonl	tests_failed/assertion	tests_failed/assertion	right	same	1 failed
+b	P3	1	results.jsonl	missing_target_symbol	missing_target_symbol	right	same	collect_error missing_name
+b	P3b	0	results.jsonl	passed	passed	right	same	1 passed
+b	P4	1	results.jsonl	collection_error	collection_error	right	same	collect_error
+b	P5	0	results.jsonl	passed	passed	right	same	1 passed
+b	P6	5	results.jsonl	no_tests_collected	no_tests_collected	right	same	nothing ran
+b	P7	1	results.jsonl	tests_failed/exception	tests_failed/exception	right	same	1 failed
+isolated	P1	0	-	next_reader	passed	cant_tell	DIFF	no file
+isolated	P2	1	-	next_reader	tests_failed/assertion	cant_tell	DIFF	no file
+isolated	P3	1	-	next_reader	missing_target_symbol	cant_tell	DIFF	no file
+isolated	P3b	0	-	next_reader	passed	cant_tell	DIFF	no file
+isolated	P4	1	-	next_reader	collection_error	cant_tell	DIFF	no file
+isolated	P5	0	-	next_reader	passed	cant_tell	DIFF	no file
+isolated	P6	5	-	next_reader	no_tests_collected	cant_tell	DIFF	no file
+isolated	P7	1	-	next_reader	tests_failed/exception	cant_tell	DIFF	no file
+no_reporter	P1	0	-	next_reader	passed	cant_tell	DIFF	no file
+no_reporter	P2	1	-	next_reader	tests_failed/assertion	cant_tell	DIFF	no file
+no_reporter	P3	1	-	next_reader	missing_target_symbol	cant_tell	DIFF	no file
+no_reporter	P3b	0	-	next_reader	passed	cant_tell	DIFF	no file
+no_reporter	P4	1	-	next_reader	collection_error	cant_tell	DIFF	no file
+no_reporter	P5	0	-	next_reader	passed	cant_tell	DIFF	no file
+no_reporter	P6	5	-	next_reader	no_tests_collected	cant_tell	DIFF	no file
+no_reporter	P7	1	-	next_reader	tests_failed/exception	cant_tell	DIFF	no file
+plain	P1	0	results.jsonl	passed	passed	right	-	1 passed
+plain	P2	1	results.jsonl	tests_failed/assertion	tests_failed/assertion	right	-	1 failed
+plain	P3	1	results.jsonl	missing_target_symbol	missing_target_symbol	right	-	collect_error missing_name
+plain	P3b	0	results.jsonl	passed	passed	right	-	1 passed
+plain	P4	1	results.jsonl	collection_error	collection_error	right	-	collect_error
+plain	P5	0	results.jsonl	passed	passed	right	-	1 passed
+plain	P6	5	results.jsonl	no_tests_collected	no_tests_collected	right	-	nothing ran
+plain	P7	1	results.jsonl	tests_failed/exception	tests_failed/exception	right	-	1 failed
+q	P1	0	results.jsonl	passed	passed	right	same	1 passed
+q	P2	1	results.jsonl	tests_failed/assertion	tests_failed/assertion	right	same	1 failed
+q	P3	1	results.jsonl	missing_target_symbol	missing_target_symbol	right	same	collect_error missing_name
+q	P3b	0	results.jsonl	passed	passed	right	same	1 passed
+q	P4	1	results.jsonl	collection_error	collection_error	right	same	collect_error
+q	P5	0	results.jsonl	passed	passed	right	same	1 passed
+q	P6	5	results.jsonl	no_tests_collected	no_tests_collected	right	same	nothing ran
+q	P7	1	results.jsonl	tests_failed/exception	tests_failed/exception	right	same	1 failed
+user_sitecustomize	P1	0	results.jsonl	passed	passed	right	same	1 passed
+user_sitecustomize	P2	1	results.jsonl	tests_failed/assertion	tests_failed/assertion	right	same	1 failed
+user_sitecustomize	P3	1	results.jsonl	missing_target_symbol	missing_target_symbol	right	same	collect_error missing_name
+user_sitecustomize	P3b	0	results.jsonl	passed	passed	right	same	1 passed
+user_sitecustomize	P4	1	results.jsonl	collection_error	collection_error	right	same	collect_error
+user_sitecustomize	P5	0	results.jsonl	passed	passed	right	same	1 passed
+user_sitecustomize	P6	5	results.jsonl	no_tests_collected	no_tests_collected	right	same	nothing ran
+user_sitecustomize	P7	1	results.jsonl	tests_failed/exception	tests_failed/exception	right	same	1 failed

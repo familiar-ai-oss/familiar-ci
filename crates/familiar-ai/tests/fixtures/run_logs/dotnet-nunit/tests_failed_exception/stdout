@@ -1,0 +1,21 @@
+  Determining projects to restore...
+  Restored /r/dotnet-nunit/tests_failed_exception/Calc.Tests.csproj (in 115 ms).
+  Calc.Tests -> /r/dotnet-nunit/tests_failed_exception/bin/Debug/net8.0/Calc.Tests.dll
+Test run for /r/dotnet-nunit/tests_failed_exception/bin/Debug/net8.0/Calc.Tests.dll (.NETCoreApp,Version=v8.0)
+VSTest version 17.11.1 (x64)
+
+Starting test execution, please wait...
+A total of 1 test files matched the specified pattern.
+  Failed Parses [4 ms]
+  Error Message:
+   System.FormatException : The input string 'x1' was not in a correct format.
+  Stack Trace:
+     at System.Number.ThrowFormatException[TChar](ReadOnlySpan`1 value)
+   at System.Int32.Parse(String s)
+   at CalcLib.Calc.Parse(String s) in /r/dotnet-nunit/tests_failed_exception/src/Calc.cs:line 9
+   at Tests.CalcTests.Parses() in /r/dotnet-nunit/tests_failed_exception/tests/CalcTests.cs:line 12
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+
+
+Failed!  - Failed:     1, Passed:     0, Skipped:     0, Total:     1, Duration: 4 ms - Calc.Tests.dll (net8.0)

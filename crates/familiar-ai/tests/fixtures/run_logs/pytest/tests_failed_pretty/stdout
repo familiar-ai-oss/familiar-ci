@@ -1,0 +1,41 @@
+============================= test session starts ==============================
+platform linux -- Python 3.14.4, pytest-9.1.1, pluggy-1.7.0
+rootdir: /tmp/pretty-proj-fail
+configfile: pyproject.toml
+testpaths: tests
+plugins: pretty-1.3.0
+collected 1 item
+
+tests/test_calc.py F                                                     [100%]
+tests/test_calc.py:3 test_add - assert 5 == 4…                           [100%]
+=================================== FAILURES ===================================
+___________________________________ test_add ___________________________________
+
+    def test_add():
+        """The add of two numbers, the project's first test.
+    
+        The criterion the agent turns green: add must sum its
+        two arguments, so add(2, 2) is 4. An add that is
+        wrong, or not written yet, is the first red of the
+        lane.
+        """
+        a, b = 2, 2
+        # The sum the test expects. An add that returns
+        # anything else is the red this lane writes; the
+        # location the table reads is the assert below.
+    
+        result = calc.add(a, b)
+    
+>       assert result == 4
+E       assert 5 == 4
+
+tests/test_calc.py:19: AssertionError
+                              Summary of Failures                               
+┏━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━┓
+┃                ┃            ┃  Function      ┃              ┃                ┃
+┃  File          ┃  Function  ┃  Line          ┃  Error Line  ┃  Error         ┃
+┡━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━┩
+│  tests/test_…  │  test_add  │  4             │  19          │  AssertionEr…  │
+└────────────────┴────────────┴────────────────┴──────────────┴────────────────┘
+Results (0.01s):
+         1 failed

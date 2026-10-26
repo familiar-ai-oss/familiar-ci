@@ -1,0 +1,2 @@
+# example.com/calc
+calc_test.go:8:4: expected '}', found 'EOF'

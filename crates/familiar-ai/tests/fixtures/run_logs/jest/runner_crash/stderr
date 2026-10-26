@@ -1,0 +1,7 @@
+● Validation Error:
+
+  Test environment nosuch-environment cannot be found. Make sure the testEnvironment configuration option points to an existing node module.
+
+  Configuration Documentation:
+  https://jestjs.io/docs/configuration
+

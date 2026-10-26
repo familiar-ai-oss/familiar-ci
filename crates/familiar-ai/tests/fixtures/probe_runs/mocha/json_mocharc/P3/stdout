@@ -1,0 +1,14 @@
+
+
+  1) multiplies
+
+  0 passing (2ms)
+  1 failing
+
+  1) multiplies:
+     TypeError: mul is not a function
+      at Context.<anonymous> (test/p3.test.js:6:22)
+      at process.processImmediate (node:internal/timers:485:21)
+
+
+

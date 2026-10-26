@@ -1,0 +1,727 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="calc.CalcTest" time="0.174" tests="600" errors="0" skipped="0" failures="1">
+  <properties>
+    <property name="java.specification.version" value="21"/>
+    <property name="sun.jnu.encoding" value="UTF-8"/>
+    <property name="java.class.path" value="/r/maven/big_run/target/test-classes:/r/maven/big_run/target/classes:/r/.cache/m2/org/junit/jupiter/junit-jupiter/5.11.4/junit-jupiter-5.11.4.jar:/r/.cache/m2/org/junit/jupiter/junit-jupiter-api/5.11.4/junit-jupiter-api-5.11.4.jar:/r/.cache/m2/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar:/r/.cache/m2/org/junit/platform/junit-platform-commons/1.11.4/junit-platform-commons-1.11.4.jar:/r/.cache/m2/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/r/.cache/m2/org/junit/jupiter/junit-jupiter-params/5.11.4/junit-jupiter-params-5.11.4.jar:/r/.cache/m2/org/junit/jupiter/junit-jupiter-engine/5.11.4/junit-jupiter-engine-5.11.4.jar:/r/.cache/m2/org/junit/platform/junit-platform-engine/1.11.4/junit-platform-engine-1.11.4.jar:"/>
+    <property name="java.vm.vendor" value="Eclipse Adoptium"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="java.vendor.url" value="https://adoptium.net/"/>
+    <property name="os.name" value="Linux"/>
+    <property name="java.vm.specification.version" value="21"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="user.country" value="US"/>
+    <property name="sun.boot.library.path" value="/opt/java/openjdk/lib"/>
+    <property name="sun.java.command" value="/r/maven/big_run/target/surefire/surefirebooter-20261014233038756_3.jar /r/maven/big_run/target/surefire 2026-10-14T23-30-38_724-jvmRun1 surefire-20261014233038756_1tmp surefire_0-20261014233038756_2tmp"/>
+    <property name="jdk.debug" value="release"/>
+    <property name="surefire.test.class.path" value="/r/maven/big_run/target/test-classes:/r/maven/big_run/target/classes:/r/.cache/m2/org/junit/jupiter/junit-jupiter/5.11.4/junit-jupiter-5.11.4.jar:/r/.cache/m2/org/junit/jupiter/junit-jupiter-api/5.11.4/junit-jupiter-api-5.11.4.jar:/r/.cache/m2/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar:/r/.cache/m2/org/junit/platform/junit-platform-commons/1.11.4/junit-platform-commons-1.11.4.jar:/r/.cache/m2/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/r/.cache/m2/org/junit/jupiter/junit-jupiter-params/5.11.4/junit-jupiter-params-5.11.4.jar:/r/.cache/m2/org/junit/jupiter/junit-jupiter-engine/5.11.4/junit-jupiter-engine-5.11.4.jar:/r/.cache/m2/org/junit/platform/junit-platform-engine/1.11.4/junit-platform-engine-1.11.4.jar:"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="user.home" value="/home/ubuntu"/>
+    <property name="user.language" value="en"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.version.date" value="2026-08-18"/>
+    <property name="java.home" value="/opt/java/openjdk"/>
+    <property name="file.separator" value="/"/>
+    <property name="basedir" value="/r/maven/big_run"/>
+    <property name="java.vm.compressedOopsMode" value="Zero based"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="surefire.real.class.path" value="/r/maven/big_run/target/surefire/surefirebooter-20261014233038756_3.jar"/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="java.runtime.version" value="21.0.12.1+1-LTS"/>
+    <property name="user.name" value="ubuntu"/>
+    <property name="stdout.encoding" value="UTF-8"/>
+    <property name="path.separator" value=":"/>
+    <property name="os.version" value="6.19.10-300.fc44.x86_64"/>
+    <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
+    <property name="file.encoding" value="UTF-8"/>
+    <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
+    <property name="java.vendor.version" value="Temurin-21.0.12.1+1"/>
+    <property name="localRepository" value="/r/.cache/m2"/>
+    <property name="java.vendor.url.bug" value="https://github.com/adoptium/adoptium-support/issues"/>
+    <property name="java.io.tmpdir" value="/tmp"/>
+    <property name="java.version" value="21.0.12.1"/>
+    <property name="user.dir" value="/r/maven/big_run"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="native.encoding" value="UTF-8"/>
+    <property name="java.library.path" value="/usr/java/packages/lib:/usr/lib64:/lib64:/lib:/usr/lib"/>
+    <property name="java.vm.info" value="mixed mode, sharing"/>
+    <property name="stderr.encoding" value="UTF-8"/>
+    <property name="java.vendor" value="Eclipse Adoptium"/>
+    <property name="java.vm.version" value="21.0.12.1+1-LTS"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="java.class.version" value="65.0"/>
+  </properties>
+  <testcase name="adds(int)[1]" classname="calc.CalcTest" time="0.009"/>
+  <testcase name="adds(int)[2]" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="adds(int)[3]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[4]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[5]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[6]" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="adds(int)[7]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[8]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[9]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[10]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[11]" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="adds(int)[12]" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="adds(int)[13]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[14]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[15]" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="adds(int)[16]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[17]" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="adds(int)[18]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[19]" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="adds(int)[20]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[21]" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="adds(int)[22]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[23]" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="adds(int)[24]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[25]" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="adds(int)[26]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[27]" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="adds(int)[28]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[29]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[30]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[31]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[32]" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="adds(int)[33]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[34]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[35]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[36]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[37]" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="adds(int)[38]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[39]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[40]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[41]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[42]" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="adds(int)[43]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[44]" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="adds(int)[45]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[46]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[47]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[48]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[49]" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="adds(int)[50]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[51]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[52]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[53]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[54]" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="adds(int)[55]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[56]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[57]" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="adds(int)[58]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[59]" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="adds(int)[60]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[61]" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="adds(int)[62]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[63]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[64]" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="adds(int)[65]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[66]" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="adds(int)[67]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[68]" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="adds(int)[69]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[70]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[71]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[72]" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="adds(int)[73]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[74]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[75]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[76]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[77]" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="adds(int)[78]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[79]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[80]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[81]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[82]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[83]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[84]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[85]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[86]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[87]" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="adds(int)[88]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[89]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[90]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[91]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[92]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[93]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[94]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[95]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[96]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[97]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[98]" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="adds(int)[99]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[100]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[101]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[102]" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="adds(int)[103]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[104]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[105]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[106]" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="adds(int)[107]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[108]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[109]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[110]" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="adds(int)[111]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[112]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[113]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[114]" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="adds(int)[115]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[116]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[117]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[118]" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="adds(int)[119]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[120]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[121]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[122]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[123]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[124]" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="adds(int)[125]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[126]" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="adds(int)[127]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[128]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[129]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[130]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[131]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[132]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[133]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[134]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[135]" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="adds(int)[136]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[137]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[138]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[139]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[140]" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="adds(int)[141]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[142]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[143]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[144]" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="adds(int)[145]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[146]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[147]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[148]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[149]" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="adds(int)[150]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[151]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[152]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[153]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[154]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[155]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[156]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[157]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[158]" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="adds(int)[159]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[160]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[161]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[162]" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="adds(int)[163]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[164]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[165]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[166]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[167]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[168]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[169]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[170]" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="adds(int)[171]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[172]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[173]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[174]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[175]" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="adds(int)[176]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[177]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[178]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[179]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[180]" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="adds(int)[181]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[182]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[183]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[184]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[185]" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="adds(int)[186]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[187]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[188]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[189]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[190]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[191]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[192]" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="adds(int)[193]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[194]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[195]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[196]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[197]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[198]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[199]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[200]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[201]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[202]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[203]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[204]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[205]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[206]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[207]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[208]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[209]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[210]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[211]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[212]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[213]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[214]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[215]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[216]" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="adds(int)[217]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[218]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[219]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[220]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[221]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[222]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[223]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[224]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[225]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[226]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[227]" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="adds(int)[228]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[229]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[230]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[231]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[232]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[233]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[234]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[235]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[236]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[237]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[238]" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="adds(int)[239]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[240]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[241]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[242]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[243]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[244]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[245]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[246]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[247]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[248]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[249]" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="adds(int)[250]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[251]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[252]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[253]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[254]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[255]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[256]" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="adds(int)[257]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[258]" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="adds(int)[259]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[260]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[261]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[262]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[263]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[264]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[265]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[266]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[267]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[268]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[269]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[270]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[271]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[272]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[273]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[274]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[275]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[276]" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="adds(int)[277]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[278]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[279]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[280]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[281]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[282]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[283]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[284]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[285]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[286]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[287]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[288]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[289]" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="adds(int)[290]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[291]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[292]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[293]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[294]" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="adds(int)[295]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[296]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[297]" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="adds(int)[298]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[299]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[300]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[301]" classname="calc.CalcTest" time="0.004">
+    <failure message="expected: &lt;-1&gt; but was: &lt;301&gt;" type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: expected: <-1> but was: <301>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:150)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:145)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:531)
+	at calc.CalcTest.adds(CalcTest.java:18)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.accept(ForEachOps.java:184)
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+	at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:179)
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.accept(ForEachOps.java:184)
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.accept(ForEachOps.java:184)
+	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.accept(ForEachOps.java:184)
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.accept(ForEachOps.java:184)
+	at java.base/java.util.stream.IntPipeline$1$1.accept(IntPipeline.java:180)
+	at java.base/java.util.stream.Streams$RangeIntSpliterator.forEachRemaining(Streams.java:104)
+	at java.base/java.util.Spliterator$OfInt.forEachRemaining(Spliterator.java:712)
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
+	at java.base/java.util.stream.ForEachOps$ForEachOp.evaluateSequential(ForEachOps.java:151)
+	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.evaluateSequential(ForEachOps.java:174)
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+	at java.base/java.util.stream.ReferencePipeline.forEach(ReferencePipeline.java:596)
+	at java.base/java.util.stream.ReferencePipeline$7$1.accept(ReferencePipeline.java:276)
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+	at java.base/java.util.Spliterators$ArraySpliterator.forEachRemaining(Spliterators.java:1024)
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
+	at java.base/java.util.stream.ForEachOps$ForEachOp.evaluateSequential(ForEachOps.java:151)
+	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.evaluateSequential(ForEachOps.java:174)
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+	at java.base/java.util.stream.ReferencePipeline.forEach(ReferencePipeline.java:596)
+	at java.base/java.util.stream.ReferencePipeline$7$1.accept(ReferencePipeline.java:276)
+	at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1708)
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
+	at java.base/java.util.stream.ForEachOps$ForEachOp.evaluateSequential(ForEachOps.java:151)
+	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.evaluateSequential(ForEachOps.java:174)
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+	at java.base/java.util.stream.ReferencePipeline.forEach(ReferencePipeline.java:596)
+	at java.base/java.util.stream.ReferencePipeline$7$1.accept(ReferencePipeline.java:276)
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+	at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1708)
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
+	at java.base/java.util.stream.ForEachOps$ForEachOp.evaluateSequential(ForEachOps.java:151)
+	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.evaluateSequential(ForEachOps.java:174)
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+	at java.base/java.util.stream.ReferencePipeline.forEach(ReferencePipeline.java:596)
+	at java.base/java.util.stream.ReferencePipeline$7$1.accept(ReferencePipeline.java:276)
+	at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1708)
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
+	at java.base/java.util.stream.ForEachOps$ForEachOp.evaluateSequential(ForEachOps.java:151)
+	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.evaluateSequential(ForEachOps.java:174)
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+	at java.base/java.util.stream.ReferencePipeline.forEach(ReferencePipeline.java:596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+]]></failure>
+  </testcase>
+  <testcase name="adds(int)[302]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[303]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[304]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[305]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[306]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[307]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[308]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[309]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[310]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[311]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[312]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[313]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[314]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[315]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[316]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[317]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[318]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[319]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[320]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[321]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[322]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[323]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[324]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[325]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[326]" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="adds(int)[327]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[328]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[329]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[330]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[331]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[332]" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="adds(int)[333]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[334]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[335]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[336]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[337]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[338]" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="adds(int)[339]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[340]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[341]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[342]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[343]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[344]" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="adds(int)[345]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[346]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[347]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[348]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[349]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[350]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[351]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[352]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[353]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[354]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[355]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[356]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[357]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[358]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[359]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[360]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[361]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[362]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[363]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[364]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[365]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[366]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[367]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[368]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[369]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[370]" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="adds(int)[371]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[372]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[373]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[374]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[375]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[376]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[377]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[378]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[379]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[380]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[381]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[382]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[383]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[384]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[385]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[386]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[387]" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="adds(int)[388]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[389]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[390]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[391]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[392]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[393]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[394]" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="adds(int)[395]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[396]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[397]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[398]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[399]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[400]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[401]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[402]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[403]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[404]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[405]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[406]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[407]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[408]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[409]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[410]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[411]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[412]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[413]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[414]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[415]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[416]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[417]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[418]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[419]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[420]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[421]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[422]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[423]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[424]" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="adds(int)[425]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[426]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[427]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[428]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[429]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[430]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[431]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[432]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[433]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[434]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[435]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[436]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[437]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[438]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[439]" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="adds(int)[440]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[441]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[442]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[443]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[444]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[445]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[446]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[447]" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="adds(int)[448]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[449]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[450]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[451]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[452]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[453]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[454]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[455]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[456]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[457]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[458]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[459]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[460]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[461]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[462]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[463]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[464]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[465]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[466]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[467]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[468]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[469]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[470]" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="adds(int)[471]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[472]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[473]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[474]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[475]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[476]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[477]" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="adds(int)[478]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[479]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[480]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[481]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[482]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[483]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[484]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[485]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[486]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[487]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[488]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[489]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[490]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[491]" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="adds(int)[492]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[493]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[494]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[495]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[496]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[497]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[498]" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="adds(int)[499]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[500]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[501]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[502]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[503]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[504]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[505]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[506]" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="adds(int)[507]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[508]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[509]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[510]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[511]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[512]" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="adds(int)[513]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[514]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[515]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[516]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[517]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[518]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[519]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[520]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[521]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[522]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[523]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[524]" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="adds(int)[525]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[526]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[527]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[528]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[529]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[530]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[531]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[532]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[533]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[534]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[535]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[536]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[537]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[538]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[539]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[540]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[541]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[542]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[543]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[544]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[545]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[546]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[547]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[548]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[549]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[550]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[551]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[552]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[553]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[554]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[555]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[556]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[557]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[558]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[559]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[560]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[561]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[562]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[563]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[564]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[565]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[566]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[567]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[568]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[569]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[570]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[571]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[572]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[573]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[574]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[575]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[576]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[577]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[578]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[579]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[580]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[581]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[582]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[583]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[584]" classname="calc.CalcTest" time="0.001"/>
+  <testcase name="adds(int)[585]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[586]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[587]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[588]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[589]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[590]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[591]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[592]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[593]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[594]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[595]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[596]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[597]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[598]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[599]" classname="calc.CalcTest" time="0.0"/>
+  <testcase name="adds(int)[600]" classname="calc.CalcTest" time="0.0"/>
+</testsuite>

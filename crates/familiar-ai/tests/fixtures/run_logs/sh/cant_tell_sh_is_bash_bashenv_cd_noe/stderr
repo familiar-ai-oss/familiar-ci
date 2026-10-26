@@ -1,0 +1,1 @@
+posix/s_cd_noe.sh: line 2: cd: /nonexistent/dir/a0: No such file or directory

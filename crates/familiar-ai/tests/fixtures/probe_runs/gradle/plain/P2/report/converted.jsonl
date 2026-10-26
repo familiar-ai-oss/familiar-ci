@@ -1,0 +1,3 @@
+{"type": "session", "v": 1, "runner": "gradle", "runner_version": null, "language": "java", "plugins": [], "converted_from": "junit", "files": 1}
+{"type": "test", "id": "calc.ProbeTest::adds()", "file": null, "line": null, "outcome": "failed", "skip_reason": null, "error": {"type": "org.opentest4j.AssertionFailedError", "message": "org.opentest4j.AssertionFailedError: expected: <5> but was: <4>", "kind": "assertion", "frames": []}}
+{"type": "end", "exit": null, "counts": {"passed": 0, "failed": 1, "skipped": 0, "deselected": 0, "errors": 0}}

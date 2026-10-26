@@ -1,0 +1,29 @@
+   Compiling calc v0.1.0 (/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/cargo-nextest/tests_failed_exception_assert_in_code)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.26s
+────────────
+ Nextest run ID ac5e4a7b-fe40-421b-825b-758788af2465 with nextest profile: default
+    Starting 1 test across 2 binaries
+        FAIL [   0.008s] (1/1) calc::calc_test parses
+  stdout ───
+
+    running 1 test
+    test parses ... FAILED
+
+    failures:
+
+    failures:
+        parses
+
+    test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+  stderr ───
+
+    thread 'parses' (408426) panicked at src/calc.rs:6:5:
+    assertion failed: s.len() > 1
+    note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+  Cancelling due to test failure: 
+────────────
+     Summary [   0.009s] 1 test run: 0 passed, 1 failed, 0 skipped
+        FAIL [   0.008s] (1/1) calc::calc_test parses
+error: test run failed

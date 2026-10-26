@@ -1,0 +1,4 @@
+sh: BASH_XTRACEFD: 9: invalid value for trace file descriptor
++familiar-ai		1	exec
++familiar-ai		1	sh posix/s_notfound.sh
+posix/s_notfound.sh: line 3: frobnicate_widget: command not found

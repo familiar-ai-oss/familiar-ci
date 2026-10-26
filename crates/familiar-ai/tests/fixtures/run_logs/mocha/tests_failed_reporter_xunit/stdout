@@ -1,0 +1,18 @@
+<testsuite name="Mocha Tests" tests="1" failures="0" errors="1" skipped="0" timestamp="Mon, 19 Oct 2026 19:40:51 GMT" time="0.003">
+<testcase classname="calc" name="adds" file="/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/mocha/tests_failed_reporter_xunit/test/calc.test.js" time="0.001"><failure>Expected values to be strictly equal:
+
+4 !== 5
+
+
+      + expected - actual
+
+      -4
+      +5
+      
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+4 !== 5
+
+    at Context.&#x3C;anonymous&#x3E; (test/calc.test.js:6:12)
+    at process.processImmediate (node:internal/timers:485:21)</failure></testcase>
+</testsuite>

@@ -1,0 +1,8 @@
+error: unexpected argument '--nosuchflag' found
+
+  tip: a similar argument exists: '--config'
+  tip: to pass '--nosuchflag' as a value, use '-- --nosuchflag'
+
+Usage: cargo nextest run --config <KEY=VALUE> [FILTERS]... [-- <FILTERS_AND_ARGS>...]
+
+For more information, try '--help'.

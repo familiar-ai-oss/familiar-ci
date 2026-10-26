@@ -1,0 +1,27 @@
+   Compiling calc v0.1.0 (/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/cargo-nextest/killed_abort)
+warning: function `raise` is never used
+ --> tests/calc_test.rs:4:8
+  |
+4 |     fn raise(sig: i32) -> i32;
+  |        ^^^^^
+  |
+  = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: `calc` (test "calc_test") generated 1 warning
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.08s
+────────────
+ Nextest run ID 28c4d06d-e026-4f39-99f3-9858600652d3 with nextest profile: default
+    Starting 2 tests across 2 binaries
+        PASS [   0.002s] (1/2) calc::calc_test adds
+     SIGABRT [   0.093s] (2/2) calc::calc_test crashes
+  stdout ───
+
+    running 1 test
+
+    (test aborted with signal 6: SIGABRT)
+
+  Cancelling due to test failure: 
+────────────
+     Summary [   0.093s] 2 tests run: 1 passed, 1 failed, 0 skipped
+     SIGABRT [   0.093s] (2/2) calc::calc_test crashes
+error: test run failed

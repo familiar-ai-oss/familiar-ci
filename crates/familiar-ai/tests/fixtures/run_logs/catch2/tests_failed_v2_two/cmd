@@ -1,0 +1,1 @@
+cmake -S . -B build -DCMAKE_PREFIX_PATH=$PWD/../../.cache/cpp-prefix && cmake --build build && ./build/calc_test

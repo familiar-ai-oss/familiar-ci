@@ -1,0 +1,18 @@
+  Determining projects to restore...
+  Restored /r/dotnet-mstest/setup_error/Calc.Tests.csproj (in 116 ms).
+  Calc.Tests -> /r/dotnet-mstest/setup_error/bin/Debug/net8.0/Calc.Tests.dll
+Test run for /r/dotnet-mstest/setup_error/bin/Debug/net8.0/Calc.Tests.dll (.NETCoreApp,Version=v8.0)
+VSTest version 17.11.1 (x64)
+
+Starting test execution, please wait...
+A total of 1 test files matched the specified pattern.
+  Failed Adds
+  Error Message:
+   Class Initialization method Tests.CalcTests.Connect threw exception. System.InvalidOperationException: db down.
+  Stack Trace:
+      at Tests.CalcTests.Connect(TestContext context) in /r/dotnet-mstest/setup_error/tests/CalcTests.cs:line 12
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+
+
+Failed!  - Failed:     1, Passed:     0, Skipped:     0, Total:     1, Duration: 13 ms - Calc.Tests.dll (net8.0)

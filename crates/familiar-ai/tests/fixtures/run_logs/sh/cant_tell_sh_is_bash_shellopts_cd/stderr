@@ -1,0 +1,4 @@
+sh: BASH_XTRACEFD: 9: invalid value for trace file descriptor
++familiar-ai		1	exec
++familiar-ai		1	sh posix/s_cd.sh
+posix/s_cd.sh: line 3: cd: /nonexistent/dir/a0: No such file or directory

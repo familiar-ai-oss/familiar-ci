@@ -1,0 +1,15 @@
+not ok 1 calc adds
+  Expected values to be strictly equal:
+  
+  4 !== 5
+  
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  4 !== 5
+  
+      at Context.<anonymous> (test/calc.test.js:6:12)
+      at process.processImmediate (node:internal/timers:485:21)
+# tests 1
+# pass 0
+# fail 1
+1..1

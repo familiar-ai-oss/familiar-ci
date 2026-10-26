@@ -1,0 +1,15 @@
+CMake Error at CMakeLists.txt:4 (find_package):
+  Could not find a package configuration file provided by "GTest" with any of
+  the following names:
+
+    GTest.cps
+    gtest.cps
+    GTestConfig.cmake
+    gtest-config.cmake
+
+  Add the installation prefix of "GTest" to CMAKE_PREFIX_PATH or set
+  "GTest_DIR" to a directory containing one of the above files.  If "GTest"
+  provides a separate development package or SDK, be sure it has been
+  installed.
+
+

@@ -1,0 +1,3 @@
+{"Time":"2026-10-19T17:47:00.70798489Z","Action":"start","Package":"example.com/probe"}
+{"Time":"2026-10-19T17:47:00.708020701Z","Action":"output","Package":"example.com/probe","Output":"FAIL\texample.com/probe [build failed]\n"}
+{"Time":"2026-10-19T17:47:00.708024181Z","Action":"fail","Package":"example.com/probe","Elapsed":0}

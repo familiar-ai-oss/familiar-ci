@@ -1,0 +1,22 @@
+{
+  "session_id": "84be6339-0cc7-40ec-91b9-cae44365931b",
+  "transcript_path": "/home/dev/.claude/projects/-home-dev-project/84be6339-0cc7-40ec-91b9-cae44365931b.jsonl",
+  "cwd": "/home/dev/project",
+  "prompt_id": "653ec6b4-7605-4f98-b4a3-a68d73d38bee",
+  "permission_mode": "acceptEdits",
+  "hook_event_name": "PostToolUse",
+  "tool_name": "Bash",
+  "tool_input": {
+    "command": "cat hello.txt",
+    "description": "Display contents of hello.txt"
+  },
+  "tool_response": {
+    "stdout": "hello",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  },
+  "tool_use_id": "toolu_01T8QpDEzBfZ9sapQTigk7Yt",
+  "duration_ms": 146
+}

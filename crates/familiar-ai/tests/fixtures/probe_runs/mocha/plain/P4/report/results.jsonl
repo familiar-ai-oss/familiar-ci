@@ -1,0 +1,3 @@
+{"type":"session","v":1,"runner":"mocha","runner_version":"12.0.3","language":"javascript","language_version":"22.22.0","plugins":[]}
+{"type":"collect_error","file":"test/p4.test.js","error":{"type":"Error","message":"Cannot find module '../src/nosuch.js'\nRequire stack:\n- /tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/a0-spike/projects/js/mocha/plain/P4/test/p4.test.js","kind":"exception","frames":[{"file":"test/p4.test.js","line":4,"function":"Object.<anonymous>"}]}}
+{"type":"end","exit":1,"counts":{"passed":0,"failed":0,"skipped":0,"deselected":0,"errors":1}}

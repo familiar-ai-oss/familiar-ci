@@ -1,0 +1,20 @@
+✖ multiplies (0.820807ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 72.653693
+
+✖ failing tests:
+
+test at test/calc.test.js:5:1
+✖ multiplies (0.820807ms)
+  TypeError [Error]: mul is not a function
+      at TestContext.<anonymous> (/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/node-test/missing_target_symbol_spec/test/calc.test.js:6:22)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)

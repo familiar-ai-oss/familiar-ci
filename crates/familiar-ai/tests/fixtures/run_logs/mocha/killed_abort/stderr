@@ -1,0 +1,19 @@
+----- Native stack trace -----
+
+ 1: 0x7fa8f46d961c  [/lib64/libnode.so.127]
+ 2: 0x7fa89648f5e2 
+
+----- JavaScript stack trace -----
+
+1: /tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/mocha/killed_abort/test/calc.test.js:10:13
+2: callFn (file:///tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/.cache/node/node_modules/mocha/lib/runnable.js:360:23)
+3: run (file:///tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/.cache/node/node_modules/mocha/lib/runnable.js:348:7)
+4: Runner.runTest (file:///tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/.cache/node/node_modules/mocha/lib/runner.js:809:10)
+5: file:///tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/.cache/node/node_modules/mocha/lib/runner.js:949:12
+6: next (file:///tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/.cache/node/node_modules/mocha/lib/runner.js:724:14)
+7: file:///tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/.cache/node/node_modules/mocha/lib/runner.js:734:7
+8: next (file:///tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/.cache/node/node_modules/mocha/lib/runner.js:595:14)
+9: file:///tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/.cache/node/node_modules/mocha/lib/runner.js:702:5
+10: processImmediate (node:internal/timers:485:21)
+
+

@@ -1,0 +1,14 @@
+E
+======================================================================
+ERROR: test_add (tests.test_calc.CalcTest.test_add)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/unittest/missing_target_symbol_typo/tests/test_calc.py", line 8, in test_add
+    self.assertEqual(calc.mull(2, 2), 4)
+                     ^^^^^^^^^
+AttributeError: module 'calc' has no attribute 'mull'
+
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+FAILED (errors=1)

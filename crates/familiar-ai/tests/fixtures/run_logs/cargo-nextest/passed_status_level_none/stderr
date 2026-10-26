@@ -1,0 +1,7 @@
+   Compiling calc v0.1.0 (/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/cargo-nextest/passed_status_level_none)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.08s
+────────────
+ Nextest run ID 36777f44-a191-4fa5-9b02-da497dc54112 with nextest profile: default
+    Starting 1 test across 2 binaries
+────────────
+     Summary [   0.002s] 1 test run: 1 passed, 0 skipped

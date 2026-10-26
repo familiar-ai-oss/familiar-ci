@@ -1,0 +1,12 @@
+node:internal/test_runner/utils:235
+      throw new ERR_INVALID_ARG_VALUE(
+      ^
+
+TypeError [ERR_INVALID_ARG_VALUE]: The argument '--test-reporter' must match the number of specified '--test-reporter-destination'. Received [
+  '/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/a0-spike/kit/node/re...
+    at parseCommandLine (node:internal/test_runner/utils:235:13)
+    at node:internal/main/test_runner:22:17 {
+  code: 'ERR_INVALID_ARG_VALUE'
+}
+
+Node.js v22.22.0

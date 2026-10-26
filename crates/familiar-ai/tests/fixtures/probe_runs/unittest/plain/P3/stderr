@@ -1,0 +1,20 @@
+E
+======================================================================
+ERROR: tests.test_p3 (unittest.loader._FailedTest.tests.test_p3)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: tests.test_p3
+Traceback (most recent call last):
+  File "/usr/lib64/python3.14/unittest/loader.py", line 426, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "/usr/lib64/python3.14/unittest/loader.py", line 367, in _get_module_from_name
+    __import__(name)
+    ~~~~~~~~~~^^^^^^
+  File "/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/a0-spike/projects/unittest-plain/P3/tests/test_p3.py", line 2, in <module>
+    from calc import mul
+ImportError: cannot import name 'mul' from 'calc' (/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/a0-spike/projects/unittest-plain/P3/calc.py)
+
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+FAILED (errors=1)

@@ -1,0 +1,24 @@
+FAIL test/part5.test.js
+  ● add 5-30
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: -1
+    Received: 31
+
+      122 |
+      123 | test('add 5-30', () => {
+    > 124 |   expect(add(30, 1)).toBe(-1);
+          |                      ^
+      125 | });
+      126 |
+      127 | test('add 5-31', () => {
+
+      at Object.toBe (test/part5.test.js:124:22)
+
+
+Test Suites: 1 failed, 9 passed, 10 total
+Tests:       1 failed, 599 passed, 600 total
+Snapshots:   0 total
+Time:        0.456 s
+Ran all test suites.

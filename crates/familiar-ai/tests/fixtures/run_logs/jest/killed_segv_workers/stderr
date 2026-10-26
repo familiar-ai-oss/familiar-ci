@@ -1,0 +1,12 @@
+FAIL test/calc.test.js
+  ● Test suite failed to run
+
+    A jest worker process (pid=438887) was terminated by another process: signal=SIGSEGV, exitCode=null. Operating system logs may contain more information on why this occurred.
+
+      at ChildProcessWorker._onExit (../../.cache/node/node_modules/jest-worker/build/index.js:964:23)
+
+Test Suites: 1 failed, 2 passed, 3 total
+Tests:       2 passed, 2 total
+Snapshots:   0 total
+Time:        0.692 s
+Ran all test suites.

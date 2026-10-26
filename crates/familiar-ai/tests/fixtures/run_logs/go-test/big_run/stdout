@@ -1,0 +1,5 @@
+--- FAIL: TestAdd300 (0.00s)
+    calc_test.go:1807: Add(300, 1) = 301, want -1
+FAIL
+FAIL	example.com/calc	0.003s
+FAIL

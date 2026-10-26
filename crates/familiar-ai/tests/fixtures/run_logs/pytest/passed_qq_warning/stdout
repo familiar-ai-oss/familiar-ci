@@ -1,0 +1,7 @@
+.                                                                        [100%]
+=============================== warnings summary ===============================
+tests/test_calc.py::test_add
+  /tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/pytest/passed_qq_warning/tests/test_calc.py:7: UserWarning: careful
+    warnings.warn("careful", UserWarning)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html

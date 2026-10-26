@@ -1,0 +1,5 @@
+ran	3246276	0	./tests/s_if_not.sh	2	check /tmp/a0-sh-$$.txt
+ran	3246276	0	./tests/s_if_not.sh	3	grep -q gamma "$1"
+ran	3246276	0	./tests/s_if_not.sh	4	echo "FAIL"
+fail	3246276	1	./tests/s_if_not.sh	5	exit 1
+exit	3246276	1	./tests/s_if_not.sh	5	exit 1

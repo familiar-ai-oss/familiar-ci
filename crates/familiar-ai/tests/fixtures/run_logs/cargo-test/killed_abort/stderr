@@ -1,0 +1,17 @@
+   Compiling calc v0.1.0 (/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/cargo-test/killed_abort)
+warning: function `raise` is never used
+ --> tests/calc_test.rs:4:8
+  |
+4 |     fn raise(sig: i32) -> i32;
+  |        ^^^^^
+  |
+  = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: `calc` (test "calc_test") generated 1 warning
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.08s
+     Running unittests src/lib.rs (target/debug/deps/calc-d7664887798fc4c6)
+     Running tests/calc_test.rs (target/debug/deps/calc_test-b0fd59ed03fc73e7)
+error: test failed, to rerun pass `--test calc_test`
+
+Caused by:
+  process didn't exit successfully: `/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/cargo-test/killed_abort/target/debug/deps/calc_test-b0fd59ed03fc73e7` (signal: 6, SIGABRT: process abort signal)

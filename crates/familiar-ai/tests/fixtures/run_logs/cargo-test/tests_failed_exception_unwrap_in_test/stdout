@@ -1,0 +1,23 @@
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 1 test
+test parses ... FAILED
+
+failures:
+
+---- parses stdout ----
+
+thread 'parses' (342044) panicked at tests/calc_test.rs:5:33:
+called `Result::unwrap()` on an `Err` value: "todo"
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    parses
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

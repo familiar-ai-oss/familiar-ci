@@ -1,0 +1,1 @@
+/r/dotnet-xunit/runner_crash/Calc.Tests.csproj(5,1): error MSB4025: The project file could not be loaded. '<' is an unexpected token. The expected token is '>'. Line 5, position 1.

@@ -1,0 +1,9 @@
+
+ RUN  v5.0.4 /tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/vitest/no_tests_collected_filter
+
+
+ Test Files  1 skipped (1)
+      Tests  1 skipped (1)
+   Start at  19:30:08
+   Duration  107ms (import 49%, transform 32%, worker 18%, environment 1%)
+

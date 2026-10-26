@@ -1,0 +1,3 @@
+  Determining projects to restore...
+  Restored /r/dotnet-mstest/collection_error/Calc.Tests.csproj (in 117 ms).
+/r/dotnet-mstest/collection_error/tests/CalcTests.cs(12,43): error CS1002: ; expected [/r/dotnet-mstest/collection_error/Calc.Tests.csproj]

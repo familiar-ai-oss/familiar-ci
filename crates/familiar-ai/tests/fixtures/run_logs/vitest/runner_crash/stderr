@@ -1,0 +1,17 @@
+failed to load config from /tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/vitest/runner_crash/vitest.config.js
+
+⎯⎯⎯⎯⎯⎯⎯ Startup Error ⎯⎯⎯⎯⎯⎯⎯⎯
+Error: config exploded
+    at file:///tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/.cache/node/node_modules/.vite-temp/vitest.config.js.timestamp-1792020611024-f7fdb86bf0ee.mjs:2:7
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:665:26)
+    at async loadConfigFromBundledFile (file:///tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/.cache/node/node_modules/vite/dist/node/chunks/node.js:38132:12)
+    at async bundleAndLoadConfigFile (file:///tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/.cache/node/node_modules/vite/dist/node/chunks/node.js:37978:21)
+    at async loadConfigFromFile (file:///tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/.cache/node/node_modules/vite/dist/node/chunks/node.js:37938:42)
+    at async resolveConfig (file:///tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/.cache/node/node_modules/vite/dist/node/chunks/node.js:37540:22)
+    at async resolveConfig (file:///tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/.cache/node/node_modules/vitest/dist/chunks/index.B8VfM7Mf.js:9241:25)
+    at async createVitest (file:///tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/.cache/node/node_modules/vitest/dist/chunks/cli-api.Bx28WXzL.js:13377:17)
+    at async prepareVitest (file:///tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/.cache/node/node_modules/vitest/dist/chunks/cli-api.Bx28WXzL.js:13772:14)
+
+
+

@@ -1,0 +1,6 @@
+error: unclosed table, expected `]`
+ --> Cargo.toml:1:9
+  |
+1 | [package
+  |         ^
+error: command `/home/user/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/cargo metadata '--format-version=1' --all-features --filter-platform x86_64-unknown-linux-gnu` failed with exit status: 101

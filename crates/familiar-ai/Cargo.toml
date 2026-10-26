@@ -1,0 +1,49 @@
+[package]
+name = "familiar-ai"
+description = "Proof that an AI coding agent's work is done: each requirement has a test that failed first, was not changed, and passes."
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+homepage.workspace = true
+authors.workspace = true
+keywords = ["testing", "ci", "agents", "verification"]
+categories = ["development-tools", "command-line-utilities"]
+
+[lib]
+name = "familiar_ai"
+path = "src/lib.rs"
+
+[[bin]]
+name = "familiar-ai"
+path = "src/main.rs"
+
+[dependencies]
+# default-features = false drops clap's "color" feature: color pulls in
+# anstream -> anstyle-wincon -> windows-sys, a -sys crate (compiles/links
+# C on Windows), which the 100% Rust rule forbids. "std" and "help" keep
+# plain (uncolored) help and usage errors.
+clap = { version = "4.5", default-features = false, features = ["std", "help", "usage", "derive"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+# the setup marker's name (marker.rs): the sha256 of the project root's path
+sha2 = "0.11.0"
+familiar-ai-facts = { version = "0.1.0-prod", path = "../familiar-ai-facts" }
+familiar-ai-git = { version = "0.1.0-prod", path = "../familiar-ai-git" }
+familiar-ai-plan = { version = "0.1.0-prod", path = "../familiar-ai-plan" }
+familiar-ai-rules = { version = "0.1.0-prod", path = "../familiar-ai-rules" }
+familiar-ai-run = { version = "0.1.0-prod", path = "../familiar-ai-run" }
+# process groups (door/procgroup.rs), the local time (door/person.rs) and
+# waiting for stdin to have something (input/mod.rs)
+libc = "0.2"
+# the per-runner tables' patterns (door/runner_tables.rs, door/kept.rs: classify); pure Rust
+regex = "1.13"
+# the person's approval: an encrypted ed25519 key decrypted with the passphrase
+# from stdin, and SSHSIG signatures made and verified (door/approval.rs, plan
+# §6.9 path B); pure Rust (RustCrypto), scripts/check-no-c.sh stays clean
+# the passphrase wiped from memory once read (door/approval.rs, main.rs's stdin); pure Rust
+zeroize = "1.9"
+ssh-key = { version = "0.6.7", default-features = false, features = ["std", "ed25519", "encryption", "getrandom"] }
+# JUnit and TRX report files read into the per-test result file (door/convert/); pure Rust,
+# scripts/check-no-c.sh stays clean
+quick-xml = "0.41"

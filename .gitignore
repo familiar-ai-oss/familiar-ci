@@ -1,0 +1,11 @@
+target/
+.familiar/record
+.familiar/judge.log
+.familiar/investigator.log
+.familiar/runs
+.familiar/investigator
+
+# the sprint notes, traces and OpenCode state of this machine, never the project's
+.sprint/
+.trace/
+.opencode/

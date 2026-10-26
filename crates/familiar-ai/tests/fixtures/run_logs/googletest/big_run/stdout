@@ -1,0 +1,1253 @@
+-- The CXX compiler identification is GNU 16.0.1
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+-- Found Threads: TRUE
+-- Configuring done (0.2s)
+-- Generating done (0.0s)
+-- Build files have been written to: /tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/googletest/big_run/build
+[ 12%] Building CXX object CMakeFiles/calc.dir/src/calc.cpp.o
+[ 25%] Linking CXX static library libcalc.a
+[ 25%] Built target calc
+[ 37%] Building CXX object CMakeFiles/calc_test.dir/tests/part0_test.cpp.o
+[ 50%] Building CXX object CMakeFiles/calc_test.dir/tests/part1_test.cpp.o
+[ 62%] Building CXX object CMakeFiles/calc_test.dir/tests/part2_test.cpp.o
+[ 75%] Building CXX object CMakeFiles/calc_test.dir/tests/part3_test.cpp.o
+[ 87%] Building CXX object CMakeFiles/calc_test.dir/tests/part4_test.cpp.o
+[100%] Linking CXX executable calc_test
+[100%] Built target calc_test
+Running main() from /tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/.cache/gtest-src/googletest/src/gtest_main.cc
+[==========] Running 600 tests from 5 test suites.
+[----------] Global test environment set-up.
+[----------] 120 tests from CalcPart0
+[ RUN      ] CalcPart0.Add000
+[       OK ] CalcPart0.Add000 (0 ms)
+[ RUN      ] CalcPart0.Add001
+[       OK ] CalcPart0.Add001 (0 ms)
+[ RUN      ] CalcPart0.Add002
+[       OK ] CalcPart0.Add002 (0 ms)
+[ RUN      ] CalcPart0.Add003
+[       OK ] CalcPart0.Add003 (0 ms)
+[ RUN      ] CalcPart0.Add004
+[       OK ] CalcPart0.Add004 (0 ms)
+[ RUN      ] CalcPart0.Add005
+[       OK ] CalcPart0.Add005 (0 ms)
+[ RUN      ] CalcPart0.Add006
+[       OK ] CalcPart0.Add006 (0 ms)
+[ RUN      ] CalcPart0.Add007
+[       OK ] CalcPart0.Add007 (0 ms)
+[ RUN      ] CalcPart0.Add008
+[       OK ] CalcPart0.Add008 (0 ms)
+[ RUN      ] CalcPart0.Add009
+[       OK ] CalcPart0.Add009 (0 ms)
+[ RUN      ] CalcPart0.Add010
+[       OK ] CalcPart0.Add010 (0 ms)
+[ RUN      ] CalcPart0.Add011
+[       OK ] CalcPart0.Add011 (0 ms)
+[ RUN      ] CalcPart0.Add012
+[       OK ] CalcPart0.Add012 (0 ms)
+[ RUN      ] CalcPart0.Add013
+[       OK ] CalcPart0.Add013 (0 ms)
+[ RUN      ] CalcPart0.Add014
+[       OK ] CalcPart0.Add014 (0 ms)
+[ RUN      ] CalcPart0.Add015
+[       OK ] CalcPart0.Add015 (0 ms)
+[ RUN      ] CalcPart0.Add016
+[       OK ] CalcPart0.Add016 (0 ms)
+[ RUN      ] CalcPart0.Add017
+[       OK ] CalcPart0.Add017 (0 ms)
+[ RUN      ] CalcPart0.Add018
+[       OK ] CalcPart0.Add018 (0 ms)
+[ RUN      ] CalcPart0.Add019
+[       OK ] CalcPart0.Add019 (0 ms)
+[ RUN      ] CalcPart0.Add020
+[       OK ] CalcPart0.Add020 (0 ms)
+[ RUN      ] CalcPart0.Add021
+[       OK ] CalcPart0.Add021 (0 ms)
+[ RUN      ] CalcPart0.Add022
+[       OK ] CalcPart0.Add022 (0 ms)
+[ RUN      ] CalcPart0.Add023
+[       OK ] CalcPart0.Add023 (0 ms)
+[ RUN      ] CalcPart0.Add024
+[       OK ] CalcPart0.Add024 (0 ms)
+[ RUN      ] CalcPart0.Add025
+[       OK ] CalcPart0.Add025 (0 ms)
+[ RUN      ] CalcPart0.Add026
+[       OK ] CalcPart0.Add026 (0 ms)
+[ RUN      ] CalcPart0.Add027
+[       OK ] CalcPart0.Add027 (0 ms)
+[ RUN      ] CalcPart0.Add028
+[       OK ] CalcPart0.Add028 (0 ms)
+[ RUN      ] CalcPart0.Add029
+[       OK ] CalcPart0.Add029 (0 ms)
+[ RUN      ] CalcPart0.Add030
+[       OK ] CalcPart0.Add030 (0 ms)
+[ RUN      ] CalcPart0.Add031
+[       OK ] CalcPart0.Add031 (0 ms)
+[ RUN      ] CalcPart0.Add032
+[       OK ] CalcPart0.Add032 (0 ms)
+[ RUN      ] CalcPart0.Add033
+[       OK ] CalcPart0.Add033 (0 ms)
+[ RUN      ] CalcPart0.Add034
+[       OK ] CalcPart0.Add034 (0 ms)
+[ RUN      ] CalcPart0.Add035
+[       OK ] CalcPart0.Add035 (0 ms)
+[ RUN      ] CalcPart0.Add036
+[       OK ] CalcPart0.Add036 (0 ms)
+[ RUN      ] CalcPart0.Add037
+[       OK ] CalcPart0.Add037 (0 ms)
+[ RUN      ] CalcPart0.Add038
+[       OK ] CalcPart0.Add038 (0 ms)
+[ RUN      ] CalcPart0.Add039
+[       OK ] CalcPart0.Add039 (0 ms)
+[ RUN      ] CalcPart0.Add040
+[       OK ] CalcPart0.Add040 (0 ms)
+[ RUN      ] CalcPart0.Add041
+[       OK ] CalcPart0.Add041 (0 ms)
+[ RUN      ] CalcPart0.Add042
+[       OK ] CalcPart0.Add042 (0 ms)
+[ RUN      ] CalcPart0.Add043
+[       OK ] CalcPart0.Add043 (0 ms)
+[ RUN      ] CalcPart0.Add044
+[       OK ] CalcPart0.Add044 (0 ms)
+[ RUN      ] CalcPart0.Add045
+[       OK ] CalcPart0.Add045 (0 ms)
+[ RUN      ] CalcPart0.Add046
+[       OK ] CalcPart0.Add046 (0 ms)
+[ RUN      ] CalcPart0.Add047
+[       OK ] CalcPart0.Add047 (0 ms)
+[ RUN      ] CalcPart0.Add048
+[       OK ] CalcPart0.Add048 (0 ms)
+[ RUN      ] CalcPart0.Add049
+[       OK ] CalcPart0.Add049 (0 ms)
+[ RUN      ] CalcPart0.Add050
+[       OK ] CalcPart0.Add050 (0 ms)
+[ RUN      ] CalcPart0.Add051
+[       OK ] CalcPart0.Add051 (0 ms)
+[ RUN      ] CalcPart0.Add052
+[       OK ] CalcPart0.Add052 (0 ms)
+[ RUN      ] CalcPart0.Add053
+[       OK ] CalcPart0.Add053 (0 ms)
+[ RUN      ] CalcPart0.Add054
+[       OK ] CalcPart0.Add054 (0 ms)
+[ RUN      ] CalcPart0.Add055
+[       OK ] CalcPart0.Add055 (0 ms)
+[ RUN      ] CalcPart0.Add056
+[       OK ] CalcPart0.Add056 (0 ms)
+[ RUN      ] CalcPart0.Add057
+[       OK ] CalcPart0.Add057 (0 ms)
+[ RUN      ] CalcPart0.Add058
+[       OK ] CalcPart0.Add058 (0 ms)
+[ RUN      ] CalcPart0.Add059
+[       OK ] CalcPart0.Add059 (0 ms)
+[ RUN      ] CalcPart0.Add060
+[       OK ] CalcPart0.Add060 (0 ms)
+[ RUN      ] CalcPart0.Add061
+[       OK ] CalcPart0.Add061 (0 ms)
+[ RUN      ] CalcPart0.Add062
+[       OK ] CalcPart0.Add062 (0 ms)
+[ RUN      ] CalcPart0.Add063
+[       OK ] CalcPart0.Add063 (0 ms)
+[ RUN      ] CalcPart0.Add064
+[       OK ] CalcPart0.Add064 (0 ms)
+[ RUN      ] CalcPart0.Add065
+[       OK ] CalcPart0.Add065 (0 ms)
+[ RUN      ] CalcPart0.Add066
+[       OK ] CalcPart0.Add066 (0 ms)
+[ RUN      ] CalcPart0.Add067
+[       OK ] CalcPart0.Add067 (0 ms)
+[ RUN      ] CalcPart0.Add068
+[       OK ] CalcPart0.Add068 (0 ms)
+[ RUN      ] CalcPart0.Add069
+[       OK ] CalcPart0.Add069 (0 ms)
+[ RUN      ] CalcPart0.Add070
+[       OK ] CalcPart0.Add070 (0 ms)
+[ RUN      ] CalcPart0.Add071
+[       OK ] CalcPart0.Add071 (0 ms)
+[ RUN      ] CalcPart0.Add072
+[       OK ] CalcPart0.Add072 (0 ms)
+[ RUN      ] CalcPart0.Add073
+[       OK ] CalcPart0.Add073 (0 ms)
+[ RUN      ] CalcPart0.Add074
+[       OK ] CalcPart0.Add074 (0 ms)
+[ RUN      ] CalcPart0.Add075
+[       OK ] CalcPart0.Add075 (0 ms)
+[ RUN      ] CalcPart0.Add076
+[       OK ] CalcPart0.Add076 (0 ms)
+[ RUN      ] CalcPart0.Add077
+[       OK ] CalcPart0.Add077 (0 ms)
+[ RUN      ] CalcPart0.Add078
+[       OK ] CalcPart0.Add078 (0 ms)
+[ RUN      ] CalcPart0.Add079
+[       OK ] CalcPart0.Add079 (0 ms)
+[ RUN      ] CalcPart0.Add080
+[       OK ] CalcPart0.Add080 (0 ms)
+[ RUN      ] CalcPart0.Add081
+[       OK ] CalcPart0.Add081 (0 ms)
+[ RUN      ] CalcPart0.Add082
+[       OK ] CalcPart0.Add082 (0 ms)
+[ RUN      ] CalcPart0.Add083
+[       OK ] CalcPart0.Add083 (0 ms)
+[ RUN      ] CalcPart0.Add084
+[       OK ] CalcPart0.Add084 (0 ms)
+[ RUN      ] CalcPart0.Add085
+[       OK ] CalcPart0.Add085 (0 ms)
+[ RUN      ] CalcPart0.Add086
+[       OK ] CalcPart0.Add086 (0 ms)
+[ RUN      ] CalcPart0.Add087
+[       OK ] CalcPart0.Add087 (0 ms)
+[ RUN      ] CalcPart0.Add088
+[       OK ] CalcPart0.Add088 (0 ms)
+[ RUN      ] CalcPart0.Add089
+[       OK ] CalcPart0.Add089 (0 ms)
+[ RUN      ] CalcPart0.Add090
+[       OK ] CalcPart0.Add090 (0 ms)
+[ RUN      ] CalcPart0.Add091
+[       OK ] CalcPart0.Add091 (0 ms)
+[ RUN      ] CalcPart0.Add092
+[       OK ] CalcPart0.Add092 (0 ms)
+[ RUN      ] CalcPart0.Add093
+[       OK ] CalcPart0.Add093 (0 ms)
+[ RUN      ] CalcPart0.Add094
+[       OK ] CalcPart0.Add094 (0 ms)
+[ RUN      ] CalcPart0.Add095
+[       OK ] CalcPart0.Add095 (0 ms)
+[ RUN      ] CalcPart0.Add096
+[       OK ] CalcPart0.Add096 (0 ms)
+[ RUN      ] CalcPart0.Add097
+[       OK ] CalcPart0.Add097 (0 ms)
+[ RUN      ] CalcPart0.Add098
+[       OK ] CalcPart0.Add098 (0 ms)
+[ RUN      ] CalcPart0.Add099
+[       OK ] CalcPart0.Add099 (0 ms)
+[ RUN      ] CalcPart0.Add100
+[       OK ] CalcPart0.Add100 (0 ms)
+[ RUN      ] CalcPart0.Add101
+[       OK ] CalcPart0.Add101 (0 ms)
+[ RUN      ] CalcPart0.Add102
+[       OK ] CalcPart0.Add102 (0 ms)
+[ RUN      ] CalcPart0.Add103
+[       OK ] CalcPart0.Add103 (0 ms)
+[ RUN      ] CalcPart0.Add104
+[       OK ] CalcPart0.Add104 (0 ms)
+[ RUN      ] CalcPart0.Add105
+[       OK ] CalcPart0.Add105 (0 ms)
+[ RUN      ] CalcPart0.Add106
+[       OK ] CalcPart0.Add106 (0 ms)
+[ RUN      ] CalcPart0.Add107
+[       OK ] CalcPart0.Add107 (0 ms)
+[ RUN      ] CalcPart0.Add108
+[       OK ] CalcPart0.Add108 (0 ms)
+[ RUN      ] CalcPart0.Add109
+[       OK ] CalcPart0.Add109 (0 ms)
+[ RUN      ] CalcPart0.Add110
+[       OK ] CalcPart0.Add110 (0 ms)
+[ RUN      ] CalcPart0.Add111
+[       OK ] CalcPart0.Add111 (0 ms)
+[ RUN      ] CalcPart0.Add112
+[       OK ] CalcPart0.Add112 (0 ms)
+[ RUN      ] CalcPart0.Add113
+[       OK ] CalcPart0.Add113 (0 ms)
+[ RUN      ] CalcPart0.Add114
+[       OK ] CalcPart0.Add114 (0 ms)
+[ RUN      ] CalcPart0.Add115
+[       OK ] CalcPart0.Add115 (0 ms)
+[ RUN      ] CalcPart0.Add116
+[       OK ] CalcPart0.Add116 (0 ms)
+[ RUN      ] CalcPart0.Add117
+[       OK ] CalcPart0.Add117 (0 ms)
+[ RUN      ] CalcPart0.Add118
+[       OK ] CalcPart0.Add118 (0 ms)
+[ RUN      ] CalcPart0.Add119
+[       OK ] CalcPart0.Add119 (0 ms)
+[----------] 120 tests from CalcPart0 (0 ms total)
+
+[----------] 120 tests from CalcPart1
+[ RUN      ] CalcPart1.Add000
+[       OK ] CalcPart1.Add000 (0 ms)
+[ RUN      ] CalcPart1.Add001
+[       OK ] CalcPart1.Add001 (0 ms)
+[ RUN      ] CalcPart1.Add002
+[       OK ] CalcPart1.Add002 (0 ms)
+[ RUN      ] CalcPart1.Add003
+[       OK ] CalcPart1.Add003 (0 ms)
+[ RUN      ] CalcPart1.Add004
+[       OK ] CalcPart1.Add004 (0 ms)
+[ RUN      ] CalcPart1.Add005
+[       OK ] CalcPart1.Add005 (0 ms)
+[ RUN      ] CalcPart1.Add006
+[       OK ] CalcPart1.Add006 (0 ms)
+[ RUN      ] CalcPart1.Add007
+[       OK ] CalcPart1.Add007 (0 ms)
+[ RUN      ] CalcPart1.Add008
+[       OK ] CalcPart1.Add008 (0 ms)
+[ RUN      ] CalcPart1.Add009
+[       OK ] CalcPart1.Add009 (0 ms)
+[ RUN      ] CalcPart1.Add010
+[       OK ] CalcPart1.Add010 (0 ms)
+[ RUN      ] CalcPart1.Add011
+[       OK ] CalcPart1.Add011 (0 ms)
+[ RUN      ] CalcPart1.Add012
+[       OK ] CalcPart1.Add012 (0 ms)
+[ RUN      ] CalcPart1.Add013
+[       OK ] CalcPart1.Add013 (0 ms)
+[ RUN      ] CalcPart1.Add014
+[       OK ] CalcPart1.Add014 (0 ms)
+[ RUN      ] CalcPart1.Add015
+[       OK ] CalcPart1.Add015 (0 ms)
+[ RUN      ] CalcPart1.Add016
+[       OK ] CalcPart1.Add016 (0 ms)
+[ RUN      ] CalcPart1.Add017
+[       OK ] CalcPart1.Add017 (0 ms)
+[ RUN      ] CalcPart1.Add018
+[       OK ] CalcPart1.Add018 (0 ms)
+[ RUN      ] CalcPart1.Add019
+[       OK ] CalcPart1.Add019 (0 ms)
+[ RUN      ] CalcPart1.Add020
+[       OK ] CalcPart1.Add020 (0 ms)
+[ RUN      ] CalcPart1.Add021
+[       OK ] CalcPart1.Add021 (0 ms)
+[ RUN      ] CalcPart1.Add022
+[       OK ] CalcPart1.Add022 (0 ms)
+[ RUN      ] CalcPart1.Add023
+[       OK ] CalcPart1.Add023 (0 ms)
+[ RUN      ] CalcPart1.Add024
+[       OK ] CalcPart1.Add024 (0 ms)
+[ RUN      ] CalcPart1.Add025
+[       OK ] CalcPart1.Add025 (0 ms)
+[ RUN      ] CalcPart1.Add026
+[       OK ] CalcPart1.Add026 (0 ms)
+[ RUN      ] CalcPart1.Add027
+[       OK ] CalcPart1.Add027 (0 ms)
+[ RUN      ] CalcPart1.Add028
+[       OK ] CalcPart1.Add028 (0 ms)
+[ RUN      ] CalcPart1.Add029
+[       OK ] CalcPart1.Add029 (0 ms)
+[ RUN      ] CalcPart1.Add030
+[       OK ] CalcPart1.Add030 (0 ms)
+[ RUN      ] CalcPart1.Add031
+[       OK ] CalcPart1.Add031 (0 ms)
+[ RUN      ] CalcPart1.Add032
+[       OK ] CalcPart1.Add032 (0 ms)
+[ RUN      ] CalcPart1.Add033
+[       OK ] CalcPart1.Add033 (0 ms)
+[ RUN      ] CalcPart1.Add034
+[       OK ] CalcPart1.Add034 (0 ms)
+[ RUN      ] CalcPart1.Add035
+[       OK ] CalcPart1.Add035 (0 ms)
+[ RUN      ] CalcPart1.Add036
+[       OK ] CalcPart1.Add036 (0 ms)
+[ RUN      ] CalcPart1.Add037
+[       OK ] CalcPart1.Add037 (0 ms)
+[ RUN      ] CalcPart1.Add038
+[       OK ] CalcPart1.Add038 (0 ms)
+[ RUN      ] CalcPart1.Add039
+[       OK ] CalcPart1.Add039 (0 ms)
+[ RUN      ] CalcPart1.Add040
+[       OK ] CalcPart1.Add040 (0 ms)
+[ RUN      ] CalcPart1.Add041
+[       OK ] CalcPart1.Add041 (0 ms)
+[ RUN      ] CalcPart1.Add042
+[       OK ] CalcPart1.Add042 (0 ms)
+[ RUN      ] CalcPart1.Add043
+[       OK ] CalcPart1.Add043 (0 ms)
+[ RUN      ] CalcPart1.Add044
+[       OK ] CalcPart1.Add044 (0 ms)
+[ RUN      ] CalcPart1.Add045
+[       OK ] CalcPart1.Add045 (0 ms)
+[ RUN      ] CalcPart1.Add046
+[       OK ] CalcPart1.Add046 (0 ms)
+[ RUN      ] CalcPart1.Add047
+[       OK ] CalcPart1.Add047 (0 ms)
+[ RUN      ] CalcPart1.Add048
+[       OK ] CalcPart1.Add048 (0 ms)
+[ RUN      ] CalcPart1.Add049
+[       OK ] CalcPart1.Add049 (0 ms)
+[ RUN      ] CalcPart1.Add050
+[       OK ] CalcPart1.Add050 (0 ms)
+[ RUN      ] CalcPart1.Add051
+[       OK ] CalcPart1.Add051 (0 ms)
+[ RUN      ] CalcPart1.Add052
+[       OK ] CalcPart1.Add052 (0 ms)
+[ RUN      ] CalcPart1.Add053
+[       OK ] CalcPart1.Add053 (0 ms)
+[ RUN      ] CalcPart1.Add054
+[       OK ] CalcPart1.Add054 (0 ms)
+[ RUN      ] CalcPart1.Add055
+[       OK ] CalcPart1.Add055 (0 ms)
+[ RUN      ] CalcPart1.Add056
+[       OK ] CalcPart1.Add056 (0 ms)
+[ RUN      ] CalcPart1.Add057
+[       OK ] CalcPart1.Add057 (0 ms)
+[ RUN      ] CalcPart1.Add058
+[       OK ] CalcPart1.Add058 (0 ms)
+[ RUN      ] CalcPart1.Add059
+[       OK ] CalcPart1.Add059 (0 ms)
+[ RUN      ] CalcPart1.Add060
+[       OK ] CalcPart1.Add060 (0 ms)
+[ RUN      ] CalcPart1.Add061
+[       OK ] CalcPart1.Add061 (0 ms)
+[ RUN      ] CalcPart1.Add062
+[       OK ] CalcPart1.Add062 (0 ms)
+[ RUN      ] CalcPart1.Add063
+[       OK ] CalcPart1.Add063 (0 ms)
+[ RUN      ] CalcPart1.Add064
+[       OK ] CalcPart1.Add064 (0 ms)
+[ RUN      ] CalcPart1.Add065
+[       OK ] CalcPart1.Add065 (0 ms)
+[ RUN      ] CalcPart1.Add066
+[       OK ] CalcPart1.Add066 (0 ms)
+[ RUN      ] CalcPart1.Add067
+[       OK ] CalcPart1.Add067 (0 ms)
+[ RUN      ] CalcPart1.Add068
+[       OK ] CalcPart1.Add068 (0 ms)
+[ RUN      ] CalcPart1.Add069
+[       OK ] CalcPart1.Add069 (0 ms)
+[ RUN      ] CalcPart1.Add070
+[       OK ] CalcPart1.Add070 (0 ms)
+[ RUN      ] CalcPart1.Add071
+[       OK ] CalcPart1.Add071 (0 ms)
+[ RUN      ] CalcPart1.Add072
+[       OK ] CalcPart1.Add072 (0 ms)
+[ RUN      ] CalcPart1.Add073
+[       OK ] CalcPart1.Add073 (0 ms)
+[ RUN      ] CalcPart1.Add074
+[       OK ] CalcPart1.Add074 (0 ms)
+[ RUN      ] CalcPart1.Add075
+[       OK ] CalcPart1.Add075 (0 ms)
+[ RUN      ] CalcPart1.Add076
+[       OK ] CalcPart1.Add076 (0 ms)
+[ RUN      ] CalcPart1.Add077
+[       OK ] CalcPart1.Add077 (0 ms)
+[ RUN      ] CalcPart1.Add078
+[       OK ] CalcPart1.Add078 (0 ms)
+[ RUN      ] CalcPart1.Add079
+[       OK ] CalcPart1.Add079 (0 ms)
+[ RUN      ] CalcPart1.Add080
+[       OK ] CalcPart1.Add080 (0 ms)
+[ RUN      ] CalcPart1.Add081
+[       OK ] CalcPart1.Add081 (0 ms)
+[ RUN      ] CalcPart1.Add082
+[       OK ] CalcPart1.Add082 (0 ms)
+[ RUN      ] CalcPart1.Add083
+[       OK ] CalcPart1.Add083 (0 ms)
+[ RUN      ] CalcPart1.Add084
+[       OK ] CalcPart1.Add084 (0 ms)
+[ RUN      ] CalcPart1.Add085
+[       OK ] CalcPart1.Add085 (0 ms)
+[ RUN      ] CalcPart1.Add086
+[       OK ] CalcPart1.Add086 (0 ms)
+[ RUN      ] CalcPart1.Add087
+[       OK ] CalcPart1.Add087 (0 ms)
+[ RUN      ] CalcPart1.Add088
+[       OK ] CalcPart1.Add088 (0 ms)
+[ RUN      ] CalcPart1.Add089
+[       OK ] CalcPart1.Add089 (0 ms)
+[ RUN      ] CalcPart1.Add090
+[       OK ] CalcPart1.Add090 (0 ms)
+[ RUN      ] CalcPart1.Add091
+[       OK ] CalcPart1.Add091 (0 ms)
+[ RUN      ] CalcPart1.Add092
+[       OK ] CalcPart1.Add092 (0 ms)
+[ RUN      ] CalcPart1.Add093
+[       OK ] CalcPart1.Add093 (0 ms)
+[ RUN      ] CalcPart1.Add094
+[       OK ] CalcPart1.Add094 (0 ms)
+[ RUN      ] CalcPart1.Add095
+[       OK ] CalcPart1.Add095 (0 ms)
+[ RUN      ] CalcPart1.Add096
+[       OK ] CalcPart1.Add096 (0 ms)
+[ RUN      ] CalcPart1.Add097
+[       OK ] CalcPart1.Add097 (0 ms)
+[ RUN      ] CalcPart1.Add098
+[       OK ] CalcPart1.Add098 (0 ms)
+[ RUN      ] CalcPart1.Add099
+[       OK ] CalcPart1.Add099 (0 ms)
+[ RUN      ] CalcPart1.Add100
+[       OK ] CalcPart1.Add100 (0 ms)
+[ RUN      ] CalcPart1.Add101
+[       OK ] CalcPart1.Add101 (0 ms)
+[ RUN      ] CalcPart1.Add102
+[       OK ] CalcPart1.Add102 (0 ms)
+[ RUN      ] CalcPart1.Add103
+[       OK ] CalcPart1.Add103 (0 ms)
+[ RUN      ] CalcPart1.Add104
+[       OK ] CalcPart1.Add104 (0 ms)
+[ RUN      ] CalcPart1.Add105
+[       OK ] CalcPart1.Add105 (0 ms)
+[ RUN      ] CalcPart1.Add106
+[       OK ] CalcPart1.Add106 (0 ms)
+[ RUN      ] CalcPart1.Add107
+[       OK ] CalcPart1.Add107 (0 ms)
+[ RUN      ] CalcPart1.Add108
+[       OK ] CalcPart1.Add108 (0 ms)
+[ RUN      ] CalcPart1.Add109
+[       OK ] CalcPart1.Add109 (0 ms)
+[ RUN      ] CalcPart1.Add110
+[       OK ] CalcPart1.Add110 (0 ms)
+[ RUN      ] CalcPart1.Add111
+[       OK ] CalcPart1.Add111 (0 ms)
+[ RUN      ] CalcPart1.Add112
+[       OK ] CalcPart1.Add112 (0 ms)
+[ RUN      ] CalcPart1.Add113
+[       OK ] CalcPart1.Add113 (0 ms)
+[ RUN      ] CalcPart1.Add114
+[       OK ] CalcPart1.Add114 (0 ms)
+[ RUN      ] CalcPart1.Add115
+[       OK ] CalcPart1.Add115 (0 ms)
+[ RUN      ] CalcPart1.Add116
+[       OK ] CalcPart1.Add116 (0 ms)
+[ RUN      ] CalcPart1.Add117
+[       OK ] CalcPart1.Add117 (0 ms)
+[ RUN      ] CalcPart1.Add118
+[       OK ] CalcPart1.Add118 (0 ms)
+[ RUN      ] CalcPart1.Add119
+[       OK ] CalcPart1.Add119 (0 ms)
+[----------] 120 tests from CalcPart1 (0 ms total)
+
+[----------] 120 tests from CalcPart2
+[ RUN      ] CalcPart2.Add000
+[       OK ] CalcPart2.Add000 (0 ms)
+[ RUN      ] CalcPart2.Add001
+[       OK ] CalcPart2.Add001 (0 ms)
+[ RUN      ] CalcPart2.Add002
+[       OK ] CalcPart2.Add002 (0 ms)
+[ RUN      ] CalcPart2.Add003
+[       OK ] CalcPart2.Add003 (0 ms)
+[ RUN      ] CalcPart2.Add004
+[       OK ] CalcPart2.Add004 (0 ms)
+[ RUN      ] CalcPart2.Add005
+[       OK ] CalcPart2.Add005 (0 ms)
+[ RUN      ] CalcPart2.Add006
+[       OK ] CalcPart2.Add006 (0 ms)
+[ RUN      ] CalcPart2.Add007
+[       OK ] CalcPart2.Add007 (0 ms)
+[ RUN      ] CalcPart2.Add008
+[       OK ] CalcPart2.Add008 (0 ms)
+[ RUN      ] CalcPart2.Add009
+[       OK ] CalcPart2.Add009 (0 ms)
+[ RUN      ] CalcPart2.Add010
+[       OK ] CalcPart2.Add010 (0 ms)
+[ RUN      ] CalcPart2.Add011
+[       OK ] CalcPart2.Add011 (0 ms)
+[ RUN      ] CalcPart2.Add012
+[       OK ] CalcPart2.Add012 (0 ms)
+[ RUN      ] CalcPart2.Add013
+[       OK ] CalcPart2.Add013 (0 ms)
+[ RUN      ] CalcPart2.Add014
+[       OK ] CalcPart2.Add014 (0 ms)
+[ RUN      ] CalcPart2.Add015
+[       OK ] CalcPart2.Add015 (0 ms)
+[ RUN      ] CalcPart2.Add016
+[       OK ] CalcPart2.Add016 (0 ms)
+[ RUN      ] CalcPart2.Add017
+[       OK ] CalcPart2.Add017 (0 ms)
+[ RUN      ] CalcPart2.Add018
+[       OK ] CalcPart2.Add018 (0 ms)
+[ RUN      ] CalcPart2.Add019
+[       OK ] CalcPart2.Add019 (0 ms)
+[ RUN      ] CalcPart2.Add020
+[       OK ] CalcPart2.Add020 (0 ms)
+[ RUN      ] CalcPart2.Add021
+[       OK ] CalcPart2.Add021 (0 ms)
+[ RUN      ] CalcPart2.Add022
+[       OK ] CalcPart2.Add022 (0 ms)
+[ RUN      ] CalcPart2.Add023
+[       OK ] CalcPart2.Add023 (0 ms)
+[ RUN      ] CalcPart2.Add024
+[       OK ] CalcPart2.Add024 (0 ms)
+[ RUN      ] CalcPart2.Add025
+[       OK ] CalcPart2.Add025 (0 ms)
+[ RUN      ] CalcPart2.Add026
+[       OK ] CalcPart2.Add026 (0 ms)
+[ RUN      ] CalcPart2.Add027
+[       OK ] CalcPart2.Add027 (0 ms)
+[ RUN      ] CalcPart2.Add028
+[       OK ] CalcPart2.Add028 (0 ms)
+[ RUN      ] CalcPart2.Add029
+[       OK ] CalcPart2.Add029 (0 ms)
+[ RUN      ] CalcPart2.Add030
+[       OK ] CalcPart2.Add030 (0 ms)
+[ RUN      ] CalcPart2.Add031
+[       OK ] CalcPart2.Add031 (0 ms)
+[ RUN      ] CalcPart2.Add032
+[       OK ] CalcPart2.Add032 (0 ms)
+[ RUN      ] CalcPart2.Add033
+[       OK ] CalcPart2.Add033 (0 ms)
+[ RUN      ] CalcPart2.Add034
+[       OK ] CalcPart2.Add034 (0 ms)
+[ RUN      ] CalcPart2.Add035
+[       OK ] CalcPart2.Add035 (0 ms)
+[ RUN      ] CalcPart2.Add036
+[       OK ] CalcPart2.Add036 (0 ms)
+[ RUN      ] CalcPart2.Add037
+[       OK ] CalcPart2.Add037 (0 ms)
+[ RUN      ] CalcPart2.Add038
+[       OK ] CalcPart2.Add038 (0 ms)
+[ RUN      ] CalcPart2.Add039
+[       OK ] CalcPart2.Add039 (0 ms)
+[ RUN      ] CalcPart2.Add040
+[       OK ] CalcPart2.Add040 (0 ms)
+[ RUN      ] CalcPart2.Add041
+[       OK ] CalcPart2.Add041 (0 ms)
+[ RUN      ] CalcPart2.Add042
+[       OK ] CalcPart2.Add042 (0 ms)
+[ RUN      ] CalcPart2.Add043
+[       OK ] CalcPart2.Add043 (0 ms)
+[ RUN      ] CalcPart2.Add044
+[       OK ] CalcPart2.Add044 (0 ms)
+[ RUN      ] CalcPart2.Add045
+[       OK ] CalcPart2.Add045 (0 ms)
+[ RUN      ] CalcPart2.Add046
+[       OK ] CalcPart2.Add046 (0 ms)
+[ RUN      ] CalcPart2.Add047
+[       OK ] CalcPart2.Add047 (0 ms)
+[ RUN      ] CalcPart2.Add048
+[       OK ] CalcPart2.Add048 (0 ms)
+[ RUN      ] CalcPart2.Add049
+[       OK ] CalcPart2.Add049 (0 ms)
+[ RUN      ] CalcPart2.Add050
+[       OK ] CalcPart2.Add050 (0 ms)
+[ RUN      ] CalcPart2.Add051
+[       OK ] CalcPart2.Add051 (0 ms)
+[ RUN      ] CalcPart2.Add052
+[       OK ] CalcPart2.Add052 (0 ms)
+[ RUN      ] CalcPart2.Add053
+[       OK ] CalcPart2.Add053 (0 ms)
+[ RUN      ] CalcPart2.Add054
+[       OK ] CalcPart2.Add054 (0 ms)
+[ RUN      ] CalcPart2.Add055
+[       OK ] CalcPart2.Add055 (0 ms)
+[ RUN      ] CalcPart2.Add056
+[       OK ] CalcPart2.Add056 (0 ms)
+[ RUN      ] CalcPart2.Add057
+[       OK ] CalcPart2.Add057 (0 ms)
+[ RUN      ] CalcPart2.Add058
+[       OK ] CalcPart2.Add058 (0 ms)
+[ RUN      ] CalcPart2.Add059
+[       OK ] CalcPart2.Add059 (0 ms)
+[ RUN      ] CalcPart2.Add060
+/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/googletest/big_run/tests/part2_test.cpp:246: Failure
+Expected equality of these values:
+  add(60, 1)
+    Which is: 61
+  -1
+
+[  FAILED  ] CalcPart2.Add060 (0 ms)
+[ RUN      ] CalcPart2.Add061
+[       OK ] CalcPart2.Add061 (0 ms)
+[ RUN      ] CalcPart2.Add062
+[       OK ] CalcPart2.Add062 (0 ms)
+[ RUN      ] CalcPart2.Add063
+[       OK ] CalcPart2.Add063 (0 ms)
+[ RUN      ] CalcPart2.Add064
+[       OK ] CalcPart2.Add064 (0 ms)
+[ RUN      ] CalcPart2.Add065
+[       OK ] CalcPart2.Add065 (0 ms)
+[ RUN      ] CalcPart2.Add066
+[       OK ] CalcPart2.Add066 (0 ms)
+[ RUN      ] CalcPart2.Add067
+[       OK ] CalcPart2.Add067 (0 ms)
+[ RUN      ] CalcPart2.Add068
+[       OK ] CalcPart2.Add068 (0 ms)
+[ RUN      ] CalcPart2.Add069
+[       OK ] CalcPart2.Add069 (0 ms)
+[ RUN      ] CalcPart2.Add070
+[       OK ] CalcPart2.Add070 (0 ms)
+[ RUN      ] CalcPart2.Add071
+[       OK ] CalcPart2.Add071 (0 ms)
+[ RUN      ] CalcPart2.Add072
+[       OK ] CalcPart2.Add072 (0 ms)
+[ RUN      ] CalcPart2.Add073
+[       OK ] CalcPart2.Add073 (0 ms)
+[ RUN      ] CalcPart2.Add074
+[       OK ] CalcPart2.Add074 (0 ms)
+[ RUN      ] CalcPart2.Add075
+[       OK ] CalcPart2.Add075 (0 ms)
+[ RUN      ] CalcPart2.Add076
+[       OK ] CalcPart2.Add076 (0 ms)
+[ RUN      ] CalcPart2.Add077
+[       OK ] CalcPart2.Add077 (0 ms)
+[ RUN      ] CalcPart2.Add078
+[       OK ] CalcPart2.Add078 (0 ms)
+[ RUN      ] CalcPart2.Add079
+[       OK ] CalcPart2.Add079 (0 ms)
+[ RUN      ] CalcPart2.Add080
+[       OK ] CalcPart2.Add080 (0 ms)
+[ RUN      ] CalcPart2.Add081
+[       OK ] CalcPart2.Add081 (0 ms)
+[ RUN      ] CalcPart2.Add082
+[       OK ] CalcPart2.Add082 (0 ms)
+[ RUN      ] CalcPart2.Add083
+[       OK ] CalcPart2.Add083 (0 ms)
+[ RUN      ] CalcPart2.Add084
+[       OK ] CalcPart2.Add084 (0 ms)
+[ RUN      ] CalcPart2.Add085
+[       OK ] CalcPart2.Add085 (0 ms)
+[ RUN      ] CalcPart2.Add086
+[       OK ] CalcPart2.Add086 (0 ms)
+[ RUN      ] CalcPart2.Add087
+[       OK ] CalcPart2.Add087 (0 ms)
+[ RUN      ] CalcPart2.Add088
+[       OK ] CalcPart2.Add088 (0 ms)
+[ RUN      ] CalcPart2.Add089
+[       OK ] CalcPart2.Add089 (0 ms)
+[ RUN      ] CalcPart2.Add090
+[       OK ] CalcPart2.Add090 (0 ms)
+[ RUN      ] CalcPart2.Add091
+[       OK ] CalcPart2.Add091 (0 ms)
+[ RUN      ] CalcPart2.Add092
+[       OK ] CalcPart2.Add092 (0 ms)
+[ RUN      ] CalcPart2.Add093
+[       OK ] CalcPart2.Add093 (0 ms)
+[ RUN      ] CalcPart2.Add094
+[       OK ] CalcPart2.Add094 (0 ms)
+[ RUN      ] CalcPart2.Add095
+[       OK ] CalcPart2.Add095 (0 ms)
+[ RUN      ] CalcPart2.Add096
+[       OK ] CalcPart2.Add096 (0 ms)
+[ RUN      ] CalcPart2.Add097
+[       OK ] CalcPart2.Add097 (0 ms)
+[ RUN      ] CalcPart2.Add098
+[       OK ] CalcPart2.Add098 (0 ms)
+[ RUN      ] CalcPart2.Add099
+[       OK ] CalcPart2.Add099 (0 ms)
+[ RUN      ] CalcPart2.Add100
+[       OK ] CalcPart2.Add100 (0 ms)
+[ RUN      ] CalcPart2.Add101
+[       OK ] CalcPart2.Add101 (0 ms)
+[ RUN      ] CalcPart2.Add102
+[       OK ] CalcPart2.Add102 (0 ms)
+[ RUN      ] CalcPart2.Add103
+[       OK ] CalcPart2.Add103 (0 ms)
+[ RUN      ] CalcPart2.Add104
+[       OK ] CalcPart2.Add104 (0 ms)
+[ RUN      ] CalcPart2.Add105
+[       OK ] CalcPart2.Add105 (0 ms)
+[ RUN      ] CalcPart2.Add106
+[       OK ] CalcPart2.Add106 (0 ms)
+[ RUN      ] CalcPart2.Add107
+[       OK ] CalcPart2.Add107 (0 ms)
+[ RUN      ] CalcPart2.Add108
+[       OK ] CalcPart2.Add108 (0 ms)
+[ RUN      ] CalcPart2.Add109
+[       OK ] CalcPart2.Add109 (0 ms)
+[ RUN      ] CalcPart2.Add110
+[       OK ] CalcPart2.Add110 (0 ms)
+[ RUN      ] CalcPart2.Add111
+[       OK ] CalcPart2.Add111 (0 ms)
+[ RUN      ] CalcPart2.Add112
+[       OK ] CalcPart2.Add112 (0 ms)
+[ RUN      ] CalcPart2.Add113
+[       OK ] CalcPart2.Add113 (0 ms)
+[ RUN      ] CalcPart2.Add114
+[       OK ] CalcPart2.Add114 (0 ms)
+[ RUN      ] CalcPart2.Add115
+[       OK ] CalcPart2.Add115 (0 ms)
+[ RUN      ] CalcPart2.Add116
+[       OK ] CalcPart2.Add116 (0 ms)
+[ RUN      ] CalcPart2.Add117
+[       OK ] CalcPart2.Add117 (0 ms)
+[ RUN      ] CalcPart2.Add118
+[       OK ] CalcPart2.Add118 (0 ms)
+[ RUN      ] CalcPart2.Add119
+[       OK ] CalcPart2.Add119 (0 ms)
+[----------] 120 tests from CalcPart2 (0 ms total)
+
+[----------] 120 tests from CalcPart3
+[ RUN      ] CalcPart3.Add000
+[       OK ] CalcPart3.Add000 (0 ms)
+[ RUN      ] CalcPart3.Add001
+[       OK ] CalcPart3.Add001 (0 ms)
+[ RUN      ] CalcPart3.Add002
+[       OK ] CalcPart3.Add002 (0 ms)
+[ RUN      ] CalcPart3.Add003
+[       OK ] CalcPart3.Add003 (0 ms)
+[ RUN      ] CalcPart3.Add004
+[       OK ] CalcPart3.Add004 (0 ms)
+[ RUN      ] CalcPart3.Add005
+[       OK ] CalcPart3.Add005 (0 ms)
+[ RUN      ] CalcPart3.Add006
+[       OK ] CalcPart3.Add006 (0 ms)
+[ RUN      ] CalcPart3.Add007
+[       OK ] CalcPart3.Add007 (0 ms)
+[ RUN      ] CalcPart3.Add008
+[       OK ] CalcPart3.Add008 (0 ms)
+[ RUN      ] CalcPart3.Add009
+[       OK ] CalcPart3.Add009 (0 ms)
+[ RUN      ] CalcPart3.Add010
+[       OK ] CalcPart3.Add010 (0 ms)
+[ RUN      ] CalcPart3.Add011
+[       OK ] CalcPart3.Add011 (0 ms)
+[ RUN      ] CalcPart3.Add012
+[       OK ] CalcPart3.Add012 (0 ms)
+[ RUN      ] CalcPart3.Add013
+[       OK ] CalcPart3.Add013 (0 ms)
+[ RUN      ] CalcPart3.Add014
+[       OK ] CalcPart3.Add014 (0 ms)
+[ RUN      ] CalcPart3.Add015
+[       OK ] CalcPart3.Add015 (0 ms)
+[ RUN      ] CalcPart3.Add016
+[       OK ] CalcPart3.Add016 (0 ms)
+[ RUN      ] CalcPart3.Add017
+[       OK ] CalcPart3.Add017 (0 ms)
+[ RUN      ] CalcPart3.Add018
+[       OK ] CalcPart3.Add018 (0 ms)
+[ RUN      ] CalcPart3.Add019
+[       OK ] CalcPart3.Add019 (0 ms)
+[ RUN      ] CalcPart3.Add020
+[       OK ] CalcPart3.Add020 (0 ms)
+[ RUN      ] CalcPart3.Add021
+[       OK ] CalcPart3.Add021 (0 ms)
+[ RUN      ] CalcPart3.Add022
+[       OK ] CalcPart3.Add022 (0 ms)
+[ RUN      ] CalcPart3.Add023
+[       OK ] CalcPart3.Add023 (0 ms)
+[ RUN      ] CalcPart3.Add024
+[       OK ] CalcPart3.Add024 (0 ms)
+[ RUN      ] CalcPart3.Add025
+[       OK ] CalcPart3.Add025 (0 ms)
+[ RUN      ] CalcPart3.Add026
+[       OK ] CalcPart3.Add026 (0 ms)
+[ RUN      ] CalcPart3.Add027
+[       OK ] CalcPart3.Add027 (0 ms)
+[ RUN      ] CalcPart3.Add028
+[       OK ] CalcPart3.Add028 (0 ms)
+[ RUN      ] CalcPart3.Add029
+[       OK ] CalcPart3.Add029 (0 ms)
+[ RUN      ] CalcPart3.Add030
+[       OK ] CalcPart3.Add030 (0 ms)
+[ RUN      ] CalcPart3.Add031
+[       OK ] CalcPart3.Add031 (0 ms)
+[ RUN      ] CalcPart3.Add032
+[       OK ] CalcPart3.Add032 (0 ms)
+[ RUN      ] CalcPart3.Add033
+[       OK ] CalcPart3.Add033 (0 ms)
+[ RUN      ] CalcPart3.Add034
+[       OK ] CalcPart3.Add034 (0 ms)
+[ RUN      ] CalcPart3.Add035
+[       OK ] CalcPart3.Add035 (0 ms)
+[ RUN      ] CalcPart3.Add036
+[       OK ] CalcPart3.Add036 (0 ms)
+[ RUN      ] CalcPart3.Add037
+[       OK ] CalcPart3.Add037 (0 ms)
+[ RUN      ] CalcPart3.Add038
+[       OK ] CalcPart3.Add038 (0 ms)
+[ RUN      ] CalcPart3.Add039
+[       OK ] CalcPart3.Add039 (0 ms)
+[ RUN      ] CalcPart3.Add040
+[       OK ] CalcPart3.Add040 (0 ms)
+[ RUN      ] CalcPart3.Add041
+[       OK ] CalcPart3.Add041 (0 ms)
+[ RUN      ] CalcPart3.Add042
+[       OK ] CalcPart3.Add042 (0 ms)
+[ RUN      ] CalcPart3.Add043
+[       OK ] CalcPart3.Add043 (0 ms)
+[ RUN      ] CalcPart3.Add044
+[       OK ] CalcPart3.Add044 (0 ms)
+[ RUN      ] CalcPart3.Add045
+[       OK ] CalcPart3.Add045 (0 ms)
+[ RUN      ] CalcPart3.Add046
+[       OK ] CalcPart3.Add046 (0 ms)
+[ RUN      ] CalcPart3.Add047
+[       OK ] CalcPart3.Add047 (0 ms)
+[ RUN      ] CalcPart3.Add048
+[       OK ] CalcPart3.Add048 (0 ms)
+[ RUN      ] CalcPart3.Add049
+[       OK ] CalcPart3.Add049 (0 ms)
+[ RUN      ] CalcPart3.Add050
+[       OK ] CalcPart3.Add050 (0 ms)
+[ RUN      ] CalcPart3.Add051
+[       OK ] CalcPart3.Add051 (0 ms)
+[ RUN      ] CalcPart3.Add052
+[       OK ] CalcPart3.Add052 (0 ms)
+[ RUN      ] CalcPart3.Add053
+[       OK ] CalcPart3.Add053 (0 ms)
+[ RUN      ] CalcPart3.Add054
+[       OK ] CalcPart3.Add054 (0 ms)
+[ RUN      ] CalcPart3.Add055
+[       OK ] CalcPart3.Add055 (0 ms)
+[ RUN      ] CalcPart3.Add056
+[       OK ] CalcPart3.Add056 (0 ms)
+[ RUN      ] CalcPart3.Add057
+[       OK ] CalcPart3.Add057 (0 ms)
+[ RUN      ] CalcPart3.Add058
+[       OK ] CalcPart3.Add058 (0 ms)
+[ RUN      ] CalcPart3.Add059
+[       OK ] CalcPart3.Add059 (0 ms)
+[ RUN      ] CalcPart3.Add060
+[       OK ] CalcPart3.Add060 (0 ms)
+[ RUN      ] CalcPart3.Add061
+[       OK ] CalcPart3.Add061 (0 ms)
+[ RUN      ] CalcPart3.Add062
+[       OK ] CalcPart3.Add062 (0 ms)
+[ RUN      ] CalcPart3.Add063
+[       OK ] CalcPart3.Add063 (0 ms)
+[ RUN      ] CalcPart3.Add064
+[       OK ] CalcPart3.Add064 (0 ms)
+[ RUN      ] CalcPart3.Add065
+[       OK ] CalcPart3.Add065 (0 ms)
+[ RUN      ] CalcPart3.Add066
+[       OK ] CalcPart3.Add066 (0 ms)
+[ RUN      ] CalcPart3.Add067
+[       OK ] CalcPart3.Add067 (0 ms)
+[ RUN      ] CalcPart3.Add068
+[       OK ] CalcPart3.Add068 (0 ms)
+[ RUN      ] CalcPart3.Add069
+[       OK ] CalcPart3.Add069 (0 ms)
+[ RUN      ] CalcPart3.Add070
+[       OK ] CalcPart3.Add070 (0 ms)
+[ RUN      ] CalcPart3.Add071
+[       OK ] CalcPart3.Add071 (0 ms)
+[ RUN      ] CalcPart3.Add072
+[       OK ] CalcPart3.Add072 (0 ms)
+[ RUN      ] CalcPart3.Add073
+[       OK ] CalcPart3.Add073 (0 ms)
+[ RUN      ] CalcPart3.Add074
+[       OK ] CalcPart3.Add074 (0 ms)
+[ RUN      ] CalcPart3.Add075
+[       OK ] CalcPart3.Add075 (0 ms)
+[ RUN      ] CalcPart3.Add076
+[       OK ] CalcPart3.Add076 (0 ms)
+[ RUN      ] CalcPart3.Add077
+[       OK ] CalcPart3.Add077 (0 ms)
+[ RUN      ] CalcPart3.Add078
+[       OK ] CalcPart3.Add078 (0 ms)
+[ RUN      ] CalcPart3.Add079
+[       OK ] CalcPart3.Add079 (0 ms)
+[ RUN      ] CalcPart3.Add080
+[       OK ] CalcPart3.Add080 (0 ms)
+[ RUN      ] CalcPart3.Add081
+[       OK ] CalcPart3.Add081 (0 ms)
+[ RUN      ] CalcPart3.Add082
+[       OK ] CalcPart3.Add082 (0 ms)
+[ RUN      ] CalcPart3.Add083
+[       OK ] CalcPart3.Add083 (0 ms)
+[ RUN      ] CalcPart3.Add084
+[       OK ] CalcPart3.Add084 (0 ms)
+[ RUN      ] CalcPart3.Add085
+[       OK ] CalcPart3.Add085 (0 ms)
+[ RUN      ] CalcPart3.Add086
+[       OK ] CalcPart3.Add086 (0 ms)
+[ RUN      ] CalcPart3.Add087
+[       OK ] CalcPart3.Add087 (0 ms)
+[ RUN      ] CalcPart3.Add088
+[       OK ] CalcPart3.Add088 (0 ms)
+[ RUN      ] CalcPart3.Add089
+[       OK ] CalcPart3.Add089 (0 ms)
+[ RUN      ] CalcPart3.Add090
+[       OK ] CalcPart3.Add090 (0 ms)
+[ RUN      ] CalcPart3.Add091
+[       OK ] CalcPart3.Add091 (0 ms)
+[ RUN      ] CalcPart3.Add092
+[       OK ] CalcPart3.Add092 (0 ms)
+[ RUN      ] CalcPart3.Add093
+[       OK ] CalcPart3.Add093 (0 ms)
+[ RUN      ] CalcPart3.Add094
+[       OK ] CalcPart3.Add094 (0 ms)
+[ RUN      ] CalcPart3.Add095
+[       OK ] CalcPart3.Add095 (0 ms)
+[ RUN      ] CalcPart3.Add096
+[       OK ] CalcPart3.Add096 (0 ms)
+[ RUN      ] CalcPart3.Add097
+[       OK ] CalcPart3.Add097 (0 ms)
+[ RUN      ] CalcPart3.Add098
+[       OK ] CalcPart3.Add098 (0 ms)
+[ RUN      ] CalcPart3.Add099
+[       OK ] CalcPart3.Add099 (0 ms)
+[ RUN      ] CalcPart3.Add100
+[       OK ] CalcPart3.Add100 (0 ms)
+[ RUN      ] CalcPart3.Add101
+[       OK ] CalcPart3.Add101 (0 ms)
+[ RUN      ] CalcPart3.Add102
+[       OK ] CalcPart3.Add102 (0 ms)
+[ RUN      ] CalcPart3.Add103
+[       OK ] CalcPart3.Add103 (0 ms)
+[ RUN      ] CalcPart3.Add104
+[       OK ] CalcPart3.Add104 (0 ms)
+[ RUN      ] CalcPart3.Add105
+[       OK ] CalcPart3.Add105 (0 ms)
+[ RUN      ] CalcPart3.Add106
+[       OK ] CalcPart3.Add106 (0 ms)
+[ RUN      ] CalcPart3.Add107
+[       OK ] CalcPart3.Add107 (0 ms)
+[ RUN      ] CalcPart3.Add108
+[       OK ] CalcPart3.Add108 (0 ms)
+[ RUN      ] CalcPart3.Add109
+[       OK ] CalcPart3.Add109 (0 ms)
+[ RUN      ] CalcPart3.Add110
+[       OK ] CalcPart3.Add110 (0 ms)
+[ RUN      ] CalcPart3.Add111
+[       OK ] CalcPart3.Add111 (0 ms)
+[ RUN      ] CalcPart3.Add112
+[       OK ] CalcPart3.Add112 (0 ms)
+[ RUN      ] CalcPart3.Add113
+[       OK ] CalcPart3.Add113 (0 ms)
+[ RUN      ] CalcPart3.Add114
+[       OK ] CalcPart3.Add114 (0 ms)
+[ RUN      ] CalcPart3.Add115
+[       OK ] CalcPart3.Add115 (0 ms)
+[ RUN      ] CalcPart3.Add116
+[       OK ] CalcPart3.Add116 (0 ms)
+[ RUN      ] CalcPart3.Add117
+[       OK ] CalcPart3.Add117 (0 ms)
+[ RUN      ] CalcPart3.Add118
+[       OK ] CalcPart3.Add118 (0 ms)
+[ RUN      ] CalcPart3.Add119
+[       OK ] CalcPart3.Add119 (0 ms)
+[----------] 120 tests from CalcPart3 (0 ms total)
+
+[----------] 120 tests from CalcPart4
+[ RUN      ] CalcPart4.Add000
+[       OK ] CalcPart4.Add000 (0 ms)
+[ RUN      ] CalcPart4.Add001
+[       OK ] CalcPart4.Add001 (0 ms)
+[ RUN      ] CalcPart4.Add002
+[       OK ] CalcPart4.Add002 (0 ms)
+[ RUN      ] CalcPart4.Add003
+[       OK ] CalcPart4.Add003 (0 ms)
+[ RUN      ] CalcPart4.Add004
+[       OK ] CalcPart4.Add004 (0 ms)
+[ RUN      ] CalcPart4.Add005
+[       OK ] CalcPart4.Add005 (0 ms)
+[ RUN      ] CalcPart4.Add006
+[       OK ] CalcPart4.Add006 (0 ms)
+[ RUN      ] CalcPart4.Add007
+[       OK ] CalcPart4.Add007 (0 ms)
+[ RUN      ] CalcPart4.Add008
+[       OK ] CalcPart4.Add008 (0 ms)
+[ RUN      ] CalcPart4.Add009
+[       OK ] CalcPart4.Add009 (0 ms)
+[ RUN      ] CalcPart4.Add010
+[       OK ] CalcPart4.Add010 (0 ms)
+[ RUN      ] CalcPart4.Add011
+[       OK ] CalcPart4.Add011 (0 ms)
+[ RUN      ] CalcPart4.Add012
+[       OK ] CalcPart4.Add012 (0 ms)
+[ RUN      ] CalcPart4.Add013
+[       OK ] CalcPart4.Add013 (0 ms)
+[ RUN      ] CalcPart4.Add014
+[       OK ] CalcPart4.Add014 (0 ms)
+[ RUN      ] CalcPart4.Add015
+[       OK ] CalcPart4.Add015 (0 ms)
+[ RUN      ] CalcPart4.Add016
+[       OK ] CalcPart4.Add016 (0 ms)
+[ RUN      ] CalcPart4.Add017
+[       OK ] CalcPart4.Add017 (0 ms)
+[ RUN      ] CalcPart4.Add018
+[       OK ] CalcPart4.Add018 (0 ms)
+[ RUN      ] CalcPart4.Add019
+[       OK ] CalcPart4.Add019 (0 ms)
+[ RUN      ] CalcPart4.Add020
+[       OK ] CalcPart4.Add020 (0 ms)
+[ RUN      ] CalcPart4.Add021
+[       OK ] CalcPart4.Add021 (0 ms)
+[ RUN      ] CalcPart4.Add022
+[       OK ] CalcPart4.Add022 (0 ms)
+[ RUN      ] CalcPart4.Add023
+[       OK ] CalcPart4.Add023 (0 ms)
+[ RUN      ] CalcPart4.Add024
+[       OK ] CalcPart4.Add024 (0 ms)
+[ RUN      ] CalcPart4.Add025
+[       OK ] CalcPart4.Add025 (0 ms)
+[ RUN      ] CalcPart4.Add026
+[       OK ] CalcPart4.Add026 (0 ms)
+[ RUN      ] CalcPart4.Add027
+[       OK ] CalcPart4.Add027 (0 ms)
+[ RUN      ] CalcPart4.Add028
+[       OK ] CalcPart4.Add028 (0 ms)
+[ RUN      ] CalcPart4.Add029
+[       OK ] CalcPart4.Add029 (0 ms)
+[ RUN      ] CalcPart4.Add030
+[       OK ] CalcPart4.Add030 (0 ms)
+[ RUN      ] CalcPart4.Add031
+[       OK ] CalcPart4.Add031 (0 ms)
+[ RUN      ] CalcPart4.Add032
+[       OK ] CalcPart4.Add032 (0 ms)
+[ RUN      ] CalcPart4.Add033
+[       OK ] CalcPart4.Add033 (0 ms)
+[ RUN      ] CalcPart4.Add034
+[       OK ] CalcPart4.Add034 (0 ms)
+[ RUN      ] CalcPart4.Add035
+[       OK ] CalcPart4.Add035 (0 ms)
+[ RUN      ] CalcPart4.Add036
+[       OK ] CalcPart4.Add036 (0 ms)
+[ RUN      ] CalcPart4.Add037
+[       OK ] CalcPart4.Add037 (0 ms)
+[ RUN      ] CalcPart4.Add038
+[       OK ] CalcPart4.Add038 (0 ms)
+[ RUN      ] CalcPart4.Add039
+[       OK ] CalcPart4.Add039 (0 ms)
+[ RUN      ] CalcPart4.Add040
+[       OK ] CalcPart4.Add040 (0 ms)
+[ RUN      ] CalcPart4.Add041
+[       OK ] CalcPart4.Add041 (0 ms)
+[ RUN      ] CalcPart4.Add042
+[       OK ] CalcPart4.Add042 (0 ms)
+[ RUN      ] CalcPart4.Add043
+[       OK ] CalcPart4.Add043 (0 ms)
+[ RUN      ] CalcPart4.Add044
+[       OK ] CalcPart4.Add044 (0 ms)
+[ RUN      ] CalcPart4.Add045
+[       OK ] CalcPart4.Add045 (0 ms)
+[ RUN      ] CalcPart4.Add046
+[       OK ] CalcPart4.Add046 (0 ms)
+[ RUN      ] CalcPart4.Add047
+[       OK ] CalcPart4.Add047 (0 ms)
+[ RUN      ] CalcPart4.Add048
+[       OK ] CalcPart4.Add048 (0 ms)
+[ RUN      ] CalcPart4.Add049
+[       OK ] CalcPart4.Add049 (0 ms)
+[ RUN      ] CalcPart4.Add050
+[       OK ] CalcPart4.Add050 (0 ms)
+[ RUN      ] CalcPart4.Add051
+[       OK ] CalcPart4.Add051 (0 ms)
+[ RUN      ] CalcPart4.Add052
+[       OK ] CalcPart4.Add052 (0 ms)
+[ RUN      ] CalcPart4.Add053
+[       OK ] CalcPart4.Add053 (0 ms)
+[ RUN      ] CalcPart4.Add054
+[       OK ] CalcPart4.Add054 (0 ms)
+[ RUN      ] CalcPart4.Add055
+[       OK ] CalcPart4.Add055 (0 ms)
+[ RUN      ] CalcPart4.Add056
+[       OK ] CalcPart4.Add056 (0 ms)
+[ RUN      ] CalcPart4.Add057
+[       OK ] CalcPart4.Add057 (0 ms)
+[ RUN      ] CalcPart4.Add058
+[       OK ] CalcPart4.Add058 (0 ms)
+[ RUN      ] CalcPart4.Add059
+[       OK ] CalcPart4.Add059 (0 ms)
+[ RUN      ] CalcPart4.Add060
+[       OK ] CalcPart4.Add060 (0 ms)
+[ RUN      ] CalcPart4.Add061
+[       OK ] CalcPart4.Add061 (0 ms)
+[ RUN      ] CalcPart4.Add062
+[       OK ] CalcPart4.Add062 (0 ms)
+[ RUN      ] CalcPart4.Add063
+[       OK ] CalcPart4.Add063 (0 ms)
+[ RUN      ] CalcPart4.Add064
+[       OK ] CalcPart4.Add064 (0 ms)
+[ RUN      ] CalcPart4.Add065
+[       OK ] CalcPart4.Add065 (0 ms)
+[ RUN      ] CalcPart4.Add066
+[       OK ] CalcPart4.Add066 (0 ms)
+[ RUN      ] CalcPart4.Add067
+[       OK ] CalcPart4.Add067 (0 ms)
+[ RUN      ] CalcPart4.Add068
+[       OK ] CalcPart4.Add068 (0 ms)
+[ RUN      ] CalcPart4.Add069
+[       OK ] CalcPart4.Add069 (0 ms)
+[ RUN      ] CalcPart4.Add070
+[       OK ] CalcPart4.Add070 (0 ms)
+[ RUN      ] CalcPart4.Add071
+[       OK ] CalcPart4.Add071 (0 ms)
+[ RUN      ] CalcPart4.Add072
+[       OK ] CalcPart4.Add072 (0 ms)
+[ RUN      ] CalcPart4.Add073
+[       OK ] CalcPart4.Add073 (0 ms)
+[ RUN      ] CalcPart4.Add074
+[       OK ] CalcPart4.Add074 (0 ms)
+[ RUN      ] CalcPart4.Add075
+[       OK ] CalcPart4.Add075 (0 ms)
+[ RUN      ] CalcPart4.Add076
+[       OK ] CalcPart4.Add076 (0 ms)
+[ RUN      ] CalcPart4.Add077
+[       OK ] CalcPart4.Add077 (0 ms)
+[ RUN      ] CalcPart4.Add078
+[       OK ] CalcPart4.Add078 (0 ms)
+[ RUN      ] CalcPart4.Add079
+[       OK ] CalcPart4.Add079 (0 ms)
+[ RUN      ] CalcPart4.Add080
+[       OK ] CalcPart4.Add080 (0 ms)
+[ RUN      ] CalcPart4.Add081
+[       OK ] CalcPart4.Add081 (0 ms)
+[ RUN      ] CalcPart4.Add082
+[       OK ] CalcPart4.Add082 (0 ms)
+[ RUN      ] CalcPart4.Add083
+[       OK ] CalcPart4.Add083 (0 ms)
+[ RUN      ] CalcPart4.Add084
+[       OK ] CalcPart4.Add084 (0 ms)
+[ RUN      ] CalcPart4.Add085
+[       OK ] CalcPart4.Add085 (0 ms)
+[ RUN      ] CalcPart4.Add086
+[       OK ] CalcPart4.Add086 (0 ms)
+[ RUN      ] CalcPart4.Add087
+[       OK ] CalcPart4.Add087 (0 ms)
+[ RUN      ] CalcPart4.Add088
+[       OK ] CalcPart4.Add088 (0 ms)
+[ RUN      ] CalcPart4.Add089
+[       OK ] CalcPart4.Add089 (0 ms)
+[ RUN      ] CalcPart4.Add090
+[       OK ] CalcPart4.Add090 (0 ms)
+[ RUN      ] CalcPart4.Add091
+[       OK ] CalcPart4.Add091 (0 ms)
+[ RUN      ] CalcPart4.Add092
+[       OK ] CalcPart4.Add092 (0 ms)
+[ RUN      ] CalcPart4.Add093
+[       OK ] CalcPart4.Add093 (0 ms)
+[ RUN      ] CalcPart4.Add094
+[       OK ] CalcPart4.Add094 (0 ms)
+[ RUN      ] CalcPart4.Add095
+[       OK ] CalcPart4.Add095 (0 ms)
+[ RUN      ] CalcPart4.Add096
+[       OK ] CalcPart4.Add096 (0 ms)
+[ RUN      ] CalcPart4.Add097
+[       OK ] CalcPart4.Add097 (0 ms)
+[ RUN      ] CalcPart4.Add098
+[       OK ] CalcPart4.Add098 (0 ms)
+[ RUN      ] CalcPart4.Add099
+[       OK ] CalcPart4.Add099 (0 ms)
+[ RUN      ] CalcPart4.Add100
+[       OK ] CalcPart4.Add100 (0 ms)
+[ RUN      ] CalcPart4.Add101
+[       OK ] CalcPart4.Add101 (0 ms)
+[ RUN      ] CalcPart4.Add102
+[       OK ] CalcPart4.Add102 (0 ms)
+[ RUN      ] CalcPart4.Add103
+[       OK ] CalcPart4.Add103 (0 ms)
+[ RUN      ] CalcPart4.Add104
+[       OK ] CalcPart4.Add104 (0 ms)
+[ RUN      ] CalcPart4.Add105
+[       OK ] CalcPart4.Add105 (0 ms)
+[ RUN      ] CalcPart4.Add106
+[       OK ] CalcPart4.Add106 (0 ms)
+[ RUN      ] CalcPart4.Add107
+[       OK ] CalcPart4.Add107 (0 ms)
+[ RUN      ] CalcPart4.Add108
+[       OK ] CalcPart4.Add108 (0 ms)
+[ RUN      ] CalcPart4.Add109
+[       OK ] CalcPart4.Add109 (0 ms)
+[ RUN      ] CalcPart4.Add110
+[       OK ] CalcPart4.Add110 (0 ms)
+[ RUN      ] CalcPart4.Add111
+[       OK ] CalcPart4.Add111 (0 ms)
+[ RUN      ] CalcPart4.Add112
+[       OK ] CalcPart4.Add112 (0 ms)
+[ RUN      ] CalcPart4.Add113
+[       OK ] CalcPart4.Add113 (0 ms)
+[ RUN      ] CalcPart4.Add114
+[       OK ] CalcPart4.Add114 (0 ms)
+[ RUN      ] CalcPart4.Add115
+[       OK ] CalcPart4.Add115 (0 ms)
+[ RUN      ] CalcPart4.Add116
+[       OK ] CalcPart4.Add116 (0 ms)
+[ RUN      ] CalcPart4.Add117
+[       OK ] CalcPart4.Add117 (0 ms)
+[ RUN      ] CalcPart4.Add118
+[       OK ] CalcPart4.Add118 (0 ms)
+[ RUN      ] CalcPart4.Add119
+[       OK ] CalcPart4.Add119 (0 ms)
+[----------] 120 tests from CalcPart4 (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 600 tests from 5 test suites ran. (1 ms total)
+[  PASSED  ] 599 tests.
+[  FAILED  ] 1 test, listed below:
+[  FAILED  ] CalcPart2.Add060
+
+ 1 FAILED TEST

@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TestRun id="f370b34d-2603-4f4c-9170-77352ca3deeb" name="@3193d2ae5028 2026-10-19 17:54:53" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <Times creation="2026-10-19T17:54:53.0420506+00:00" queuing="2026-10-19T17:54:53.0420507+00:00" start="2026-10-19T17:54:52.7721542+00:00" finish="2026-10-19T17:54:53.0485626+00:00" />
+  <TestSettings name="default" id="66ce2caf-ca85-49bb-83f2-b12299f38b72">
+    <Deployment runDeploymentRoot="_3193d2ae5028_2026-10-19_17_54_53" />
+  </TestSettings>
+  <Results>
+    <UnitTestResult executionId="b3ac2489-aa61-4db0-9b9e-5a9d1d360b2f" testId="6d82eb1d-3971-143a-7f8c-96e3d15ebb9f" testName="Tests.ProbeTests.Later" computerName="3193d2ae5028" duration="00:00:00.0010000" startTime="2026-10-19T17:54:52.9897422+00:00" endTime="2026-10-19T17:54:52.9897501+00:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="b3ac2489-aa61-4db0-9b9e-5a9d1d360b2f">
+      <Output>
+        <ErrorInfo>
+          <Message>not yet</Message>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="264ed7b7-e0e8-49d9-9623-c7b55a975491" testId="d7b14c7c-3946-fa21-e79a-054a6a80bed4" testName="Tests.ProbeTests.Adds" computerName="3193d2ae5028" duration="00:00:00.0025241" startTime="2026-10-19T17:54:52.9955705+00:00" endTime="2026-10-19T17:54:52.9955706+00:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="264ed7b7-e0e8-49d9-9623-c7b55a975491" />
+  </Results>
+  <TestDefinitions>
+    <UnitTest name="Tests.ProbeTests.Adds" storage="/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/a0-spike/projects/dotnet/p5/bin/debug/net8.0/calc.tests.dll" id="d7b14c7c-3946-fa21-e79a-054a6a80bed4">
+      <Execution id="264ed7b7-e0e8-49d9-9623-c7b55a975491" />
+      <TestMethod codeBase="/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/a0-spike/projects/dotnet/P5/bin/Debug/net8.0/Calc.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Tests.ProbeTests" name="Adds" />
+    </UnitTest>
+    <UnitTest name="Tests.ProbeTests.Later" storage="/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/a0-spike/projects/dotnet/p5/bin/debug/net8.0/calc.tests.dll" id="6d82eb1d-3971-143a-7f8c-96e3d15ebb9f">
+      <Execution id="b3ac2489-aa61-4db0-9b9e-5a9d1d360b2f" />
+      <TestMethod codeBase="/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/a0-spike/projects/dotnet/P5/bin/Debug/net8.0/Calc.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Tests.ProbeTests" name="Later" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestEntries>
+    <TestEntry testId="6d82eb1d-3971-143a-7f8c-96e3d15ebb9f" executionId="b3ac2489-aa61-4db0-9b9e-5a9d1d360b2f" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="d7b14c7c-3946-fa21-e79a-054a6a80bed4" executionId="264ed7b7-e0e8-49d9-9623-c7b55a975491" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <ResultSummary outcome="Completed">
+    <Counters total="2" executed="1" passed="1" failed="0" error="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+    <Output>
+      <StdOut>[xUnit.net 00:00:00.00] xUnit.net VSTest Adapter v2.8.2+699d445a1a (64-bit .NET 8.0.32)
+[xUnit.net 00:00:00.02]   Discovering: Calc.Tests
+[xUnit.net 00:00:00.03]   Discovered:  Calc.Tests
+[xUnit.net 00:00:00.04]   Starting:    Calc.Tests
+[xUnit.net 00:00:00.05]       not yet
+[xUnit.net 00:00:00.06]   Finished:    Calc.Tests
+Test 'Tests.ProbeTests.Later' was skipped in the test run.
+</StdOut>
+    </Output>
+    <RunInfos>
+      <RunInfo computerName="3193d2ae5028" outcome="Warning" timestamp="2026-10-19T17:54:52.9894663+00:00">
+        <Text>[xUnit.net 00:00:00.05]     Tests.ProbeTests.Later [SKIP]</Text>
+      </RunInfo>
+    </RunInfos>
+  </ResultSummary>
+</TestRun>

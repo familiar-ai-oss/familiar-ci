@@ -1,0 +1,7 @@
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.00s
+────────────
+ Nextest run ID 7e38dd73-1700-426b-b0a3-5dbfab1d700a with nextest profile: default
+    Starting 1 test across 2 binaries (1 test skipped)
+        PASS [   0.002s] (1/1) probe::familiar_probe_p5 adds
+────────────
+     Summary [   0.002s] 1 test run: 1 passed, 1 skipped

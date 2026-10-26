@@ -1,0 +1,20 @@
+Start testing: Oct 14 19:28 EDT
+----------------------------------------------------------
+1/1 Testing: calc_test
+1/1 Test: calc_test
+Command: "/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/ctest/tests_failed_exception/build/calc_test"
+Directory: /tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/run_logs/ctest/tests_failed_exception/build
+"calc_test" start time: Oct 14 19:28 EDT
+Output:
+----------------------------------------------------------
+terminate called after throwing an instance of 'std::invalid_argument'
+  what():  not a number: x1
+<end of output>
+Test time =   0.11 sec
+----------------------------------------------------------
+Test Failed.
+"calc_test" end time: Oct 14 19:28 EDT
+"calc_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Oct 14 19:28 EDT

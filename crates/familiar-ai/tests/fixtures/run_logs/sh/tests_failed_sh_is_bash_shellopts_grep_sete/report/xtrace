@@ -1,0 +1,4 @@
++familiar-ai	posix/s_grep_sete.sh	2	set -e
++familiar-ai	posix/s_grep_sete.sh	3	printf 'alpha\nbeta\n'
++familiar-ai	posix/s_grep_sete.sh	4	echo checking
++familiar-ai	posix/s_grep_sete.sh	5	grep -q gamma /tmp/a0-sh-3245453.txt

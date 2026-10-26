@@ -1,0 +1,15 @@
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  test/p3.test.js > multiplies
+TypeError: mul is not a function
+ ❯ test/p3.test.js:5:10
+      3|
+      4| test('multiplies', () => {
+      5|   expect(mul(2, 3)).toBe(6);
+       |          ^
+      6| });
+      7|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+

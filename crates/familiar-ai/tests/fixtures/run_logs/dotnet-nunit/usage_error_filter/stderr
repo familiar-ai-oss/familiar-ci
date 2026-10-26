@@ -1,0 +1,11 @@
+An exception occurred while invoking executor 'executor://nunit3testexecutor/': Incorrect format for TestCaseFilter Error: Missing ')'. Specify the correct format and try again. Note that the incorrect format can lead to no test getting executed.
+Stack trace:
+   at Microsoft.VisualStudio.TestPlatform.CrossPlatEngine.Discovery.DiscoveryContext.GetTestCaseFilter(IEnumerable`1 supportedProperties, Func`2 propertyProvider) in /_/src/Microsoft.TestPlatform.CrossPlatEngine/Discovery/DiscoveryContext.cs:line 44
+   at NUnit.VisualStudio.TestAdapter.VsTestFilter.get_TfsTestCaseFilterExpression() in C:\repos\nunit\nunit3-vs-adapter\src\NUnitTestAdapter\VsTestFilter.cs:line 89
+   at NUnit.VisualStudio.TestAdapter.VsTestFilter.get_IsEmpty() in C:\repos\nunit\nunit3-vs-adapter\src\NUnitTestAdapter\VsTestFilter.cs:line 91
+   at NUnit.VisualStudio.TestAdapter.NUnit3TestExecutor.InitializeForExecution(IRunContext runContext, IFrameworkHandle frameworkHandle) in C:\repos\nunit\nunit3-vs-adapter\src\NUnitTestAdapter\NUnit3TestExecutor.cs:line 267
+   at NUnit.VisualStudio.TestAdapter.NUnit3TestExecutor.RunTests(IEnumerable`1 sources, IRunContext runContext, IFrameworkHandle frameworkHandle) in C:\repos\nunit\nunit3-vs-adapter\src\NUnitTestAdapter\NUnit3TestExecutor.cs:line 109
+   at Microsoft.VisualStudio.TestPlatform.Common.ExtensionDecorators.SerialTestRunDecorator.RunTests(IEnumerable`1 sources, IRunContext runContext, IFrameworkHandle frameworkHandle) in /_/src/Microsoft.TestPlatform.Common/ExtensionDecorators/SerialTestRunDecorator.cs:line 57
+   at Microsoft.VisualStudio.TestPlatform.CrossPlatEngine.Execution.RunTestsWithSources.InvokeExecutor(LazyExtension`2 executor, Tuple`2 executorUriExtensionTuple, RunContext runContext, IFrameworkHandle frameworkHandle) in /_/src/Microsoft.TestPlatform.CrossPlatEngine/Execution/RunTestsWithSources.cs:line 115
+   at Microsoft.VisualStudio.TestPlatform.CrossPlatEngine.Execution.BaseRunTests.RunTestInternalWithExecutors(IEnumerable`1 executorUriExtensionMap, Int64 totalTests) in /_/src/Microsoft.TestPlatform.CrossPlatEngine/Execution/BaseRunTests.cs:line 466
+

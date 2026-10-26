@@ -1,0 +1,6 @@
+PHPUnit 13.4.2 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 8.5.9
+Configuration: /r/phpunit/passed_compact_skipped/phpunit.xml
+
+OK (2 tests, 1 assertion, 1 skipped)

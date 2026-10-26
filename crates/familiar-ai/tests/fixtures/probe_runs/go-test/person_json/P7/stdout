@@ -1,0 +1,25 @@
+{"Time":"2026-10-19T17:47:16.04150747Z","Action":"start","Package":"example.com/probe"}
+{"Time":"2026-10-19T17:47:16.042374694Z","Action":"run","Package":"example.com/probe","Test":"TestParse"}
+{"Time":"2026-10-19T17:47:16.042397904Z","Action":"output","Package":"example.com/probe","Test":"TestParse","Output":"=== RUN   TestParse\n"}
+{"Time":"2026-10-19T17:47:16.042418075Z","Action":"output","Package":"example.com/probe","Test":"TestParse","Output":"--- FAIL: TestParse (0.00s)\n"}
+{"Time":"2026-10-19T17:47:16.044465835Z","Action":"output","Package":"example.com/probe","Test":"TestParse","Output":"panic: not a number: x1 [recovered]\n"}
+{"Time":"2026-10-19T17:47:16.044468225Z","Action":"output","Package":"example.com/probe","Test":"TestParse","Output":"\tpanic: not a number: x1\n"}
+{"Time":"2026-10-19T17:47:16.044469665Z","Action":"output","Package":"example.com/probe","Test":"TestParse","Output":"\n"}
+{"Time":"2026-10-19T17:47:16.044472455Z","Action":"output","Package":"example.com/probe","Test":"TestParse","Output":"goroutine 18 [running]:\n"}
+{"Time":"2026-10-19T17:47:16.044473525Z","Action":"output","Package":"example.com/probe","Test":"TestParse","Output":"testing.tRunner.func1.2({0x52d220, 0xc00011c250})\n"}
+{"Time":"2026-10-19T17:47:16.044474906Z","Action":"output","Package":"example.com/probe","Test":"TestParse","Output":"\t/usr/local/go/src/testing/testing.go:1632 +0x230\n"}
+{"Time":"2026-10-19T17:47:16.044475986Z","Action":"output","Package":"example.com/probe","Test":"TestParse","Output":"testing.tRunner.func1()\n"}
+{"Time":"2026-10-19T17:47:16.044478886Z","Action":"output","Package":"example.com/probe","Test":"TestParse","Output":"\t/usr/local/go/src/testing/testing.go:1635 +0x35e\n"}
+{"Time":"2026-10-19T17:47:16.044480026Z","Action":"output","Package":"example.com/probe","Test":"TestParse","Output":"panic({0x52d220?, 0xc00011c250?})\n"}
+{"Time":"2026-10-19T17:47:16.044481796Z","Action":"output","Package":"example.com/probe","Test":"TestParse","Output":"\t/usr/local/go/src/runtime/panic.go:791 +0x132\n"}
+{"Time":"2026-10-19T17:47:16.044482706Z","Action":"output","Package":"example.com/probe","Test":"TestParse","Output":"example.com/probe.Parse(...)\n"}
+{"Time":"2026-10-19T17:47:16.044483686Z","Action":"output","Package":"example.com/probe","Test":"TestParse","Output":"\t/a0-spike/projects/go/P7/calc.go:10\n"}
+{"Time":"2026-10-19T17:47:16.044487246Z","Action":"output","Package":"example.com/probe","Test":"TestParse","Output":"example.com/probe.TestParse(0xc0001504e0)\n"}
+{"Time":"2026-10-19T17:47:16.044488136Z","Action":"output","Package":"example.com/probe","Test":"TestParse","Output":"\t/a0-spike/projects/go/P7/calc_test.go:6 +0xad\n"}
+{"Time":"2026-10-19T17:47:16.044490306Z","Action":"output","Package":"example.com/probe","Test":"TestParse","Output":"testing.tRunner(0xc0001504e0, 0x5641e8)\n"}
+{"Time":"2026-10-19T17:47:16.044491576Z","Action":"output","Package":"example.com/probe","Test":"TestParse","Output":"\t/usr/local/go/src/testing/testing.go:1690 +0xf4\n"}
+{"Time":"2026-10-19T17:47:16.044492696Z","Action":"output","Package":"example.com/probe","Test":"TestParse","Output":"created by testing.(*T).Run in goroutine 1\n"}
+{"Time":"2026-10-19T17:47:16.044493736Z","Action":"output","Package":"example.com/probe","Test":"TestParse","Output":"\t/usr/local/go/src/testing/testing.go:1743 +0x390\n"}
+{"Time":"2026-10-19T17:47:16.044601696Z","Action":"fail","Package":"example.com/probe","Test":"TestParse","Elapsed":0}
+{"Time":"2026-10-19T17:47:16.044613906Z","Action":"output","Package":"example.com/probe","Output":"FAIL\texample.com/probe\t0.003s\n"}
+{"Time":"2026-10-19T17:47:16.044620096Z","Action":"fail","Package":"example.com/probe","Elapsed":0.003}

@@ -1,0 +1,4 @@
+err	3247973	1	./tests/s_cd.sh	3	cd /nonexistent/dir/a0
+ran	3247973	0	./tests/s_cd.sh	2	set -e
+fail	3247973	1	./tests/s_cd.sh	3	cd /nonexistent/dir/a0
+exit	3247973	1	./tests/s_cd.sh	3	cd /nonexistent/dir/a0

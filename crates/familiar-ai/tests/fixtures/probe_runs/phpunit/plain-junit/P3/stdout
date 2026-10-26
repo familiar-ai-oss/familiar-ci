@@ -1,0 +1,18 @@
+PHPUnit 13.4.2 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 8.5.9
+Configuration: /tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/a0-spike/projects/php/P3/phpunit.xml
+
+E                                                                   1 / 1 (100%)
+
+Time: 00:00.001, Memory: 20.00 MB
+
+There was 1 error:
+
+1) ProbeTest::testMul
+Error: Call to undefined method App\Calc::mul()
+
+/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/a0-spike/projects/php/P3/tests/ProbeTest.php:15
+
+ERRORS!
+Tests: 1, Assertions: 0, Errors: 1.

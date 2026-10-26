@@ -1,0 +1,21 @@
+FAIL test/p3.test.js
+  ✕ multiplies (1 ms)
+
+  ● multiplies
+
+    TypeError: mul is not a function
+
+      3 |
+      4 | test('multiplies', () => {
+    > 5 |   expect(mul(2, 3)).toBe(6);
+        |          ^
+      6 | });
+      7 |
+
+      at Object.mul (test/p3.test.js:5:10)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        0.187 s
+Ran all test suites.

@@ -1,0 +1,11 @@
+   Compiling probe v0.1.0 (/a0-spike/projects/rust/P4)
+error[E0432]: unresolved import `nosuch`
+ --> tests/familiar_probe_p4.rs:1:5
+  |
+1 | use nosuch::FOUR;
+  |     ^^^^^^ use of unresolved module or unlinked crate `nosuch`
+  |
+  = help: if you wanted to use a crate named `nosuch`, use `cargo add nosuch` to add it to your `Cargo.toml`
+
+For more information about this error, try `rustc --explain E0432`.
+error: could not compile `probe` (test "familiar_probe_p4") due to 1 previous error

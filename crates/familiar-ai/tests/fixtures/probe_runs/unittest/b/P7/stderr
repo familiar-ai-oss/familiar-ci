@@ -1,0 +1,16 @@
+E
+======================================================================
+ERROR: test_parse (tests.test_p7.T.test_parse)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/a0-spike/projects/unittest-b/P7/tests/test_p7.py", line 7, in test_parse
+    self.assertEqual(parse("x1"), 1)
+                     ~~~~~^^^^^^
+  File "/tmp/claude-1000/-home-user-projects-familiar-ai-oss/ce46f81f-ec40-4c7d-885d-547ef9d911b3/scratchpad/a0-spike/projects/unittest-b/P7/calc.py", line 6, in parse
+    return int(s)
+ValueError: invalid literal for int() with base 10: 'x1'
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+FAILED (errors=1)

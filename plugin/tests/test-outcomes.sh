@@ -155,7 +155,13 @@ scenario_cards() {
     expect "a failing assertion seals" "$SEALED"
     code 'greet() { echo hello;\n' src/app.sh
     expect "a command that worked and breaks is a card" "the test command worked before and fails now; this needs you"
-    expect "naming the syntax error" "syntax error"
+    # the shell's own line names it: bash's `src/app.sh: line 2: syntax error: ...`, dash's (Ubuntu's sh)
+    # `tests/test_c1.sh: 2: src/app.sh: Syntax error: ...`
+    if [ -n "$(sh -c 'echo "${BASH_VERSION-}"')" ]; then
+        expect "naming the syntax error" "syntax error"
+    else
+        expect "naming the syntax error" "Syntax error"
+    fi
     hook "stop while held on command_broke" Stop stop
     expect "the stop is refused" '"decision":"block"'
 

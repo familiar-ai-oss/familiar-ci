@@ -443,3 +443,36 @@ fn a_shell_test_reads_through_the_sh_table() {
     let shell = Streams { stderr: "/bin/sh: line 1: jestx: command not found\n", ..Default::default() };
     assert_eq!(classify_with(&[t], false, End::Exited(127), &shell).map(|x| x.label).as_deref(), Some("environment_error"));
 }
+
+#[test]
+fn dashs_own_lines_read_as_bashs_through_the_sh_table() {
+    // hosted CI (2026-10-26): on Ubuntu `sh` is dash, whose own line for a syntax error or a missing
+    // command is not bash's; each reads as its bash twin does: the same label, name and place, the
+    // shell's own line the evidence (the lines are Ubuntu's dash's and bash 5's, verbatim)
+    let t = table_named("sh").expect("sh's table");
+    let read = |code: i32, line: &str| {
+        let stderr = format!("{line}\n");
+        let got = classify_with(&[t], false, End::Exited(code), &Streams { stderr: &stderr, ..Default::default() }).expect("a reading");
+        (got.label, got.evidence, got.missing_name, got.location.map(|l| (l.file_path, l.line, l.kind)))
+    };
+    let twins = |code: i32, label: &str, bash: &str, dash: &str| {
+        let (b, d) = (read(code, bash), read(code, dash));
+        assert_eq!((b.0.as_str(), b.1.as_str()), (label, bash), "bash's line");
+        assert_eq!((d.0.as_str(), d.1.as_str()), (label, dash), "dash's line {dash:?} reads as bash's {bash:?}");
+        assert_eq!((&d.2, &d.3), (&b.2, &b.3), "dash's line {dash:?} names what bash's {bash:?} names, at its place");
+        d
+    };
+    // a syntax error is the command's (exit 2): in a script the test sources, in the test script, in its eval, in sh -c
+    twins(2, "usage_error", "src/app.sh: line 2: syntax error: unexpected end of file from `{' command on line 1", "tests/test_c1.sh: 2: src/app.sh: Syntax error: end of file unexpected (expecting \"}\")");
+    twins(2, "usage_error", "tests/s.sh: line 3: syntax error near unexpected token `fi'", "tests/s.sh: 3: Syntax error: \"fi\" unexpected");
+    twins(2, "usage_error", "tests/t4.sh: eval: line 1: syntax error near unexpected token `then'", "tests/t4.sh: 1: eval: Syntax error: \"then\" unexpected");
+    twins(2, "usage_error", "sh: -c: line 1: syntax error near unexpected token `then'", "sh: 1: Syntax error: \"then\" unexpected");
+    // a missing command in the test script is its missing name, at its line
+    let missing = twins(127, "missing_target_symbol", "tests/t3.sh: line 3: farewell: command not found", "tests/t3.sh: 3: farewell: not found");
+    assert_eq!((missing.2.as_deref(), missing.3), (Some("farewell"), Some(("tests/t3.sh".to_string(), 3, Some(familiar_ai_facts::LocationKind::Compile)))));
+    // at the top of a script the test sources, dash names that script after the line's number
+    let sourced = twins(127, "missing_target_symbol", "src/top.sh: line 1: nosuch_top: command not found", "tests/t2.sh: 1: src/top.sh: nosuch_top: not found");
+    assert_eq!((sourced.2.as_deref(), sourced.3), (Some("nosuch_top"), Some(("src/top.sh".to_string(), 1, Some(familiar_ai_facts::LocationKind::Compile)))));
+    // the shell's own -c: a bare command it could not start is the environment's
+    twins(127, "environment_error", "sh: line 1: foo: command not found", "sh: 1: foo: not found");
+}

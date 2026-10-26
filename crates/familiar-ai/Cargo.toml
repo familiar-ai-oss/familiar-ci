@@ -28,11 +28,11 @@ serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
 # the setup marker's name (marker.rs): the sha256 of the project root's path
 sha2 = "0.11.0"
-familiar-ai-facts = { version = "0.1.0-prod", path = "../familiar-ai-facts" }
-familiar-ai-git = { version = "0.1.0-prod", path = "../familiar-ai-git" }
-familiar-ai-plan = { version = "0.1.0-prod", path = "../familiar-ai-plan" }
-familiar-ai-rules = { version = "0.1.0-prod", path = "../familiar-ai-rules" }
-familiar-ai-run = { version = "0.1.0-prod", path = "../familiar-ai-run" }
+familiar-ai-facts = { version = "0.1.1-prod", path = "../familiar-ai-facts" }
+familiar-ai-git = { version = "0.1.1-prod", path = "../familiar-ai-git" }
+familiar-ai-plan = { version = "0.1.1-prod", path = "../familiar-ai-plan" }
+familiar-ai-rules = { version = "0.1.1-prod", path = "../familiar-ai-rules" }
+familiar-ai-run = { version = "0.1.1-prod", path = "../familiar-ai-run" }
 # process groups (door/procgroup.rs), the local time (door/person.rs) and
 # waiting for stdin to have something (input/mod.rs)
 libc = "0.2"

@@ -311,8 +311,12 @@ const SH: &[Row] = &[
     Row { outcome: "missing_target_symbol", stream: "stderr", exit: "nonzero", regex: r#"(?m)^[^\s:/][^\s:]*(?:/[^\s:]+|\.sh): line \d+: [^:\n]+: command not found$"# },
     // a syntax error is the command's
     Row { outcome: "usage_error", stream: "stderr", exit: "2", regex: r#"(?m)^[^\n]*: line \d+: syntax error"# },
-    // dash's and busybox's own line for it: `<file>: N: <word>: not found`, `<file>: line N: <word>: not found` (lane H5, the A0 spike)
-    Row { outcome: "missing_target_symbol", stream: "stderr", exit: "nonzero", regex: r#"(?m)^[^\s:/][^\s:]*(?:/[^\s:]+|\.sh): (?:line )?\d+: [^:\n]+: not found$"# },
+    // dash's own line for it (Ubuntu's sh, hosted CI 2026-10-26): `<file>: N: Syntax error: ...`, with the eval
+    // or the sourced script it is in after the number: `<file>: N: src/app.sh: Syntax error: ...`
+    Row { outcome: "usage_error", stream: "stderr", exit: "2", regex: r#"(?m)^[^\n]*: \d+: (?:[^:\n]+: )?Syntax error: "# },
+    // dash's and busybox's own line for it: `<file>: N: <word>: not found`, `<file>: line N: <word>: not found` (lane H5, the A0 spike);
+    // dash names a script the test sources after the number, N its line there: `<file>: N: src/app.sh: <word>: not found` (hosted CI, 2026-10-26)
+    Row { outcome: "missing_target_symbol", stream: "stderr", exit: "nonzero", regex: r#"(?m)^[^\s:/][^\s:]*(?:/[^\s:]+|\.sh): (?:line )?\d+: (?:[^\s:/][^\s:]*(?:/[^\s:]+|\.sh): )?[^:\n]+: not found$"# },
     // bats' TAP lines, when a script runs bats (lane H5, H-2): a test that failed on anything but a check
     // (`failed with status N`: an error, a missing command) is not an assertion: can't tell, whatever else failed
     Row { outcome: "unclassified", stream: "stdout", exit: "nonzero", regex: r#"(?m)^#   `[^\n]*' failed with status \d+$"# },
@@ -331,6 +335,8 @@ const SH_LOC: &[Loc] = &[
     Loc { kind: "assertion", stream: "stdout", regex: r#"(?m)^# \(in test file (?P<file>[^\n,]+), line (?P<line>\d+)\)\n#   `(?:@test "[^"\n]*" \{ )?(?:\[\[? |test |grep -\w*q|diff |cmp |assert_|refute_)"#, first: true },
     Loc { kind: "compile", stream: "stderr", regex: r#"(?m)^(?P<file>[^\s:/][^\s:]*(?:/[^\s:]+|\.sh)): line (?P<line>\d+): (?P<name>[^:\n]+): command not found$"#, first: true },
     Loc { kind: "compile", stream: "stderr", regex: r#"(?m)^(?P<file>[^\s:/][^\s:]*(?:/[^\s:]+|\.sh)): (?:line )?(?P<line>\d+): (?P<name>[^:\n]+): not found$"#, first: true },
+    // dash's line for a script the test sources: the place is that script, at the line's number
+    Loc { kind: "compile", stream: "stderr", regex: r#"(?m)^[^\s:/][^\s:]*(?:/[^\s:]+|\.sh): (?P<line>\d+): (?P<file>[^\s:/][^\s:]*(?:/[^\s:]+|\.sh)): (?P<name>[^:\n]+): not found$"#, first: true },
 ];
 
 // cargo-nextest

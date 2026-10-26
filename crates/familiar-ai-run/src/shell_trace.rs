@@ -26,9 +26,14 @@ pub const TRACE_FD: i32 = 213;
 /// The xtrace prefix for bash: the marker, the file, the line.
 pub const PS4: &str = "+familiar-ai\t${BASH_SOURCE}\t${LINENO}\t";
 
-/// The xtrace prefix for an `sh` that is not bash: the marker and the line (empty where the
-/// shell has no `LINENO`).
-pub const PS4_SH: &str = "+familiar-ai\t${LINENO}\t";
+/// The xtrace prefix for an `sh` that is not bash: its own marker, the shell's `$0` (the script
+/// a line is in, or `sh` for the shell Familiar starts: dash names no file) and the line (empty
+/// where the shell has no `LINENO`, as on Debian).
+pub const PS4_SH: &str = "+familiar-ai-sh\t${0}\t${LINENO}\t";
+
+/// The marker of an `sh`'s own trace lines, read by [`split_dash`] (before `$0`, recordings
+/// have [`MARK`] and the line only).
+pub const MARK_SH: &str = "familiar-ai-sh\t";
 
 /// The marker every trace line starts with (after bash's repeated `+` for a nested level).
 pub const MARK: &str = "familiar-ai\t";
@@ -123,7 +128,9 @@ pub fn sh_scripts(command: &str, dir: &Path) -> Vec<ShScript> {
         k += words[k..].iter().take_while(|(_, w)| w.contains('=') && !w.starts_with('=') && !w.starts_with('-')).count();
         let Some((at, word)) = words.get(k) else { continue };
         if SHELLS.contains(&basename(word)) {
-            let Some((_, script)) = words.get(k + 1).filter(|(_, w)| !w.starts_with('-') && !w.contains(['$', '`', '\'', '"'])) else { continue };
+            // a script named through a variable (`sh "$f"`) is traced too: its lines name it
+            // through `$0` ([`PS4_SH`])
+            let Some((_, script)) = words.get(k + 1).filter(|(_, w)| !w.starts_with('-')) else { continue };
             out.push(ShScript { path: (*script).to_string(), at: at + word.len(), bare: false });
         } else if word.contains('/') && !word.contains(['$', '`', '\'', '"']) {
             let first = std::fs::read_to_string(dir.join(word)).ok().and_then(|t| t.lines().next().map(str::to_string)).unwrap_or_default();
@@ -156,18 +163,57 @@ pub struct DashTrace {
 }
 
 /// Split `stderr` of a run whose `scripts` ran under `-x` with [`PS4_SH`]: each trace line is
-/// given the script's file (only when one script ran; else none) and its line: the shell's own
-/// `LINENO`, else the one line of the script whose text the expanded command matches (a check
-/// repeated on two lines matches neither: the line stays empty, can't tell).
+/// given its file, the shell's `$0` (none for the shell Familiar starts, the command's own
+/// level), and its line: the shell's own `LINENO`, else the one line of that script whose text
+/// the expanded command matches (a check repeated on two lines matches neither: the line stays
+/// empty, can't tell). A line with the line only (recorded before `$0`) is given the script's
+/// file only when one script ran.
 pub fn split_dash(stderr: &str, scripts: &[ShScript], dir: &Path) -> DashTrace {
     let one = match scripts {
         [s] => Some(s),
         _ => None,
     };
     let source = one.and_then(|s| std::fs::read_to_string(dir.join(&s.path)).ok());
+    let mut texts: std::collections::HashMap<String, Option<String>> = std::collections::HashMap::new();
+    // the project scripts each script sourced (`. file`): dash gives their lines its `$0`
+    let mut sourced: std::collections::HashMap<String, Vec<String>> = std::collections::HashMap::new();
     let mut out = DashTrace::default();
     for l in stderr.split_inclusive('\n') {
         let body = l.trim_start_matches('+');
+        if let Some(rest) = body.strip_prefix(MARK_SH).filter(|_| body.len() < l.len()) {
+            let mut f = rest.trim_end_matches('\n').splitn(3, '\t');
+            let (zero, line, cmd) = (f.next().unwrap_or(""), f.next().unwrap_or(""), f.next().unwrap_or(""));
+            let file = if SHELLS.contains(&basename(zero)) || basename(zero) == "bash" { "" } else { zero.strip_prefix("./").unwrap_or(zero) };
+            let (at, line) = if !line.trim().is_empty() || file.is_empty() {
+                (file.to_string(), line.trim().to_string())
+            } else {
+                let theirs = sourced.get(file).cloned().unwrap_or_default();
+                for f in std::iter::once(file).chain(theirs.iter().map(String::as_str)) {
+                    texts.entry(f.to_string()).or_insert_with(|| std::fs::read_to_string(dir.join(f)).ok());
+                }
+                let hits = |f: &str| texts.get(f).cloned().flatten().map(|t| match_hits(&t, cmd)).unwrap_or_default();
+                match hits(file).as_slice() {
+                    [n] => (file.to_string(), n.to_string()),
+                    // none of its own: the one script it sourced with one line for it
+                    [] => {
+                        let found: Vec<(String, usize)> = theirs.iter().filter_map(|f| if let [n] = hits(f).as_slice() { Some((f.clone(), *n)) } else { None }).collect();
+                        match found.as_slice() {
+                            [(f, n)] => (f.clone(), n.to_string()),
+                            _ => (file.to_string(), String::new()),
+                        }
+                    }
+                    _ => (file.to_string(), String::new()),
+                }
+            };
+            if let [".", p, ..] = cmd.split_whitespace().collect::<Vec<_>>().as_slice() {
+                let p = p.strip_prefix("./").unwrap_or(p);
+                if !file.is_empty() && dir.join(p).is_file() {
+                    sourced.entry(file.to_string()).or_default().push(p.to_string());
+                }
+            }
+            out.trace.push_str(&format!("+{MARK}{at}\t{line}\t{cmd}\n"));
+            continue;
+        }
         let Some(rest) = body.strip_prefix(MARK).filter(|_| body.len() < l.len()) else {
             out.stderr.push_str(l);
             continue;
@@ -182,13 +228,21 @@ pub fn split_dash(stderr: &str, scripts: &[ShScript], dir: &Path) -> DashTrace {
 }
 
 /// The one line of `source` an expanded command `cmd` can come from: each line is cut at
-/// `||`, `&&`, `;`, `{`, `}`, `then`, `if` and `!`, quotes dropped, and each `$name`, `${…}`
+/// `||`, `&&`, `|`, `;`, `{`, `}`, `then`, `if` and `!`, quotes dropped, and each `$name`, `${…}`
 /// or `$(…)` matches any text. `None` when no line or several lines match.
 pub fn match_line(source: &str, cmd: &str) -> Option<usize> {
+    match match_hits(source, cmd).as_slice() {
+        [n] => Some(*n),
+        _ => None,
+    }
+}
+
+/// The lines of `source` an expanded command `cmd` can come from, as [`match_line`] reads them.
+fn match_hits(source: &str, cmd: &str) -> Vec<usize> {
     let norm = |s: &str| s.replace(['"', '\''], "").trim().to_string();
     let c = norm(cmd);
     if c.is_empty() {
-        return None;
+        return Vec::new();
     }
     let mut hits: Vec<usize> = Vec::new();
     for (i, l) in source.lines().enumerate() {
@@ -201,10 +255,7 @@ pub fn match_line(source: &str, cmd: &str) -> Option<usize> {
         }
     }
     hits.dedup();
-    match hits.as_slice() {
-        [n] => Some(*n),
-        _ => None,
-    }
+    hits
 }
 
 fn split_parts(line: &str) -> Vec<String> {
@@ -219,7 +270,8 @@ fn split_parts(line: &str) -> Vec<String> {
             i += 2;
             continue;
         }
-        if matches!(chars[i], ';' | '{' | '}' | '!') {
+        // a pipeline's commands are traced one by one
+        if matches!(chars[i], ';' | '{' | '}' | '!' | '|') {
             parts.push(std::mem::take(&mut cur));
             i += 1;
             continue;
@@ -300,6 +352,24 @@ fn glob_match(pattern: &str, text: &str) -> bool {
     true
 }
 
+/// The first `sh` on PATH, as PATH names it (busybox is `sh` by the name it is run as).
+fn first_sh() -> Option<PathBuf> {
+    let path = std::env::var_os("PATH").unwrap_or_default();
+    std::env::split_paths(&path).map(|d| d.join("sh")).find(|p| p.is_file())
+}
+
+/// The `sh` Familiar's run of an `sh` that is not bash puts first on PATH: it starts `real` with
+/// `-x` when its stdout and stderr are the run's own (`FAMILIAR_AI_SH_OUT`, `FAMILIAR_AI_SH_ERR`:
+/// those of the shell Familiar starts), so a script a test script runs is traced as bash's
+/// `SHELLOPTS` would trace it. A shell whose output the script captures, pipes or sends
+/// elsewhere runs as it is: its trace would land in what the script reads, and dash writes a
+/// trace line in pieces, so two shells tracing at once in a pipeline can tear each other's
+/// lines. Where `/proc` cannot say, every shell runs as it is.
+pub fn sh_wrapper(real: &Path) -> String {
+    let r = real.display();
+    format!("#!{r}\nif [ -n \"${{FAMILIAR_AI_SH_ERR:-}}\" ] && [ /proc/self/fd/2 -ef \"$FAMILIAR_AI_SH_ERR\" ] && [ /proc/self/fd/1 -ef \"${{FAMILIAR_AI_SH_OUT:-}}\" ]; then exec '{r}' -x \"$@\"; fi\nexec '{r}' \"$@\"\n")
+}
+
 /// One run's trace: the side folder, and how the run is changed for it.
 #[derive(Debug)]
 pub struct Trace {
@@ -307,6 +377,8 @@ pub struct Trace {
     kit: Option<PathBuf>,
     bash: bool,
     scripts: Vec<ShScript>,
+    /// The folder holding [`sh_wrapper`], first on the run's PATH (an `sh` that is not bash).
+    wrap: Option<PathBuf>,
 }
 
 impl Trace {
@@ -319,7 +391,15 @@ impl Trace {
         std::fs::create_dir_all(&side).ok()?;
         let bash = sh_is_bash();
         let scripts = if bash { Vec::new() } else { sh_scripts(command, dir) };
-        Some(Trace { side, kit: kit_path(), bash, scripts })
+        let wrap = (!scripts.is_empty()).then(first_sh).flatten().and_then(|real| {
+            use std::os::unix::fs::PermissionsExt;
+            let bin = side.join("bin");
+            std::fs::create_dir_all(&bin).ok()?;
+            std::fs::write(bin.join("sh"), sh_wrapper(&real)).ok()?;
+            std::fs::set_permissions(bin.join("sh"), std::fs::Permissions::from_mode(0o755)).ok()?;
+            Some(bin)
+        });
+        Some(Trace { side, kit: kit_path(), bash, scripts, wrap })
     }
 
     /// The side file xtrace is written to (through [`TRACE_FD`]).
@@ -350,15 +430,23 @@ impl Trace {
         } else if !self.scripts.is_empty() {
             env.push(("PS4".to_string(), PS4_SH.to_string()));
         }
+        if let Some(bin) = &self.wrap {
+            let path = std::env::var_os("PATH").unwrap_or_default();
+            if let Ok(p) = std::env::join_paths(std::iter::once(bin.clone()).chain(std::env::split_paths(&path))) {
+                env.push(("PATH".to_string(), p.to_string_lossy().into_owned()));
+            }
+        }
         env
     }
 
-    /// The command Familiar's run starts: `-x` added for an `sh` that is not bash.
+    /// The command Familiar's run starts: for an `sh` that is not bash, `-x` added for each of
+    /// its scripts and its own level traced (`set -x`), so the trace says which script decided,
+    /// as bash's does; its stderr named for [`sh_wrapper`].
     pub fn command(&self, command: &str) -> String {
-        if self.bash {
+        if self.bash || self.scripts.is_empty() {
             command.to_string()
         } else {
-            with_x(command, &self.scripts)
+            format!("FAMILIAR_AI_SH_OUT=/proc/$$/fd/1 FAMILIAR_AI_SH_ERR=/proc/$$/fd/2; export FAMILIAR_AI_SH_OUT FAMILIAR_AI_SH_ERR\nset -x\n{}", with_x(command, &self.scripts))
         }
     }
 
@@ -398,6 +486,114 @@ mod tests {
         assert_eq!(match_line(twice, "grep -q a x"), None, "a check repeated on two lines: can't tell");
         assert_eq!(match_line("[ \"$n\" = 3 ] || exit 1\n", "[ 2 = 3 ]"), Some(1));
         assert_eq!(match_line("if ! grep -q x f; then exit 1; fi\n", "grep -q x f"), Some(1));
+    }
+
+    /// An `sh` traces each command of a pipeline on its own line, so a pipeline's commands are
+    /// matched one by one: dash on Ubuntu, where `LINENO` is empty (hosted CI, 2026-10-26).
+    #[test]
+    fn a_command_in_a_pipeline_finds_its_line() {
+        let src = ". src/app.sh; greet | grep -qx hello\n";
+        assert_eq!(match_line(src, "grep -qx hello"), Some(1));
+        assert_eq!(match_line(src, "greet"), Some(1));
+        assert_eq!(match_line("a || b | c\n", "c"), Some(1));
+        assert_eq!(match_line("a || b\n", "a || b"), None, "an || is still two commands");
+    }
+
+    /// A command that runs its scripts through a variable (`for f in tests/test_*.sh; do sh "$f"
+    /// || exit 1; done`, the sh stack's usual command) gets `-x` there too: on Ubuntu, where sh is
+    /// dash, a script with no `-x` leaves no trace and its run reads as can't tell (hosted CI,
+    /// 2026-10-26).
+    #[test]
+    fn a_script_named_by_an_expansion_gets_x_too() {
+        let d = std::env::temp_dir();
+        let cmd = "for f in tests/test_*.sh; do sh \"$f\" || exit 1; done";
+        assert_eq!(with_x(cmd, &sh_scripts(cmd, &d)), "for f in tests/test_*.sh; do sh -x \"$f\" || exit 1; done");
+        let cmd = "for f in $(git diff --name-only a HEAD -- tests); do sh $f || exit 1; done";
+        assert_eq!(with_x(cmd, &sh_scripts(cmd, &d)), "for f in $(git diff --name-only a HEAD -- tests); do sh -x $f || exit 1; done");
+    }
+
+    fn two_scripts(name: &str) -> PathBuf {
+        let d = std::env::temp_dir().join(format!("familiar-ai-dash-{name}-{}", std::process::id()));
+        let _ = std::fs::remove_dir_all(&d);
+        std::fs::create_dir_all(d.join("tests")).unwrap();
+        std::fs::create_dir_all(d.join("src")).unwrap();
+        std::fs::write(d.join("src/app.sh"), "#!/bin/sh\ngreet() { echo hi; }\ngreet\n").unwrap();
+        std::fs::write(d.join("tests/test_a.sh"), "grep -q hi src/app.sh\n").unwrap();
+        std::fs::write(d.join("tests/test_b.sh"), "echo checking\ngrep -q hello src/app.sh\n").unwrap();
+        d
+    }
+
+    /// What `split_dash` keeps of the for-loop over `two_scripts`: the command's own level (the
+    /// shell Familiar starts) has no file; each script's lines name it, matched from its text.
+    const TWO_KEPT: &str = "+familiar-ai\t\t\tsh -x tests/test_a.sh\n+familiar-ai\ttests/test_a.sh\t1\tgrep -q hi src/app.sh\n+familiar-ai\t\t\tsh -x tests/test_b.sh\n+familiar-ai\ttests/test_b.sh\t1\techo checking\n+familiar-ai\ttests/test_b.sh\t2\tgrep -q hello src/app.sh\n+familiar-ai\t\t\texit 1\n";
+
+    /// dash's trace names no file and, on Debian, no line: [`PS4_SH`] carries the shell's `$0`,
+    /// so each line names the script it is in when a command runs several (or one through a
+    /// variable), and the shell Familiar starts (`$0` is `sh`) is the command's own level.
+    #[test]
+    fn each_line_of_an_sh_trace_names_its_own_script() {
+        let d = two_scripts("zero");
+        let cmd = "for f in tests/test_*.sh; do sh \"$f\" || exit 1; done";
+        let stderr = "+familiar-ai-sh\tsh\t\tsh -x tests/test_a.sh\n+familiar-ai-sh\ttests/test_a.sh\t\tgrep -q hi src/app.sh\n+familiar-ai-sh\tsh\t\tsh -x tests/test_b.sh\n+familiar-ai-sh\ttests/test_b.sh\t\techo checking\nboom\n+familiar-ai-sh\ttests/test_b.sh\t\tgrep -q hello src/app.sh\n+familiar-ai-sh\tsh\t\texit 1\n";
+        let got = split_dash(stderr, &sh_scripts(cmd, &d), &d);
+        assert_eq!(got.stderr, "boom\n");
+        assert_eq!(got.trace, TWO_KEPT);
+        let _ = std::fs::remove_dir_all(&d);
+    }
+
+    /// A `dash` on this machine: on PATH, else where Debian puts it; none on Fedora's CI.
+    fn a_dash() -> Option<PathBuf> {
+        let path = std::env::var_os("PATH").unwrap_or_default();
+        std::env::split_paths(&path).map(|p| p.join("dash")).chain([PathBuf::from("/usr/bin/dash"), PathBuf::from("/bin/dash")]).find(|p| p.is_file())
+    }
+
+    /// The trace a real dash writes under [`PS4_SH`] for Familiar's run of the for-loop (its own
+    /// level traced, `-x` for each script) is what `split_dash` reads. Runs only where a dash is
+    /// installed (Ubuntu's /bin/sh); the test above reads its shape everywhere.
+    #[test]
+    fn a_real_dash_trace_is_read_line_by_line() {
+        let Some(dash) = a_dash() else {
+            eprintln!("no dash on this machine: the real dash run is skipped");
+            return;
+        };
+        let d = two_scripts("real");
+        let bin = d.join("bin");
+        std::fs::create_dir_all(&bin).unwrap();
+        std::os::unix::fs::symlink(&dash, bin.join("sh")).unwrap();
+        let cmd = "for f in tests/test_*.sh; do sh \"$f\" || exit 1; done";
+        let scripts = sh_scripts(cmd, &d);
+        let out = std::process::Command::new("sh")
+            .arg("-c")
+            .arg(format!("set -x\n{}", with_x(cmd, &scripts)))
+            .current_dir(&d)
+            .env("PATH", format!("{}:/usr/bin:/bin", bin.display()))
+            .env("PS4", PS4_SH)
+            .output()
+            .unwrap();
+        let got = split_dash(&String::from_utf8_lossy(&out.stderr), &scripts, &d);
+        assert_eq!((out.status.code(), got.stderr.as_str(), got.trace.as_str()), (Some(1), "", TWO_KEPT));
+        let _ = std::fs::remove_dir_all(&d);
+    }
+
+    /// dash gives a sourced script's lines the `$0` of the script that sourced it: a line that
+    /// script has none of is the sourced script's, when that one has one line for it (bash names
+    /// the sourced file, `BASH_SOURCE`). A pipeline's commands come in either order.
+    #[test]
+    fn a_line_of_a_sourced_script_is_given_that_script() {
+        let d = std::env::temp_dir().join(format!("familiar-ai-dash-sourced-{}", std::process::id()));
+        let _ = std::fs::remove_dir_all(&d);
+        std::fs::create_dir_all(d.join("tests")).unwrap();
+        std::fs::create_dir_all(d.join("src")).unwrap();
+        std::fs::write(d.join("src/app.sh"), "#!/bin/sh\ngreet() {\n  exit 3\n}\nbye() { echo bye; }\n").unwrap();
+        std::fs::write(d.join("tests/t.sh"), ". src/app.sh\ngreet\n").unwrap();
+        let stderr = "+familiar-ai-sh\tsh\t\tsh -x tests/t.sh\n+familiar-ai-sh\ttests/t.sh\t\t. src/app.sh\n+familiar-ai-sh\ttests/t.sh\t\tgreet\n+familiar-ai-sh\ttests/t.sh\t\texit 3\n";
+        let got = split_dash(stderr, &sh_scripts("sh tests/t.sh", &d), &d);
+        assert_eq!(got.trace, "+familiar-ai\t\t\tsh -x tests/t.sh\n+familiar-ai\ttests/t.sh\t1\t. src/app.sh\n+familiar-ai\ttests/t.sh\t2\tgreet\n+familiar-ai\tsrc/app.sh\t3\texit 3\n");
+        std::fs::write(d.join("tests/t.sh"), ". src/app.sh; bye | grep -qx hello\n").unwrap();
+        let stderr = "+familiar-ai-sh\ttests/t.sh\t\t. src/app.sh\n+familiar-ai-sh\ttests/t.sh\t\tbye\n+familiar-ai-sh\ttests/t.sh\t\tgrep -qx hello\n+familiar-ai-sh\ttests/t.sh\t\techo bye\n";
+        let got = split_dash(stderr, &sh_scripts("sh tests/t.sh", &d), &d);
+        assert_eq!(got.trace, "+familiar-ai\ttests/t.sh\t1\t. src/app.sh\n+familiar-ai\ttests/t.sh\t1\tbye\n+familiar-ai\ttests/t.sh\t1\tgrep -qx hello\n+familiar-ai\tsrc/app.sh\t5\techo bye\n");
+        let _ = std::fs::remove_dir_all(&d);
     }
 
     #[test]

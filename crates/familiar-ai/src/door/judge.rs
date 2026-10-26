@@ -487,7 +487,10 @@ mod tests {
         assert_eq!(ran.stderr, "judge=off\n", "the judge's own hooks never ask a judge");
         log_call(&dir, 8.0, "c1", "sonnet", &ran);
         let log = std::fs::read_to_string(dir.join(FAMILIAR_FOLDER).join(JUDGE_LOG)).unwrap_or_default();
-        assert!(log.starts_with(&format!("--- at 7 · criterion c1 · claude -p --model sonnet --output-format json --json-schema {SCHEMA} --setting-sources '' --strict-mcp-config --tools '' --max-budget-usd 0.50 · stopped after 0 s · 0.")), "{log}");
+        // how long the stop took is the machine's: under load it passes a second (hosted CI, 2026-10-26)
+        let stopped = format!("--- at 7 · criterion c1 · claude -p --model sonnet --output-format json --json-schema {SCHEMA} --setting-sources '' --strict-mcp-config --tools '' --max-budget-usd 0.50 · stopped after ");
+        let took = log.strip_prefix(stopped.as_str()).and_then(|r| r.lines().next()).unwrap_or_default();
+        assert!(took.split_once(" s · ").is_some_and(|(s, rest)| s.parse::<u64>().is_ok() && rest.ends_with(" s")), "{log}");
         assert!(log.contains("--- at 8 · criterion c1 · claude -p --model sonnet") && log.contains(" · exit 0 · "), "{log}");
         assert!(log.contains("stdout (first 2000 characters):\n-p --model sonnet") && log.contains("stderr (first 2000 characters):\njudge=off\n"), "{log}");
         let gone = ask("no-such-program-familiar-ai", "sonnet", "p", &dir, Duration::from_secs(1));

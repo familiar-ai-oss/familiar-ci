@@ -1,0 +1,5 @@
+# One Rust for this machine, CI and the release builds: GitHub's runners carry the newest stable, whose
+# clippy can fail a build this one passes (Rust 1.99 on 2026-10-26, against 1.94 here).
+[toolchain]
+channel = "1.94.0"
+components = ["clippy"]

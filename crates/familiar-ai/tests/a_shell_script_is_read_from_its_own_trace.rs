@@ -13,6 +13,7 @@ use std::time::Duration;
 
 use familiar_ai::door::kept::{classify, clean, Streams};
 use familiar_ai_facts::LocationKind;
+use familiar_ai_run::shell_trace::{sh_scripts, split_dash};
 use familiar_ai_run::{details_for, run_test_command_traced, End};
 
 const APP: &str = "#!/bin/sh\ngreet() { echo hi; }\ngreet\n";
@@ -36,6 +37,10 @@ fn read(dir: &Path, cmd: &str) -> (String, At, String) {
     let (out, trace) = run_test_command_traced(cmd, dir, Duration::from_secs(30), None, &[], details_for(cmd));
     let (stdout, stderr, report) = (clean(&out.stdout), clean(&out.stderr), clean(&trace));
     let t = classify(out.end, &Streams { stdout: &stdout, stderr: &stderr, report: &report }, details_for(cmd)).expect("a reading");
+    // a can't tell prints the raw trace, shown when the test fails (hosted CI's dash, 2026-10-26)
+    if t.label == "unclassified" {
+        eprintln!("can't tell: {cmd}\n--- the run's trace, raw ---\n{trace}--- stderr ---\n{}", out.stderr);
+    }
     let _ = std::fs::remove_dir_all(dir);
     (t.label, t.location.map(|l| (l.file_path, l.line, l.kind)), out.stderr)
 }
@@ -147,3 +152,134 @@ fn bats_lines_are_read_when_a_script_runs_bats() {
     assert_eq!((t.label.as_str(), t.location.map(|l| (l.file_path, l.line, l.kind))), ("tests_failed", Some(("test/bad.bats".to_string(), 2, Some(LocationKind::Assertion)))));
     assert_eq!(t.evidence, "not ok 2 fails");
 }
+
+/// Ubuntu's dash writes a trace line in pieces (PS4, each word, the newline), so the commands of
+/// a pipeline, traced at once, tear each other's lines: about 1 run in 100 here, often on GitHub's
+/// small runners (hosted CI, 2026-10-26: run 40406964060's five stand-ins whose test is
+/// `sh src/app.sh | grep -qx hello`, and this file's pipe and missing-name cases, read as can't
+/// tell; the sourced case read as an exception at src/app.sh:2). A torn trace reads as the
+/// untorn one. Each stderr is Ubuntu's dash's in Familiar's run of the case (`PS4_SH`, `-x`, the
+/// `sh` wrapper), verbatim: every torn shape seen in 3,200 runs of each, the first untorn; then
+/// shapes seen in 16,000 runs each under 32 at once (dash's message glued to a word, a stretch
+/// before its sourcing was read, one from Familiar's own run), and an app that writes `oops` to
+/// stderr: a line of the person's that lands inside the stretch. The person's stderr is the
+/// untorn one's too.
+#[test]
+fn a_torn_dash_trace_reads_as_the_untorn_one() {
+    let cmd = "sh tests/test_c1.sh";
+    let oops = "#!/bin/sh\necho oops >&2\necho hi\n";
+    for (name, app, body, code, runs, label, at) in [
+        ("pipe", APP, "sh src/app.sh | grep -qx hello\n", 1, PIPE, "tests_failed", assertion("tests/test_c1.sh", 1)),
+        ("sourced", APP, ". src/app.sh >/dev/null; greet | grep -qx hello\n", 1, SOURCED, "tests_failed", assertion("tests/test_c1.sh", 1)),
+        ("missing", APP, ". src/app.sh >/dev/null; farewell | grep -qx goodbye\n", 1, MISSING, "missing_target_symbol", Some(("tests/test_c1.sh".to_string(), 1, None))),
+        ("pass", APP, "sh src/app.sh | grep -qx hi\n", 0, PASS, "passed", None),
+        ("oops", oops, "sh src/app.sh | grep -qx hello\n", 1, OOPS, "tests_failed", assertion("tests/test_c1.sh", 1)),
+    ] {
+        let d = project(&format!("torn-{name}"), &[("src/app.sh", app), ("tests/test_c1.sh", body)]);
+        let scripts = sh_scripts(cmd, &d);
+        let persons = split_dash(runs[0], &scripts, &d).stderr;
+        for stderr in runs {
+            let split = split_dash(stderr, &scripts, &d);
+            let (kept, report) = (clean(&split.stderr), clean(&split.trace));
+            let t = classify(End::Exited(code), &Streams { stdout: "", stderr: &kept, report: &report }, details_for(cmd)).expect("a reading");
+            let got = (t.label.as_str(), t.location.map(|l| (l.file_path, l.line, l.kind.filter(|_| label != "missing_target_symbol"))), split.stderr.as_str());
+            assert_eq!(got, (label, at.clone(), persons.as_str()), "{name}: {stderr:?}\n--- trace ---\n{report}--- stderr ---\n{kept}");
+        }
+        let _ = std::fs::remove_dir_all(&d);
+    }
+}
+
+const PIPE: &[&str] = &[
+    "+familiar-ai-sh\t/var/tmp/familiar-lanes/dashbin/sh\t\tsh -x tests/test_c1.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\tsh src/app.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\tgrep -qx hello\n",
+    "+familiar-ai-sh\t/var/tmp/familiar-lanes/dashbin/sh\t\tsh -x tests/test_c1.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\t+familiar-ai-sh\ttests/test_c1.sh\t\tgrep -qx hello\nsh src/app.sh\n",
+    "+familiar-ai-sh\t/var/tmp/familiar-lanes/dashbin/sh\t\tsh -x tests/test_c1.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\t+familiar-ai-sh\ttests/test_c1.sh\t\tgrep -qx hellosh\n src/app.sh\n",
+    "+familiar-ai-sh\t/var/tmp/familiar-lanes/dashbin/sh\t\tsh -x tests/test_c1.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\t+familiar-ai-sh\ttests/test_c1.sh\t\tgrepsh -qx hello src/app.sh\n\n",
+    "+familiar-ai-sh\t/var/tmp/familiar-lanes/dashbin/sh\t\tsh -x tests/test_c1.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\t+familiar-ai-sh\ttests/test_c1.sh\t\tgrepsh -qx src/app.sh hello\n\n",
+    "+familiar-ai-sh\t/var/tmp/familiar-lanes/dashbin/sh\t\tsh -x tests/test_c1.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\t+familiar-ai-sh\ttests/test_c1.sh\t\tgrepsh src/app.sh -qx\n hello\n",
+    "+familiar-ai-sh\t/var/tmp/familiar-lanes/dashbin/sh\t\tsh -x tests/test_c1.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\t+familiar-ai-sh\ttests/test_c1.sh\t\tsh src/app.sh\ngrep -qx hello\n",
+    "+familiar-ai-sh\t/var/tmp/familiar-lanes/dashbin/sh\t\tsh -x tests/test_c1.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\t+familiar-ai-sh\ttests/test_c1.sh\t\tsh src/app.shgrep\n -qx hello\n",
+    "+familiar-ai-sh\t/var/tmp/familiar-lanes/dashbin/sh\t\tsh -x tests/test_c1.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\t+familiar-ai-sh\ttests/test_c1.sh\t\tshgrep -qx hello\n src/app.sh\n",
+    "+familiar-ai-sh\t/var/tmp/familiar-lanes/dashbin/sh\t\tsh -x tests/test_c1.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\t+familiar-ai-sh\ttests/test_c1.sh\t\tshgrep src/app.sh\n -qx hello\n",
+    "+familiar-ai-sh\t/var/tmp/familiar-lanes/dashbin/sh\t\tsh -x tests/test_c1.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\t+familiar-ai-sh\ttests/test_c1.sh\t\tshgrep src/app.sh -qx\n hello\n",
+    "+familiar-ai-sh\t/var/tmp/familiar-lanes/dashbin/sh\t\tsh -x tests/test_c1.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\t+familiar-ai-sh\ttests/test_c1.sh\t\tshgrep src/app.sh -qx hello\n\n",
+    "+familiar-ai-sh\t/var/tmp/familiar-lanes/dashbin/sh\t\tsh -x tests/test_c1.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\tgrep -qx+familiar-ai-sh\ttests/test_c1.sh\t\t hello\nsh src/app.sh\n",
+    "+familiar-ai-sh\t/var/tmp/familiar-lanes/dashbin/sh\t\tsh -x tests/test_c1.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\tsh+familiar-ai-sh\ttests/test_c1.sh\t\t src/app.sh\ngrep -qx hello\n",
+];
+
+const SOURCED: &[&str] = &[
+    "+familiar-ai-sh\t/var/tmp/familiar-lanes/dashbin/sh\t\tsh -x tests/test_c1.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\t. src/app.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\tgreet\n+familiar-ai-sh\ttests/test_c1.sh\t\techo hi\n+familiar-ai-sh\ttests/test_c1.sh\t\tgreet\n+familiar-ai-sh\ttests/test_c1.sh\t\techo hi\n+familiar-ai-sh\ttests/test_c1.sh\t\tgrep -qx hello\n",
+    "+familiar-ai-sh\t/var/tmp/familiar-lanes/dashbin/sh\t\tsh -x tests/test_c1.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\t. src/app.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\tgreet\n+familiar-ai-sh\ttests/test_c1.sh\t\techo hi\n+familiar-ai-sh\ttests/test_c1.sh\t\t+familiar-ai-sh\ttests/test_c1.sh\t\tgrep -qx hello\ngreet\n+familiar-ai-sh\ttests/test_c1.sh\t\techo hi\n",
+    "+familiar-ai-sh\t/var/tmp/familiar-lanes/dashbin/sh\t\tsh -x tests/test_c1.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\t. src/app.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\tgreet\n+familiar-ai-sh\ttests/test_c1.sh\t\techo hi\n+familiar-ai-sh\ttests/test_c1.sh\t\tgreet\n+familiar-ai-sh\ttests/test_c1.sh\t\t+familiar-ai-sh\ttests/test_c1.sh\t\techo hi\ngrep -qx hello\n",
+    "+familiar-ai-sh\t/var/tmp/familiar-lanes/dashbin/sh\t\tsh -x tests/test_c1.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\t. src/app.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\tgreet\n+familiar-ai-sh\ttests/test_c1.sh\t\techo hi\n+familiar-ai-sh\ttests/test_c1.sh\t\t+familiar-ai-sh\ttests/test_c1.sh\t\tgreet\n+familiar-ai-sh\ttests/test_c1.sh\t\techo hi\ngrep -qx hello\n",
+    "+familiar-ai-sh\t/var/tmp/familiar-lanes/dashbin/sh\t\tsh -x tests/test_c1.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\t. src/app.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\tgreet\n+familiar-ai-sh\ttests/test_c1.sh\t\techo hi\n+familiar-ai-sh\ttests/test_c1.sh\t\t+familiar-ai-sh\ttests/test_c1.sh\t\tgreetgrep\n -qx hello\n+familiar-ai-sh\ttests/test_c1.sh\t\techo hi\n",
+    "+familiar-ai-sh\t/var/tmp/familiar-lanes/dashbin/sh\t\tsh -x tests/test_c1.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\t. src/app.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\tgreet\n+familiar-ai-sh\ttests/test_c1.sh\t\techo hi\n+familiar-ai-sh\ttests/test_c1.sh\t\tgreet+familiar-ai-sh\ttests/test_c1.sh\t\t\n+familiar-ai-sh\ttests/test_c1.sh\t\techo hi\ngrep -qx hello\n",
+    "+familiar-ai-sh\t/var/tmp/familiar-lanes/dashbin/sh\t\tsh -x tests/test_c1.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\t. src/app.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\tgreet\n+familiar-ai-sh\ttests/test_c1.sh\t\techo hi\n+familiar-ai-sh\ttests/test_c1.sh\t\t+familiar-ai-sh\ttests/test_c1.sh\t\tgreet\n+familiar-ai-sh\ttests/test_c1.sh\t\techo higrep\n -qx hello\n",
+    "+familiar-ai-sh\t/var/tmp/familiar-lanes/dashbin/sh\t\tsh -x tests/test_c1.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\t. src/app.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\tgreet\n+familiar-ai-sh\ttests/test_c1.sh\t\techo hi\n+familiar-ai-sh\ttests/test_c1.sh\t\t+familiar-ai-sh\ttests/test_c1.sh\t\tgreet\n+familiar-ai-sh\ttests/test_c1.sh\t\tgrepecho -qx hello hi\n\n",
+    "+familiar-ai-sh\t/var/tmp/familiar-lanes/dashbin/sh\t\tsh -x tests/test_c1.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\t. src/app.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\tgreet\n+familiar-ai-sh\ttests/test_c1.sh\t\techo hi\n+familiar-ai-sh\ttests/test_c1.sh\t\t+familiar-ai-sh\ttests/test_c1.sh\t\tgreet\n+familiar-ai-sh\ttests/test_c1.sh\t\tgrepecho -qx hi hello\n\n",
+    "+familiar-ai-sh\t/var/tmp/familiar-lanes/dashbin/sh\t\tsh -x tests/test_c1.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\t. src/app.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\tgreet\n+familiar-ai-sh\ttests/test_c1.sh\t\techo hi\n+familiar-ai-sh\ttests/test_c1.sh\t\t+familiar-ai-sh\ttests/test_c1.sh\t\tgreet\n+familiar-ai-sh\ttests/test_c1.sh\t\tgrepecho hi\n -qx hello\n",
+    "+familiar-ai-sh\t/var/tmp/familiar-lanes/dashbin/sh\t\tsh -x tests/test_c1.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\t. src/app.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\tgreet\n+familiar-ai-sh\ttests/test_c1.sh\t\techo hi\n+familiar-ai-sh\ttests/test_c1.sh\t\t+familiar-ai-sh\ttests/test_c1.sh\t\tgreet\ngrep -qx hello\n+familiar-ai-sh\ttests/test_c1.sh\t\techo hi\n",
+    "+familiar-ai-sh\t/var/tmp/familiar-lanes/dashbin/sh\t\tsh -x tests/test_c1.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\t. src/app.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\tgreet\n+familiar-ai-sh\ttests/test_c1.sh\t\techo hi\n+familiar-ai-sh\ttests/test_c1.sh\t\t+familiar-ai-sh\ttests/test_c1.sh\t\tgreet\ngrep+familiar-ai-sh\ttests/test_c1.sh\t\techo -qx hi hello\n\n",
+    "+familiar-ai-sh\t/var/tmp/familiar-lanes/dashbin/sh\t\tsh -x tests/test_c1.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\t. src/app.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\tgreet\n+familiar-ai-sh\ttests/test_c1.sh\t\techo hi\n+familiar-ai-sh\ttests/test_c1.sh\t\t+familiar-ai-sh\ttests/test_c1.sh\t\tgrepgreet\n -qx hello+familiar-ai-sh\ttests/test_c1.sh\t\t\necho hi\n",
+    "+familiar-ai-sh\t/var/tmp/familiar-lanes/dashbin/sh\t\tsh -x tests/test_c1.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\t. src/app.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\tgreet\n+familiar-ai-sh\ttests/test_c1.sh\t\techo hi\n+familiar-ai-sh\ttests/test_c1.sh\t\t+familiar-ai-sh\ttests/test_c1.sh\t\tgrepgreet\n -qx+familiar-ai-sh\ttests/test_c1.sh\t\t helloecho\n hi\n",
+    "+familiar-ai-sh\t/var/tmp/familiar-lanes/dashbin/sh\t\tsh -x tests/test_c1.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\t. src/app.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\tgreet\n+familiar-ai-sh\ttests/test_c1.sh\t\techo hi\n+familiar-ai-sh\ttests/test_c1.sh\t\tgreet\n+familiar-ai-sh\ttests/test_c1.sh\t\techo+familiar-ai-sh\ttests/test_c1.sh\t\t hi\ngrep -qx hello\n",
+];
+
+const MISSING: &[&str] = &[
+    "+familiar-ai-sh\t/var/tmp/familiar-lanes/dashbin/sh\t\tsh -x tests/test_c1.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\t. src/app.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\tgreet\n+familiar-ai-sh\ttests/test_c1.sh\t\techo hi\n+familiar-ai-sh\ttests/test_c1.sh\t\tfarewell\ntests/test_c1.sh: 1: farewell: not found\n+familiar-ai-sh\ttests/test_c1.sh\t\tgrep -qx goodbye\n",
+    "+familiar-ai-sh\t/var/tmp/familiar-lanes/dashbin/sh\t\tsh -x tests/test_c1.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\t. src/app.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\tgreet\n+familiar-ai-sh\ttests/test_c1.sh\t\techo hi\n+familiar-ai-sh\ttests/test_c1.sh\t\tfarewell\n+familiar-ai-sh\ttests/test_c1.sh\t\ttests/test_c1.sh: 1: farewell: not found\ngrep -qx goodbye\n",
+    "+familiar-ai-sh\t/var/tmp/familiar-lanes/dashbin/sh\t\tsh -x tests/test_c1.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\t. src/app.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\tgreet\n+familiar-ai-sh\ttests/test_c1.sh\t\techo hi\n+familiar-ai-sh\ttests/test_c1.sh\t\t+familiar-ai-sh\ttests/test_c1.sh\t\tgrep -qx goodbye\nfarewell\ntests/test_c1.sh: 1: farewell: not found\n",
+    "+familiar-ai-sh\t/var/tmp/familiar-lanes/dashbin/sh\t\tsh -x tests/test_c1.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\t. src/app.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\tgreet\n+familiar-ai-sh\ttests/test_c1.sh\t\techo hi\n+familiar-ai-sh\ttests/test_c1.sh\t\tfarewell\n+familiar-ai-sh\ttests/test_c1.sh\t\tgrep -qx goodbye\ntests/test_c1.sh: 1: farewell: not found\n",
+    "+familiar-ai-sh\t/var/tmp/familiar-lanes/dashbin/sh\t\tsh -x tests/test_c1.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\t. src/app.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\tgreet\n+familiar-ai-sh\ttests/test_c1.sh\t\techo hi\n+familiar-ai-sh\ttests/test_c1.sh\t\tfarewell\ntests/test_c1.sh: 1: +familiar-ai-sh\ttests/test_c1.sh\t\tfarewell: not found\ngrep -qx goodbye\n",
+    "+familiar-ai-sh\t/var/tmp/familiar-lanes/dashbin/sh\t\tsh -x tests/test_c1.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\t. src/app.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\tgreet\n+familiar-ai-sh\ttests/test_c1.sh\t\techo hi\n+familiar-ai-sh\ttests/test_c1.sh\t\t+familiar-ai-sh\ttests/test_c1.sh\t\tfarewell\ngrep -qx goodbye\ntests/test_c1.sh: 1: farewell: not found\n",
+    "+familiar-ai-sh\t/var/tmp/familiar-lanes/dashbin/sh\t\tsh -x tests/test_c1.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\t. src/app.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\tgreet\n+familiar-ai-sh\ttests/test_c1.sh\t\techo hi\n+familiar-ai-sh\ttests/test_c1.sh\t\t+familiar-ai-sh\ttests/test_c1.sh\t\tgrepfarewell\n -qx goodbye\ntests/test_c1.sh: 1: farewell: not found\n",
+    "+familiar-ai-sh\t/var/tmp/familiar-lanes/dashbin/sh\t\tsh -x tests/test_c1.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\t. src/app.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\tgreet\n+familiar-ai-sh\ttests/test_c1.sh\t\techo hi\n+familiar-ai-sh\ttests/test_c1.sh\t\t+familiar-ai-sh\ttests/test_c1.sh\t\tfarewell\ntests/test_c1.sh: 1: farewell: not found\ngrep -qx goodbye\n",
+    "+familiar-ai-sh\t/var/tmp/familiar-lanes/dashbin/sh\t\tsh -x tests/test_c1.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\t. src/app.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\tgreet\n+familiar-ai-sh\ttests/test_c1.sh\t\techo hi\n+familiar-ai-sh\ttests/test_c1.sh\t\t+familiar-ai-sh\ttests/test_c1.sh\t\tfarewellgrep -qx\n goodbye\ntests/test_c1.sh: 1: farewell: not found\n",
+    "+familiar-ai-sh\t/var/tmp/familiar-lanes/dashbin/sh\t\tsh -x tests/test_c1.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\t. src/app.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\tgreet\n+familiar-ai-sh\ttests/test_c1.sh\t\techo hi\n+familiar-ai-sh\ttests/test_c1.sh\t\tfarewell\n+familiar-ai-sh\ttests/test_c1.sh\t\tgreptests/test_c1.sh: 1:  -qxfarewell: not found goodbye\n\n",
+    "+familiar-ai-sh\t/var/tmp/familiar-lanes/dashbin/sh\t\tsh -x tests/test_c1.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\t. src/app.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\tgreet\n+familiar-ai-sh\ttests/test_c1.sh\t\techo hi\n+familiar-ai-sh\ttests/test_c1.sh\t\t+familiar-ai-sh\ttests/test_c1.sh\t\tfarewellgrep -qx goodbye\n\ntests/test_c1.sh: 1: farewell: not found\n",
+    "+familiar-ai-sh\t/var/tmp/familiar-lanes/dashbin/sh\t\tsh -x tests/test_c1.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\t. src/app.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\tgreet\n+familiar-ai-sh\ttests/test_c1.sh\t\techo hi\n+familiar-ai-sh\ttests/test_c1.sh\t\tfarewell\n+familiar-ai-sh\ttests/test_c1.sh\t\tgreptests/test_c1.sh: 1:  -qx goodbyefarewell: not found\n\n",
+    "+familiar-ai-sh\t/var/tmp/familiar-lanes/dashbin/sh\t\tsh -x tests/test_c1.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\t. src/app.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\tgreet\n+familiar-ai-sh\ttests/test_c1.sh\t\techo hi\n+familiar-ai-sh\ttests/test_c1.sh\t\tfarewell\n+familiar-ai-sh\ttests/test_c1.sh\t\ttests/test_c1.sh: 1: grepfarewell: not found\n -qx goodbye\n",
+    "+familiar-ai-sh\t/var/tmp/familiar-lanes/dashbin/sh\t\tsh -x tests/test_c1.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\t. src/app.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\tgreet\n+familiar-ai-sh\ttests/test_c1.sh\t\techo hi\n+familiar-ai-sh\ttests/test_c1.sh\t\tfarewell+familiar-ai-sh\ttests/test_c1.sh\t\t\ngrep -qx goodbye\ntests/test_c1.sh: 1: farewell: not found\n",
+    "+familiar-ai-sh\t/var/tmp/familiar-lanes/dashbin/sh\t\tsh -x tests/test_c1.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\t. src/app.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\tgreet\n+familiar-ai-sh\ttests/test_c1.sh\t\techo hi\n+familiar-ai-sh\ttests/test_c1.sh\t\t+familiar-ai-sh\ttests/test_c1.sh\t\tfarewell\ntests/test_c1.sh: 1: farewell: not foundgrep -qx\n goodbye\n",
+    "+familiar-ai-sh\t/var/tmp/familiar-lanes/dashbin/sh\t\tsh -x tests/test_c1.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\t. src/app.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\tgreet\n+familiar-ai-sh\ttests/test_c1.sh\t\techo hi\n+familiar-ai-sh\ttests/test_c1.sh\t\tfarewell+familiar-ai-sh\ttests/test_c1.sh\t\t\ntests/test_c1.sh: 1: farewell: not foundgrep\n -qx goodbye\n",
+    "+familiar-ai-sh\t/var/tmp/familiar-lanes/dashbin/sh\t\tsh -x tests/test_c1.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\t. src/app.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\tgreet\n+familiar-ai-sh\ttests/test_c1.sh\t\techo hi\n+familiar-ai-sh\ttests/test_c1.sh\t\t+familiar-ai-sh\ttests/test_c1.sh\t\tfarewell\ntests/test_c1.sh: 1: farewell: not foundgrep\n -qx goodbye\n",
+    "+familiar-ai-sh\t/var/tmp/familiar-lanes/dashbin/sh\t\tsh -x tests/test_c1.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\t. src/app.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\tgreet\n+familiar-ai-sh\ttests/test_c1.sh\t\techo hi\n+familiar-ai-sh\ttests/test_c1.sh\t\tfarewell\ntests/test_c1.sh: 1: +familiar-ai-sh\ttests/test_c1.sh\t\tfarewell: not foundgrep -qx goodbye\n\n",
+    "+familiar-ai-sh\t/var/tmp/familiar-lanes/dashbin/sh\t\tsh -x tests/test_c1.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\t. src/app.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\tgreet\n+familiar-ai-sh\ttests/test_c1.sh\t\techo hi\n+familiar-ai-sh\ttests/test_c1.sh\t\tfarewell+familiar-ai-sh\ttests/test_c1.sh\t\t\ngreptests/test_c1.sh: 1: farewell: not found\n -qx goodbye\n",
+    "+familiar-ai-sh\t/var/tmp/familiar-lanes/dashbin/sh\t\tsh -x tests/test_c1.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\t. src/app.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\tgreet\n+familiar-ai-sh\ttests/test_c1.sh\t\techo hi\n+familiar-ai-sh\ttests/test_c1.sh\t\tfarewell\ntests/test_c1.sh: 1: +familiar-ai-sh\ttests/test_c1.sh\t\tfarewell: not foundgrep\n -qx goodbye\n",
+    "+familiar-ai-sh\t/var/tmp/familiar-lanes/dashbin/sh\t\tsh -x tests/test_c1.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\t. src/app.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\tgreet\n+familiar-ai-sh\ttests/test_c1.sh\t\techo hi\n+familiar-ai-sh\ttests/test_c1.sh\t\tfarewell+familiar-ai-sh\ttests/test_c1.sh\t\t\ngreptests/test_c1.sh: 1:  -qx goodbyefarewell: not found\n\n",
+    "+familiar-ai-sh\t/var/tmp/familiar-lanes/dashbin/sh\t\tsh -x tests/test_c1.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\t. src/app.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\tgreet\n+familiar-ai-sh\ttests/test_c1.sh\t\techo hi\n+familiar-ai-sh\ttests/test_c1.sh\t\t+familiar-ai-sh\ttests/test_c1.sh\t\tfarewell\ntests/test_c1.sh: 1: farewell: not foundgrep -qx goodbye\n\n",
+    "+familiar-ai-sh\t/var/tmp/familiar-lanes/dashbin/sh\t\tsh -x tests/test_c1.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\t. src/app.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\tgreet\n+familiar-ai-sh\ttests/test_c1.sh\t\techo hi\n+familiar-ai-sh\ttests/test_c1.sh\t\tfarewell\n+familiar-ai-sh\ttests/test_c1.sh\t\ttests/test_c1.sh: 1: farewell: not foundgrep\n -qx goodbye\n",
+    "+familiar-ai-sh\t/var/tmp/familiar-lanes/dashbin/sh\t\tsh -x tests/test_c1.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\t. src/app.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\tgreet\n+familiar-ai-sh\ttests/test_c1.sh\t\techo hi\n+familiar-ai-sh\ttests/test_c1.sh\t\tfarewell+familiar-ai-sh\ttests/test_c1.sh\t\t\ntests/test_c1.sh: 1: farewell: not foundgrep -qx goodbye\n\n",
+    "+familiar-ai-sh\t/var/tmp/familiar-lanes/dashbin/sh\t\tsh -x tests/test_c1.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\t. src/app.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\tgreet\n+familiar-ai-sh\ttests/test_c1.sh\t\techo hi\n+familiar-ai-sh\ttests/test_c1.sh\t\tfarewell\n+familiar-ai-sh\ttests/test_c1.sh\t\ttests/test_c1.sh: 1: farewell: not foundgrep -qx goodbye\n\n",
+    "+familiar-ai-sh\t/var/tmp/familiar-lanes/dashbin/sh\t\tsh -x tests/test_c1.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\t. src/app.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\tgreet\n+familiar-ai-sh\ttests/test_c1.sh\t\techo hi\n+familiar-ai-sh\ttests/test_c1.sh\t\tfarewell+familiar-ai-sh\ttests/test_c1.sh\t\t\ngreptests/test_c1.sh: 1: farewell: not found -qx\n goodbye\n",
+    "+familiar-ai-sh\t/var/tmp/familiar-lanes/dashbin/sh\t\tsh -x tests/test_c1.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\t. src/app.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\tgreet\n+familiar-ai-sh\ttests/test_c1.sh\t\techo hi\n+familiar-ai-sh\ttests/test_c1.sh\t\tfarewell\ntests/test_c1.sh: 1: +familiar-ai-sh\ttests/test_c1.sh\t\tfarewell: not foundgrep -qx\n goodbye\n",
+    "+familiar-ai-sh\t/var/tmp/familiar-lanes/dashbin/sh\t\tsh -x tests/test_c1.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\t. src/app.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\tgreet\n+familiar-ai-sh\ttests/test_c1.sh\t\techo hi\n+familiar-ai-sh\ttests/test_c1.sh\t\tfarewell+familiar-ai-sh\ttests/test_c1.sh\t\t\ngreptests/test_c1.sh: 1:  -qxfarewell: not found goodbye\n\n",
+];
+
+const PASS: &[&str] = &[
+    "+familiar-ai-sh\t/var/tmp/familiar-lanes/dashbin/sh\t\tsh -x tests/test_c1.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\tsh src/app.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\tgrep -qx hi\n",
+    "+familiar-ai-sh\t/var/tmp/familiar-lanes/dashbin/sh\t\tsh -x tests/test_c1.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\t+familiar-ai-sh\ttests/test_c1.sh\t\tsh src/app.sh\ngrep -qx hi\n",
+    "+familiar-ai-sh\t/var/tmp/familiar-lanes/dashbin/sh\t\tsh -x tests/test_c1.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\t+familiar-ai-sh\ttests/test_c1.sh\t\tgrep -qx hi\nsh src/app.sh\n",
+    "+familiar-ai-sh\t/var/tmp/familiar-lanes/dashbin/sh\t\tsh -x tests/test_c1.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\t+familiar-ai-sh\ttests/test_c1.sh\t\tgrep -qx hish\n src/app.sh\n",
+    "+familiar-ai-sh\t/var/tmp/familiar-lanes/dashbin/sh\t\tsh -x tests/test_c1.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\t+familiar-ai-sh\ttests/test_c1.sh\t\tgrepsh src/app.sh\n -qx hi\n",
+    "+familiar-ai-sh\t/var/tmp/familiar-lanes/dashbin/sh\t\tsh -x tests/test_c1.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\t+familiar-ai-sh\ttests/test_c1.sh\t\tshgrep src/app.sh\n -qx hi\n",
+    "+familiar-ai-sh\t/var/tmp/familiar-lanes/dashbin/sh\t\tsh -x tests/test_c1.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\t+familiar-ai-sh\ttests/test_c1.sh\t\tgrep -qxsh hi\n src/app.sh\n",
+    "+familiar-ai-sh\t/var/tmp/familiar-lanes/dashbin/sh\t\tsh -x tests/test_c1.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\t+familiar-ai-sh\ttests/test_c1.sh\t\tgrepsh -qx src/app.sh\n hi\n",
+    "+familiar-ai-sh\t/var/tmp/familiar-lanes/dashbin/sh\t\tsh -x tests/test_c1.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\t+familiar-ai-sh\ttests/test_c1.sh\t\tgrepsh -qx src/app.sh hi\n\n",
+    "+familiar-ai-sh\t/var/tmp/familiar-lanes/dashbin/sh\t\tsh -x tests/test_c1.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\t+familiar-ai-sh\ttests/test_c1.sh\t\tshgrep -qx hi\n src/app.sh\n",
+    "+familiar-ai-sh\t/var/tmp/familiar-lanes/dashbin/sh\t\tsh -x tests/test_c1.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\tgrep -qx+familiar-ai-sh\ttests/test_c1.sh\t\t hi\nsh src/app.sh\n",
+    "+familiar-ai-sh\t/var/tmp/familiar-lanes/dashbin/sh\t\tsh -x tests/test_c1.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\tsh src/app.sh+familiar-ai-sh\ttests/test_c1.sh\t\t\ngrep -qx hi\n",
+];
+
+const OOPS: &[&str] = &[
+    "+familiar-ai-sh\t/var/tmp/familiar-lanes/dashbin/sh\t\tsh -x tests/test_c1.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\tsh src/app.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\tgrep -qx hello\noops\n",
+    "+familiar-ai-sh\t/var/tmp/familiar-lanes/dashbin/sh\t\tsh -x tests/test_c1.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\tsh src/app.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\tgrepoops\n -qx hello\n",
+    "+familiar-ai-sh\t/var/tmp/familiar-lanes/dashbin/sh\t\tsh -x tests/test_c1.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\tsh src/app.sh\noops\n+familiar-ai-sh\ttests/test_c1.sh\t\tgrep -qx hello\n",
+    "+familiar-ai-sh\t/var/tmp/familiar-lanes/dashbin/sh\t\tsh -x tests/test_c1.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\t+familiar-ai-sh\ttests/test_c1.sh\t\tsh src/app.sh\ngrep -qxoops\n hello\n",
+    "+familiar-ai-sh\t/var/tmp/familiar-lanes/dashbin/sh\t\tsh -x tests/test_c1.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\tsh+familiar-ai-sh\ttests/test_c1.sh\t\t src/app.sh\noops\ngrep -qx hello\n",
+    "+familiar-ai-sh\t/var/tmp/familiar-lanes/dashbin/sh\t\tsh -x tests/test_c1.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\t+familiar-ai-sh\ttests/test_c1.sh\t\tsh src/app.sh\noops\ngrep -qx hello\n",
+    "+familiar-ai-sh\t/var/tmp/familiar-lanes/dashbin/sh\t\tsh -x tests/test_c1.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\tsh src/app.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\tgrep -qx hellooops\n\n",
+    "+familiar-ai-sh\t/var/tmp/familiar-lanes/dashbin/sh\t\tsh -x tests/test_c1.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\tsh+familiar-ai-sh\ttests/test_c1.sh\t\t src/app.sh\ngrepoops\n -qx hello\n",
+    "+familiar-ai-sh\t/var/tmp/familiar-lanes/dashbin/sh\t\tsh -x tests/test_c1.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\tsh src/app.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\toops\ngrep -qx hello\n",
+    "+familiar-ai-sh\t/var/tmp/familiar-lanes/dashbin/sh\t\tsh -x tests/test_c1.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\t+familiar-ai-sh\ttests/test_c1.sh\t\tsh src/app.sh\ngrepoops\n -qx hello\n",
+    "+familiar-ai-sh\t/var/tmp/familiar-lanes/dashbin/sh\t\tsh -x tests/test_c1.sh\n+familiar-ai-sh\ttests/test_c1.sh\t\tgrep -qx+familiar-ai-sh\ttests/test_c1.sh\t\tsh src/app.sh\noops\n hello\n",
+];

@@ -17,6 +17,13 @@ jobs:
       GIT_AUTHOR_EMAIL: ci@familiar-ai.invalid
       GIT_COMMITTER_NAME: familiar-ai ci
       GIT_COMMITTER_EMAIL: ci@familiar-ai.invalid
+      # about 210 test programs with full debug info overran the smaller runner's disk (the
+      # linker died with a bus error, 2026-10-26); a test's panic still names its file and line
+      CARGO_PROFILE_DEV_DEBUG: "0"
+      CARGO_INCREMENTAL: "0"
+      # as the referee runs here: a run settles within the hook's wait, which on a hosted runner can
+      # outlast the 5 s default (a run killed twice did not settle in time, 2026-10-26)
+      FAMILIAR_AI_RUN_INLINE_MS: "60000"
     steps:
       - uses: actions/checkout@v4
 
@@ -24,22 +31,48 @@ jobs:
         run: cargo build --workspace --locked
 
       - name: cargo test
-        run: cargo test --workspace --locked
+        run: cargo test --workspace --locked --no-fail-fast
 
       - name: clippy, warnings are errors
+        if: ${{ !cancelled() }}
         run: cargo clippy --workspace --all-targets --locked -- -D warnings
 
       - name: no C in any dependency
+        if: ${{ !cancelled() }}
         run: scripts/check-no-c.sh
 
       - name: the walks (the real binary through the real hook protocol)
+        if: ${{ !cancelled() }}
         env:
           FAMILIAR_AI_JUDGE: "off"
           FAMILIAR_AI_INVESTIGATOR: "off"
         run: |
-          sh plugin/tests/test-run.sh
-          sh plugin/tests/test-agent.sh
-          sh plugin/tests/test-ci.sh
+          status=0
+          for w in run agent ci outcomes; do sh plugin/tests/test-$w.sh || status=1; done
+          exit $status
+
+  hook-walk-macos:
+    # the plugin's hook on a Mac: /bin/sh is bash 3.2 and sed, tr and awk are the BSD ones; with the
+    # binary missing, run.sh reads the tool call with those tools alone (2026-10-26)
+    runs-on: macos-latest
+    env:
+      GIT_AUTHOR_NAME: familiar-ai ci
+      GIT_AUTHOR_EMAIL: ci@familiar-ai.invalid
+      GIT_COMMITTER_NAME: familiar-ai ci
+      GIT_COMMITTER_EMAIL: ci@familiar-ai.invalid
+      CARGO_PROFILE_DEV_DEBUG: "0"
+      CARGO_INCREMENTAL: "0"
+      FAMILIAR_AI_RUN_INLINE_MS: "60000"
+      FAMILIAR_AI_JUDGE: "off"
+      FAMILIAR_AI_INVESTIGATOR: "off"
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: build
+        run: cargo build --locked -p familiar-ai
+
+      - name: the hook walk (plugin/tests/test-run.sh)
+        run: sh plugin/tests/test-run.sh
 
   install-test:
     # install.sh checks the checksum with sha256sum on Linux and shasum on

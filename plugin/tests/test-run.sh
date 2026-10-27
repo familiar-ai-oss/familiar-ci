@@ -13,7 +13,8 @@ if [ -z "$BIN" ]; then
 fi
 printf 'familiar-ai: %s\n' "$BIN"
 
-TMP=$(mktemp -d)
+# the folder's real path: on a Mac /var is /private/var, and familiar-ai prints the real one
+TMP=$(cd "$(mktemp -d)" && pwd -P)
 trap 'rm -rf "$TMP"' EXIT
 unset CLAUDE_PROJECT_DIR
 # a headless runner (claude -p) is not the walk's session: it would count as the bench
@@ -28,6 +29,14 @@ export FAMILIAR_AI_JUDGE=off
 # a PATH with no familiar-ai on it
 mkdir -p "$TMP/emptybin"
 NOFA_PATH="$TMP/emptybin:/usr/bin:/bin"
+
+# a PATH with no familiar-ai, no node and no /usr/bin: links to the walk's own sh and the base tools
+# that run.sh reads a tool call with when the binary is missing
+mkdir -p "$TMP/basebin"
+for tool in sh cat tr sed awk; do
+    ln -s "$(command -v "$tool")" "$TMP/basebin/$tool"
+done
+BASE_PATH="$TMP/basebin"
 
 # a fake familiar-ai first on PATH: its arguments on line 1, its stdin on
 # line 2, and the exit code in FAKE_EXIT (default 0)
@@ -60,6 +69,7 @@ LAST_INPUT=""     # what the last step was given
 LAST_ERR=""       # what the last hook wrote to stderr
 RC=0              # the last command's exit code
 HOOK_PATH=$NOFA_PATH
+HOOK_SH=/bin/sh   # the shell run.sh runs under: its #! line, as Claude Code starts it
 
 verbose() { [ "$VERBOSE" = 1 ]; }
 
@@ -234,7 +244,7 @@ need() {
 }
 
 # hook <label> <Event> <json> [VAR=value ...]: the JSON piped to run.sh as
-# Claude Code pipes it, with $HOOK_PATH as PATH
+# Claude Code pipes it, with $HOOK_PATH as PATH, under $HOOK_SH
 hook() {
     label=$1
     event=$2
@@ -245,7 +255,7 @@ hook() {
     else
         LAST_INPUT="hook $event ($label) $json"
     fi
-    OUT=$(printf '%s' "$json" | env PATH="$HOOK_PATH" "$@" /bin/sh "$RUN_SH" "$event" 2>"$TMP/err")
+    OUT=$(printf '%s' "$json" | env PATH="$HOOK_PATH" "$@" "$HOOK_SH" "$RUN_SH" "$event" 2>"$TMP/err")
     RC=$?
     LAST_ERR=$(cat "$TMP/err")
     if verbose; then
@@ -500,6 +510,29 @@ scenario_refusal_protocol() {
     hook "uname -s" PreToolUse "$(bash_call "uname -s")"
     exits "allowed setup command exits 0" 0
     exactly "allowed setup command prints no decision" ""
+}
+
+# The missing-binary scenarios again with no node on PATH, under the walk's own sh (dash where the walk
+# runs under dash): a person who has just installed the plugin may have no node (Claude Code installed
+# natively starts hooks without it), and /familiar-ai:setup must still get its commands through (hosted
+# CI, 2026-10-26: GitHub's Ubuntu runner has no node in /usr/bin, and every setup command was refused).
+scenario_missing_binary_without_node() {
+    if env PATH="$BASE_PATH" "$BASE_PATH/sh" -c 'command -v node' >/dev/null 2>&1; then
+        fail "no node on the base PATH" "no node on $BASE_PATH"
+    else
+        pass "no node on the base PATH"
+    fi
+    with_node=$NOFA_PATH
+    NOFA_PATH=$BASE_PATH
+    HOOK_SH="$BASE_PATH/sh"
+    scenario_missing_binary_refuses
+    scenario_missing_binary_allows_setup
+    scenario_missing_binary_never_blocks
+    scenario_long_commands
+    scenario_refusal_protocol
+    NOFA_PATH=$with_node
+    HOOK_PATH=$NOFA_PATH
+    HOOK_SH=/bin/sh
 }
 
 scenario_events_relayed() {
@@ -819,6 +852,7 @@ run_scenario "missing binary allows setup commands" scenario_missing_binary_allo
 run_scenario "missing binary never blocks" scenario_missing_binary_never_blocks 7
 run_scenario "long commands refused quickly" scenario_long_commands 4
 run_scenario "refusal follows the hook protocol" scenario_refusal_protocol 7
+run_scenario "missing binary with no node on PATH" scenario_missing_binary_without_node 78
 run_scenario "events relayed to the binary" scenario_events_relayed 19
 run_scenario "failing binary refuses tool calls" scenario_failing_binary 4
 run_scenario "unset project left alone" scenario_unset_project 25

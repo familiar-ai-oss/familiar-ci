@@ -31,9 +31,11 @@ pub(crate) fn run_hook(event: HookEvent, input: &str, around: &Surroundings) -> 
             }
         }
     };
-    // Plan mode allows everything and writes nothing, except that SessionStart still gives the rulebook
-    // because the mode can change later with no hook; see docs/decisions.md#plan-mode-is-never-blocked.
-    if hook_input.permission_mode.as_deref() == Some("plan") && event != HookEvent::SessionStart {
+    // Plan mode allows everything and writes nothing but the person's prompt, since approving the plan
+    // sends none after it; SessionStart still gives the rulebook because the mode can change later with
+    // no hook; see docs/decisions.md#plan-mode-is-never-blocked.
+    let plan_mode = hook_input.permission_mode.as_deref() == Some("plan");
+    if plan_mode && !matches!(event, HookEvent::SessionStart | HookEvent::UserPromptSubmit) {
         return hook_output::render(&hook_input, &Decision::allow(), &[]);
     }
     let root = crate::door::project::hook_project(around.project_dir.as_deref(), hook_input.cwd.as_deref().map(Path::new));
@@ -43,7 +45,7 @@ pub(crate) fn run_hook(event: HookEvent, input: &str, around: &Surroundings) -> 
     }
     // A project that was set up but lost its folder refuses until setup runs again; see
     // docs/decisions.md#a-removed-folder-refuses-until-setup.
-    if root.as_deref().is_some_and(|r| removed::plan_removed(r, around.data_dir.as_deref())) {
+    if !plan_mode && root.as_deref().is_some_and(|r| removed::plan_removed(r, around.data_dir.as_deref())) {
         return hook_output::render(&hook_input, &removed::decide(&hook_input), &[]);
     }
     let record = match root
@@ -52,6 +54,7 @@ pub(crate) fn run_hook(event: HookEvent, input: &str, around: &Surroundings) -> 
     {
         None | Some(Ok(None)) => None,
         Some(Ok(Some(record))) => Some(record),
+        Some(Err(_)) if plan_mode => return hook_output::render(&hook_input, &Decision::allow(), &[]),
         Some(Err(RecordError::Busy)) => return hook_output::render_busy(event),
         Some(Err(other)) => {
             let message = format!(
@@ -69,6 +72,12 @@ pub(crate) fn run_hook(event: HookEvent, input: &str, around: &Surroundings) -> 
         };
         return hook_output::render(&hook_input, &decided, &[]);
     };
+    // A prompt in plan mode is written, on or off, and nothing is said; a record that cannot be
+    // written still lets it through.
+    if plan_mode && event == HookEvent::UserPromptSubmit {
+        let _ = crate::door::person::heard(&record, &hook_input, &mut Log::new(), around.now);
+        return hook_output::render(&hook_input, &Decision::allow(), &[]);
+    }
     // A linked worktree with no switch of its own follows main's.
     let switch = match crate::door::switch::here_holding(&record, &root, around.record_wait) {
         Ok(switch) => switch,

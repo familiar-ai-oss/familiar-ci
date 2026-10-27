@@ -17,6 +17,6 @@ jobs:
           fetch-depth: 0  # verify reads the branch's history
           ref: ${{ github.event.pull_request.head.sha }}
       # Install your project's dependencies here.
-      - uses: familiar-ai-oss/familiar-ci/action@v0.1.3-prod
+      - uses: familiar-ai-oss/familiar-ci/action@v0.1.4-prod
         with:
-          version: 0.1.3-prod
+          version: 0.1.4-prod

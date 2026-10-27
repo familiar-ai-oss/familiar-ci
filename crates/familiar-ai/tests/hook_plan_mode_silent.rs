@@ -1,5 +1,5 @@
 //! In Claude Code's plan mode every hook allows, says nothing and writes
-//! nothing, except that SessionStart still carries the rulebook.
+//! nothing but the person's prompt, and SessionStart still carries the rulebook.
 //! See docs/decisions.md#plan-mode-is-never-blocked
 
 mod common;
@@ -88,4 +88,35 @@ fn a_session_start_in_plan_mode_still_carries_the_rulebook() {
     let (code, stdout, _) = p.in_mode("SessionStart", "", serde_json::json!({}), Some("plan"));
     assert_eq!(code, 0);
     assert!(stdout.contains("familiar-ai: proof that the work is done"), "{stdout}");
+}
+
+/// The ask typed in plan mode; approving the plan sends no prompt after it.
+const ASK: &str = "greet with hello";
+
+impl Project {
+    fn prompt_in_plan_mode(&self) -> (i32, String, String) {
+        let mut payload = self.payload_as(SESSION, "UserPromptSubmit", serde_json::json!({ "prompt": ASK }));
+        payload["permission_mode"] = "plan".into();
+        self.hook_raw("UserPromptSubmit", &payload)
+    }
+}
+
+#[test]
+fn a_prompt_typed_in_plan_mode_is_recorded_and_silent() {
+    let p = project("prompt");
+    says_nothing(&p.prompt_in_plan_mode());
+    let said = p.facts_of("person_said");
+    assert_eq!(said.len(), 1, "{said:?}");
+    assert_eq!(said[0]["text"], ASK, "{said:?}");
+}
+
+#[test]
+fn after_a_plan_mode_prompt_the_intent_ties_to_it() {
+    let p = project("intent");
+    p.prompt_in_plan_mode();
+    let (code, out, err) = p.run(&["claim", "intent_submitted", "--text", "x"], "");
+    assert_eq!(code, 0, "{out}{err}");
+    let said = p.facts().into_iter().find(|f| f.kind == "person_said").expect("the prompt is recorded");
+    let intent = p.facts().into_iter().find(|f| f.kind == "intent_submitted").expect("the intent is claimed");
+    assert_eq!(intent.fields.get("for").and_then(serde_json::Value::as_u64), Some(said.t), "{intent:?}");
 }

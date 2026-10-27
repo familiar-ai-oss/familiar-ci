@@ -1289,8 +1289,10 @@ Tests: `crates/familiar-ai/tests/hook_fails_closed.rs`,
 ### Plan mode is never blocked
 
 In Claude Code's plan mode, familiar-ai allows everything and says nothing.
-SessionStart still gives the rulebook, since the mode can change mid-session
-with no hook. The product must not interfere with Claude Code's own
+It writes nothing but the person's own prompt: approving the plan sends no
+prompt after it, so an ask typed in plan mode would leave the intent nothing
+to tie to (2026-10-27). SessionStart still gives the rulebook, since the mode
+can change mid-session with no hook. The product must not interfere with Claude Code's own
 features.
 
 Code: `crates/familiar-ai/src/decide/hook.rs`.

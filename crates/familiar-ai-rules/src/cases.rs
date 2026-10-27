@@ -139,6 +139,12 @@ pub fn to_release(v: &View, c: &str) -> Option<&'static str> {
     owed.into_iter().find(|l| !out(l))
 }
 
+/// Whether the owed panel on `c` waits only on its calls: every owed lens (or the synthesis) is
+/// out, so there is nothing to start (the owner's answer, 2026-10-27: only waiting is left).
+pub fn only_waiting(v: &View, c: &str) -> bool {
+    owed(v, c) && to_release(v, c).is_none()
+}
+
 /// The lenses' answers of the latest panel on `c` (the owed one, or the one its latest synthesis
 /// closed), one per lens in `LENSES` order: what the synthesis reads.
 pub fn lens_findings<'a>(v: &View<'a>, c: &str) -> Vec<&'a Fact> {

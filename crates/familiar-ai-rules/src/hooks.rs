@@ -459,10 +459,14 @@ fn sealed_edit(v: &View, file_path: &str) -> Option<Decision> {
 
 /// Allows or refuses an event, reading only the log and the event.
 /// The cases card's step [draft]: the first part whose case-finder is owed, else the first whose
-/// card is open; the test and the rest of the work wait for it.
-fn cases_refusal(v: &View) -> Option<Decision> {
+/// card is open; the test and the rest of the work wait for it. A stop goes while that part's panel
+/// waits only on its calls (the owner's answer, 2026-10-27: only waiting is left).
+fn cases_refusal(v: &View, event: &Event) -> Option<Decision> {
     let cs = plan::criteria(v);
     if let Some(c) = cs.iter().find(|c| crate::cases::owed(v, c)) {
+        if matches!(event, Event::Stops { .. }) && crate::cases::only_waiting(v, c) {
+            return Some(allow());
+        }
         return Some(refuse_on(crate::cases::OWED, c, crate::holds::cases_owed_clears(c)));
     }
     let c = cs.iter().find(|c| crate::cases::card_open(v, c))?;
@@ -472,7 +476,7 @@ fn cases_refusal(v: &View) -> Option<Decision> {
 pub fn decide(v: &View, event: &Event) -> Decision {
     if !plan::planning_confirm_complete(v) {
         // the cases card (the owner's plan of 2026-10-25) [draft]: the finder, then the person's card
-        if let Some(d) = cases_refusal(v) {
+        if let Some(d) = cases_refusal(v, event) {
             return d;
         }
         // a traced part's planned test is written before its place, once lines 1–3 and 6–10 hold [draft]

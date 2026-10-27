@@ -85,6 +85,24 @@ fn lens_released_names_the_part_the_lens_or_the_synthesis_and_the_call() {
     }
 }
 
+/// At a background launch the binary writes `lens_released` again for the same call, with the id of
+/// the agent that runs it (the owner's answer, 2026-10-27): a background lens hands its answer back
+/// by that agent. The release at the call's PreToolUse names no agent.
+#[test]
+fn lens_released_may_name_the_agent_a_background_launch_runs_the_call_as() {
+    let mut f = released();
+    f["agent_id"] = json!("a09dfaf2a8482404c");
+    let log = ok("lens_released", f);
+    let typed: LensReleased = log[0].fields_as().expect("its typed form");
+    assert_eq!(typed.agent_id.as_deref(), Some("a09dfaf2a8482404c"));
+    let log = ok("lens_released", released());
+    let typed: LensReleased = log[0].fields_as().expect("its typed form");
+    assert_eq!(typed.agent_id, None, "the release at the PreToolUse names no agent");
+    let mut f = released();
+    f["agent_id"] = json!(7);
+    assert!(refused("lens_released", f), "the agent's id is text");
+}
+
 #[test]
 fn lens_found_round_trips_flat_and_typed_for_each_lens_and_outcome() {
     let log = ok("lens_found", lens_found());
@@ -201,7 +219,9 @@ fn the_three_kinds_come_after_cases_found_in_the_form() {
     assert_eq!(at("lens_found"), Some(i + 2));
     assert_eq!(at("question_answered"), Some(i + 3));
     assert_eq!(at("question_answered"), Some(KINDS.len() - 1));
-    for k in ["lens_released", "lens_found", "question_answered"] {
+    for k in ["lens_found", "question_answered"] {
         assert_eq!(form_row(k).map(|r| r.optional.len()), Some(0), "{k}");
     }
+    // definition change (the owner's answer, 2026-10-27): a background launch names its agent
+    assert_eq!(form_row("lens_released").map(|r| r.optional.to_vec()), Some(vec!["agent_id"]));
 }

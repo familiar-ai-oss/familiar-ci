@@ -1005,7 +1005,9 @@ calls in one message each get a different lens. The call is rewritten:
 `subagent_type` `familiar-ai:lens`, the model from `FAMILIAR_AI_LENS_MODEL`
 (opus when blank or missing, the owner's answer of 2026-10-26: opus for every
 lens and the synthesis, as tested; `FAMILIAR_AI_CASE_FINDER_MODEL` is gone),
-`run_in_background` false, and that lens's brief in place of the agent's prompt
+`run_in_background` false (honored only with fork mode off: from an interactive
+session Claude Code starts every subagent in the background, fork mode being on by
+default), and that lens's brief in place of the agent's prompt
 (`teach/lens.rs`: the offline trial's words, every variable read from recorded
 facts). A spawn while every owed lens is out is refused, naming what runs. Its
 SubagentStart carries no context beside the brief. A lens only reads: any call
@@ -1023,9 +1025,32 @@ kind `failed`). The synthesis's is recorded as `cases_found`, as the finder's
 was: `found` with ids `a<n>` continuing past the part's earlier findings (the
 first 8 kept, a long short line kept whole), `none` with why, or `failed` with
 why; with its first three well-formed questions as `questions` (q1..q3, two to
-four options each). A background launch, a call never released, or an answer
-once its lens is answered records nothing. Not at SubagentStop: it did not
-fire when the turn limit ended a subagent (spike of 2026-10-25).
+four options each). A call never released, or an answer once its lens is
+answered, records nothing. Not at SubagentStop: it did not fire when the turn
+limit ended a subagent (spike of 2026-10-25).
+
+A call run in the background returns at its launch (`async_launched`, with the
+agent's id and no answer). The launch writes `lens_released` again for the call
+with that `agent_id` (the owner's answer of 2026-10-27), once. Its answer comes
+back in one of two ways. In auto mode the lens hands it back through
+`SubagentHandback`: read at the lens's own PostToolUse on that call, found by its
+agent (the plugin sends that PostToolUse to the binary, not its PreToolUse), and
+nothing is told to the lens. Otherwise its report, the task notification Claude
+Code sends the main conversation when the call ends, carries it: read at that
+UserPromptSubmit, found by the call's `tool-use-id`, its `<result>` the answer
+and its `subagent_tokens` the tokens. Either is checked as a returned answer is,
+on the model the panel runs on. A lens that ended with no answer is failed (the
+owner's words, 2026-10-27): a report with no result ("ended with no answer"), a
+failed or stopped call (Claude Code's summary after it), the turn limit, or an
+empty hand-back. The main agent is told what comes next at the report, even when
+the hand-back recorded the answer first.
+
+A stop of the main agent goes while every owed call of the held part's panel is
+out, so there is nothing to start and the agent only waits (the owner's answer of
+2026-10-27, "only waiting is left"); with a lens or the synthesis still to start
+it is refused on `cases_owed` as before, and an edit still waits for the panel.
+Its rail and mutant in the checks crate are owed (the owner's answer, 2026-10-27):
+no walk there releases a call, so the situation is never reached.
 
 The person's card then shows the planned and found cases and the panel's
 open questions; the agent asks it with one AskUserQuestion call, the hook
@@ -1037,8 +1062,12 @@ person's, refused from an agent's shell as a card's answer is.
 
 Code: `crates/familiar-ai/src/decide/lens.rs`,
 `crates/familiar-ai/src/door/lens.rs`, `crates/familiar-ai/src/teach/lens.rs`,
+`crates/familiar-ai-rules/src/cases.rs` (`only_waiting`),
+`crates/familiar-ai-rules/src/hooks.rs` (the stop), `plugin/hooks/hooks.json`,
 `plugin/agents/lens.md`.
 Tests: `crates/familiar-ai/tests/lens_panel_round_trip.rs`,
+`crates/familiar-ai-rules/tests/the_lens_panel.rs`,
+`crates/familiar-ai-facts/tests/the_lens_panel_records_its_answers.rs`,
 `crates/familiar-ai/tests/the_lens_briefs_are_read_from_the_record.rs`,
 `crates/familiar-ai/tests/the_cases_card_asks_the_panels_questions.rs`.
 

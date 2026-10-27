@@ -578,9 +578,12 @@ fn what_the_decision_tells(call: &mut Call, mut decided: Decision) -> Decision {
         }
         _ => {}
     }
-    if let Some(c) = crate::door::lens::recorded_since(log, call.before.len()) {
-        // A lens's answer recorded on this call [draft]: what comes next on the panel, or the person's card.
-        let told = teach::lens::after_answer(&familiar_ai_rules::View::new(log), c);
+    // A lens's answer recorded on this call, or a background call's report [draft]: what comes next on
+    // the panel, or the person's card; never to the lens that handed its answer back.
+    let lens_own = crate::door::lens::is_lens(hook_input.agent_type.as_deref());
+    let recorded = crate::door::lens::recorded_since(log, call.before.len()).filter(|_| !lens_own).map(str::to_string);
+    if let Some(c) = recorded.or_else(|| crate::door::lens::reported_on(&familiar_ai_rules::View::new(log), hook_input)) {
+        let told = teach::lens::after_answer(&familiar_ai_rules::View::new(log), &c);
         decided = decided.then(Some(Decision::Allow { told: Some(told) }));
     }
     if hook_input.event == HookEvent::UserPromptSubmit && crate::door::person::is_the_persons(hook_input) {

@@ -337,6 +337,7 @@ fn claims_from_log_of_every_typed_form() {
             criterion_id: "c1".into(),
             lens: "ambiguity".into(),
             tool_use_id: "toolu_01".into(),
+            agent_id: None,
         },
         at,
         tenant,

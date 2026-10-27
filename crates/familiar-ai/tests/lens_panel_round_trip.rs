@@ -64,6 +64,35 @@ impl Project {
     fn lens_calls(&self, tool: &str, input: Value) -> Value {
         self.captured("PreToolUse", "pre_tool_use_write_in_case_finder", json!({ "agent_id": AGENT, "agent_type": LENS, "tool_name": tool, "tool_input": input }))
     }
+
+    /// The main agent's Agent call `id` launched in the background as agent `agent`, at its
+    /// PostToolUse (Claude Code's `async_launched` answer, the default from an interactive session).
+    fn launched(&self, id: &str, agent: &str) -> Value {
+        let response = json!({ "isAsync": true, "status": "async_launched", "agentId": agent, "agentType": LENS, "resolvedModel": "claude-opus-5-5", "prompt": "p", "outputFile": "/tmp/claude/tasks/output", "canReadOutputFile": true });
+        self.captured("PostToolUse", "post_tool_use_agent_case_finder_found", json!({ "tool_use_id": id, "tool_response": response }))
+    }
+
+    /// The report of the background call `id`, run as agent `agent`, that reaches the main
+    /// conversation when it ends: the task notification at UserPromptSubmit, as captured, with its
+    /// status, summary and result (no result when `None`): the hook's answer.
+    fn reported(&self, id: &str, agent: &str, status: &str, summary: &str, result: Option<&str>) -> Value {
+        let result = result.map(|r| format!("<result>{r}</result>\n")).unwrap_or_default();
+        let prompt = format!(
+            "<task-notification>\n<task-id>{agent}</task-id>\n<tool-use-id>{id}</tool-use-id>\n<output-file>/tmp/claude/tasks/output\n<status>{status}</status>\n<summary>{summary}</summary>\n<note>A task-notification fires each time this agent stops with no live background children of its own.</note>\n{result}<usage><subagent_tokens>4100</subagent_tokens><tool_uses>3</tool_uses><duration_ms>21000</duration_ms></usage>\n</task-notification>"
+        );
+        self.captured("UserPromptSubmit", "user_prompt_submit_task_notification", json!({ "prompt": prompt }))
+    }
+
+    /// The background lens `agent` hands its answer back in auto mode: its own PostToolUse on
+    /// SubagentHandback, `message` the report.
+    fn handed_back(&self, agent: &str, message: &str) -> Value {
+        self.captured("PostToolUse", "post_tool_use_bash_in_subagent", json!({ "agent_id": agent, "agent_type": LENS, "tool_name": "SubagentHandback", "tool_input": { "message": message }, "tool_response": {} }))
+    }
+}
+
+/// The agent a background call `i` runs as.
+fn agent(i: usize) -> String {
+    format!("a0lens{i}")
 }
 
 fn text<'a>(f: &'a Fact, k: &str) -> &'a str {
@@ -434,14 +463,146 @@ fn the_turn_limit_records_failed_and_look_again_reruns_the_whole_panel() {
     assert_eq!(p.of_kind("lens_found").len(), 10, "five lenses each panel");
 }
 
+/// A background launch records no answer: it writes `lens_released` again for the call, with the
+/// agent that runs it (the owner's answer, 2026-10-27), once. A call never released records nothing,
+/// at its return or at its report.
 #[test]
-fn a_background_launch_or_a_call_never_released_records_nothing() {
+fn a_background_launch_names_its_agent_and_a_call_never_released_records_nothing() {
     let p = project("async");
     p.spawn(&id(0));
-    let launched = json!({ "tool_use_id": id(0), "tool_response": { "isAsync": true, "status": "async_launched", "agentId": AGENT, "agentType": LENS, "resolvedModel": "claude-opus-5-5", "prompt": "p", "outputFile": "/tmp/claude/tasks/output", "canReadOutputFile": true } });
-    p.captured("PostToolUse", "post_tool_use_agent_case_finder_found", launched);
+    p.launched(&id(0), AGENT);
+    let released: Vec<Vec<String>> = p.of_kind("lens_released").iter().map(|f| ["criterion_id", "lens", "tool_use_id", "agent_id"].iter().map(|k| text(f, k).to_string()).collect()).collect();
+    let want = |agent: &str| vec!["c1".to_string(), "ambiguity".to_string(), id(0), agent.to_string()];
+    assert_eq!(released, [want(""), want(AGENT)], "the call's release, then its agent");
+    p.launched(&id(0), AGENT);
+    assert_eq!(p.of_kind("lens_released").len(), 2, "its agent is named once");
+    assert!(p.of_kind("lens_found").is_empty() && p.of_kind("cases_found").is_empty(), "a launch is no answer");
     p.returned("toolu_never_released", r#"{"findings": []}"#);
+    p.reported("toolu_never_released", "a_other", "completed", "Agent \"Say hi\" finished", Some(r#"{"findings": []}"#));
     assert!(p.of_kind("lens_found").is_empty() && p.of_kind("cases_found").is_empty());
+}
+
+/// A background lens's answer comes back in its report when it ends (the task notification Claude
+/// Code sends the main conversation, found by the call's tool_use_id): recorded as at a call's
+/// return, with the tokens the report counts and the model the panel runs on; the agent is told
+/// what comes next there; the same report again records nothing.
+#[test]
+fn a_background_lens_answer_is_read_from_its_report() {
+    let p = project("report");
+    for i in 0..5 {
+        p.spawn(&id(i));
+        p.launched(&id(i), &agent(i));
+    }
+    let finding = json!({ "findings": [{ "kind": "edge_cases", "note": "an empty name", "target_symbol": "greet", "file_path": "src/app.sh", "candidate_question": null }] });
+    let out = p.reported(&id(3), &agent(3), "completed", "Agent \"Say hi\" finished", Some(&format!("```json\n{finding}\n```")));
+    let found = p.of_kind("lens_found");
+    assert_eq!(found.len(), 1, "{out}");
+    assert_eq!(
+        Value::Object(found[0].fields.clone()),
+        json!({ "criterion_id": "c1", "lens": "edge_cases", "outcome": "found", "findings": [{ "kind": "edge_cases", "note": "an empty name", "file_path": "src/app.sh", "target_symbol": "greet", "candidate_question": "" }], "model": "opus", "tokens": 4100 })
+    );
+    let told = context(&out);
+    assert!(told.starts_with("familiar-ai: the edge cases lens answered for \"greet says hello\""), "{told}");
+    p.reported(&id(3), &agent(3), "completed", "Agent \"Say hi\" finished", Some(r#"{"findings": []}"#));
+    assert_eq!(p.of_kind("lens_found").len(), 1, "the same report again records nothing");
+}
+
+/// In auto mode a background lens hands its answer back through SubagentHandback: read at the
+/// lens's own PostToolUse on that call, found by its agent, and nothing is told to the lens. Its
+/// report then says the answer went as a message: nothing more is recorded, and the agent is told
+/// what comes next there. A hand-back by an agent no release names records nothing.
+#[test]
+fn a_lens_handing_back_its_answer_is_read_by_its_agent() {
+    let p = project("handback");
+    p.spawn(&id(0));
+    p.launched(&id(0), AGENT);
+    let out = p.handed_back(AGENT, r#"{"findings": []}"#);
+    let found = p.of_kind("lens_found");
+    assert_eq!(found.len(), 1, "{out}");
+    assert_eq!((text(&found[0], "lens"), text(&found[0], "outcome"), text(&found[0], "model")), ("ambiguity", "none", "opus"));
+    assert!(!context(&out).contains("answered for"), "nothing goes to the lens: {out}");
+    let note = "This agent's report was delivered to you as a message from \"familiar-ai-lens\" (its SubagentHandback call). Read it there; it is not repeated here.";
+    let out = p.reported(&id(0), AGENT, "completed", "Agent \"Say hi\" finished", Some(note));
+    assert_eq!(p.of_kind("lens_found").len(), 1, "already answered: {out}");
+    assert!(context(&out).starts_with("familiar-ai: the ambiguity lens answered for \"greet says hello\""), "{out}");
+    p.spawn(&id(1));
+    p.handed_back("a_unknown", r#"{"findings": []}"#);
+    assert_eq!(p.of_kind("lens_found").len(), 1);
+}
+
+/// A background lens that ends with no answer is recorded failed (the owner's words, 2026-10-27): a
+/// report with no result, a failed or stopped call (its summary after the why), the turn limit, and
+/// a hand-back with nothing in it. The five answered, the synthesis is next.
+#[test]
+fn a_background_lens_that_ends_with_no_answer_is_recorded_failed() {
+    let p = project("ended");
+    for i in 0..5 {
+        p.spawn(&id(i));
+        p.launched(&id(i), &agent(i));
+    }
+    p.reported(&id(0), &agent(0), "completed", "Agent \"Say hi\" finished", None);
+    p.reported(&id(1), &agent(1), "failed", "Agent \"Say hi\" failed: API Error: Rate limit reached", None);
+    p.reported(&id(2), &agent(2), "stopped", "Agent \"Say hi\" was stopped by user", None);
+    p.reported(&id(3), &agent(3), "completed", "Agent \"Say hi\" stopped at its 25-turn limit (partial result)", Some(r#"{"findings": ["#));
+    p.handed_back(&agent(4), "  ");
+    let why: Vec<(String, String)> = p.of_kind("lens_found").iter().map(|f| (text(f, "outcome").to_string(), f.fields["findings"][0]["note"].as_str().unwrap_or("").to_string())).collect();
+    let failed = |w: &str| ("failed".to_string(), w.to_string());
+    assert_eq!(
+        why,
+        [
+            failed("the ambiguity lens ended with no answer"),
+            failed("the completeness lens ended with no answer: Agent \"Say hi\" failed: API Error: Rate limit reached"),
+            failed("the happy path lens ended with no answer: Agent \"Say hi\" was stopped by user"),
+            failed("the edge cases lens stopped at its turn limit before it answered"),
+            failed("the order and coupling lens ended with no answer"),
+        ]
+    );
+    let spawn = p.spawn("toolu_synthesis");
+    assert_eq!(spawn["hookSpecificOutput"]["updatedInput"]["prompt"], json!(p.brief("synthesis")), "the synthesis is next: {spawn}");
+}
+
+/// The synthesis in the background answers the same way, and the person's card opens.
+#[test]
+fn the_synthesis_in_the_background_answers_by_its_report() {
+    let p = project("synthesis-bg");
+    p.lenses_answer_none();
+    p.spawn("toolu_synthesis");
+    p.launched("toolu_synthesis", AGENT);
+    let answer = json!({ "cases": [a_case("a name in capitals")], "none_because": "" }).to_string();
+    let out = p.reported("toolu_synthesis", AGENT, "completed", "Agent \"Say hi\" finished", Some(&answer));
+    let found = p.of_kind("cases_found");
+    assert_eq!(found.len(), 1, "{out}");
+    assert_eq!((text(&found[0], "outcome"), text(&found[0], "model")), ("found", "opus"));
+    assert!(p.status_json().to_string().contains("cases_unconfirmed"), "the card opens");
+    assert!(context(&out).starts_with("familiar-ai: the lens panel answered for \"greet says hello\""), "{out}");
+}
+
+/// While the panel's calls run in the background with nothing left to start, the main agent's stop
+/// goes (the owner's answer, 2026-10-27: only waiting is left); before, it is refused on the panel.
+#[test]
+fn a_stop_goes_while_only_waiting_is_left() {
+    let p = project("waiting");
+    let stop = |p: &Project| p.captured("Stop", "stop_with_background_task", json!({}));
+    assert_eq!(stop(&p)["decision"], json!("block"), "nothing started");
+    for i in 0..4 {
+        p.spawn(&id(i));
+        p.launched(&id(i), &agent(i));
+    }
+    assert_eq!(stop(&p)["decision"], json!("block"), "a lens still to start");
+    p.spawn(&id(4));
+    p.launched(&id(4), &agent(4));
+    let out = stop(&p);
+    assert_ne!(out["decision"], json!("block"), "the five out: {out}");
+}
+
+/// A lens in auto mode hands its answer back through SubagentHandback: the plugin sends that call's
+/// PostToolUse to the binary, and not its PreToolUse, where every call of a lens's but a read is refused.
+#[test]
+fn the_plugin_sends_a_lens_hand_back_to_the_binary() {
+    let hooks: Value = serde_json::from_str(&std::fs::read_to_string(concat!(env!("CARGO_MANIFEST_DIR"), "/../../plugin/hooks/hooks.json")).expect("hooks.json")).expect("json");
+    let matcher = |event: &str| hooks["hooks"][event][0]["matcher"].as_str().unwrap_or("").split('|').map(str::to_string).collect::<Vec<_>>();
+    assert!(matcher("PostToolUse").iter().any(|t| t == "SubagentHandback"), "{hooks}");
+    assert!(!matcher("PreToolUse").iter().any(|t| t == "SubagentHandback"), "{hooks}");
 }
 
 /// The person's last answer comes through the picker: every other line of the plan held, the

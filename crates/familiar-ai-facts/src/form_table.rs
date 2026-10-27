@@ -396,8 +396,9 @@ pub const FORM: &[FormRow] = &[
     // each lens's answer (the binary's), and the person's pick on a synthesis's question
     FormRow {
         kind: "lens_released",
-        fields: &["criterion_id", "lens", "tool_use_id"],
-        optional: &[],
+        fields: &["criterion_id", "lens", "tool_use_id", "agent_id"],
+        // the agent a background launch runs the call as (the owner's answer, 2026-10-27)
+        optional: &["agent_id"],
     },
     FormRow {
         kind: "lens_found",

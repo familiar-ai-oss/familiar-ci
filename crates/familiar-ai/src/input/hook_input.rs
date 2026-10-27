@@ -254,7 +254,7 @@ impl RawHookInput {
 pub const AGENT_CONVERSATION_SEPARATOR: char = '/';
 
 /// How a prompt begins when Claude Code, not the person, sent it.
-const TASK_NOTIFICATION_OPENING: &str = "<task-notification>";
+pub const TASK_NOTIFICATION_OPENING: &str = "<task-notification>";
 
 fn is_id_part(text: &str) -> bool {
     !text.is_empty() && !text.contains(AGENT_CONVERSATION_SEPARATOR)

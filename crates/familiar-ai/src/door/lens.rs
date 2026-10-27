@@ -67,6 +67,13 @@ pub fn owed_release(v: &View, id: &str) -> Option<(String, String)> {
     released_as(v, id).filter(|(c, lens)| owed(v, c, lens))
 }
 
+/// What the call run in the background as agent `agent` was released as, while its answer is still
+/// owed: from the `lens_released` its launch wrote with the agent (the owner's answer, 2026-10-27).
+pub fn owed_agent(v: &View, agent: &str) -> Option<(String, String)> {
+    let r = v.kind(cases::RELEASED).filter(|r| r.fields.get("agent_id").and_then(Value::as_str) == Some(agent)).last()?;
+    owed_release(v, r.fields.get("tool_use_id").and_then(Value::as_str)?)
+}
+
 /// Whether conversation `me` may release the panel's calls on `c`: its holder, or anyone while it has none.
 fn mine(v: &View, c: &str, me: &str) -> bool {
     plan::assigned_to(v, c).is_none_or(|h| h == me)
@@ -354,52 +361,171 @@ pub fn failed_spawn(input: &HookInput) -> Option<String> {
     Some(input.error.as_deref().map(str::trim).filter(|e| !e.is_empty()).unwrap_or(FAILED_CALL).to_string())
 }
 
-/// At the main agent's PostToolUse on an Agent call released as a lens (or the synthesis) whose
-/// answer is still owed, record its answer, and push the fact onto `log`; at its
-/// PostToolUseFailure, record failed with the error as why. A background launch
-/// (`async_launched`), a call that was not released, or an answer once its lens is answered
-/// records nothing.
-pub(crate) fn hook_facts(record: &Record, input: &HookInput, log: &mut Log, now: f64) -> Result<(), String> {
-    if !matches!(input.event, HookEvent::PostToolUse | HookEvent::PostToolUseFailure) || !input.is_spawn() {
-        return Ok(());
-    }
-    let Some(id) = input.tool_use_id.as_deref() else {
-        return Ok(());
+/// The status of an Agent call's PostToolUse when Claude Code ran it in the background: the call
+/// returns at the launch, with the agent's id and no answer.
+const ASYNC: &str = "async_launched";
+
+/// The tool a background lens hands its answer back with in auto mode; its PostToolUse is the lens's own.
+pub const HANDBACK: &str = "SubagentHandback";
+
+/// A background call's report: the task notification Claude Code sends the main conversation when
+/// the call ends (as captured, 2026-10-05, and as 2.1.310 writes it).
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct Report {
+    /// The call's tool_use_id.
+    pub tool_use_id: String,
+    /// `completed`, `failed`, or how it was stopped.
+    pub status: String,
+    /// Claude Code's line on how it ended: finished, at its turn limit, failed with the error, stopped.
+    pub summary: String,
+    /// Its final text, when it has one.
+    pub result: Option<String>,
+    /// The tokens the report counts.
+    pub tokens: u64,
+}
+
+/// The report in `prompt`, when it is a background call's task notification naming its call.
+pub fn report(prompt: &str) -> Option<Report> {
+    let p = prompt.trim_start().strip_prefix(crate::input::hook_input::TASK_NOTIFICATION_OPENING)?;
+    let tag = |t: &str| -> Option<String> {
+        let open = format!("<{t}>");
+        let start = p.find(&open)? + open.len();
+        let len = p[start..].find(&format!("</{t}>"))?;
+        Some(p[start..start + len].trim().to_string())
     };
-    let (kind, fields) = {
-        let v = View::new(log);
-        let Some((c, lens)) = owed_release(&v, id) else {
-            return Ok(());
+    let result = p.find("<result>").map(|s| s + "<result>".len()).and_then(|start| p.rfind("</result>").filter(|&end| end >= start).map(|end| p[start..end].to_string()));
+    Some(Report {
+        tool_use_id: tag("tool-use-id").filter(|t| !t.is_empty())?,
+        status: tag("status").unwrap_or_default(),
+        summary: tag("summary").unwrap_or_default(),
+        result,
+        tokens: tag("subagent_tokens").and_then(|t| t.parse().ok()).unwrap_or(0),
+    })
+}
+
+/// The why of a lens (or the synthesis) that ended with no answer (the owner's words, 2026-10-27),
+/// with how Claude Code says it ended when it failed or was stopped.
+fn no_answer(lens: &str, how: &str) -> String {
+    let who = named(lens);
+    if how.is_empty() {
+        format!("{who} ended with no answer")
+    } else {
+        format!("{who} ended with no answer: {how}")
+    }
+}
+
+/// What a background call's report gives as its answer: its result, or why there is none.
+fn reported_text(lens: &str, r: &Report) -> Result<String, String> {
+    if r.status != "completed" {
+        return Err(no_answer(lens, &r.summary));
+    }
+    if cut_off(&r.summary) {
+        return Err(format!("{} stopped at its turn limit before it answered", named(lens)));
+    }
+    match r.result.as_deref().map(str::trim) {
+        Some(t) if !t.is_empty() => Ok(t.to_string()),
+        _ => Err(no_answer(lens, "")),
+    }
+}
+
+type Answered = (&'static str, Map<String, Value>);
+
+/// The fact recording `text` as the answer of `lens` on `c`, checked against its schema (an `Err`
+/// is why it gave none, recorded failed): the synthesis's as `cases_found`, a lens's as `lens_found`.
+fn answer_fact(v: &View, c: &str, lens: &str, text: Result<String, String>, model: &str, tokens: u64) -> Answered {
+    if lens == cases::SYNTHESIS {
+        let (finding, questions) = match text {
+            Ok(t) => parse_synthesis(&t),
+            Err(why) => (Finding::Failed(why), Vec::new()),
         };
-        let (text, model, tokens) = match failed_spawn(input) {
-            Some(why) => (Err(why), input.input_text("model").unwrap_or("").to_string(), 0),
-            None => {
-                if input.response_text("status") != Some("completed") {
-                    return Ok(());
-                }
-                let Some(response) = input.tool_response.as_ref() else {
-                    return Ok(());
-                };
-                let model = input.response_text("resolvedModel").or_else(|| input.input_text("model")).unwrap_or("");
-                (Ok(final_text(response)), model.to_string(), response.get("totalTokens").and_then(Value::as_u64).unwrap_or(0))
+        (cases::FOUND, fields(v, c, &finding, &questions, model, tokens))
+    } else {
+        let answer = match text {
+            Ok(t) => parse_lens(lens, &t),
+            Err(why) => LensAnswer::Failed(why),
+        };
+        (cases::LENS_FOUND, lens_fields(c, lens, &answer, model, tokens))
+    }
+}
+
+/// A released call launched in the background: its release again, with the agent that runs it,
+/// once (the owner's answer, 2026-10-27).
+fn launched(v: &View, input: &HookInput) -> Option<Answered> {
+    let (id, agent) = (input.tool_use_id.as_deref()?, input.response_text("agentId").filter(|a| !a.is_empty())?);
+    let (c, lens) = owed_release(v, id)?;
+    let text = |r: &Fact, k: &str| r.fields.get(k).and_then(Value::as_str).map(str::to_string);
+    if v.kind(cases::RELEASED).any(|r| text(r, "tool_use_id").as_deref() == Some(id) && text(r, "agent_id").as_deref() == Some(agent)) {
+        return None;
+    }
+    Some((cases::RELEASED, json!({ "criterion_id": c, "lens": lens, "tool_use_id": id, "agent_id": agent }).as_object().cloned().unwrap_or_default()))
+}
+
+/// A released call's return in the foreground: its final text, or its failure's error.
+fn returned(v: &View, input: &HookInput) -> Option<Answered> {
+    let (c, lens) = owed_release(v, input.tool_use_id.as_deref()?)?;
+    let (text, model, tokens) = match failed_spawn(input) {
+        Some(why) => (Err(why), input.input_text("model").unwrap_or("").to_string(), 0),
+        None => {
+            if input.response_text("status") != Some("completed") {
+                return None;
             }
-        };
-        if lens == cases::SYNTHESIS {
-            let (finding, questions) = match text {
-                Ok(t) => parse_synthesis(&t),
-                Err(why) => (Finding::Failed(why), Vec::new()),
-            };
-            (cases::FOUND, fields(&v, &c, &finding, &questions, &model, tokens))
-        } else {
-            let answer = match text {
-                Ok(t) => parse_lens(&lens, &t),
-                Err(why) => LensAnswer::Failed(why),
-            };
-            (cases::LENS_FOUND, lens_fields(&c, &lens, &answer, &model, tokens))
+            let response = input.tool_response.as_ref()?;
+            let model = input.response_text("resolvedModel").or_else(|| input.input_text("model")).unwrap_or("");
+            (Ok(final_text(response)), model.to_string(), response.get("totalTokens").and_then(Value::as_u64).unwrap_or(0))
         }
+    };
+    Some(answer_fact(v, &c, &lens, text, &model, tokens))
+}
+
+/// A background lens's hand-back in auto mode, found by its agent: the report it hands back is its
+/// answer, on the model the panel runs on.
+fn handed_back(v: &View, input: &HookInput) -> Option<Answered> {
+    let (c, lens) = owed_agent(v, input.agent_id.as_deref()?)?;
+    let message = input.input_text("message").map(str::trim).unwrap_or("");
+    let text = if message.is_empty() { Err(no_answer(&lens, "")) } else { Ok(message.to_string()) };
+    Some(answer_fact(v, &c, &lens, text, &crate::decide::lens::model(), 0))
+}
+
+/// A background call's report at the main agent's UserPromptSubmit, found by its call.
+fn reported(v: &View, r: &Report) -> Option<Answered> {
+    let (c, lens) = owed_release(v, &r.tool_use_id)?;
+    Some(answer_fact(v, &c, &lens, reported_text(&lens, r), &crate::decide::lens::model(), r.tokens))
+}
+
+/// Record a lens's (or the synthesis's) answer wherever it comes back, and push the fact onto
+/// `log`: at the main agent's PostToolUse on its released call, or its PostToolUseFailure (failed,
+/// the error as why). A call Claude Code runs in the background (the owner's answers of
+/// 2026-10-27) returns at its launch, which names its agent on `lens_released`; its answer is read
+/// from the lens's own PostToolUse on SubagentHandback (auto mode, found by the agent) or from its
+/// report at the main agent's UserPromptSubmit (found by the call); a lens that ended with no
+/// answer is failed. A call never released, or an answer once its lens is answered, records nothing.
+pub(crate) fn hook_facts(record: &Record, input: &HookInput, log: &mut Log, now: f64) -> Result<(), String> {
+    let found = {
+        let v = View::new(log);
+        match input.event {
+            HookEvent::PostToolUse if input.is_spawn() && input.response_text("status") == Some(ASYNC) => launched(&v, input),
+            HookEvent::PostToolUse | HookEvent::PostToolUseFailure if input.is_spawn() => returned(&v, input),
+            HookEvent::PostToolUse if input.tool_name.as_deref() == Some(HANDBACK) && is_lens(input.agent_type.as_deref()) => handed_back(&v, input),
+            HookEvent::UserPromptSubmit if !input.in_subagent() => input.prompt_text().and_then(report).and_then(|r| reported(&v, &r)),
+            _ => None,
+        }
+    };
+    let Some((kind, fields)) = found else {
+        return Ok(());
     };
     log.push(record.append_raw(kind, fields, now, TENANT).map_err(|e| cannot("write its record", &e))?);
     Ok(())
+}
+
+/// The part a background call's report at this UserPromptSubmit is on, when its call was released
+/// on one: the main agent is told what comes next there, as at a call's return, though a lens that
+/// handed its answer back was recorded before its report.
+pub fn reported_on(v: &View, input: &HookInput) -> Option<String> {
+    if input.event != HookEvent::UserPromptSubmit || input.in_subagent() {
+        return None;
+    }
+    let r = input.prompt_text().and_then(report)?;
+    released_as(v, &r.tool_use_id).map(|(c, _)| c)
 }
 
 /// The part an answer this call recorded is on: a `lens_found` or `cases_found` among `log`'s

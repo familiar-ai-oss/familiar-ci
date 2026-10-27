@@ -178,6 +178,11 @@ pub struct LensReleased {
     pub criterion_id: String,
     pub lens: String,
     pub tool_use_id: String,
+    /// The agent a background launch runs the call as (the owner's answer, 2026-10-27): written
+    /// again for the call at that launch, so a lens that hands its answer back by its agent is
+    /// found; absent on the release at the call's PreToolUse.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub agent_id: Option<String>,
 }
 
 /// One finding of a lens: its kind, a note, where in the code (both may be empty) and the question

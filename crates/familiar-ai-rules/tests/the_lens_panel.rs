@@ -11,6 +11,7 @@
 mod traced;
 
 use familiar_ai_facts::Log;
+use familiar_ai_rules::hooks::{decide, Decision, Event};
 use familiar_ai_rules::{cases, holds, moves, plan, sample, View};
 use serde_json::{json, Value};
 use traced::*;
@@ -106,6 +107,36 @@ fn the_lenses_answer_in_any_order_and_a_failed_lens_is_an_answer() {
     let log = released(&log, cases::SYNTHESIS);
     assert_eq!(cases::to_release(&v(&log), "c1"), None);
     assert_eq!(cases::owed_next(&v(&log), "c1"), Some(cases::SYNTHESIS), "released, not answered");
+}
+
+fn stop(log: &Log) -> Decision {
+    decide(&v(log), &Event::Stops { main: true })
+}
+
+/// A stop goes while every owed call of the held part's panel is out, so the agent has nothing to
+/// start and only waits for the answers (the owner's answer, 2026-10-27: only waiting is left); a
+/// background lens's answer comes back after the turn ends. With a lens or the synthesis still to
+/// start the stop is refused on the panel as before, and an edit still waits for the panel.
+#[test]
+fn a_stop_goes_while_only_waiting_is_left_on_the_panel() {
+    let mut log = whole();
+    assert_eq!(hold_of(&stop(&log)).as_deref(), Some(cases::OWED), "nothing started");
+    for l in &cases::LENSES[..4] {
+        log = released(&log, l);
+    }
+    assert_eq!(hold_of(&stop(&log)).as_deref(), Some(cases::OWED), "a lens still to start");
+    log = released(&log, "order_and_coupling");
+    assert_eq!(hold_of(&stop(&log)), None, "the five out, nothing to start: {:?}", stop(&log));
+    assert_eq!(hold_of(&edit(&log, TEST)).as_deref(), Some(cases::OWED), "an edit still waits for the panel");
+    // two answered, the other three still out
+    log = lens(&log, "c1", "ambiguity", "none");
+    log = lens(&log, "c1", "edge_cases", "failed");
+    assert_eq!(hold_of(&stop(&log)), None, "still only waiting");
+    // the five answered: the synthesis is to start, then it is out
+    let log = lenses(&whole(), "c1");
+    assert_eq!(hold_of(&stop(&log)).as_deref(), Some(cases::OWED), "the synthesis to start");
+    let log = released(&log, cases::SYNTHESIS);
+    assert_eq!(hold_of(&stop(&log)), None, "the synthesis out");
 }
 
 #[test]

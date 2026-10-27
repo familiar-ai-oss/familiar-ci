@@ -395,7 +395,13 @@ fn the_plan_door_builds_the_plan_line_by_line() {
             "behavior",
             "promise",
             // definition change (the owner's ruling of 2026-10-25, "Mirror them") [draft names]: the
-            // case-finder's finding and the person's cases card answer are plan lines
+            // case-finder's finding and the person's cases card answer are plan lines; (the owner's
+            // plan of 2026-10-26, the lens panel) each lens's answer before the synthesis's too
+            "lens_found",
+            "lens_found",
+            "lens_found",
+            "lens_found",
+            "lens_found",
             "cases_found",
             "hold_answered",
             "criterion",
@@ -437,7 +443,7 @@ fn cases_kept_records_the_finders_none_and_the_persons_keep_planned() {
     p.claim(&["criterion_assigned", "--criterion_id", "c1"]);
     p.claim(&["fix_location_category", "--criterion_id", "c1", "--category", "this_repository", "--where", ""]);
     let before = p.status();
-    assert!(!before.starts_with("familiar-ai: the plan is confirmed"), "the case-finder is owed first: {before}");
+    assert!(!before.starts_with("familiar-ai: the plan is confirmed"), "the lens panel is owed first: {before}");
     let holds = p.criterion_json("c1")["holds"].to_string();
     assert!(holds.contains("cases_owed"), "{holds}");
 

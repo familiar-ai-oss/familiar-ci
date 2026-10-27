@@ -181,6 +181,33 @@ pub fn one_of_each() -> Vec<Claim> {
                 ("typed", json!("")),
             ]),
         ),
+        // the lens panel (the owner's plan of 2026-10-26, approved): a lens's answer and the
+        // person's pick on the synthesis's question
+        (
+            "lens_found",
+            fields(&[
+                ("criterion_id", json!("c1")),
+                ("lens", json!("edge_cases")),
+                ("outcome", json!("found")),
+                (
+                    "findings",
+                    json!([{"kind": "edge_case", "note": "a locked account with the right password",
+                            "file_path": "src/login.py", "target_symbol": "login",
+                            "candidate_question": "Is a locked account refused even with the right password?"}]),
+                ),
+                ("model", json!("opus")),
+                ("tokens", json!(4321)),
+            ]),
+        ),
+        (
+            "question_answered",
+            fields(&[
+                ("criterion_id", json!("c1")),
+                ("question_id", json!("q1")),
+                ("choice", json!("yes")),
+                ("typed", json!("")),
+            ]),
+        ),
     ];
     assert_eq!(
         spec.iter()

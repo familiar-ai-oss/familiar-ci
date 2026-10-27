@@ -242,37 +242,40 @@ hook_with() {
     fi
 }
 
-# finder_answer <the spawn's PreToolUse reply> <session>: the PostToolUse on the Agent call that
-# released the case-finder [draft names] (plan cases-card §1b, in the shape of the spike's capture
-# of 2026-10-25): the spawn as the hook rewrote it, and the finder's final text, a fenced JSON
-# answer with no cases and why
-finder_answer() {
-    python3 - "$1" "$PROJECT" "$2" <<'EOF'
+# lens_answer <the spawn's PreToolUse reply> <session> <tool_use_id> <answer>: the PostToolUse on
+# the Agent call the hook released to a lens of the lens panel, or its synthesis [draft names] (the
+# owner's plan of 2026-10-26; in the shape of the spike's capture of 2026-10-25): the spawn as the
+# hook rewrote it, and the subagent's final text, the fenced JSON <answer>
+lens_answer() {
+    python3 - "$1" "$PROJECT" "$2" "$3" "$4" <<'EOF'
 import json, sys
 reply = json.loads(sys.argv[1] or "{}")
 spawn = reply.get("hookSpecificOutput", {}).get("updatedInput") or {}
-answer = {"cases": [], "none_because": "the planned cases cover what the person asked"}
 print(json.dumps({
     "session_id": sys.argv[3], "cwd": sys.argv[2], "hook_event_name": "PostToolUse", "permission_mode": "bypassPermissions",
-    "tool_name": "Agent", "tool_input": spawn, "tool_use_id": "toolu_01CaseFinderWalk",
+    "tool_name": "Agent", "tool_input": spawn, "tool_use_id": sys.argv[4],
     "tool_response": {"status": "completed", "prompt": spawn.get("prompt", ""), "agentId": "a0ca5ef1d0e4walk", "agentType": spawn.get("subagent_type", ""),
-                      "content": [{"type": "text", "text": "```json\n" + json.dumps(answer) + "\n```"}],
-                      "resolvedModel": "claude-sonnet-4-5", "totalDurationMs": 1000, "totalTokens": 1234, "totalToolUseCount": 3}}))
+                      "content": [{"type": "text", "text": "```json\n" + sys.argv[5] + "\n```"}],
+                      "resolvedModel": "claude-opus-4-5", "totalDurationMs": 1000, "totalTokens": 1234, "totalToolUseCount": 3}}))
 EOF
 }
 
 # cases_kept <criterion_id>: the cases card passed [draft names] (plan cases-card, 2026-10-25),
-# once the part's contract is whole: the agent releases the case-finder with the Agent tool and
-# the PreToolUse rewrites the spawn (subagent_type familiar-ai:case-finder, the binary's brief,
-# the model sonnet unless FAMILIAR_AI_CASE_FINDER_MODEL names another); the finder answers that
-# the planned cases cover it, which the binary reads on the PostToolUse of that Agent call and
-# records as cases_found; the person keeps the planned cases from a terminal of their own; the
-# agent's next tool call is told so. Setup steps, not checks: a step that differs stops the
-# scenario, naming it.
+# once the part's contract is whole; updated with the definition (the owner's plan of 2026-10-26,
+# the lens panel): the agent releases six Agent calls, each with its own tool_use_id, and the
+# PreToolUse of each rewrites it (subagent_type familiar-ai:lens, the binary's brief for the lens
+# that call was released as, the model opus unless FAMILIAR_AI_LENS_MODEL names another); the five
+# lenses answer with no finding and the synthesis that the planned cases cover it, which the binary
+# reads on the PostToolUse of each call and records as lens_found and cases_found; the person keeps
+# the planned cases from a terminal of their own; the agent's next tool call is told so.
 cases_kept() {
-    hook "release the case-finder for $1" PreToolUse pre_tool_use_agent "@session_id=$SESSION"
-    case "$OUT" in *'"subagent_type":"familiar-ai:case-finder"'*) ;; *) setup_failed "the case-finder's spawn for $1: $OUT" ;; esac
-    hook_with "the case-finder answered for $1" PostToolUse "$(finder_answer "$OUT" "$SESSION")"
+    for n in 1 2 3 4 5 6; do
+        answer='{"findings": []}'
+        [ "$n" = 6 ] && answer='{"cases": [], "none_because": "the planned cases cover what the person asked"}'
+        hook "release call $n of the lens panel for $1" PreToolUse pre_tool_use_agent "@session_id=$SESSION" "@tool_use_id=toolu_lens_walk_$1_$n"
+        case "$OUT" in *'"subagent_type":"familiar-ai:lens"'*) ;; *) setup_failed "the lens panel's call $n for $1: $OUT" ;; esac
+        hook_with "call $n of the lens panel answered for $1" PostToolUse "$(lens_answer "$OUT" "$SESSION" "toolu_lens_walk_$1_$n" "$answer")"
+    done
     cli status --json
     case "$OUT" in *'"cases_unconfirmed"'*) ;; *) setup_failed "the cases card for $1: $OUT" ;; esac
     person_cli claim hold_answered --criterion_id "$1" --hold cases_unconfirmed --choice keep_planned --typed ''
@@ -311,7 +314,8 @@ scenario_planning_guidance() {
     claim promise --promise_id p1 --behavior_id b1 --accepts "a name" --gives_back "a greeting" --refuses "nothing" --cases '[{"case_id":"n1","kind":"normal","given":"a name","expect":"a greeting"},{"case_id":"o1","kind":"opposite","given":"no name","expect":"no greeting"}]'
     claim criterion --criterion_id c1 --text "greet says hello" --path full --behavior_id b1 --promise_id p1
     # definition change (plan cases-card, 2026-10-25) [draft words]: a whole contract owes the case-finder first; line 4 follows its card
-    expect "the criterion's answer names the case-finder" "\"greet says hello\" · before the test, a case-finder looks for the checks the planned cases miss"
+    # definition change (the owner's plan of 2026-10-26, the lens panel) [draft words]: the lens panel in the case-finder's place
+    expect "the criterion's answer names the lens panel" "\"greet says hello\" · before the test, the lens panel reads the plan for the checks the planned cases miss"
     cases_kept c1  # the cases card passed (plan cases-card, 2026-10-25) [draft names]
     claim place_chosen --criterion_id c1 --places '[{"file_path":"src/app.sh","symbol":"greet","line_start":1,"line_end":3}]'
     expect "the anchor's answer names line 6" "claim it: familiar-ai claim test_planned"
@@ -582,7 +586,8 @@ scenario_full_path() {
     expect "both claimed, nothing linked: the re-claim is what is left" "behavior b1 and promise p1 are claimed; re-claim the criterion with --behavior_id b1 --promise_id p1"
     claim criterion --criterion_id c1 --text "greet says hello" --path full --behavior_id b1 --promise_id p1
     # definition change (plan cases-card, 2026-10-25) [draft words]: linked, the contract is whole and owes the case-finder first; line 4 follows its card
-    expect "linked: the case-finder is next" "\"greet says hello\" · before the test, a case-finder looks for the checks the planned cases miss"
+    # definition change (the owner's plan of 2026-10-26, the lens panel) [draft words]: the lens panel in the case-finder's place
+    expect "linked: the lens panel is next" "\"greet says hello\" · before the test, the lens panel reads the plan for the checks the planned cases miss"
     cases_kept c1  # the cases card passed (plan cases-card, 2026-10-25) [draft names]
 }
 

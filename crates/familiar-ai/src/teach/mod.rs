@@ -1,7 +1,7 @@
 //! What the agent and the person are told: the discipline, the door's forms, the whole picture, the cards, and the person's words.
 
 pub mod card;
-pub mod case_finder;
+pub mod lens;
 pub mod cases_card;
 pub mod ci;
 pub mod discipline;

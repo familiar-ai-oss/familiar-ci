@@ -71,6 +71,16 @@ fn owed() -> Log {
     raw(&log, "criterion", json!({ "criterion_id": "c1", "text": "a right password opens a session", "path": "full", "behavior_id": BEHAVIOR_ID, "promise_id": PROMISE_ID }))
 }
 
+// Definition change (the owner's plan of 2026-10-26, the lens panel, approved): the synthesis's
+// finding is admissible only after the five lenses answered; `lensed` takes the lens moves first.
+fn lensed(log: &Log) -> Log {
+    let mut log = log.clone();
+    while let Some(m) = moves::criterion_admissible(&View::new(&log)).into_iter().find(|m| m.kind == "lens_found" && m.fields.get("criterion_id").and_then(Value::as_str) == Some("c1")) {
+        log = apply_move(&log, &m, AT, TENANT).unwrap_or_else(|e| panic!("{}: {e}", m.kind));
+    }
+    log
+}
+
 fn admissible(log: &Log) -> Vec<Move> {
     moves::criterion_admissible(&View::new(log))
 }
@@ -113,7 +123,7 @@ fn open_beside_a_kept_place(log: &Log) -> View<'_> {
 
 #[test]
 fn on_found_cases_the_card_offers_add_all_and_keep_planned_once_each_and_no_look_again() {
-    let log = owed();
+    let log = lensed(&owed());
     let log = take(&log, &finding(&log, "found", 2));
     let v = open_beside_a_kept_place(&log);
     assert_eq!(cases::offered(&v, "c1"), [cases::ADD_ALL, cases::KEEP]);
@@ -122,7 +132,7 @@ fn on_found_cases_the_card_offers_add_all_and_keep_planned_once_each_and_no_look
 
 #[test]
 fn on_none_found_the_card_offers_keep_planned_and_look_again_and_no_add_all() {
-    let log = owed();
+    let log = lensed(&owed());
     let log = take(&log, &finding(&log, "none", 0));
     let v = open_beside_a_kept_place(&log);
     assert_eq!(cases::offered(&v, "c1"), [cases::KEEP, cases::AGAIN]);
@@ -133,13 +143,13 @@ fn on_none_found_the_card_offers_keep_planned_and_look_again_and_no_add_all() {
 /// keep_planned or the person's own case, words typed (`cases::TYPED`), whose moves are the words.
 #[test]
 fn after_two_finders_the_card_offers_keep_planned_or_the_persons_own_case() {
-    let log = owed();
+    let log = lensed(&owed());
     let log = take(&log, &finding(&log, "none", 0));
     let again = admissible(&log)
         .into_iter()
         .find(|m| m.kind == "hold_answered" && s(m, "hold") == cases::CARD && s(m, "choice") == cases::AGAIN)
         .expect("look_again on the first none");
-    let log = take(&log, &again);
+    let log = lensed(&take(&log, &again));
     let log = take(&log, &finding(&log, "failed", 0));
     let v = open_beside_a_kept_place(&log);
     assert_eq!(cases::offered(&v, "c1"), [cases::KEEP, cases::TYPED]);

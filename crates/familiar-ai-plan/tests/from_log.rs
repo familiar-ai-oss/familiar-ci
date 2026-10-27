@@ -7,7 +7,7 @@ use common::fields;
 use familiar_ai_facts::{
     append, append_raw, AnchorShaMatched, Behavior, CasesFound, CheckedAt, Criterion, CriterionAssigned,
     CriterionCovered, CriterionHead, CriterionStrungOnHead, DependencyDrafted, FingerprintStamped, FixLocation, FixLocationCategory,
-    FoundCase, HoldAnswered, IntentSubmitted, Log, NewWorkNoSpot, NewWorkSpotChosen, Place, PlaceChosen, Promise, RanIn, TestChangeAnnounced,
+    FoundCase, FoundQuestion, HoldAnswered, IntentSubmitted, LensFound, LensReleased, Log, QuestionAnswered, NewWorkNoSpot, NewWorkSpotChosen, Place, PlaceChosen, Promise, RanIn, TestChangeAnnounced,
     TestPlanned, TestStackDetected, TestWritten, TouchingTestDeclared, Will,
 };
 use familiar_ai_plan::{claims_from_log, from_bytes, to_bytes, PLAN_KINDS};
@@ -305,6 +305,12 @@ fn claims_from_log_of_every_typed_form() {
             why: String::new(),
             model: "sonnet".into(),
             tokens: 1234,
+            questions: vec![FoundQuestion {
+                question_id: "q1".into(),
+                text: "Is a locked account refused even with the right password?".into(),
+                options: vec!["yes".into(), "no".into()],
+                why: "the person's words name no lock".into(),
+            }],
         },
         at,
         tenant,
@@ -316,6 +322,46 @@ fn claims_from_log_of_every_typed_form() {
             criterion_id: "c1".into(),
             hold: "cases_unconfirmed".into(),
             choice: "add_all".into(),
+            typed: String::new(),
+        },
+        at,
+        tenant,
+    )
+    .unwrap();
+    // the lens panel (the owner's plan of 2026-10-26, approved). Definition change: a lens's answer
+    // and the person's pick on the synthesis's question are claims of the plan, as the synthesis's
+    // finding is; which Agent call got which lens is the binary's bookkeeping and stays out
+    log = append(
+        &log,
+        &LensReleased {
+            criterion_id: "c1".into(),
+            lens: "ambiguity".into(),
+            tool_use_id: "toolu_01".into(),
+        },
+        at,
+        tenant,
+    )
+    .unwrap();
+    log = append(
+        &log,
+        &LensFound {
+            criterion_id: "c1".into(),
+            lens: "ambiguity".into(),
+            outcome: "none".into(),
+            findings: Vec::new(),
+            model: "opus".into(),
+            tokens: 900,
+        },
+        at,
+        tenant,
+    )
+    .unwrap();
+    log = append(
+        &log,
+        &QuestionAnswered {
+            criterion_id: "c1".into(),
+            question_id: "q1".into(),
+            choice: "yes".into(),
             typed: String::new(),
         },
         at,
@@ -367,8 +413,8 @@ fn claims_from_log_of_every_typed_form() {
     )
     .unwrap();
     let claims = claims_from_log(&log);
-    assert_eq!(claims.len(), log.len() - 3, "every fact here but the other card's answer, its draft and the covered criterion is a claim kind");
-    for kind in ["dependency_drafted", "criterion_covered"] {
+    assert_eq!(claims.len(), log.len() - 4, "every fact here but the lens's release, the other card's answer, its draft and the covered criterion is a claim kind");
+    for kind in ["dependency_drafted", "criterion_covered", "lens_released"] {
         assert!(claims.iter().all(|c| c.kind() != kind), "the plan carries no {kind}");
     }
     let holds: Vec<&str> = claims.iter().filter(|c| c.kind() == "hold_answered").filter_map(|c| c.fields().get("hold").and_then(|v| v.as_str())).collect();

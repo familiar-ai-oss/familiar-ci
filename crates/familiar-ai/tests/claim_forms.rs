@@ -20,7 +20,9 @@ fn claim_alone_lists_the_twenty_two_kinds_and_claim_kind_prints_its_form_without
     assert_eq!(common::exit_code(&output), 0, "{}", common::stderr(&output));
     let out = common::stdout(&output);
     assert_eq!(common::stderr(&output), "");
-    let kinds: Vec<&str> = out.lines().skip(1).take(23).map(|l| l.split_whitespace().next().unwrap_or("")).collect();
+    // updated with the definition (the owner's plan of 2026-10-26, the lens panel): the person's
+    // question_answered after hold_answered (23 became 24)
+    let kinds: Vec<&str> = out.lines().skip(1).take(24).map(|l| l.split_whitespace().next().unwrap_or("")).collect();
     assert_eq!(
         kinds,
         [
@@ -45,6 +47,7 @@ fn claim_alone_lists_the_twenty_two_kinds_and_claim_kind_prints_its_form_without
             "test_change_announced",
             "existing_test_announced",
             "hold_answered",
+            "question_answered",
             "criterion_transfer",
             "person_said_answered",
         ],

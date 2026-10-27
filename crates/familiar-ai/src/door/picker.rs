@@ -4,7 +4,7 @@
 
 use std::path::{Path, PathBuf};
 
-use familiar_ai_facts::{HoldAnswered, Log, Record};
+use familiar_ai_facts::{HoldAnswered, Log, QuestionAnswered, Record};
 use familiar_ai_rules::View;
 use serde_json::{json, Map, Value};
 
@@ -125,6 +125,43 @@ pub(crate) fn write(record: &Record, root: &Path, log: &mut Log, picked: &Picked
         }
         Picked::Push(answer) => Ok(Told { context: Some(words::push_chosen(answer)), message: None }),
     }
+}
+
+/// Write the person's picks on the lens panel's open questions (`question_answered`, the owner's
+/// plan of 2026-10-26, approved), read from the picker's PostToolUse on the log as it stood
+/// before the call (`before`); each pick is the person's words for the part. What the agent and
+/// the person are told: the answers, and, when they close a card whose choice was answered before,
+/// what that choice leads to. Nothing is told when nothing was picked.
+pub(crate) fn write_questions(record: &Record, root: &Path, input: &HookInput, before: &Log, log: &mut Log, around: &Surroundings) -> Result<Told, String> {
+    use familiar_ai_rules::cases;
+    let picks = decide::question_picks(input, before);
+    let Some(c) = picks.first().map(|p| p.criterion_id.clone()) else {
+        return Ok(Told::default());
+    };
+    let cannot_write = |e: familiar_ai_facts::RecordError| cannot("write its record", &e);
+    let b = View::new(before);
+    let qs = cases::questions(&b, &c);
+    let mut said: Vec<String> = Vec::new();
+    for p in &picks {
+        let fact = QuestionAnswered { criterion_id: p.criterion_id.clone(), question_id: p.question_id.clone(), choice: p.choice.clone(), typed: p.typed.clone() };
+        log.push(record.append(&fact, around.now, TENANT).map_err(cannot_write)?);
+        let text = qs.iter().find(|q| q.question_id == p.question_id).map_or("", |q| q.text.as_str());
+        let answer = if p.typed.is_empty() { &p.choice } else { &p.typed };
+        said.push(format!("\"{text}\": \"{answer}\""));
+    }
+    let what = said.join("; ");
+    // places before the fix [draft]: the panel's last answer may be the plan's last step, as the card's pick is
+    crate::door::places::write_owed(record, root, log, around.now, TENANT).map_err(cannot_write)?;
+    let after = View::new(log);
+    let mut context = format!("{}the person answered the lens panel's questions for {}: {what}. The answers are recorded.", crate::teach::words::LEAD, crate::teach::words::quoted(&after, &c));
+    if cases::choice_answered(&b, &c) && !cases::card_open(&after, &c) {
+        let choice = b.of("hold_answered", &c).filter(|a| a.fields.get("hold").and_then(Value::as_str) == Some(cases::CARD)).last().and_then(|a| a.fields.get("choice")).and_then(Value::as_str).unwrap_or("");
+        if let Some(cta) = crate::teach::cases_card::after_pick(&after, &c, choice) {
+            context = format!("{context} {cta}");
+        }
+    }
+    let message = words::recorded(&after, &c, &what);
+    Ok(Told { context: Some(context), message: Some(message) })
 }
 
 /// Each other checkout's record as read, with `record` let go meanwhile so

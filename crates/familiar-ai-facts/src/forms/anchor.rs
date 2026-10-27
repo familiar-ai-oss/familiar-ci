@@ -153,4 +153,65 @@ pub struct CasesFound {
     pub why: String,
     pub model: String,
     pub tokens: u64,
+    /// The lens panel's questions for the person (the owner's plan of 2026-10-26, approved): at
+    /// most three, written by the synthesis; absent when it asks none, and on every finding the
+    /// case-finder recorded before the panel.
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub questions: Vec<FoundQuestion>,
+}
+
+/// One question the lens panel's synthesis asks the person (the owner's plan of 2026-10-26,
+/// approved): its id (`q1`..`q3`), its text, two to four options and why it decides the cases.
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct FoundQuestion {
+    pub question_id: String,
+    pub text: String,
+    pub options: Vec<String>,
+    pub why: String,
+}
+
+/// Which Agent call got which lens of the panel (the owner's plan of 2026-10-26, approved): the
+/// part, one of the five lenses or the synthesis, the call's tool_use_id. Written by the binary only.
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+pub struct LensReleased {
+    pub criterion_id: String,
+    pub lens: String,
+    pub tool_use_id: String,
+}
+
+/// One finding of a lens: its kind, a note, where in the code (both may be empty) and the question
+/// it would put to the person (may be empty).
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct LensFinding {
+    pub kind: String,
+    pub note: String,
+    pub file_path: String,
+    pub target_symbol: String,
+    pub candidate_question: String,
+}
+
+/// A lens's answer on a part (the owner's plan of 2026-10-26, approved), recorded by the binary:
+/// the lens, its outcome (found, none or failed), its findings, the model that ran and the tokens
+/// it used. The synthesis is not a lens's answer: it is recorded as `cases_found`.
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+pub struct LensFound {
+    pub criterion_id: String,
+    pub lens: String,
+    pub outcome: String,
+    pub findings: Vec<LensFinding>,
+    pub model: String,
+    pub tokens: u64,
+}
+
+/// The person's pick on one of the synthesis's questions (the owner's plan of 2026-10-26,
+/// approved), recorded by the picker: the question's id, the option's text or `typed`, and the
+/// words typed.
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+pub struct QuestionAnswered {
+    pub criterion_id: String,
+    pub question_id: String,
+    pub choice: String,
+    pub typed: String,
 }

@@ -23,6 +23,8 @@ fn approved(passed: bool) -> Log {
     ]);
     let mut log = raw(&planned(), "promise", json!({ "promise_id": "p1", "behavior_id": "b1", "accepts": "rows", "gives_back": "each row once", "refuses": "nothing", "cases": cases, "contract_version": 1 }));
     if passed {
+        // definition change (the lens panel, approved 2026-10-26): the five lenses, then the synthesis
+        log = lenses(&log, "c1");
         log = raw(&log, "cases_found", json!({ "criterion_id": "c1", "outcome": "none", "cases": [], "why": "the planned cases cover it", "model": "claude-sonnet-5-5", "tokens": 4000 }));
         log = raw(&log, "hold_answered", json!({ "criterion_id": "c1", "hold": cases::CARD, "choice": cases::KEEP, "typed": "" }));
     }

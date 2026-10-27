@@ -5,7 +5,7 @@
 pub mod aim;
 pub mod anchor;
 pub mod approval;
-pub mod case_finder;
+pub mod lens;
 pub mod child;
 pub mod ci;
 pub mod claim;

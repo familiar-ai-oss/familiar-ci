@@ -44,8 +44,8 @@ yourself (`test_stack_detected`); never wait on it. The cases card (`cases_uncon
 word for word, then claim the promise again with the cases the person asked for (the hook names them).
 
 ## 6. Subagents, and green everywhere
-A whole full-path promise owes the case-finder before its test: spawn the Agent tool; it runs as
-familiar-ai:case-finder on the binary's brief, and its answer opens the cases card. On two_failures a
+A whole full-path promise owes the lens panel before its test: spawn the Agent tool once per lens, in one message,
+then once for the synthesis; each runs as familiar-ai:lens on the binary's brief. Its questions join the card. On two_failures a
 spawn by the holder runs as familiar-ai:investigator, one rung up; the criterion moves to it, the stop
 waits for green, and green sends it back. When every criterion is green the stop's facts say whether the
 branch is pushed; ask the person, and on a yes push and open the pull request as `plugin/commands/prove.md` says.

@@ -186,8 +186,16 @@ fn added_a_found_case(p: &Project) {
         let record = Record::open_waiting(&p.record_path(), std::time::Duration::from_secs(5)).expect("the record");
         let found = obj(json!({ "criterion_id": "c1", "outcome": "found", "cases": [{ "case_id": "a1", "short": "a name with a space is greeted in full", "given": "the name Ada Lovelace", "expect": "hello Ada Lovelace", "why": "greet reads its whole argument" }], "why": "", "model": "sonnet", "tokens": 1500 }));
         let added = obj(json!({ "criterion_id": "c1", "hold": "cases_unconfirmed", "choice": "add_all", "typed": "" }));
-        let facts = record.append_all(&[("cases_found", found, at), ("hold_answered", added, at)], familiar_ai::TENANT).expect("the finding and the person's add_all");
-        record.append_raw("told", obj(json!({ "about": facts[1].t.to_string() })), at, familiar_ai::TENANT).expect("the pick told");
+        // updated with the definition (the owner's plan of 2026-10-26, the lens panel): the
+        // synthesis's finding comes after the five lenses' answers
+        let mut all: Vec<(&str, serde_json::Map<String, Value>, f64)> = common::project::LENSES
+            .iter()
+            .map(|l| ("lens_found", obj(json!({ "criterion_id": "c1", "lens": l, "outcome": "none", "findings": [], "model": "opus", "tokens": 0 })), at))
+            .collect();
+        all.push(("cases_found", found, at));
+        all.push(("hold_answered", added, at));
+        let facts = record.append_all(&all, familiar_ai::TENANT).expect("the finding and the person's add_all");
+        record.append_raw("told", obj(json!({ "about": facts[facts.len() - 1].t.to_string() })), at, familiar_ai::TENANT).expect("the pick told");
     }
     p.claim(&["promise", "--promise_id", "p1", "--behavior_id", "b1", "--accepts", "a name", "--gives_back", "a greeting", "--refuses", "nothing", "--cases", r#"[{"case_id":"n1","kind":"normal","given":"a name","expect":"a greeting"},{"case_id":"o1","kind":"opposite","given":"no name","expect":"no greeting"},{"case_id":"a1","kind":"edge","short":"a name with a space is greeted in full","given":"the name Ada Lovelace","expect":"hello Ada Lovelace"}]"#]);
 }
@@ -210,6 +218,7 @@ fn a_found_case_the_person_added_is_neither_looked_for_nor_asked_again_in_a_fres
     let seeded = common::project::facts_at(&wt);
     let of = |kind: &str| seeded.iter().filter(|f| f.kind == kind).map(|f| Value::Object(f.fields.clone())).collect::<Vec<_>>();
     assert_eq!(of("cases_found"), p.facts_of("cases_found"), "the finding, as recorded");
+    assert_eq!(of("lens_found"), p.facts_of("lens_found"), "the lenses' answers, as recorded");
     assert_eq!(of("hold_answered"), p.facts_of("hold_answered"), "the person's answer, as recorded");
 }
 

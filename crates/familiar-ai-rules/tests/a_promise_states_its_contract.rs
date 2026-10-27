@@ -62,6 +62,10 @@ fn line_3_with(extra: Value) -> bool {
 /// plan (the cases card, the owner's plan of 2026-10-25) [draft names].
 fn line_3_kept(extra: Value) -> bool {
     let mut log = ap(&plan_without_the_promise(), "promise", promise(extra));
+    // definition change (the lens panel, approved 2026-10-26): the five lenses, then the synthesis
+    for lens in ["ambiguity", "completeness", "happy_path", "edge_cases", "order_and_coupling"] {
+        log = ap(&log, "lens_found", json!({ "criterion_id": "c1", "lens": lens, "outcome": "none", "findings": [], "model": "claude-opus-5-5", "tokens": 1 }));
+    }
     log = ap(&log, "cases_found", json!({ "criterion_id": "c1", "outcome": "none", "cases": [], "why": "the planned cases cover it", "model": "claude-sonnet-5-5", "tokens": 1 }));
     log = ap(&log, "hold_answered", json!({ "criterion_id": "c1", "hold": familiar_ai_rules::cases::CARD, "choice": familiar_ai_rules::cases::KEEP, "typed": "" }));
     plan::line_3(&View::new(&log))

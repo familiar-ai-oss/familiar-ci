@@ -56,8 +56,9 @@ fn why_words(w: &str) -> String {
         "try_not_red" => "its latest try passed, so the test does not show the problem yet: change the test so it fails on the code as it is, then run familiar-ai try again; the place (plan line 4) comes after a red try".into(),
         "repro_unknown" => "the person's words do not show how to make the problem happen (no command, code or quoted output); before the test is written the person is asked how they make it happen".into(),
         // the cases card (the owner's plan of 2026-10-25) [draft words]
-        "cases_owed" => "its contract is whole, so before its test is written the case-finder looks for the cases the plan's own do not cover: start it with the Agent tool".into(),
-        "cases_unconfirmed" => "the case-finder answered; before the test is written the person checks the cases it will cover and the ones found".into(),
+        // the lens panel (the owner's plan of 2026-10-26, approved) [draft words]
+        "cases_owed" => "its contract is whole, so before its test is written the lens panel reads the plan: five lenses, then their synthesis, each started with the Agent tool".into(),
+        "cases_unconfirmed" => "the lens panel answered; before the test is written the person checks the cases it will cover, the ones found and the panel's questions".into(),
         other => format!("held on {}", other.replace('_', " ")),
     }
 }
@@ -890,9 +891,12 @@ pub fn cases_options(v: &View, c: &str) -> Vec<(&'static str, String, String)> {
         .collect()
 }
 
-/// The cases card on `c` [draft]: its lines, the choices its latest finding allows, and words typed.
+/// The cases card on `c` [draft]: its lines, the choices its latest finding allows, and words typed,
+/// until its choice is answered; then (the lens panel, the owner's plan of 2026-10-26, approved)
+/// no choice, and below, each of the synthesis's questions still open with its options numbered.
 fn cases_card(v: &View, c: &str) -> Card {
-    let choices: Vec<(String, String)> = cases_options(v, c).into_iter().map(|(ch, label, _)| (ch.to_string(), label)).collect();
+    let answered = crate::cases::choice_answered(v, c);
+    let choices: Vec<(String, String)> = if answered { Vec::new() } else { cases_options(v, c).into_iter().map(|(ch, label, _)| (ch.to_string(), label)).collect() };
     let q = question(v, crate::cases::CARD, c, "");
     let summary = cases_lines(v, c);
     let mut text_lines = vec![format!("? {q}")];
@@ -900,7 +904,14 @@ fn cases_card(v: &View, c: &str) -> Card {
     for (i, (ch, w)) in choices.iter().enumerate() {
         text_lines.push(format!("  {}) {ch} — {w}", i + 1));
     }
-    text_lines.push(format!("  > {TYPED_OTHER}"));
+    if !answered {
+        text_lines.push(format!("  > {TYPED_OTHER}"));
+    }
+    let open = crate::cases::unanswered_questions(v, c);
+    for fq in crate::cases::questions(v, c).into_iter().filter(|fq| open.contains(&fq.question_id)) {
+        text_lines.push(format!("  ? {}", fq.text.split_whitespace().collect::<Vec<_>>().join(" ")));
+        text_lines.extend(fq.options.iter().enumerate().map(|(i, o)| format!("    {}) {o}", i + 1)));
+    }
     Card {
         criterion_id: c.to_string(),
         hold: crate::cases::CARD.to_string(),

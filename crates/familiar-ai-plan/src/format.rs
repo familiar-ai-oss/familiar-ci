@@ -15,8 +15,10 @@ use crate::PlanError;
 /// carries is the person's on the cases card, beside the case-finder's finding (the owner,
 /// 2026-10-25: "Mirror them"), so a record rebuilt from the plan never asks again: a
 /// `hold_answered` is a plan line only when it answers that card with one of its own choices
-/// (`is_plan_line`).
-pub const PLAN_KINDS: [&str; 20] = [
+/// (`is_plan_line`). The lens panel (the owner's plan of 2026-10-26, approved) is mirrored the
+/// same way: each lens's answer and the person's pick on a synthesis's question; which Agent call
+/// got which lens (`lens_released`) is the binary's bookkeeping and stays out.
+pub const PLAN_KINDS: [&str; 22] = [
     "intent_submitted",
     "behavior",
     "promise",
@@ -40,6 +42,10 @@ pub const PLAN_KINDS: [&str; 20] = [
     // "Mirror them") [draft names]; no other card's answer.
     "cases_found",
     "hold_answered",
+    // The lens panel's answers and the person's pick on each of the synthesis's questions (the
+    // owner's plan of 2026-10-26, approved).
+    "lens_found",
+    "question_answered",
 ];
 
 /// The cases card's hold, the rules' `cases::CARD` [draft name]: the one card whose answer the

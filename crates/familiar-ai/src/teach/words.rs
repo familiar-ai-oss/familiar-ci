@@ -49,9 +49,9 @@ const HOLDS: [(&str, &str); 32] = [
     ("try_owed", "the test comes before the place: write the planned test, then run familiar-ai try; the place in the code is picked from what the failing test runs"),
     ("try_not_red", "the latest try passed, so the test does not show the problem yet: change the test so it fails, then run familiar-ai try again"),
     ("repro_unknown", "before the test, the person is asked: How do you make it happen? What do you run, and what do you see?"),
-    // the cases card (the owner's plan of 2026-10-25) [draft words, draft name familiar-ai:case-finder]
-    ("cases_owed", "before the test, a case-finder looks for the checks the planned cases miss: start it with the Agent tool, subagent_type familiar-ai:case-finder; the binary gives it its brief"),
-    ("cases_unconfirmed", "before the test, the person checks the cases it will cover and the ones the case-finder found: ask them with AskUserQuestion"),
+    // the cases card (the owner's plan of 2026-10-25); the lens panel (the owner's plan of 2026-10-26, approved) [draft words]
+    ("cases_owed", "before the test, the lens panel reads the plan for the checks the planned cases miss: five lenses, one Agent call each, in parallel, then the synthesis; each runs as familiar-ai:lens, and the binary gives each its brief"),
+    ("cases_unconfirmed", "before the test, the person checks the cases it will cover, the ones the lens panel found and its questions: ask them with AskUserQuestion"),
 ];
 
 /// An agent's `claude -p`, refused: a lane is started with `launch_lane`.
@@ -621,7 +621,7 @@ pub fn plan_checklist(p: &crate::teach::example::Project) -> Vec<String> {
         // the contract [draft names]: a promise that gives cases wants a normal and an opposite one
         (false, contract_row(&v, c, &wants, p))
     } else if let Some(row) = full.iter().find_map(|c| crate::teach::cases_card::line_3(&v, c)) {
-        // the cases card [draft]: the case-finder, the person's card, then the cases they asked for
+        // the cases card [draft]: the lens panel, the person's card, then the cases they asked for
         (false, row)
     } else {
         let gap = crate::teach::full_path::gap(p.log).and_then(|g| crate::teach::full_path::claim_lines(&g, p).into_iter().next());

@@ -77,6 +77,10 @@ fn typed_again(fact: &Fact) -> Log {
         "off_list_reason" => typed_round_trip::<OffListReason>(fact),
         // definition change (owner approved 2026-10-25) [draft]
         "cases_found" => typed_round_trip::<CasesFound>(fact),
+        // definition change (the lens panel, owner approved 2026-10-26)
+        "lens_released" => typed_round_trip::<LensReleased>(fact),
+        "lens_found" => typed_round_trip::<LensFound>(fact),
+        "question_answered" => typed_round_trip::<QuestionAnswered>(fact),
         other => panic!("{other} has no typed round trip in this test"),
     }
 }

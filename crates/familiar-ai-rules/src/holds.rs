@@ -120,20 +120,29 @@ pub fn cases_owed_clears(c: &str) -> Vec<Clear> {
     vec![m]
 }
 
-/// What clears `cases::CARD` on `c` [draft]: the person's answer, one of the card's choices or words typed.
+/// What clears `cases::CARD` on `c` [draft]: the person's answer, one of the card's choices or words
+/// typed, until the choice is answered; then (the lens panel, the owner's plan of 2026-10-26,
+/// approved) the person's pick on each of the synthesis's questions still open.
 pub fn cases_card_clears(v: &View, c: &str) -> Vec<Clear> {
-    crate::cases::offered(v, c)
-        .into_iter()
-        .filter(|ch| *ch != crate::cases::TYPED)
-        .chain(std::iter::once(crate::cases::TYPED))
-        .map(|ch| {
-            let mut m = clear("hold_answered");
-            m.insert("criterion_id".into(), Value::from(c));
-            m.insert("hold".into(), Value::from(crate::cases::CARD));
-            m.insert("choice".into(), Value::from(ch));
-            m
-        })
-        .collect()
+    let choices: Vec<&str> = if crate::cases::choice_answered(v, c) {
+        Vec::new()
+    } else {
+        crate::cases::offered(v, c).into_iter().filter(|ch| *ch != crate::cases::TYPED).chain(std::iter::once(crate::cases::TYPED)).collect()
+    };
+    let choices = choices.into_iter().map(|ch| {
+        let mut m = clear("hold_answered");
+        m.insert("criterion_id".into(), Value::from(c));
+        m.insert("hold".into(), Value::from(crate::cases::CARD));
+        m.insert("choice".into(), Value::from(ch));
+        m
+    });
+    let questions = crate::cases::unanswered_questions(v, c).into_iter().map(|q| {
+        let mut m = clear(crate::cases::QUESTION_ANSWERED);
+        m.insert("criterion_id".into(), Value::from(c));
+        m.insert("question_id".into(), Value::from(q));
+        m
+    });
+    choices.chain(questions).collect()
 }
 
 /// What clears the try's holds on `c` [draft]: the binary's listing after `familiar-ai try`.

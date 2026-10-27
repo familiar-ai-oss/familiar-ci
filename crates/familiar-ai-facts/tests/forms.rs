@@ -180,11 +180,14 @@ fn no_form_registers_state_or_status() {
 // 2026-10-23) [draft]: trace_listed, the binary's, and off_list_reason, the agent's, come after
 // one_reading, so the form had 57 kinds.
 // Definition change (the owner's plan of 2026-10-25, the cases card; owner approved 2026-10-25, KINDS
-// 57 -> 58) [draft]: cases_found, the binary's, comes after off_list_reason, so the form has 58 kinds.
+// 57 -> 58) [draft]: cases_found, the binary's, comes after off_list_reason, so the form had 58 kinds.
+// Definition change (the owner's plan of 2026-10-26, the lens panel; approved 2026-10-26 with its
+// names, KINDS 58 -> 61): lens_released and lens_found, the binary's, and question_answered, the
+// person's, come after cases_found, so the form has 61 kinds.
 #[test]
-fn form_has_exactly_58_kinds() {
-    assert_eq!(FORM.len(), 58);
-    assert_eq!(KINDS.len(), 58);
+fn form_has_exactly_61_kinds() {
+    assert_eq!(FORM.len(), 61);
+    assert_eq!(KINDS.len(), 61);
     assert_eq!(KINDS[22], "model_seen");
     assert_eq!(KINDS[23], "judge_verdict");
     assert_eq!(KINDS[24], "person_said");
@@ -221,10 +224,13 @@ fn form_has_exactly_58_kinds() {
     assert_eq!(KINDS.get(55), Some(&"trace_listed"));
     assert_eq!(KINDS.get(56), Some(&"off_list_reason"));
     assert_eq!(KINDS.get(57), Some(&"cases_found"));
+    assert_eq!(KINDS.get(58), Some(&"lens_released"));
+    assert_eq!(KINDS.get(59), Some(&"lens_found"));
+    assert_eq!(KINDS.get(60), Some(&"question_answered"));
     for (row, kind) in FORM.iter().zip(KINDS.iter()) {
         assert_eq!(row.kind, *kind);
     }
-    assert_eq!(kind_count(), 58);
+    assert_eq!(kind_count(), 61);
 }
 
 // commit_seen.existing_tests_changed [draft] is a field of the fact, not of the typed form: a

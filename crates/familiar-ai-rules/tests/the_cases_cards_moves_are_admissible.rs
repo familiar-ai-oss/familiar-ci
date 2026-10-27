@@ -32,6 +32,16 @@ fn whole() -> Log {
     raw(&log, "promise", Value::Object(f))
 }
 
+// Definition change (the owner's plan of 2026-10-26, the lens panel, approved): the synthesis's
+// finding is admissible only after the five lenses answered; `lensed` takes the lens moves first.
+fn lensed(log: &Log) -> Log {
+    let mut log = log.clone();
+    while let Some(m) = moves::criterion_admissible(&View::new(&log)).into_iter().find(|m| m.kind == "lens_found" && m.fields.get("criterion_id").and_then(Value::as_str) == Some("c1")) {
+        log = apply_move(&log, &m, AT, TENANT).unwrap_or_else(|e| panic!("{}: {e}", m.kind));
+    }
+    log
+}
+
 fn all(log: &Log) -> Vec<Move> {
     moves::criterion_admissible(&View::new(log))
 }
@@ -83,11 +93,16 @@ fn typed(log: &Log) -> Vec<(String, bool)> {
 
 #[test]
 fn while_the_finder_is_owed_the_binarys_finding_is_admissible_found_none_or_failed() {
-    let log = whole();
+    assert!(findings(&whole()).is_empty(), "no synthesis before the five lenses answered");
+    let log = lensed(&whole());
     assert!(cases::owed(&View::new(&log), "c1"));
     let fs = findings(&log);
-    let shape: Vec<(String, usize)> = fs.iter().map(|m| (s(m, "outcome").to_string(), m.fields.get("cases").and_then(Value::as_array).map_or(0, Vec::len))).collect();
-    assert_eq!(shape, [("found".to_string(), 1), ("found".to_string(), 2), ("none".to_string(), 0), ("failed".to_string(), 0)], "{shape:?}");
+    let shape: Vec<(String, usize, usize)> = fs
+        .iter()
+        .map(|m| (s(m, "outcome").to_string(), m.fields.get("cases").and_then(Value::as_array).map_or(0, Vec::len), m.fields.get("questions").and_then(Value::as_array).map_or(0, Vec::len)))
+        .collect();
+    let f = |o: &str, n: usize, q: usize| (o.to_string(), n, q);
+    assert_eq!(shape, [f("found", 1, 0), f("found", 2, 0), f("none", 0, 0), f("failed", 0, 0), f("found", 1, 2)], "{shape:?}");
     for m in &fs {
         assert_eq!(s(m, "criterion_id"), "c1");
         // each lands as the binary writes it, and clears the finder's hold
@@ -101,7 +116,7 @@ fn while_the_finder_is_owed_the_binarys_finding_is_admissible_found_none_or_fail
 
 #[test]
 fn on_found_cases_the_card_offers_its_choices_numbers_and_words() {
-    let log = take(&whole(), &finding(&whole(), "found", 2));
+    let log = take(&lensed(&whole()), &finding(&lensed(&whole()), "found", 2));
     assert!(findings(&log).is_empty(), "no finder while the card is open");
     let choices: Vec<String> = card_answers(&log).iter().filter(|m| s(m, "choice") != cases::TYPED).map(|m| s(m, "choice").to_string()).collect();
     assert_eq!(choices, [cases::ADD_ALL, cases::KEEP]);
@@ -117,7 +132,7 @@ fn on_found_cases_the_card_offers_its_choices_numbers_and_words() {
 #[test]
 fn on_none_or_failed_the_card_offers_keep_look_again_and_words_but_no_numbers() {
     for outcome in ["none", "failed"] {
-        let log = take(&whole(), &finding(&whole(), outcome, 0));
+        let log = take(&lensed(&whole()), &finding(&lensed(&whole()), outcome, 0));
         let choices: Vec<String> = card_answers(&log).iter().filter(|m| s(m, "choice") != cases::TYPED).map(|m| s(m, "choice").to_string()).collect();
         assert_eq!(choices, [cases::KEEP, cases::AGAIN], "{outcome}");
         let t = typed(&log);
@@ -126,6 +141,7 @@ fn on_none_or_failed_the_card_offers_keep_look_again_and_words_but_no_numbers() 
         // look again owes one more finder, offered again; after the second, no look again
         let again = take(&log, &answer(&log, cases::AGAIN));
         assert!(cases::owed(&View::new(&again), "c1"));
+        let again = lensed(&again);
         let second = take(&again, &finding(&again, "none", 0));
         let choices: Vec<String> = card_answers(&second).iter().filter(|m| s(m, "choice") != cases::TYPED).map(|m| s(m, "choice").to_string()).collect();
         assert_eq!(choices, [cases::KEEP], "{outcome}: two finders at most");
@@ -134,7 +150,7 @@ fn on_none_or_failed_the_card_offers_keep_look_again_and_words_but_no_numbers() 
 
 #[test]
 fn cases_asked_for_are_claimed_into_the_promise_and_line_3_then_holds() {
-    let found = take(&whole(), &finding(&whole(), "found", 2));
+    let found = take(&lensed(&whole()), &finding(&lensed(&whole()), "found", 2));
     for m in card_answers(&found) {
         let log = take(&found, &m);
         let v = View::new(&log);

@@ -52,8 +52,18 @@ pub const FOUND: [(&str, &str, &str); 3] = [
     ("a plain error with every frame hidden", "a plain exception whose frames are all hidden", "the message, no IndexError"),
 ];
 
-/// The case-finder's finding on c1: `outcome`, with the first `n` of `FOUND` as a1..an.
+/// The lens panel's five lenses, in release order.
+pub const LENSES: [&str; 5] = ["ambiguity", "completeness", "happy_path", "edge_cases", "order_and_coupling"];
+
+/// Each lens's answer on c1, none, as the binary records it.
+pub fn lensed(log: &Log) -> Log {
+    LENSES.iter().fold(log.clone(), |l, x| raw(&l, "lens_found", json!({ "criterion_id": "c1", "lens": x, "outcome": "none", "findings": [], "model": "claude-opus-5-5", "tokens": 3000 })))
+}
+
+/// The lens panel's synthesis on c1 (updated with the definition, the owner's plan of 2026-10-26:
+/// after the five lenses' answers): `outcome`, with the first `n` of `FOUND` as a1..an.
 pub fn found(log: &Log, outcome: &str, n: usize) -> Log {
+    let log = &lensed(log);
     let cs: Vec<Value> = FOUND
         .iter()
         .take(n)

@@ -26,8 +26,10 @@ use crate::teach::example::{self, Project};
 /// by the fix's imports [draft] (the owner, 2026-10-20); `places_listed` the place lister's sites
 /// [draft] (the owner's plan of 2026-10-21, step 3); `trace_listed` the try's listing of what its
 /// failing tests ran [draft] (the owner's plan of 2026-10-23); `cases_found` the case-finder's
-/// answer [draft] (the owner's plan of 2026-10-25, the cases card).
-pub const BINARY_KINDS: [&str; 35] = [
+/// answer [draft] (the owner's plan of 2026-10-25, the cases card), since the lens panel its synthesis's; `lens_released` and
+/// `lens_found` which Agent call got which lens and each lens's answer (the owner's plan of
+/// 2026-10-26, the lens panel, approved).
+pub const BINARY_KINDS: [&str; 37] = [
     "commit_seen",
     "pass_please_pass",
     "fingerprint_stamped",
@@ -63,6 +65,8 @@ pub const BINARY_KINDS: [&str; 35] = [
     "places_listed",
     "trace_listed",
     "cases_found",
+    "lens_released",
+    "lens_found",
 ];
 
 /// Whether `kind` is registered and not one of the binary's.
@@ -307,7 +311,7 @@ pub fn clearing_commands(log: &Log, root: &Path, r: &Refusal, event: &Event) -> 
             continue;
         }
         // A card's answer is the person's: the agent is told to ask, never handed their claim.
-        if kind == "hold_answered" {
+        if kind == "hold_answered" || kind == familiar_ai_rules::cases::QUESTION_ANSWERED {
             continue;
         }
         if let Some(c) = &c {
@@ -351,9 +355,15 @@ mod tests {
         // definition change (the owner's plan of 2026-10-25, the cases card, step 2; the owner's word
         // given): cases_found [draft], the binary's record of the case-finder's answer, is the
         // binary's (34 became 35)
-        assert_eq!(BINARY_KINDS.len(), 35);
+        // definition change (the owner's plan of 2026-10-26, the lens panel, approved): lens_released
+        // and lens_found are the binary's (35 became 37); question_answered is the person's
+        assert_eq!(BINARY_KINDS.len(), 37);
         assert!(BINARY_KINDS.contains(&"cases_found"));
         assert!(!claimable("cases_found"));
+        for k in ["lens_released", "lens_found"] {
+            assert!(BINARY_KINDS.contains(&k) && !claimable(k), "{k}");
+        }
+        assert!(claimable("question_answered"), "the person's, from their own terminal");
         assert!(BINARY_KINDS.contains(&"places_listed"));
         for k in ["test_log_translation", "dependency_drafted", "dependency_unanswered", "told", "criterion_covered", "subagent_ended", "record_seeded", "holder_resumed", "investigator_finding", "reader_chosen", "fix_verdict"] {
             assert!(BINARY_KINDS.contains(&k), "{k}");
@@ -372,7 +382,8 @@ mod tests {
         // place_classified [draft] is the agent's (the owner's plan of 2026-10-21, step 3; 19 became 20)
         // one_reading and reading_alternatives [draft] are the agent's (the owner's plan of 2026-10-21, step 2; 20 became 22)
         // off_list_reason [draft] is the agent's (the owner's plan of 2026-10-23; owner approved 2026-10-23; 22 became 23)
-        assert_eq!(n, 23);
+        // question_answered is the person's, as hold_answered is (the owner's plan of 2026-10-26; 23 became 24)
+        assert_eq!(n, 24);
         assert!(!claimable("not_a_kind"));
     }
 

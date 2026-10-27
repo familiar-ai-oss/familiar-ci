@@ -10,7 +10,7 @@ use crate::teach::example::{self, Project};
 use crate::door::claim::{claimable, command_form, shell_word};
 
 /// The claimable kinds in planning order, each with one line of what it says.
-pub const IN_ORDER: [(&str, &str); 23] = [
+pub const IN_ORDER: [(&str, &str); 24] = [
     ("intent_submitted", "line 1: what the person asked for (the sha is the head, read by the binary)"),
     ("one_reading", "after line 1, when the binary asks how the person's words read: they read one way, and why [draft]"),
     ("reading_alternatives", "after line 1, when the person's words read more than one way: the two or three readings, for the person to pick from [draft]"),
@@ -32,6 +32,7 @@ pub const IN_ORDER: [(&str, &str); 23] = [
     ("test_change_announced", "while testing: announce a change to a sealed test before editing it"),
     ("existing_test_announced", "after a commit changed a test that stood before the plan: why the person's words call for its old expectation to change [draft]"),
     ("hold_answered", "the person's answer to a card (anchor_moved, two_failures, two_tries_not_red, fix_elsewhere, anchor_untouched, no_test_stack)"),
+    ("question_answered", "the person's pick on one of the lens panel's questions on the cases card [draft]"),
     ("criterion_transfer", "hand a criterion to another agent conversation"),
     ("person_said_answered", "a prompt of the person's that needs no criterion: no work, or a question answered"),
 ];
@@ -50,7 +51,7 @@ pub fn listing() -> String {
 /// The promise example's cases (the owner's plan of 2026-10-25, §4) [draft words]: two normal
 /// cases, an edge case (a boundary the person's words name) and the opposite, the same call with
 /// the trigger absent; each with the short line the person reads on the cases card. Cases the
-/// case-finder found (a1, …) or the person typed (p1, …) are added to it later.
+/// lens panel found (a1, …) or the person typed (p1, …) are added to it later.
 pub const CASES: &str = r#"[{"case_id":"n1","kind":"normal","short":"a plain name is greeted","given":"the name Ada","expect":"hello Ada"},{"case_id":"n2","kind":"normal","short":"a name with a space is greeted in full","given":"a name with a space, Ada Lovelace","expect":"hello Ada Lovelace"},{"case_id":"e1","kind":"edge","short":"a very long name is greeted in full","given":"a name of 200 characters","expect":"greeted in full"},{"case_id":"o1","kind":"opposite","short":"an empty name is refused","given":"an empty name","expect":"refused, no greeting"}]"#;
 
 /// The one_reading example's why, refused when claimed as it is [draft].
@@ -122,6 +123,7 @@ pub fn example_args(kind: &str) -> Option<&'static [(&'static str, &'static str)
             ("choice", "keep_going"),
             ("typed", ""),
         ],
+        "question_answered" => &[("criterion_id", "c1"), ("question_id", "q1"), ("choice", "every style"), ("typed", "")],
         "criterion_transfer" => &[
             ("criterion_id", "c1"),
             ("from_conversation", "84be6339-0cc7-40ec-91b9-cae44365931b"),
@@ -225,6 +227,9 @@ fn note(kind: &str, field: &str) -> &'static str {
         ("hold_answered", "run_id") => "the run behind the card, empty for a card with none; written by familiar-ai approve",
         ("hold_answered", "commit") => "the commit the card was answered at; written by familiar-ai approve",
         ("hold_answered", "approval") => "the t of the signed approval in .familiar/approvals/ that witnesses the answer; written by familiar-ai approve",
+        ("question_answered", "question_id") => "the lens panel's question on the cases card: q1, q2 or q3 [draft]",
+        ("question_answered", "choice") => "one of the question's options, as offered, or typed",
+        ("question_answered", "typed") => "the person's own words when the choice is typed, else empty",
         ("test_change_announced", "reason") => "why the sealed test must change",
         ("existing_test_announced", "file_path") => "the existing test file the commit changed, relative to the project",
         ("existing_test_announced", "reason") => "what in the person's words calls for this test's old expectation to change",
@@ -387,7 +392,8 @@ mod tests {
         // definition change (the owner's plan of 2026-10-21, step 3): place_classified [draft] is claimable (21 became 22)
         // definition change (the owner's plan of 2026-10-21, step 2): one_reading and reading_alternatives [draft] are claimable (22 became 24)
         // definition change (the owner's plan of 2026-10-23; owner approved 2026-10-23): off_list_reason [draft] is claimable (24 became 25)
-        assert_eq!(text.lines().count(), 25, "{text}");
+        // definition change (the owner's plan of 2026-10-26, the lens panel): question_answered, the person's, is claimable (25 became 26)
+        assert_eq!(text.lines().count(), 26, "{text}");
         assert!(text.find("  intent_submitted ") < text.find("  one_reading ") && text.find("  reading_alternatives ") < text.find("  criterion "), "{text}");
         assert!(text.find("  new_work_no_spot ") < text.find("  place_classified ") && text.find("  place_classified ") < text.find("  test_planned "), "{text}");
         let pos = |k: &str| text.find(&format!("  {k} ")).unwrap_or_else(|| panic!("{k} missing: {text}"));

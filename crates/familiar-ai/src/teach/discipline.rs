@@ -36,7 +36,7 @@ Then, for the criterion whose turn it is (testing):
   - never edit a sealed test without announcing it first: familiar-ai claim test_change_announced --criterion_id c1 --reason 'the assertion named the wrong file'
   - a card (anchor_moved, two_failures, two_tries_not_red, fix_elsewhere, anchor_untouched, no_test_stack, repro_unknown: how to make it happen) is the person's to answer. When a card is open, ask the person with AskUserQuestion; the hook turns that call into the question card and records their pick; never claim hold_answered yourself   (no_test_stack: or you detect the stack yourself, line 7; never wait for the person on it)
   - two_failures has a second way out besides the card: a spawn of the Agent tool by its holder runs as familiar-ai:investigator, one rung up the ladder haiku, sonnet, opus, fable, a second fable; the criterion moves to it, its stop waits for green, and green sends it back
-  - once a full-path promise is whole, before its test: spawn the Agent tool, it runs as familiar-ai:case-finder with the binary's brief; then the person's cases card (cases_unconfirmed) is asked with AskUserQuestion, and the cases they pick are added to the promise
+  - once a full-path promise is whole, before its test: the lens panel, five Agent calls in parallel then one for the synthesis, each runs as familiar-ai:lens with the binary's brief; then the person's cases card (cases_unconfirmed) and the panel's questions are asked with AskUserQuestion, and the cases they pick are added to the promise
 familiar-ai status shows where every criterion stands; every refusal names the line that is missing, the command that claims it, and the kind's form.
 An edit outside the anchor is told, not refused. Stopping is refused until every criterion is green, proven or released.";
 
@@ -66,8 +66,9 @@ mod tests {
             "test_change_announced",
             "hold_answered",
             "familiar-ai:investigator",
-            // the cases card (the owner's plan of 2026-10-25) [draft name]
-            "familiar-ai:case-finder",
+            // the cases card (the owner's plan of 2026-10-25) [draft name]; the lens panel (the
+            // owner's plan of 2026-10-26, approved; updated with the definition, it was the case-finder)
+            "familiar-ai:lens",
             "cases_unconfirmed",
             "planning_confirm_complete",
             "familiar-ai status",

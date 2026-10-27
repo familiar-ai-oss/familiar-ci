@@ -1039,6 +1039,14 @@ pub const CASES_FOUND: [(&str, &str, &str, &str); 2] = [
 /// The model the sample's case-finder ran on, and the tokens it used.
 pub const CASES_MODEL: &str = "sonnet";
 pub const CASES_TOKENS: u64 = 4000;
+/// The sample's lens note, and the why of its synthesis's questions (the lens panel, the owner's
+/// plan of 2026-10-26, approved).
+pub const LENS_NOTE: &str = "the person's words leave this open";
+/// The sample synthesis's questions: id, text, options.
+pub const CASES_QUESTIONS: [(&str, &str, [&str; 2]); 2] = [
+    ("q1", "Is a locked account refused even with the right password?", ["yes", "no"]),
+    ("q2", "Does the lock lift after a while?", ["after an hour", "never"]),
+];
 /// The sample's numbers typed on the card: the first found case [draft].
 pub const CASES_NUMBERS: &str = "1";
 /// The sample's case typed in the person's words [draft].
@@ -1052,11 +1060,19 @@ pub const CASES_PERSONS_EXPECT: &str = "as the person said";
 /// when it found cases and a case in the person's words; and once no hold stands and cases asked
 /// for are missing from the promise, the agent's promise claimed again holding them (each found
 /// case as the finder gave it, the person's in their words), every field of the latest promise
-/// kept.
+/// kept. The lens panel (the owner's plan of 2026-10-26, approved): while a lens is owed, the
+/// next lens's answer; the findings above, and one with two questions, are the synthesis's once the
+/// five answered; the card's choices until one is answered, and a pick on its first open question.
 pub fn cases_moves(v: &View, c: &str) -> Vec<Move> {
     use crate::cases;
     let mut out = Vec::new();
-    if cases::owed(v, c) {
+    // the lens panel (the owner's plan of 2026-10-26, approved): while a lens is owed, the binary's
+    // record of the next one's answer (found, with one finding); the synthesis once the five answered
+    if let Some(lens) = cases::owed_next(v, c).filter(|l| *l != cases::SYNTHESIS) {
+        let findings = json!([{ "kind": lens, "note": LENS_NOTE, "file_path": "", "target_symbol": "", "candidate_question": "" }]);
+        out.push(mv(cases::LENS_FOUND, json!({ "criterion_id": c, "lens": lens, "outcome": "found", "findings": findings, "model": CASES_MODEL, "tokens": CASES_TOKENS }), Vec::new(), "lens_found"));
+    }
+    if cases::owed_next(v, c) == Some(cases::SYNTHESIS) {
         let found = |n: usize| -> Vec<Value> {
             CASES_FOUND[..n]
                 .iter()
@@ -1073,17 +1089,29 @@ pub fn cases_moves(v: &View, c: &str) -> Vec<Move> {
             let f = json!({ "criterion_id": c, "outcome": outcome, "cases": cs, "why": why, "model": CASES_MODEL, "tokens": CASES_TOKENS });
             out.push(mv(cases::FOUND, f, Vec::new(), label));
         }
+        // the synthesis's questions for the person: one found case and two questions
+        let questions: Vec<Value> = CASES_QUESTIONS.iter().map(|(id, text, options)| json!({ "question_id": id, "text": text, "options": options, "why": LENS_NOTE })).collect();
+        let f = json!({ "criterion_id": c, "outcome": "found", "cases": found(1), "why": "", "model": CASES_MODEL, "tokens": CASES_TOKENS, "questions": questions });
+        out.push(mv(cases::FOUND, f, Vec::new(), "cases_found_questions"));
     }
     if cases::card_open(v, c) {
-        // the person's own case is words typed (below); picked with nothing typed it is no answer
-        for ch in cases::offered(v, c).into_iter().filter(|ch| *ch != cases::TYPED) {
-            out.push(mv1("hold_answered", json!({ "criterion_id": c, "hold": cases::CARD, "choice": ch, "typed": "" })));
+        if !cases::choice_answered(v, c) {
+            // the person's own case is words typed (below); picked with nothing typed it is no answer
+            for ch in cases::offered(v, c).into_iter().filter(|ch| *ch != cases::TYPED) {
+                out.push(mv1("hold_answered", json!({ "criterion_id": c, "hold": cases::CARD, "choice": ch, "typed": "" })));
+            }
+            let any_found = cases::findings(v, c).last().is_some_and(|f| !cases::found_ids(f).is_empty());
+            if any_found {
+                out.push(mv("hold_answered", json!({ "criterion_id": c, "hold": cases::CARD, "choice": cases::TYPED, "typed": CASES_NUMBERS }), Vec::new(), "cases_typed_numbers"));
+            }
+            out.push(mv("hold_answered", json!({ "criterion_id": c, "hold": cases::CARD, "choice": cases::TYPED, "typed": CASES_TYPED }), Vec::new(), "cases_typed_words"));
         }
-        let any_found = cases::findings(v, c).last().is_some_and(|f| !cases::found_ids(f).is_empty());
-        if any_found {
-            out.push(mv("hold_answered", json!({ "criterion_id": c, "hold": cases::CARD, "choice": cases::TYPED, "typed": CASES_NUMBERS }), Vec::new(), "cases_typed_numbers"));
+        // the person's pick on the first open question: its first option
+        let questions = cases::questions(v, c);
+        if let Some(q) = cases::unanswered_questions(v, c).first().and_then(|id| questions.iter().find(|q| &q.question_id == id)) {
+            let choice = q.options.first().cloned().unwrap_or_default();
+            out.push(mv(cases::QUESTION_ANSWERED, json!({ "criterion_id": c, "question_id": q.question_id, "choice": choice, "typed": "" }), Vec::new(), "question_answered"));
         }
-        out.push(mv("hold_answered", json!({ "criterion_id": c, "hold": cases::CARD, "choice": cases::TYPED, "typed": CASES_TYPED }), Vec::new(), "cases_typed_words"));
     }
     let missing = cases::missing(v, c);
     if !cases::holds(v, c) && !missing.is_empty() {

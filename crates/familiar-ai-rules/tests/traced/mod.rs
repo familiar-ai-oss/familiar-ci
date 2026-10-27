@@ -80,3 +80,21 @@ pub fn hold_of(d: &Decision) -> Option<String> {
         Decision::Allow { .. } => None,
     }
 }
+
+/// The lens panel's five lenses, by id (the owner's plan of 2026-10-26, approved).
+pub const LENSES: [&str; 5] = ["ambiguity", "completeness", "happy_path", "edge_cases", "order_and_coupling"];
+
+/// One lens's answer on `c`, as the binary records it: found with one finding, else none or failed.
+pub fn lens(log: &Log, c: &str, lens: &str, outcome: &str) -> Log {
+    let findings = if outcome == "found" {
+        json!([{ "kind": lens, "note": format!("{lens} noticed something"), "file_path": CODE, "target_symbol": "Writer.write_rows", "candidate_question": "" }])
+    } else {
+        json!([])
+    };
+    raw(log, "lens_found", json!({ "criterion_id": c, "lens": lens, "outcome": outcome, "findings": findings, "model": "claude-opus-5-5", "tokens": 3000 }))
+}
+
+/// The five lenses' answers on `c` (none each), the panel before its synthesis.
+pub fn lenses(log: &Log, c: &str) -> Log {
+    LENSES.iter().fold(log.clone(), |l, x| lens(&l, c, x, "none"))
+}

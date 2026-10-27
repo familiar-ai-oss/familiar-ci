@@ -352,6 +352,10 @@ pub fn samples() -> Vec<(&'static str, Map<String, Value>)> {
         ),
         ("off_list_reason", obj(&[("criterion_id", json!("c1")), ("reason", json!("the header is rendered by a template the test never reaches"))])),
         ("cases_found", obj(&[("criterion_id", json!("c1")), ("outcome", json!("found")), ("cases", json!([{"case_id": "a1", "short": "a name with a space", "given": "the name Ada Lovelace", "expect": "hello Ada Lovelace", "why": "the code splits on spaces"}])), ("why", json!("")), ("model", json!("claude-sonnet-5-5")), ("tokens", json!(5320))])),
+        // definition change (the lens panel, owner approved 2026-10-26)
+        ("lens_released", obj(&[("criterion_id", json!("c1")), ("lens", json!("ambiguity")), ("tool_use_id", json!("toolu_01"))])),
+        ("lens_found", obj(&[("criterion_id", json!("c1")), ("lens", json!("ambiguity")), ("outcome", json!("found")), ("findings", json!([{"kind": "ambiguity", "note": "the ask names no style", "file_path": "src/m.py", "target_symbol": "render", "candidate_question": "Which styles?"}])), ("model", json!("claude-opus-5-5")), ("tokens", json!(8000))])),
+        ("question_answered", obj(&[("criterion_id", json!("c1")), ("question_id", json!("q1")), ("choice", json!("every style")), ("typed", json!(""))])),
     ]
 }
 

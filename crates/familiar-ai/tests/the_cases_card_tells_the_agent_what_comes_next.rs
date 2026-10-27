@@ -1,8 +1,9 @@
 //! What the agent reads around the cases card (the owner's plan of 2026-10-25, §1b, §3) [draft words,
-//! draft names]: the holds' words (the case-finder owed names the Agent tool and its subagent type;
-//! the card names the person and AskUserQuestion), the plan's line 3 while the finder is owed, the
+//! draft names]: the holds' words (the lens panel owed names the Agent tool and its subagent type;
+//! the card names the person and AskUserQuestion), the plan's line 3 while the panel is owed, the
 //! card is open or the cases the person asked for are not in the promise yet, and the line after
-//! the person's pick.
+//! the person's pick. Updated with the definition (the owner's plan of 2026-10-26, the lens panel,
+//! approved): the case-finder's words became the lens panel's.
 
 mod cases_fixture;
 
@@ -22,20 +23,29 @@ fn the_holds_read_as_what_comes_before_the_test() {
     let v = View::new(&log);
     assert_eq!(
         words::hold(&v, Some("c1"), "cases_owed"),
-        "before the test, a case-finder looks for the checks the planned cases miss: start it with the Agent tool, subagent_type familiar-ai:case-finder; the binary gives it its brief"
+        "before the test, the lens panel reads the plan for the checks the planned cases miss: five lenses, one Agent call each, in parallel, then the synthesis; each runs as familiar-ai:lens, and the binary gives each its brief"
     );
     assert_eq!(
         words::hold(&v, Some("c1"), "cases_unconfirmed"),
-        "before the test, the person checks the cases it will cover and the ones the case-finder found: ask them with AskUserQuestion"
+        "before the test, the person checks the cases it will cover, the ones the lens panel found and its questions: ask them with AskUserQuestion"
     );
 }
 
 #[test]
-fn line_3_waits_on_the_finder_then_the_card_then_the_cases_asked_for() {
+fn line_3_waits_on_the_panel_then_the_card_then_the_cases_asked_for() {
     let log = planned();
     let row = line_3(&log);
     assert!(row.starts_with("    3 full path only  "), "{row}");
-    assert!(row.ends_with(&format!("\"{PART}\": the case-finder looks for the checks the planned cases miss: start it with the Agent tool, subagent_type familiar-ai:case-finder")), "{row}");
+    assert!(
+        row.ends_with(&format!("\"{PART}\": the lens panel reads the plan for the checks the planned cases miss: the ambiguity, completeness, happy path, edge cases and order and coupling lenses still to start, one Agent call each, in parallel; each runs as familiar-ai:lens on familiar-ai's brief")),
+        "{row}"
+    );
+    // two lenses out, three answered: the two running
+    let out = raw(&raw(&planned(), "lens_released", serde_json::json!({ "criterion_id": "c1", "lens": "ambiguity", "tool_use_id": "t1" })), "lens_released", serde_json::json!({ "criterion_id": "c1", "lens": "completeness", "tool_use_id": "t2" }));
+    let out = ["happy_path", "edge_cases", "order_and_coupling"].iter().fold(out, |l, x| raw(&l, "lens_found", serde_json::json!({ "criterion_id": "c1", "lens": x, "outcome": "none", "findings": [], "model": "m", "tokens": 0 })));
+    assert!(line_3(&out).ends_with(&format!("\"{PART}\": the lens panel reads the plan for the checks the planned cases miss: the ambiguity and completeness lenses running; each answer is recorded when its call returns")), "{}", line_3(&out));
+    // the five answered: the synthesis
+    assert!(line_3(&lensed(&planned())).ends_with("the five lenses answered; the synthesis is next, one Agent call; it runs as familiar-ai:lens on familiar-ai's brief, with the five answers and no tools"), "{}", line_3(&lensed(&planned())));
     let log = found(&log, "found", 3);
     assert!(line_3(&log).ends_with(&format!("\"{PART}\": the person checks the cases it will cover: ask them with AskUserQuestion")), "{}", line_3(&log));
     let log = answered(&log, "typed", "1 and 3");
@@ -69,6 +79,6 @@ fn after_the_pick_the_agent_is_told_what_to_claim_or_to_write_the_test() {
     let after = answered(&none, "look_again", "");
     assert_eq!(
         picker::told_after(&View::new(&none), &View::new(&after), "c1", "cases_unconfirmed", "look_again", "x"),
-        format!("{head}One more case-finder for \"{PART}\": start it with the Agent tool, subagent_type familiar-ai:case-finder.")
+        format!("{head}One more lens panel for \"{PART}\": its five lenses, one Agent call each, in parallel, then the synthesis; each runs as familiar-ai:lens on familiar-ai's brief.")
     );
 }

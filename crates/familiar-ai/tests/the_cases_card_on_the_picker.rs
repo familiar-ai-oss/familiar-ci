@@ -106,9 +106,11 @@ fn none_found_and_a_failed_finder_read_as_approved() {
 /// agent is told it with the card's lines.
 #[test]
 fn the_card_says_how_many_of_the_finders_cases_were_left_out() {
-    let note = "the finder listed 9, the first 8 are kept: 1 left out";
+    // updated with the definition (the owner's plan of 2026-10-26, the lens panel): the synthesis's
+    // note, after the five lenses' answers
+    let note = "the lens panel listed 9, the first 8 are kept: 1 left out";
     let eight: Vec<serde_json::Value> = (1..=8).map(|i| json!({ "case_id": format!("a{i}"), "short": format!("found case {i}"), "given": "g", "expect": "e", "why": "w" })).collect();
-    let log = raw(&planned(), "cases_found", json!({ "criterion_id": "c1", "outcome": "found", "cases": eight, "why": note, "model": "claude-sonnet-5-5", "tokens": 4000 }));
+    let log = raw(&lensed(&planned()), "cases_found", json!({ "criterion_id": "c1", "outcome": "found", "cases": eight, "why": note, "model": "claude-sonnet-5-5", "tokens": 4000 }));
     let v = View::new(&log);
     let c = the_card(&log);
     let a = pw::asked(&v, &c);

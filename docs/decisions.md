@@ -987,39 +987,60 @@ Tests: `crates/familiar-ai/tests/investigator_binary_launch.rs`,
 `crates/familiar-ai-rules/tests/two_failures_sends_an_investigator_one_rung_up.rs`.
 (7c891f3, 5eb029c)
 
-### The case-finder is released by the orchestrator
+### The lens panel is released by the orchestrator
 
-Once a full-path part's contract is whole, the case-finder [draft name] runs
-before its test (the owner's plan of 2026-10-25, the cases card). The main
-agent releases it as a subagent; the binary does not start it. While a part is
-owed the finder, the PreToolUse of any Agent call from the part's holder (or
-anyone, while it has none) is rewritten: `subagent_type`
-`familiar-ai:case-finder`, the model from `FAMILIAR_AI_CASE_FINDER_MODEL`
-[draft name] (sonnet when blank or missing, the owner's ruling of 2026-10-26; it
-was opus for one day), `run_in_background` false, and the
-binary's brief in place of the agent's prompt, so the finder never reads the
-main agent's words. Its SubagentStart carries no context beside the brief. It
-only reads: any call of its `agent_type` but Read, Grep and Glob is refused,
-and its stop is not held. The turn limit is 25, fixed in
-`plugin/agents/case-finder.md`; the Agent call has no turn field, and no dollar
-cap is possible for a subagent (the owner accepted both, 2026-10-25).
+Once a full-path part's contract is whole, the lens panel runs before its test
+(the owner's plan of 2026-10-26, lens-panel.md, approved with its names; it
+replaces the case-finder of 2026-10-25, whose release and card it reuses). Five
+lenses read the plan in parallel, `ambiguity`, `completeness`, `happy_path`,
+`edge_cases` and `order_and_coupling`, then a `synthesis` merges their findings
+into extra cases and at most three questions for the person. The main agent
+releases each as a subagent; the binary does not start them.
 
-The answer is read at the main agent's PostToolUse on that Agent call, from
-`tool_response.content`, with `agentType`, `resolvedModel` and `totalTokens`,
-and recorded as `cases_found` (the binary's kind): `found` with ids `a<n>`
-continuing past the part's earlier findings, `none` with why, or `failed`
-with why. Not at SubagentStop: in the spike (Claude Code 2.1.289, session
-6b42509f) SubagentStop did not fire when the turn limit ended the finder,
-while PostToolUse fired every time. Claude Code's turn-limit note, prose, a
-fence-stripped answer that is not the schema's JSON, more than 8 cases, a
-blank field or a short line over 70 characters each record `failed`. A
-background launch (`async_launched`) records nothing, and so does an answer
-once nothing is owed (two finders started in one message: the second answer
-is dropped).
+While a part's panel is owed, the PreToolUse of an Agent call from the part's
+holder (or anyone, while it has none) records which lens that call is
+(`lens_released`, the binary's kind, with the call's `tool_use_id`): the next
+lens not yet released, or, once the five answered, the synthesis. So parallel
+calls in one message each get a different lens. The call is rewritten:
+`subagent_type` `familiar-ai:lens`, the model from `FAMILIAR_AI_LENS_MODEL`
+(opus when blank or missing, the owner's answer of 2026-10-26: opus for every
+lens and the synthesis, as tested; `FAMILIAR_AI_CASE_FINDER_MODEL` is gone),
+`run_in_background` false, and that lens's brief in place of the agent's prompt
+(`teach/lens.rs`: the offline trial's words, every variable read from recorded
+facts). A spawn while every owed lens is out is refused, naming what runs. Its
+SubagentStart carries no context beside the brief. A lens only reads: any call
+of its `agent_type` but Read, Grep and Glob is refused. The synthesis has no
+tools: while only syntheses run, every call of the lens agent is refused; while
+a lens of any part runs too, the two cannot be told apart by `agent_type`, and
+the reads go ahead. Stops are not held. The turn limit is 25, fixed in
+`plugin/agents/lens.md`.
 
-Code: `crates/familiar-ai/src/decide/case_finder.rs`,
-`crates/familiar-ai/src/door/case_finder.rs`, `plugin/agents/case-finder.md`.
-Tests: `crates/familiar-ai/tests/case_finder_round_trip.rs`.
+Each answer is read at the main agent's PostToolUse on its Agent call (or its
+PostToolUseFailure: failed, the error as why), found by the call's
+`tool_use_id`. A lens's is recorded as `lens_found`: found with its findings,
+none, or failed (a malformed answer, its why the note of its one finding of
+kind `failed`). The synthesis's is recorded as `cases_found`, as the finder's
+was: `found` with ids `a<n>` continuing past the part's earlier findings (the
+first 8 kept, a long short line kept whole), `none` with why, or `failed` with
+why; with its first three well-formed questions as `questions` (q1..q3, two to
+four options each). A background launch, a call never released, or an answer
+once its lens is answered records nothing. Not at SubagentStop: it did not
+fire when the turn limit ended a subagent (spike of 2026-10-25).
+
+The person's card then shows the planned and found cases and the panel's
+open questions; the agent asks it with one AskUserQuestion call, the hook
+setting the card's own question and one question per open panel question. The
+picker records the card's choice as `hold_answered` and each question's pick
+as `question_answered` (an option's text, or `typed` with the words); a
+partial answer asks again only what is open. `question_answered` is the
+person's, refused from an agent's shell as a card's answer is.
+
+Code: `crates/familiar-ai/src/decide/lens.rs`,
+`crates/familiar-ai/src/door/lens.rs`, `crates/familiar-ai/src/teach/lens.rs`,
+`plugin/agents/lens.md`.
+Tests: `crates/familiar-ai/tests/lens_panel_round_trip.rs`,
+`crates/familiar-ai/tests/the_lens_briefs_are_read_from_the_record.rs`,
+`crates/familiar-ai/tests/the_cases_card_asks_the_panels_questions.rs`.
 
 ## Cards
 

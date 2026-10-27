@@ -43,12 +43,19 @@ pub fn card_check(
     session_id: Option<&str>,
     project: &Project,
 ) -> Result<(), ClaimError> {
-    if kind != "hold_answered" {
-        return Ok(());
-    }
-    let Some(Value::String(hold)) = fields.get("hold") else {
+    // the person's pick on a question of the lens panel's (the owner's plan of 2026-10-26) is
+    // theirs as a card's answer is: recorded by the picker, never from an agent's shell
+    let hold = if kind == familiar_ai_rules::cases::QUESTION_ANSWERED {
+        familiar_ai_rules::cases::CARD.to_string()
+    } else if kind == "hold_answered" {
+        let Some(Value::String(hold)) = fields.get("hold") else {
+            return Ok(());
+        };
+        hold.clone()
+    } else {
         return Ok(());
     };
+    let hold = &hold;
     if !is_card_hold(hold) {
         return Err(ClaimError::NotACard(hold.clone()));
     }

@@ -1,5 +1,5 @@
 //! The cases card after the last look (the owner's ruling, 2026-10-25: "Keep, or add my own")
-//! [draft words]: once the second case-finder found nothing or failed, the card offers keep the
+//! [draft words]: once the second lens panel found nothing or failed, the card offers keep the
 //! planned cases, or add a case of the person's own, so Claude Code's picker, which refuses a
 //! question with fewer than two options, can show it (bench click-2956 ended blocked on a card of
 //! one option). Words typed are the person's own case, as the one question's "I'll type it" takes
@@ -61,10 +61,10 @@ fn after_the_last_look_the_picker_offers_keep_or_add_my_own() {
     assert_eq!(labels(&log), ["Test these", "Add my own"]);
 }
 
-/// A full-path project planned to c1's whole contract, its case-finder answered "none" twice
+/// A full-path project planned to c1's whole contract, its lens panel answered "none" twice
 /// with the person's look_again between, through the hooks: the card after the last look is open.
 fn last_look(name: &str) -> Project {
-    let p = Project::builder(name).env_remove("FAMILIAR_AI_CASE_FINDER_MODEL").create();
+    let p = Project::builder(name).env_remove("FAMILIAR_AI_LENS_MODEL").create();
     for args in [
         vec!["intent_submitted", "--for", "0", "--text", "greet with hello"],
         vec!["behavior", "--behavior_id", "b1", "--text", "the greeting"],
@@ -74,14 +74,17 @@ fn last_look(name: &str) -> Project {
         p.claim(&args);
     }
     let none = r#"{"cases": [], "none_because": "n1 and o1 cover every path greet has"}"#;
-    hooked(&p, "PostToolUse", "post_tool_use_agent_case_finder_found", answering(none));
+    // updated with the definition (the owner's plan of 2026-10-26, the lens panel): each look is a
+    // whole panel, its five lenses and its synthesis
+    p.lenses_answer_none();
+    p.synthesis_answers(none);
     let record = Record::open_waiting(&p.record_path(), std::time::Duration::from_secs(5)).expect("the record");
     let now = std::time::SystemTime::now().duration_since(std::time::UNIX_EPOCH).map(|d| d.as_secs_f64()).unwrap_or(0.0) + 1.0;
     let again = json!({ "criterion_id": "c1", "hold": CARD, "choice": "look_again", "typed": "" });
     record.append_raw("hold_answered", again.as_object().cloned().unwrap_or_default(), now, familiar_ai::TENANT).expect("the person's look_again");
     drop(record);
-    hooked(&p, "PreToolUse", "pre_tool_use_agent_case_finder", json!({}));
-    hooked(&p, "PostToolUse", "post_tool_use_agent_case_finder_found", answering(none));
+    p.lenses_answer_none();
+    p.synthesis_answers(none);
     assert_eq!(p.facts().iter().filter(|f| f.kind == "cases_found").count(), 2, "two looks");
     p
 }
@@ -91,13 +94,6 @@ fn hooked(p: &Project, event: &str, fixture: &str, set: Value) -> Value {
     let (code, out, err) = p.hook_raw(event, &p.fixture(fixture, set));
     assert_eq!(code, 0, "{event} {fixture}: {out}{err}");
     serde_json::from_str(out.trim()).unwrap_or_else(|e| panic!("{event} {fixture} printed no JSON ({e}): {out}"))
-}
-
-/// The finder's answer as its final text, in place of the found capture's.
-fn answering(text: &str) -> Value {
-    let mut f = common::fixture("post_tool_use_agent_case_finder_found");
-    f["tool_response"]["content"] = json!([{ "type": "text", "text": text }]);
-    json!({ "tool_response": f["tool_response"] })
 }
 
 /// The agent asks with the card's lines word for word; the hook's `updatedInput`.

@@ -322,36 +322,43 @@ set_up_project() {
     need "familiar-ai setup" cli setup
 }
 
-# finder_answer <the spawn's PreToolUse reply>: the PostToolUse on the Agent call that released
-# the case-finder [draft names] (plan cases-card §1b, in the shape of the spike's capture of
-# 2026-10-25): the spawn as the hook rewrote it, and the finder's final text, a fenced JSON answer
-# with no cases and why
-finder_answer() {
-    python3 - "$1" "$PROJECT" <<'EOF'
+# lens_answer <the spawn's PreToolUse reply> <tool_use_id> <answer>: the PostToolUse on the Agent
+# call the hook released to a lens of the lens panel, or its synthesis [draft names] (the owner's
+# plan of 2026-10-26; in the shape of the spike's capture of 2026-10-25): the spawn as the hook
+# rewrote it, and the subagent's final text, the fenced JSON <answer>
+lens_answer() {
+    python3 - "$1" "$PROJECT" "$2" "$3" <<'EOF'
 import json, sys
 reply = json.loads(sys.argv[1] or "{}")
 spawn = reply.get("hookSpecificOutput", {}).get("updatedInput") or {}
-answer = {"cases": [], "none_because": "the planned cases cover what the person asked"}
 print(json.dumps({
     "session_id": "s1", "cwd": sys.argv[2], "hook_event_name": "PostToolUse", "permission_mode": "bypassPermissions",
-    "tool_name": "Agent", "tool_input": spawn, "tool_use_id": "toolu_01CaseFinderWalk",
+    "tool_name": "Agent", "tool_input": spawn, "tool_use_id": sys.argv[3],
     "tool_response": {"status": "completed", "prompt": spawn.get("prompt", ""), "agentId": "a0ca5ef1d0e4walk", "agentType": spawn.get("subagent_type", ""),
-                      "content": [{"type": "text", "text": "```json\n" + json.dumps(answer) + "\n```"}],
-                      "resolvedModel": "claude-sonnet-4-5", "totalDurationMs": 1000, "totalTokens": 1234, "totalToolUseCount": 3}}))
+                      "content": [{"type": "text", "text": "```json\n" + sys.argv[4] + "\n```"}],
+                      "resolvedModel": "claude-opus-4-5", "totalDurationMs": 1000, "totalTokens": 1234, "totalToolUseCount": 3}}))
 EOF
 }
 
 # cases_kept <criterion_id>: the cases card passed [draft names] (plan cases-card, 2026-10-25),
-# once the part's contract is whole: the agent releases the case-finder with the Agent tool and
-# the PreToolUse rewrites the spawn (subagent_type familiar-ai:case-finder, the binary's brief,
-# the model sonnet unless FAMILIAR_AI_CASE_FINDER_MODEL names another); the finder answers that
-# the planned cases cover it, which the binary reads on the PostToolUse of that Agent call and
-# records as cases_found; the person keeps the planned cases from a terminal of their own; the
-# agent's next tool call is told so. A setup step: returns 1 with STOPPED naming what differed.
+# once the part's contract is whole; updated with the definition (the owner's plan of 2026-10-26,
+# the lens panel): the agent releases six Agent calls, each with its own tool_use_id, and the
+# PreToolUse of each rewrites it (subagent_type familiar-ai:lens, the binary's brief for the lens
+# that call was released as, the model opus unless FAMILIAR_AI_LENS_MODEL names another); the five
+# lenses answer with no finding and the synthesis that the planned cases cover it, which the binary
+# reads on the PostToolUse of each call and records as lens_found and cases_found; the person keeps
+# the planned cases from a terminal of their own; the agent's next tool call is told so. A setup step: returns 1 with STOPPED naming what differed.
 cases_kept() {
-    hook "release the case-finder for $1" PreToolUse "$(payload PreToolUse ',"tool_name":"Agent","tool_input":{"description":"look for more cases","prompt":"look for more cases","subagent_type":"general-purpose"}')"
-    case "$OUT" in *'"subagent_type":"familiar-ai:case-finder"'*) ;; *) STOPPED="the case-finder's spawn for $1: $OUT"; return 1 ;; esac
-    hook "the case-finder answered for $1" PostToolUse "$(finder_answer "$OUT")"
+    for n in 1 2 3 4 5 6; do
+        answer='{"findings": []}'
+        [ "$n" = 6 ] && answer='{"cases": [], "none_because": "the planned cases cover what the person asked"}'
+        # built outside "$(...)": a Mac's /bin/sh (bash 3.2) brace-expands the {..,..} of a double-quoted
+        # word inside a quoted command substitution, and the hook got the call cut into words (exit 127)
+        spawn=',"tool_use_id":"toolu_lens_walk_'"$1_$n"'","tool_name":"Agent","tool_input":{"description":"look for more cases","prompt":"look for more cases","subagent_type":"general-purpose"}'
+        hook "release call $n of the lens panel for $1" PreToolUse "$(payload PreToolUse "$spawn")"
+        case "$OUT" in *'"subagent_type":"familiar-ai:lens"'*) ;; *) STOPPED="the lens panel's call $n for $1: $OUT"; return 1 ;; esac
+        hook "call $n of the lens panel answered for $1" PostToolUse "$(lens_answer "$OUT" "toolu_lens_walk_$1_$n" "$answer")"
+    done
     agent_cli status --json
     case "$OUT" in *'"cases_unconfirmed"'*) ;; *) STOPPED="the cases card for $1: $OUT"; return 1 ;; esac
     cli claim hold_answered --criterion_id "$1" --hold cases_unconfirmed --choice keep_planned --typed '' || { STOPPED="the person keeps the planned cases for $1: $OUT"; return 1; }

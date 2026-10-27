@@ -3,7 +3,7 @@
 //! investigator (`investigator`) and what is told after (`tell`). The `hook` command that runs them is
 //! `hook.rs`. A decision is returned, never stored.
 
-pub mod case_finder;
+pub mod lens;
 pub mod decision;
 mod hook;
 pub mod hook_output;

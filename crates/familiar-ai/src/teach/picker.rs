@@ -53,8 +53,21 @@ pub fn question_of(asked: &Value) -> Option<&str> {
 
 /// The whole `updatedInput` for a card: the agent's `question` as written, with the table's choices.
 /// It carries no `answers`, and the hook must return `"ask"`, since `"allow"` with `updatedInput` runs the tool with no card and empty answers (`tests/fixtures/*ask_user_question*`).
+/// The cases card's carries the lens panel's open questions too, one question each with its
+/// options, after the card's own while its choice is owed, alone once it is answered (the owner's
+/// plan of 2026-10-26, approved).
 pub fn card_input(v: &View, card: &Card, question: &str) -> Value {
-    one(question, card_options(v, card).as_array().cloned().unwrap_or_default())
+    let own = one(question, card_options(v, card).as_array().cloned().unwrap_or_default());
+    if card.hold != familiar_ai_rules::cases::CARD {
+        return own;
+    }
+    let c = card.criterion_id.as_str();
+    let mut qs: Vec<Value> = if familiar_ai_rules::cases::choice_answered(v, c) { Vec::new() } else { own["questions"].as_array().cloned().unwrap_or_default() };
+    for q in crate::teach::cases_card::open_questions(v, c) {
+        let options: Vec<Value> = q.options.iter().map(|o| option(o, "")).collect();
+        qs.push(json!({ "question": crate::teach::cases_card::question_text(&q), "header": HEADER, "options": options, "multiSelect": false }));
+    }
+    json!({ "questions": qs })
 }
 
 /// The most options Claude Code's picker shows; it adds its own "Other" beside them.
@@ -108,7 +121,7 @@ fn shape(a: &Asked) -> String {
 pub fn facts(v: &View, card: &Card) -> String {
     let a = pw::asked(v, card);
     if let Some(s) = &a.cases {
-        return crate::teach::cases_card::facts(s, a.part, &question(v, card));
+        return crate::teach::cases_card::facts(v, &card.criterion_id, s, a.part, &question(v, card));
     }
     let (choices, answer) = if card.hold == "no_test_stack" {
         ("the person types the command in the question card", "answer")

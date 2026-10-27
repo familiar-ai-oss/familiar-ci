@@ -10,7 +10,7 @@ use serde_json::Value;
 
 use crate::teach::words::quoted;
 
-/// The hint under Claude Code's own "Other": on found cases, and on none or a failed finder.
+/// The hint under Claude Code's own "Other": on found cases, and on none or a failed panel.
 pub const OTHER_FOUND: &str = "(Other: say which to add, like \"1 and 3\", or describe one)";
 pub const OTHER_NONE: &str = "(Other: describe a case to add)";
 /// The column the options' descriptions start at in the terminal, past the label.
@@ -27,7 +27,7 @@ pub struct Shown {
 
 /// Reads the card's pieces: the question naming the part by its text, a blank line, the planned
 /// checks, then the found ones under "Also worth checking:" and the finding's note of what was
-/// left out (the owner's ruling, 2026-10-25, "Keep what fits"), or what the finder said.
+/// left out (the owner's ruling, 2026-10-25, "Keep what fits"), or what the panel said.
 pub fn shown(v: &View, card: &Card) -> Shown {
     let mut lines = vec![crate::teach::words::named(v, &card.question), String::new()];
     let mut found = false;
@@ -75,13 +75,43 @@ pub fn terminal(s: &Shown) -> Vec<String> {
     out
 }
 
-/// What the agent is told while the card is open.
-pub fn facts(s: &Shown, part: usize, record: &str) -> String {
+/// The lens panel's questions still open on `c`, in the synthesis's order.
+pub fn open_questions(v: &View, c: &str) -> Vec<familiar_ai_facts::FoundQuestion> {
+    let open = cases::unanswered_questions(v, c);
+    cases::questions(v, c).into_iter().filter(|q| open.contains(&q.question_id)).collect()
+}
+
+/// A question of the lens panel's as the person reads it in the picker [draft words]: its text,
+/// then why it matters when the synthesis said.
+pub fn question_text(q: &familiar_ai_facts::FoundQuestion) -> String {
+    let why = q.why.split_whitespace().collect::<Vec<_>>().join(" ");
+    if why.is_empty() {
+        q.text.clone()
+    } else {
+        format!("{}\n\nWhy it matters: {why}", q.text)
+    }
+}
+
+/// What the agent is told while the card is open: the card's lines to write while its choice is
+/// owed, and the lens panel's questions the hook adds to the same call [draft words]; once the
+/// choice is answered, only that the panel's questions are open.
+pub fn facts(v: &View, c: &str, s: &Shown, part: usize, record: &str) -> String {
+    use crate::teach::picker::TOOL;
+    let lead = crate::teach::words::LEAD;
+    let open = open_questions(v, c);
+    let n = match open.len() {
+        1 => "its question".to_string(),
+        k => format!("its {k} questions"),
+    };
+    if cases::choice_answered(v, c) {
+        return format!(
+            "{lead}the lens panel's questions are open for part {part} of what they asked. Ask the person with {TOOL}: the hook sets {n} and their options from the record, and each pick is recorded; do not claim question_answered yourself."
+        );
+    }
+    let questions = if open.is_empty() { String::new() } else { format!(" The hook adds the lens panel's {} to the same call, one question each, with their options.", n.trim_start_matches("its ")) };
     format!(
-        "{}the cases card is open for part {part} of what they asked. Write your question to them as these lines, word for word:\n{}\nLeave the choices to the hook: it sets them, and Claude Code adds its own Other for words typed. The record's card: {record} Ask the person with {}: the hook turns that call into the question card, and their choice is recorded; do not claim hold_answered yourself.",
-        crate::teach::words::LEAD,
+        "{lead}the cases card is open for part {part} of what they asked. Write your question to them as these lines, word for word:\n{}\nLeave the choices to the hook: it sets them, and Claude Code adds its own Other for words typed.{questions} The record's card: {record} Ask the person with {TOOL}: the hook turns that call into the question card, and their choice is recorded; do not claim hold_answered yourself.",
         shape(s),
-        crate::teach::picker::TOOL
     )
 }
 
@@ -103,12 +133,14 @@ pub fn wanted(v: &View, c: &str) -> String {
         .join("; ")
 }
 
-/// The plan's line 3 while `c` waits on the cases card: the finder owed, the card open, or the
+/// The plan's line 3 while `c` waits on the cases card: the lens panel owed, the card open, or the
 /// cases the person asked for not in its promise yet; `None` otherwise.
 pub fn line_3(v: &View, c: &str) -> Option<String> {
     let q = quoted(v, c);
     if cases::owed(v, c) {
-        return Some(format!("{q}: the case-finder looks for the checks the planned cases miss: start it with the Agent tool, subagent_type familiar-ai:case-finder"));
+        // the lens panel (the owner's plan of 2026-10-26, approved) [draft words]
+        let next = crate::teach::lens::next(v, c).unwrap_or_default();
+        return Some(format!("{q}: the lens panel reads the plan for the checks the planned cases miss: {next}"));
     }
     if cases::card_open(v, c) {
         return Some(format!("{q}: the person checks the cases it will cover: ask them with AskUserQuestion"));
@@ -125,7 +157,7 @@ pub fn after_pick(after: &View, c: &str, choice: &str) -> Option<String> {
     let q = quoted(after, c);
     let keep = format!("The planned cases stand for {q}: write its test.");
     Some(match choice {
-        cases::AGAIN => format!("One more case-finder for {q}: start it with the Agent tool, subagent_type familiar-ai:case-finder."),
+        cases::AGAIN => format!("One more lens panel for {q}: its five lenses, one Agent call each, in parallel, then the synthesis; each runs as {} on familiar-ai's brief.", crate::door::lens::LENS),
         cases::ADD_ALL | cases::TYPED => match wanted(after, c) {
             w if w.is_empty() => keep,
             w => format!("Add the cases the person asked for to the promise of {q} and claim it again: {w}. Then write its test."),

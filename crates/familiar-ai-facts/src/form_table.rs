@@ -387,13 +387,32 @@ pub const FORM: &[FormRow] = &[
     // case-finder's answer, the cases the plan's own do not cover
     FormRow {
         kind: "cases_found",
-        fields: &["criterion_id", "outcome", "cases", "why", "model", "tokens"],
+        fields: &["criterion_id", "outcome", "cases", "why", "model", "tokens", "questions"],
+        // the lens panel's synthesis (the owner's plan of 2026-10-26, approved): up to three
+        // questions for the person
+        optional: &["questions"],
+    },
+    // the lens panel (the owner's plan of 2026-10-26, approved): which Agent call got which lens,
+    // each lens's answer (the binary's), and the person's pick on a synthesis's question
+    FormRow {
+        kind: "lens_released",
+        fields: &["criterion_id", "lens", "tool_use_id"],
+        optional: &[],
+    },
+    FormRow {
+        kind: "lens_found",
+        fields: &["criterion_id", "lens", "outcome", "findings", "model", "tokens"],
+        optional: &[],
+    },
+    FormRow {
+        kind: "question_answered",
+        fields: &["criterion_id", "question_id", "choice", "typed"],
         optional: &[],
     },
 ];
 
 /// The kind names, in `FORM` order.
-pub const KINDS: [&str; 58] = [
+pub const KINDS: [&str; 61] = [
     "intent_submitted",
     "behavior",
     "promise",
@@ -452,6 +471,9 @@ pub const KINDS: [&str; 58] = [
     "trace_listed",
     "off_list_reason",
     "cases_found",
+    "lens_released",
+    "lens_found",
+    "question_answered",
 ];
 
 /// The kind's row in `FORM`.

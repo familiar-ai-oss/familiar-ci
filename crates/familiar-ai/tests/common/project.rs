@@ -443,6 +443,39 @@ impl Project {
         self.facts().into_iter().filter(|f| f.kind == kind).map(|f| Value::Object(f.fields)).collect()
     }
 
+    /// The main agent's Agent call `id` at its PreToolUse (the spike's capture of a spawn): the
+    /// hook's JSON answer. While a lens panel is owed, the binary releases the call to a lens.
+    pub fn spawn(&self, id: &str) -> Value {
+        self.hook_fixture("PreToolUse", "pre_tool_use_agent_case_finder", json!({ "tool_use_id": id }))
+    }
+
+    /// The main agent's Agent call `id` returned, `text` its final answer, at its PostToolUse (the
+    /// spike's capture of a completed call, its agent the lens): the hook's JSON answer.
+    pub fn returned(&self, id: &str, text: &str) -> Value {
+        let mut f = fixture("post_tool_use_agent_case_finder_found");
+        f["tool_input"]["subagent_type"] = json!(LENS);
+        f["tool_response"]["agentType"] = json!(LENS);
+        f["tool_response"]["content"] = json!([{ "type": "text", "text": text }]);
+        self.hook_fixture("PostToolUse", "post_tool_use_agent_case_finder_found", json!({ "tool_use_id": id, "tool_input": f["tool_input"], "tool_response": f["tool_response"] }))
+    }
+
+    /// The five lenses of an owed panel released, one Agent call each (`toolu_lens_<i>`), and
+    /// each answered with no finding, through the hooks (the owner's plan of 2026-10-26).
+    pub fn lenses_answer_none(&self) {
+        for i in 0..LENSES.len() {
+            let id = format!("toolu_lens_{i}");
+            self.spawn(&id);
+            self.returned(&id, r#"{"findings": []}"#);
+        }
+    }
+
+    /// The synthesis released (`toolu_synthesis`) and answered `text`, through the hooks: the
+    /// hook's answer at its return.
+    pub fn synthesis_answers(&self, text: &str) -> Value {
+        self.spawn("toolu_synthesis");
+        self.returned("toolu_synthesis", text)
+    }
+
     /// The cases card passed for `c` [draft names]: see [`cases_kept_at`].
     pub fn cases_kept(&self, c: &str) {
         cases_kept_at(&self.repo(), c);
@@ -455,13 +488,20 @@ impl Project {
     }
 }
 
-/// The person's card on the case-finder's cases [draft name] (the rules' `cases::CARD`).
+/// The person's card on the lens panel's cases [draft name] (the rules' `cases::CARD`).
 pub const CASES_CARD: &str = "cases_unconfirmed";
 
+/// The lens agent's name, as `subagent_type` and `agent_type` carry it (the owner's plan of 2026-10-26).
+pub const LENS: &str = "familiar-ai:lens";
+
+/// The lens panel's five lenses, in release order (the rules' `cases::LENSES`).
+pub const LENSES: [&str; 5] = ["ambiguity", "completeness", "happy_path", "edge_cases", "order_and_coupling"];
+
 /// The cases card passed for `c` [draft names] (the owner's plan cases-card, 2026-10-25): every
-/// full-path part whose contract is whole waits on the case-finder and then on the person's card
-/// before its test. A test about something else states both, as the record would hold them: the
-/// binary's record of the finder's answer, none found (`cases_found`, outcome `none`), then the
+/// full-path part whose contract is whole waits on the lens panel (the owner's plan of 2026-10-26)
+/// and then on the person's card before its test. A test about something else states both, as the
+/// record would hold them: the binary's record of each lens's answer (`lens_found`, none) and of
+/// the synthesis's, none found (`cases_found`, outcome `none`), then the
 /// person's `keep_planned` on the card (`hold_answered`), told to the agent by the pick's own
 /// reply (`told`), as the picker tells a pick of the main conversation. All are appended straight to the record
 /// at `repo`, a fixture as `record_replay_first_use` appends the old binary's facts, since no
@@ -471,11 +511,17 @@ pub fn cases_kept_at(repo: &Path, c: &str) {
     let record = Record::open_waiting(&repo.join(FAMILIAR_FOLDER).join(RECORD_FILE), std::time::Duration::from_secs(5)).expect("the record");
     let at = std::time::SystemTime::now().duration_since(std::time::UNIX_EPOCH).map(|d| d.as_secs_f64()).unwrap_or(1.0);
     let obj = |v: Value| v.as_object().cloned().unwrap_or_default();
-    let found = obj(json!({ "criterion_id": c, "outcome": "none", "cases": [], "why": "the planned cases cover it", "model": "sonnet", "tokens": 0 }));
-    let kept = obj(json!({ "criterion_id": c, "hold": CASES_CARD, "choice": "keep_planned", "typed": "" }));
-    let facts = record.append_all(&[("cases_found", found, at), ("hold_answered", kept, at)], familiar_ai::TENANT).expect("the finder's none and the person's keep_planned");
+    // updated with the definition (the owner's plan of 2026-10-26, the lens panel, approved): the
+    // synthesis's none comes after the five lenses' answers (none each)
+    let mut facts: Vec<(&str, serde_json::Map<String, Value>, f64)> = LENSES
+        .iter()
+        .map(|l| ("lens_found", obj(json!({ "criterion_id": c, "lens": l, "outcome": "none", "findings": [], "model": "opus", "tokens": 0 })), at))
+        .collect();
+    facts.push(("cases_found", obj(json!({ "criterion_id": c, "outcome": "none", "cases": [], "why": "the planned cases cover it", "model": "opus", "tokens": 0 })), at));
+    facts.push(("hold_answered", obj(json!({ "criterion_id": c, "hold": CASES_CARD, "choice": "keep_planned", "typed": "" })), at));
+    let facts = record.append_all(&facts, familiar_ai::TENANT).expect("the panel's none and the person's keep_planned");
     // the pick is told by its own reply, as the picker tells the main conversation's picks
-    let about = obj(json!({ "about": facts[1].t.to_string() }));
+    let about = obj(json!({ "about": facts[facts.len() - 1].t.to_string() }));
     record.append_raw("told", about, at, familiar_ai::TENANT).expect("the pick told");
 }
 

@@ -83,6 +83,10 @@ pub fn rewrite(input: &HookInput, log: &Log, push: impl FnOnce() -> bool, elsewh
     }
     let question = input.tool_input.as_ref().and_then(words::question_of).unwrap_or("");
     let ask = |v: &View, card: &Card| {
+        // the lens panel's questions alone, once the cases card's choice is answered: the hook's own words
+        if card.hold == familiar_ai_rules::cases::CARD && familiar_ai_rules::cases::choice_answered(v, &card.criterion_id) {
+            return Rewrite::Ask(words::card_input(v, card, question));
+        }
         let missing = person_words::missing(&person_words::asked(v, card), question);
         if missing.is_empty() {
             Rewrite::Ask(words::card_input(v, card, question))
@@ -118,13 +122,47 @@ pub enum Picked {
     Push(String),
 }
 
-/// The question's text, header and options, when the input is one question.
+/// The first question's text, header and options: the card's own (the cases card's may be followed
+/// by the lens panel's questions, read by `question_picks`).
 fn asked(input: &Value) -> Option<(&str, &str, &Value)> {
-    let qs = input.get("questions")?.as_array()?;
-    let [q] = qs.as_slice() else {
-        return None;
-    };
+    let q = input.get("questions")?.as_array()?.first()?;
     Some((q.get("question")?.as_str()?, q.get("header")?.as_str()?, q.get("options")?))
+}
+
+/// The person's pick on one of the lens panel's questions (the owner's plan of 2026-10-26,
+/// approved): the option's text, or `typed` with the words typed under Claude Code's own "Other".
+#[derive(Debug, Clone, PartialEq)]
+pub struct QuestionPick {
+    pub criterion_id: String,
+    pub question_id: String,
+    pub choice: String,
+    pub typed: String,
+}
+
+/// The person's picks on the lens panel's open questions, from the picker's PostToolUse: the
+/// cases card open for this conversation before the call, each open question asked as the hook
+/// set it (its text, the hook's header, exactly its options) and answered.
+pub fn question_picks(input: &HookInput, before: &Log) -> Vec<QuestionPick> {
+    if input.event != HookEvent::PostToolUse || !is_picker(input) {
+        return Vec::new();
+    }
+    let b = View::new(before);
+    let Some(card) = open_card(&b, input).filter(|card| card.hold == familiar_ai_rules::cases::CARD) else {
+        return Vec::new();
+    };
+    let asked: Vec<&Value> = input.tool_input.as_ref().and_then(|i| i.get("questions")).and_then(Value::as_array).map(|qs| qs.iter().collect()).unwrap_or_default();
+    let c = card.criterion_id;
+    crate::teach::cases_card::open_questions(&b, &c)
+        .into_iter()
+        .filter_map(|q| {
+            let text = crate::teach::cases_card::question_text(&q);
+            let labels = |a: &Value| a.get("options").and_then(Value::as_array).map(|os| os.iter().filter_map(|o| o.get("label").and_then(Value::as_str)).map(str::to_string).collect::<Vec<_>>());
+            asked.iter().find(|a| a.get("question").and_then(Value::as_str) == Some(text.as_str()) && a.get("header").and_then(Value::as_str) == Some(HEADER) && labels(a).as_ref() == Some(&q.options))?;
+            let answer = answer_of(input, &text)?;
+            let (choice, typed) = if q.options.iter().any(|o| o == answer) { (answer.to_string(), String::new()) } else { (familiar_ai_rules::cases::TYPED.to_string(), answer.to_string()) };
+            Some(QuestionPick { criterion_id: c.clone(), question_id: q.question_id, choice, typed })
+        })
+        .collect()
 }
 
 /// The answer the picker returned for `question`: the label picked or the text typed, both as the value.

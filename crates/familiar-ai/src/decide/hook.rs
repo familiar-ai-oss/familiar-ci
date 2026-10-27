@@ -8,7 +8,7 @@ use familiar_ai_facts::{Log, Record, RecordError};
 
 use crate::decide::decision::{self, Decision};
 use crate::decide::hook_output;
-use crate::decide::{case_finder, investigator, picker, restrict, seal, tell};
+use crate::decide::{investigator, lens, picker, restrict, seal, tell};
 use crate::door::investigator_run::{Launch, Returned};
 use crate::door::set_up as removed;
 use crate::door::{self, cannot, catch_up, catch_up_with_run, project_plan};
@@ -405,7 +405,9 @@ fn record_the_call<'a>(
     let by = (hook_input.event == HookEvent::PostToolUse && hook_input.tool_name.as_deref() == Some("Bash")).then_some(door::commits::BY_AGENT);
     let (mut log, _) = catch_up_with_run(record, root, around, by)?;
     crate::door::investigator::hook_facts(record, hook_input, &mut log, around.now)?;
-    crate::door::case_finder::hook_facts(record, hook_input, &mut log, around.now)?;
+    // the lens panel [draft]: which Agent call is which lens, then each answer as it returns
+    crate::door::lens::release(record, hook_input, &mut log, around.now)?;
+    crate::door::lens::hook_facts(record, hook_input, &mut log, around.now)?;
     crate::door::person::heard(record, hook_input, &mut log, around.now)?;
     // The judge runs on any call for the oldest unjudged seal, but not again after the investigator's run.
     let judge_on = around.judge_dir.is_some();
@@ -413,11 +415,19 @@ fn record_the_call<'a>(
         None => crate::door::judge::backstop(record, root, &mut log, hook_input, around)?,
         Some(_) => crate::door::judge::Told::default(),
     };
+    // the lens panel's questions [draft]: the person's picks on them, before the card's own choice
+    let questions = crate::door::picker::write_questions(record, root, hook_input, &before, &mut log, around)?;
     let picked = match picker::picked(hook_input, &before, &log) {
         Some(p) => crate::door::picker::write(record, root, &mut log, &p, around)?,
         // With none of its own open, the person's pick may be another checkout's card.
-        None => crate::door::picker::write_elsewhere(record, hook_input, &log, root, around)?.unwrap_or_default(),
+        None if questions.context.is_none() => crate::door::picker::write_elsewhere(record, hook_input, &log, root, around)?.unwrap_or_default(),
+        None => crate::door::picker::Told::default(),
     };
+    let join = |a: Option<String>, b: Option<String>| match (a, b) {
+        (Some(a), Some(b)) => Some(format!("{a}\n{b}")),
+        (a, b) => a.or(b),
+    };
+    let picked = crate::door::picker::Told { context: join(questions.context, picked.context), message: join(questions.message, picked.message) };
     let for_person = picked.message.clone().into_iter().collect();
     project_plan(root, &log)?;
     Ok(Call { input: hook_input, record, root, around, returned, after_diagnosis: false, diagnosed: Vec::new(), before, log, not_run: Vec::new(), judged, picked, owed: Vec::new(), rewrite: None, for_person, judge_on })
@@ -447,8 +457,8 @@ fn first_decision(call: &Call, idle: bool) -> Result<Decision, Outcome> {
     let own = decision::familiars_own_file(hook_input, root)
         .or_else(|| crate::door::folder::removal_refusal(hook_input, root))
         .or_else(|| crate::door::shell_write::out_of_reach_refusal(hook_input, root));
-    // The case-finder [draft]: the spawn rewritten to it while a part is owed it, and its calls but a read refused.
-    match own.is_none().then(|| case_finder::decide(hook_input, log, &case_finder::model())).flatten() {
+    // The lens panel [draft]: a released spawn rewritten to its lens, and a lens's calls but a read refused.
+    match own.is_none().then(|| lens::decide(hook_input, log, &lens::model())).flatten() {
         Some(investigator::Answer::Rewrite { input, reason, message }) => return Err(hook_output::render_rewrite(&input, &reason, &message)),
         Some(investigator::Answer::Decided(d)) => return Ok(d),
         None => {}
@@ -559,9 +569,9 @@ fn what_the_decision_tells(call: &mut Call, mut decided: Decision) -> Decision {
         }
         _ => {}
     }
-    if let Some(c) = crate::door::case_finder::recorded_since(log, call.before.len()) {
-        // The case-finder's answer recorded on this call [draft]: the person's card is open.
-        let told = teach::case_finder::after_finding(&familiar_ai_rules::View::new(log), c);
+    if let Some(c) = crate::door::lens::recorded_since(log, call.before.len()) {
+        // A lens's answer recorded on this call [draft]: what comes next on the panel, or the person's card.
+        let told = teach::lens::after_answer(&familiar_ai_rules::View::new(log), c);
         decided = decided.then(Some(Decision::Allow { told: Some(told) }));
     }
     if hook_input.event == HookEvent::UserPromptSubmit && crate::door::person::is_the_persons(hook_input) {
@@ -574,9 +584,9 @@ fn what_the_decision_tells(call: &mut Call, mut decided: Decision) -> Decision {
     }
     if hook_input.event == HookEvent::SubagentStart {
         // The investigator is told its criterion; any other subagent, while a run is open, the person's words.
-        // The case-finder [draft] starts with the binary's brief only.
+        // A lens [draft] starts with the binary's brief only.
         let conv = hook_input.agent_conversation_id();
-        let finder = crate::door::case_finder::is_case_finder(hook_input.agent_type.as_deref());
+        let finder = crate::door::lens::is_lens(hook_input.agent_type.as_deref());
         let told = conv.as_deref().and_then(|conv| teach::investigator::context(log, conv)).or_else(|| teach::investigator::subagent_context(log, conv.as_deref())).filter(|_| !finder);
         decided = Decision::Allow { told };
     }

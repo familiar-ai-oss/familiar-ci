@@ -27,7 +27,10 @@ fn whole() -> Log {
     )
 }
 
+// Definition change (the owner's plan of 2026-10-26, the lens panel, approved): the synthesis is
+// recorded only after the five lenses answered, so a finding comes after the panel's lenses.
 fn found(log: &Log, outcome: &str, n: usize) -> Log {
+    let log = &lenses(log, "c1");
     let cs: Vec<Value> = (1..=n)
         .map(|i| json!({ "case_id": format!("a{i}"), "short": format!("found case {i}"), "given": format!("given a{i}"), "expect": format!("expect a{i}"), "why": "the code branches here" }))
         .collect();
@@ -65,7 +68,8 @@ fn the_card_asks_before_the_test_and_shows_the_planned_checks_then_the_found_one
 fn a_found_findings_note_is_shown_after_the_found_checks() {
     let note = "the finder listed 9, the first 8 are kept: 1 left out";
     let eight: Vec<Value> = (1..=8).map(|i| json!({ "case_id": format!("a{i}"), "short": format!("found case {i}"), "given": "g", "expect": "e", "why": "w" })).collect();
-    let with = |why: &str| raw(&whole(), "cases_found", json!({ "criterion_id": "c1", "outcome": "found", "cases": eight, "why": why, "model": "claude-sonnet-5-5", "tokens": 4000 }));
+    // definition change (the lens panel, approved 2026-10-26): the synthesis after the five lenses
+    let with = |why: &str| raw(&lenses(&whole(), "c1"), "cases_found", json!({ "criterion_id": "c1", "outcome": "found", "cases": eight, "why": why, "model": "claude-sonnet-5-5", "tokens": 4000 }));
     let mut want: Vec<String> = ["✓ a row is written once", "✓ given o1", "Also worth checking:"].map(String::from).to_vec();
     want.extend((1..=8).map(|i| format!("{i}. found case {i}")));
     let c = card(&with(" the finder listed 9,\n the first 8 are kept:  1 left out "));

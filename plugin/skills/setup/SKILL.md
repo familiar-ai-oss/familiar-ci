@@ -10,7 +10,7 @@ the hooks. These steps install it. **The download is never silent**: show the
 exact command, say what it fetches and from where, and run it only after the
 person agrees.
 
-The version this plugin is built for is `0.1.2-prod`. It is the `<version>`
+The version this plugin is built for is `0.1.3-prod`. It is the `<version>`
 in the steps below.
 
 ## Steps

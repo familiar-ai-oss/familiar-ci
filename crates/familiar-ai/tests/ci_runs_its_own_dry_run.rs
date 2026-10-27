@@ -64,7 +64,7 @@ fn plan(command: &str) -> Log {
 }
 
 fn adapter(reader: &str) -> String {
-    format!("{{\"root\":\"\",\"runner\":\"jest\",\"reader\":\"{reader}\",\"familiar\":\"0.1.2-prod\",\"gaps\":[]}}\n")
+    format!("{{\"root\":\"\",\"runner\":\"jest\",\"reader\":\"{reader}\",\"familiar\":\"0.1.3-prod\",\"gaps\":[]}}\n")
 }
 
 #[test]

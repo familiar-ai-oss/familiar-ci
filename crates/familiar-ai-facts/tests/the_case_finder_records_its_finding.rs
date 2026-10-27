@@ -62,10 +62,12 @@ fn cases_found_refuses_a_missing_field_and_a_wrong_shape() {
     assert!(append_raw(&Vec::new(), "cases_found", extra, AT, TENANT).is_err());
 }
 
+// Definition change (the owner's plan of 2026-10-26, the lens panel, approved): cases_found is the
+// synthesis's record now, with the optional questions, and the lens panel's three kinds come after it
+// (the_lens_panel_records_its_answers.rs); it still comes right after off_list_reason.
 #[test]
-fn cases_found_comes_last_in_the_form() {
+fn cases_found_comes_after_off_list_reason_with_its_questions_optional() {
     let at = |k: &str| KINDS.iter().position(|x| *x == k);
-    assert_eq!(at("cases_found"), Some(KINDS.len() - 1));
     assert_eq!(at("off_list_reason").map(|i| i + 1), at("cases_found"));
-    assert_eq!(form_row("cases_found").map(|r| r.optional.len()), Some(0));
+    assert_eq!(form_row("cases_found").map(|r| r.optional.to_vec()), Some(vec!["questions"]));
 }

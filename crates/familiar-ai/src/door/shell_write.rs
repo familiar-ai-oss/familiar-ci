@@ -87,7 +87,11 @@ pub fn agent_command_refusal(input: &HookInput, governed: bool) -> Option<String
             _ if expands(&program) && names_approve => return Some(crate::door::approval::REFUSAL.to_string()),
             _ if !governed => {}
             "claude" if args.iter().any(|a| a == "-p" || a == "--print" || a.starts_with("--print=")) => return Some(LANE_BY_HAND.to_string()),
-            "familiar-ai" if (first == Some("claim") && args.get(1).map(String::as_str) == Some("hold_answered")) || (first == Some("plan") && bodies.iter().any(|b| b.contains("hold_answered"))) => {
+            // a card's answer, or a pick on the lens panel's question (the owner's plan of 2026-10-26), is the person's
+            "familiar-ai"
+                if (first == Some("claim") && matches!(args.get(1).map(String::as_str), Some("hold_answered" | "question_answered")))
+                    || (first == Some("plan") && bodies.iter().any(|b| b.contains("hold_answered") || b.contains("question_answered"))) =>
+            {
                 let command = crate::door::child::shown(&std::iter::once("familiar-ai".to_string()).chain(args).collect::<Vec<_>>());
                 return Some(format!("{LEAD}not claimed yet · {}", crate::door::claim::ClaimError::PersonsCard { command, card: String::new() }));
             }

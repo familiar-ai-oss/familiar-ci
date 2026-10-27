@@ -30,8 +30,11 @@ fn promise(log: &Log, ids: &[&str]) -> Log {
     raw(log, "promise", json!({ "promise_id": "p1", "behavior_id": "b1", "accepts": "rows", "gives_back": "each row once", "refuses": "nothing", "cases": cases, "contract_version": 1 }))
 }
 
-/// The case-finder's finding on c1: `outcome` with `n` cases a1..an.
+// Definition change (the owner's plan of 2026-10-26, the lens panel, approved): the synthesis is
+// recorded only after the five lenses answered, so a finding comes after the panel's lenses.
+/// The panel's synthesis on c1 after its five lenses: `outcome` with `n` cases a1..an.
 fn found(log: &Log, outcome: &str, n: usize) -> Log {
+    let log = &lenses(log, "c1");
     let cs: Vec<Value> = (1..=n)
         .map(|i| json!({ "case_id": format!("a{i}"), "short": format!("found case {i}"), "given": format!("given a{i}"), "expect": format!("expect a{i}"), "why": "the code branches here" }))
         .collect();
@@ -182,13 +185,25 @@ fn every_card_the_cases_card_can_show_offers_at_least_two_choices() {
             shown += 1;
             let choices = cases::offered(&v, "c1");
             assert!(choices.len() >= 2, "{choices:?} at:\n{}", terminal::status(&v));
-            assert_eq!(offered(&log), choices, "the card the person reads");
+            // Definition change (the lens panel's questions on the card, 2026-10-26): once the choice
+            // is answered the card the person reads offers no choice, only its open questions
+            let reads: Vec<&str> = if cases::choice_answered(&v, "c1") { Vec::new() } else { choices.clone() };
+            assert_eq!(offered(&log), reads, "the card the person reads");
             let clears: Vec<String> = holds::cases_card_clears(&v, "c1").iter().filter_map(|m| m.get("choice").and_then(Value::as_str)).map(str::to_string).collect();
             let mut distinct = clears.clone();
             distinct.sort();
             distinct.dedup();
             assert_eq!(distinct.len(), clears.len(), "each clears once: {clears:?}");
-            assert!(choices.iter().all(|ch| clears.iter().any(|x| x == ch)), "{choices:?} clear: {clears:?}");
+            // Definition change (the lens panel, approved 2026-10-26): once the choice is answered,
+            // the card stays open only on the synthesis's open questions, and only their picks clear it
+            if cases::choice_answered(&v, "c1") {
+                assert!(clears.is_empty(), "{clears:?}");
+                let picks: Vec<String> = holds::cases_card_clears(&v, "c1").iter().filter_map(|m| m.get("question_id").and_then(Value::as_str)).map(str::to_string).collect();
+                assert_eq!(picks, cases::unanswered_questions(&v, "c1"));
+                assert!(!picks.is_empty());
+            } else {
+                assert!(choices.iter().all(|ch| clears.iter().any(|x| x == ch)), "{choices:?} clear: {clears:?}");
+            }
             for typed in ["", "  "] {
                 let blank = answered(&log, cases::TYPED, typed);
                 assert!(cases::card_open(&View::new(&blank), "c1"), "{typed:?} typed closes nothing");
@@ -205,7 +220,12 @@ fn every_card_the_cases_card_can_show_offers_at_least_two_choices() {
             todo.push(after);
         }
     }
-    assert_eq!(shown, 12, "four findings at the first look; four more after each look again (on none and on failed)");
+    // Definition change (the owner's plan of 2026-10-26, the lens panel, approved): the synthesis
+    // has a fifth finding, one case and two questions, whose card stays open until its choice and
+    // both questions are answered: 15 cards in any order (1 at first, 4 choices x 2 then, 1 pick
+    // then 4 choices x 1 or the other pick and 1). At each look: 1 + 1 + 15 + none + failed, and
+    // after look again (on none and on failed) the second panel's 1 + 1 + 1 + 1 + 15 = 19 each.
+    assert_eq!(shown, 57, "five findings at the first look, five more after each look again (on none and on failed)");
 }
 
 #[test]

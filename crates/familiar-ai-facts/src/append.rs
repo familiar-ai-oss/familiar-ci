@@ -150,6 +150,12 @@ const CLOSED_FOR_KIND: &[(&str, &str, &[&str])] = &[
     ("ci_report_seen", "outcome", CI_OUTCOMES),
     // the cases card (the owner's plan of 2026-10-25) [draft]: what the case-finder's answer was
     ("cases_found", "outcome", &["found", "none", "failed"]),
+    // the lens panel (the owner's plan of 2026-10-26, approved): a lens's answer is one of the
+    // five; an Agent call is released to one of them or to the synthesis
+    ("lens_found", "outcome", &["found", "none", "failed"]),
+    ("lens_found", "lens", LENSES),
+    ("lens_released", "lens", &["ambiguity", "completeness", "happy_path", "edge_cases", "order_and_coupling", "synthesis"]),
+    ("question_answered", "question_id", QUESTION_IDS),
     ("familiar_switch", "to", SWITCH_TO),
     // the place where the change landed carries only the answer that appends it (F12)
     ("place_chosen", "hold", &["anchor_untouched"]),
@@ -177,6 +183,12 @@ const CLOSED_FOR_KIND: &[(&str, &str, &[&str])] = &[
     ),
     ("test_log_translation", "classified_on", &["full", "cut"]),
 ];
+
+/// The lens panel's five lenses, by id (the owner's plan of 2026-10-26, approved).
+pub const LENSES: &[&str] = &["ambiguity", "completeness", "happy_path", "edge_cases", "order_and_coupling"];
+
+/// The ids of the synthesis's questions, at most three.
+pub const QUESTION_IDS: &[&str] = &["q1", "q2", "q3"];
 
 /// The words `familiar_switch.to` allows.
 pub const SWITCH_TO: &[&str] = &["off", "on"];
@@ -356,6 +368,9 @@ impl_fact_fields!(OneReading, "one_reading");
 impl_fact_fields!(TraceListed, "trace_listed");
 impl_fact_fields!(OffListReason, "off_list_reason");
 impl_fact_fields!(CasesFound, "cases_found");
+impl_fact_fields!(LensReleased, "lens_released");
+impl_fact_fields!(LensFound, "lens_found");
+impl_fact_fields!(QuestionAnswered, "question_answered");
 
 /// Refuse a value whose shape does not deserialize into the kind's type.
 fn check_types(kind: &str, fields: &Map<String, Value>) -> Result<(), AppendError> {
@@ -461,7 +476,25 @@ fn check_types(kind: &str, fields: &Map<String, Value>) -> Result<(), AppendErro
         "one_reading" => typed::<OneReading>(kind, fields),
         "trace_listed" => typed::<TraceListed>(kind, fields),
         "off_list_reason" => typed::<OffListReason>(kind, fields),
-        "cases_found" => typed::<CasesFound>(kind, fields),
+        // the synthesis's questions: at most three, each id q1..q3 once, two to four options
+        "cases_found" => typed::<CasesFound>(kind, fields).and_then(|()| {
+            let qs = fields.get("questions").map(|v| serde_json::from_value::<Vec<FoundQuestion>>(v.clone())).transpose().map_err(|e| AppendError::BadValue(format!("{kind}.questions: {e}")))?.unwrap_or_default();
+            if qs.len() > QUESTION_IDS.len() {
+                return Err(AppendError::BadValue(format!("{kind}.questions: at most {}", QUESTION_IDS.len())));
+            }
+            for (i, q) in qs.iter().enumerate() {
+                if !QUESTION_IDS.contains(&q.question_id.as_str()) || qs[..i].iter().any(|p| p.question_id == q.question_id) {
+                    return Err(AppendError::BadValue(format!("{kind}.questions: each id is one of {QUESTION_IDS:?}, once, got '{}'", q.question_id)));
+                }
+                if !(2..=4).contains(&q.options.len()) {
+                    return Err(AppendError::BadValue(format!("{kind}.questions: {} has {} options, two to four", q.question_id, q.options.len())));
+                }
+            }
+            Ok(())
+        }),
+        "lens_released" => typed::<LensReleased>(kind, fields),
+        "lens_found" => typed::<LensFound>(kind, fields),
+        "question_answered" => typed::<QuestionAnswered>(kind, fields),
         other => Err(AppendError::UnknownKind(other.to_string())),
     }
 }

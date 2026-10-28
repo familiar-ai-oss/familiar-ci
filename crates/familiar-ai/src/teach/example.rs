@@ -73,7 +73,8 @@ pub fn next_free_criterion_id(v: &View) -> String {
 /// The first criterion still missing the kind's plan line, else the last
 /// criterion claimed.
 pub fn criterion_for(v: &View, kind: &str) -> Option<String> {
-    let cs = plan::criteria(v);
+    // the parts in the plan: a released part is never named (the owner, 2026-10-28)
+    let cs = plan::planned(v);
     let missing = |c: &String| match kind {
         "place_chosen" | "new_work_spot_chosen" | "new_work_no_spot" => plan::anchor_of(v, c).is_none(),
         "test_planned" => v.of("test_planned", c).next().is_none(),

@@ -3,8 +3,12 @@ name: ci
 # The referee from CONTRIBUTING.md, plus the install test.
 
 on:
+  # a tag's CI runs inside release.yml, which publishes only after it passes
   push:
+    branches:
+      - '**'
   pull_request:
+  workflow_call:
 
 jobs:
   referee:

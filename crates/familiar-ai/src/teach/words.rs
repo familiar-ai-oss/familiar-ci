@@ -360,7 +360,8 @@ pub fn status_lines(log: &Log, judge_on: bool) -> Vec<String> {
     } else {
         format!("{LEAD}the plan is still being written")
     }];
-    for c in plan::criteria(&v) {
+    // a part the person cleared is left out (the owner, 2026-10-28)
+    for c in plan::criteria(&v).into_iter().filter(|c| !crate::door::switch::cleared(&v, c)) {
         let sub = if plan::assigned_to(&v, &c).is_some_and(|a| a.contains('/')) { " · with a subagent" } else { "" };
         // A criterion whose runner the table cannot scope, and that names no command of its own, is unscoped.
         let scope = if !criterion::scoped(&v, &c) { " · unscoped · scope the command to prove in parallel" } else { "" };
@@ -564,7 +565,8 @@ pub const PLAN_ALL_AT_ONCE: &str = "  all at once: familiar-ai plan takes the mi
 pub fn plan_checklist(p: &crate::teach::example::Project) -> Vec<String> {
     use familiar_ai_rules::criterion::test_files;
     let v = View::new(p.log);
-    let crits = plan::criteria(&v);
+    // the parts in the plan, as its lines read them: a released part is not listed (the owner, 2026-10-28)
+    let crits = plan::planned(&v);
     let any = !crits.is_empty();
     let claim = |kind: &str| crate::door::claim::command_form(kind, &serde_json::Map::new(), Some(p)).map(|c| format!("claim it: {c}")).unwrap_or_default();
     // One criterion's value as it is; several, each named.

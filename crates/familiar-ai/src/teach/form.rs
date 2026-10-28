@@ -227,6 +227,7 @@ fn note(kind: &str, field: &str) -> &'static str {
         ("hold_answered", "run_id") => "the run behind the card, empty for a card with none; written by familiar-ai approve",
         ("hold_answered", "commit") => "the commit the card was answered at; written by familiar-ai approve",
         ("hold_answered", "approval") => "the t of the signed approval in .familiar/approvals/ that witnesses the answer; written by familiar-ai approve",
+        ("hold_answered", "from") => "clear on a release familiar-ai clear wrote, the person's button; written by familiar-ai clear",
         ("question_answered", "question_id") => "the lens panel's question on the cases card: q1, q2 or q3 [draft]",
         ("question_answered", "choice") => "one of the question's options, as offered, or typed",
         ("question_answered", "typed") => "the person's own words when the choice is typed, else empty",

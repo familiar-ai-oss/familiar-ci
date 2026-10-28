@@ -139,6 +139,18 @@ pub const CLEAR_REFUSAL: &str = "familiar-ai: not cleared · familiar-ai clear i
 /// `familiar-ai clear` (the owner, 2026-10-27): every part not yet released or proven is released
 /// by the person (`hold_answered`, choice `release`, at the hold it stands at, or its state when it
 /// has none), its record kept. Refused from an agent's session, as the switch is.
+/// The `from` of a release `familiar-ai clear` writes (the owner, 2026-10-28).
+pub const FROM_CLEAR: &str = "clear";
+
+/// Whether the person cleared the part: a release `familiar-ai clear` wrote, the person's
+/// by construction (refused from an agent), so it leaves the status and names no answer flag.
+pub fn cleared(v: &familiar_ai_rules::View, c: &str) -> bool {
+    v.of("hold_answered", c).any(|f| {
+        let s = |k: &str| f.fields.get(k).and_then(serde_json::Value::as_str);
+        s("choice") == Some("release") && s("from") == Some(FROM_CLEAR)
+    })
+}
+
 pub fn run_clear(around: &Surroundings) -> Outcome {
     use familiar_ai_rules::{lifecycle, plan, View};
     if around.session_id.is_some() {
@@ -163,7 +175,7 @@ pub fn run_clear(around: &Surroundings) -> Outcome {
         .collect();
     let names: Vec<String> = open.iter().map(|(c, _)| crate::teach::words::quoted(&v, c)).collect();
     for (c, at) in &open {
-        let fields = serde_json::json!({ "criterion_id": c, "hold": at, "choice": "release", "typed": "" });
+        let fields = serde_json::json!({ "criterion_id": c, "hold": at, "choice": "release", "typed": "", "from": FROM_CLEAR });
         if let Err(e) = record.append_raw("hold_answered", fields.as_object().cloned().unwrap_or_default(), around.now, TENANT) {
             return plain(1, String::new(), format!("familiar-ai: {}\n", cannot("write its record", &e)));
         }

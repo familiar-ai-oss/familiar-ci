@@ -452,14 +452,22 @@ pub fn line_1(v: &View) -> bool {
         .is_some_and(|s| !s.is_empty())
 }
 
+/// The parts in the plan: every criterion not released (the owner, 2026-10-28). The plan's lines
+/// 2–11 read these, so a part the person released, on a card or with `familiar-ai clear`, never
+/// keeps the plan from being confirmed.
+pub fn planned(v: &View) -> Vec<String> {
+    criteria(v).into_iter().filter(|c| !crate::lifecycle::released(v, c)).collect()
+}
+
 /// 2: at least one criterion; a light one only when the binary checked its
 /// anchor is documentation (the owner, 2026-10-11: light is for
 /// documentation only).
 /// The rescope gate (the owner, 2026-10-16, S7b): after the person's `re_plan` on a
 /// `requirement_missed` finding, a criterion claimed since whose text differs.
 pub fn line_2(v: &View) -> bool {
-    let cs = criteria(v);
-    !cs.is_empty() && cs.iter().all(|c| line_2_of(v, c))
+    // a part claimed, ever, and the parts still in the plan hold it: with every part released the
+    // lines hold with no part to hold them, as a plan released whole after confirmation always did
+    !criteria(v).is_empty() && planned(v).iter().all(|c| line_2_of(v, c))
 }
 
 /// Line 2 for one part: it is claimed, light only when documented, and not owed a new reading.
@@ -471,7 +479,7 @@ pub fn line_2_of(v: &View, c: &str) -> bool {
 /// filled, and its contract whole when it gives cases (`contract_wants`); light needs neither. After a rescoping `re_plan` (S7b), a promise claimed since
 /// whose slots differ.
 pub fn line_3(v: &View) -> bool {
-    criteria(v).iter().all(|c| line_3_of(v, c))
+    planned(v).iter().all(|c| line_3_of(v, c))
 }
 
 /// Line 3 for one part.
@@ -500,7 +508,7 @@ pub fn line_3_of(v: &View, c: &str) -> bool {
 /// 4: an anchor exit per criterion, the last one counts; for a part whose tests run under a
 /// recorder, only after a red try and on its list (`trace::line_4_of`) [draft].
 pub fn line_4(v: &View) -> bool {
-    criteria(v).iter().all(|c| line_4_of(v, c))
+    planned(v).iter().all(|c| line_4_of(v, c))
 }
 
 /// Line 4 for one part: an anchor, and for a traced part what the try asks of it (the owner's plan
@@ -511,7 +519,7 @@ pub fn line_4_of(v: &View, c: &str) -> bool {
 
 /// 5: an anchor that names lines ⇒ the latest planning check matched.
 pub fn line_5(v: &View) -> bool {
-    criteria(v).iter().all(|c| line_5_of(v, c))
+    planned(v).iter().all(|c| line_5_of(v, c))
 }
 
 /// Line 5 for one part.
@@ -532,7 +540,7 @@ pub fn line_5_of(v: &View, c: &str) -> bool {
 
 /// 6: at least one `test_planned`.
 pub fn line_6(v: &View) -> bool {
-    criteria(v).iter().all(|c| line_6_of(v, c))
+    planned(v).iter().all(|c| line_6_of(v, c))
 }
 
 /// Line 6 for one part.
@@ -543,7 +551,7 @@ pub fn line_6_of(v: &View, c: &str) -> bool {
 /// 7: a `test_stack_detected` with a non-empty `test_command` for the
 /// anchor's root; new work with no integration point: any root.
 pub fn line_7(v: &View) -> bool {
-    criteria(v).iter().all(|c| line_7_of(v, c))
+    planned(v).iter().all(|c| line_7_of(v, c))
 }
 
 /// Line 7 for one part; with no anchor yet it holds (line 4 is owed).
@@ -568,12 +576,12 @@ pub fn line_8(_v: &View) -> bool {
 
 /// 9: every criterion on the string.
 pub fn line_9(v: &View) -> bool {
-    criteria(v).iter().all(|c| on_string(v, c))
+    planned(v).iter().all(|c| on_string(v, c))
 }
 
 /// 10: every criterion has a `criterion_assigned`.
 pub fn line_10(v: &View) -> bool {
-    criteria(v).iter().all(|c| line_10_of(v, c))
+    planned(v).iter().all(|c| line_10_of(v, c))
 }
 
 /// Line 10 for one part.
@@ -583,7 +591,7 @@ pub fn line_10_of(v: &View, c: &str) -> bool {
 
 /// 11: every criterion has a `fix_location_category`, of any category.
 pub fn line_11(v: &View) -> bool {
-    criteria(v).iter().all(|c| v.of("fix_location_category", c).next().is_some())
+    planned(v).iter().all(|c| v.of("fix_location_category", c).next().is_some())
 }
 
 /// `test_may_be_written` [draft] (the owner's plan of 2026-10-23, change A): lines 1–3 and 6–10

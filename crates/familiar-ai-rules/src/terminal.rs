@@ -364,7 +364,7 @@ pub fn refusal(v: &View, event: &Event) -> Option<String> {
     let hold = r.hold.unwrap_or_default();
     // the owner (2026-10-11): line 2 missing because a light anchor is not documentation
     if hold == "planning_incomplete" && plan::PLAN_LINES.iter().position(|n| !plan::line(v, n).unwrap_or(true)) == Some(1) {
-        if let Some(ld) = plan::criteria(v).into_iter().find(|x| plan::not_documentation(v, x)) {
+        if let Some(ld) = plan::planned(v).into_iter().find(|x| plan::not_documentation(v, x)) {
             return Some([format!("refused · criterion {ld} · held: {hold}"), format!("  {LIGHT_NOT_DOCUMENTATION}"), format!("  to clear it: {next}")].join("\n"));
         }
     }

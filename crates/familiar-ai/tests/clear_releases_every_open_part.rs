@@ -2,6 +2,10 @@
 //! terminal of their own (the owner, 2026-10-27): every part not yet released or proven is released
 //! by the person (`hold_answered`, choice `release`), its record kept, so the next ask is planned
 //! fresh. From an agent's session, or an agent's command that runs it, it is refused, as the switch is.
+//! Each release it writes says so (`from: clear`, the owner, 2026-10-28): only the person can write
+//! one, so a cleared part reads released by you, never "answered, not verified", and leaves
+//! `familiar-ai status` and `status --json` (the pane's), the record keeping it. A part released on
+//! a card stays, with its answer's flag, as before.
 
 mod common;
 
@@ -36,6 +40,15 @@ impl Project {
         record.append_raw("hold_answered", fields.as_object().cloned().unwrap_or_default(), now, familiar_ai::TENANT).expect("the release");
     }
 
+    /// Each release's `from`, in record order.
+    fn froms(&self) -> Vec<Option<String>> {
+        self.facts()
+            .into_iter()
+            .filter(|f| f.kind == "hold_answered" && f.fields.get("choice").and_then(Value::as_str) == Some("release"))
+            .map(|f| f.fields.get("from").and_then(Value::as_str).map(str::to_string))
+            .collect()
+    }
+
     /// The parts each `release` names, in record order.
     fn releases(&self) -> Vec<String> {
         self.facts()
@@ -54,9 +67,17 @@ fn clear_releases_every_open_part_once_from_the_persons_terminal() {
     assert_eq!(code, 0, "{out}{err}");
     assert_eq!(out, "Familiar cleared 1 part of this project: \"greet says hello\". It is released, its record kept.\n");
     assert_eq!(p.releases(), ["c2", "c1"], "c1 released, c2 not again");
-    for c in ["c1", "c2"] {
-        assert!(p.criterion_json(c)["holds"].to_string().contains("\"released\""), "{c}: {}", p.criterion_json(c));
-    }
+    assert_eq!(p.froms(), [None, Some("clear".to_string())], "clear's release says so; the card's does not");
+    // c1 cleared leaves the status; c2, released on a card, stays with its flag
+    let ids: Vec<Value> = p.status_json()["criteria"].as_array().cloned().unwrap_or_default().iter().map(|c| c["id"].clone()).collect();
+    assert_eq!(ids, [json!("c2")]);
+    assert!(p.criterion_json("c2")["holds"].to_string().contains("\"released\""), "{}", p.criterion_json("c2"));
+    let (code, status, _) = p.run(&["status"], "");
+    assert_eq!(code, 0);
+    assert!(!status.contains("\"greet says hello\" · "), "{status}");
+    assert!(!status.contains("part 1 ·"), "no answer flag for a cleared part: {status}");
+    assert!(status.contains("familiar-ai: \"part says goodbye\" · "), "{status}");
+    assert!(status.contains("part 2 · anchor_untouched release: answered, not verified"), "the card's release keeps its flag: {status}");
     // nothing left to clear
     let (code, out, _) = p.run(&["clear"], "");
     assert_eq!((code, out.as_str()), (0, "Familiar has no open part to clear in this project.\n"));

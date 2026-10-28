@@ -423,10 +423,10 @@ fn check_types(kind: &str, fields: &Map<String, Value>) -> Result<(), AppendErro
             Some(v) => serde_json::from_value::<Vec<ExistingTestChange>>(v.clone()).map(|_| ()).map_err(|e| AppendError::BadValue(format!("{kind}.existing_tests_changed: {e}"))),
             None => Ok(()),
         }),
-        // run_id, commit and approval (the witness's id, plan §6.9) are fields of the fact, not of
+        // run_id, commit, approval (the witness's id, plan §6.9) and from ("clear" on familiar-ai clear's release) are fields of the fact, not of
         // the typed form the sealed tests build; text when present
         "hold_answered" => typed::<HoldAnswered>(kind, fields).and_then(|()| {
-            match ["run_id", "commit", "approval"].into_iter().find(|k| fields.get(*k).is_some_and(|v| !v.is_string())) {
+            match ["run_id", "commit", "approval", "from"].into_iter().find(|k| fields.get(*k).is_some_and(|v| !v.is_string())) {
                 Some(k) => Err(AppendError::BadValue(format!("{kind}.{k} must be text"))),
                 None => Ok(()),
             }

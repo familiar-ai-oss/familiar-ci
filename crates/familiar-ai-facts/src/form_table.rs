@@ -148,8 +148,9 @@ pub const FORM: &[FormRow] = &[
     },
     FormRow {
         kind: "hold_answered",
-        fields: &["criterion_id", "hold", "choice", "typed", "run_id", "commit", "approval"],
-        optional: &["run_id", "commit", "approval"],
+        // from: "clear" on a release familiar-ai clear wrote, the person's (the owner, 2026-10-28)
+        fields: &["criterion_id", "hold", "choice", "typed", "run_id", "commit", "approval", "from"],
+        optional: &["run_id", "commit", "approval", "from"],
     },
     FormRow {
         kind: "pipeline_run_seen",

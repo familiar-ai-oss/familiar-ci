@@ -69,9 +69,13 @@ jobs:
           path: artifacts/
           if-no-files-found: error
 
+  # CI on the tag; the release goes out only after it passes
+  ci:
+    uses: ./.github/workflows/ci.yml
+
   release:
     name: create the GitHub release
-    needs: build
+    needs: [build, ci]
     runs-on: ubuntu-latest
     permissions:
       contents: write

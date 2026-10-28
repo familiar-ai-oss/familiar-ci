@@ -96,26 +96,30 @@ const tableHead = (Box: Ui['Box'], Text: Ui['Text'], key: string) => (
   </Box>
 )
 
-// one line per part: its number, its stage, the seven dots (each under the
-// second letter of its step), and its standing words, which wrap
+// two lines per part: its number, its stage and the seven dots (each under
+// the second letter of its step); then, under the part column, its words and
+// its standing, which wrap (the owner, 2026-10-28: a narrow pane left the
+// words no room beside the dots)
 const tableRow = (Box: Ui['Box'], Text: Ui['Text'], s: FamiliarStatus, c: FamiliarCriterion, k: string) => {
   const d = dones(c)
-  return (
+  return [
     <Box key={`${k}table-${c.id}`}>
-      <Box key={`${k}table-cols-${c.id}`} flexShrink={0}>
-        <Text>{String(c.part ?? '').padEnd(PART_W) + stage(s, c).padEnd(STAGE_W)}</Text>
-        {STEPS.map((n, i) => (
-          <Text key={n} dimColor={d[i] === null}>
-            {` ${dot(d[i])}`.padEnd(n.length + 1)}
-          </Text>
-        ))}
-        <Text>{'  '}</Text>
+      <Text>{String(c.part ?? '').padEnd(PART_W) + stage(s, c).padEnd(STAGE_W)}</Text>
+      {STEPS.map((n, i) => (
+        <Text key={n} dimColor={d[i] === null}>
+          {` ${dot(d[i])}`.padEnd(n.length + 1)}
+        </Text>
+      ))}
+    </Box>,
+    <Box key={`${k}words-${c.id}`}>
+      <Box key={`${k}words-gap-${c.id}`} flexShrink={0}>
+        <Text>{''.padEnd(PART_W)}</Text>
       </Box>
-      <Box key={`${k}table-words-${c.id}`} flexGrow={1} flexShrink={1}>
-        <Text>{standing(s, c)}</Text>
+      <Box key={`${k}words-text-${c.id}`} flexGrow={1} flexShrink={1}>
+        <Text>{[c.text, standing(s, c)].filter(Boolean).join(' · ')}</Text>
       </Box>
-    </Box>
-  )
+    </Box>,
+  ]
 }
 
 // an opened part: its name and words, the rail with a dot under each step,
@@ -174,7 +178,7 @@ const opened = (Box: Ui['Box'], Text: Ui['Text'], c: FamiliarCriterion, k: strin
 // key ('' here, 'checkout-<i>-' for another checkout); `head` names the head's key.
 const journeyRows = (Box: Ui['Box'], Text: Ui['Text'], s: FamiliarStatus, parts: FamiliarCriterion[], k: string, head: string) => [
   ...(parts.length > 0 ? [tableHead(Box, Text, `${k}${head}`)] : []),
-  ...parts.map(c => tableRow(Box, Text, s, c, k)),
+  ...parts.flatMap(c => tableRow(Box, Text, s, c, k)),
   ...parts.filter(c => c.journey?.opened).flatMap(c => opened(Box, Text, c, k)),
 ]
 

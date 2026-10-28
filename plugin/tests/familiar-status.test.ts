@@ -186,15 +186,20 @@ const JOURNEY = {
   cards: [{ criterion_id: 'c3', name: 'part 3', question: 'What now?' }],
 }
 
-test('the pane draws one table line per part: its number, its stage, the seven steps and its standing words', async ($, on) => {
+// a part's words line under its table line (the owner, 2026-10-28): its words, then its standing
+test('the pane draws one table line per part: its number, its stage and the seven steps; under it, its words and its standing', async ($, on) => {
   world(on, [ok(JOURNEY)])
   await start($)
   const text = await paneText($)
   expect(await text('table-head-0')).toBe('part  stage      plan place test red fix green CI')
-  expect(await text('table-c1')).toBe('1     red         ●    ●     ●    ●   ○   ○     ○   the test fails, as it should before the fix · the code comes next · held by: conversation 16976e81')
-  expect(await text('table-c2')).toBe('2     waiting     ●    ●     ○    ·   ·   ·     ·   waits for part 1')
-  expect(await text('table-c3')).toBe('3     needs you   ●    ●     ●    ●   ●   ○     ○   two tries failed; this needs you')
-  expect(await text('table-c4')).toBe('4     verified    ●    ●     ●    ●   ●   ●     ◐   locally verified')
+  expect(await text('table-c1')).toBe('1     red         ●    ●     ●    ●   ○   ○     ○ ')
+  expect(await text('words-c1')).toBe('      greet says hello · the test fails, as it should before the fix · the code comes next · held by: conversation 16976e81')
+  expect(await text('table-c2')).toBe('2     waiting     ●    ●     ○    ·   ·   ·     · ')
+  expect(await text('words-c2')).toBe('      bye says goodbye · waits for part 1')
+  expect(await text('table-c3')).toBe('3     needs you   ●    ●     ●    ●   ●   ○     ○ ')
+  expect(await text('words-c3')).toBe('      the title reads familiar · two tries failed; this needs you')
+  expect(await text('table-c4')).toBe('4     verified    ●    ●     ●    ●   ●   ●     ◐ ')
+  expect(await text('words-c4')).toBe('      the footer names the year · locally verified')
 })
 
 test('an opened part shows its words, the rail and where its test, place and seal are; a part not opened shows only its table line', async ($, on) => {
@@ -221,8 +226,10 @@ test('a status without a journey, from an older binary, still draws the table wi
   world(on, [ok(STATUS)])
   await start($)
   const text = await paneText($)
-  expect(await text('table-c1')).toBe('1     green       ·    ·     ·    ·   ·   ·     ·   locally green')
-  expect(await text('table-c2')).toBe('2     needs you   ·    ·     ·    ·   ·   ·     ·   two tries failed')
+  expect(await text('table-c1')).toBe('1     green       ·    ·     ·    ·   ·   ·     · ')
+  expect(await text('words-c1')).toBe('      greet says hello · locally green')
+  expect(await text('table-c2')).toBe('2     needs you   ·    ·     ·    ·   ·   ·     · ')
+  expect(await text('words-c2')).toBe('      bye says goodbye · two tries failed')
   expect(await text('rail-c1')).toBeUndefined()
   expect(await text('part-c2')).toBeUndefined()
 })
@@ -241,8 +248,10 @@ test("another checkout's parts draw the same table and rail under its heading, k
   expect(await text('checkout-0')).toBe('familiar-ai-oss-lane · lane-x')
   expect(await text('checkout-0-ask-0')).toBe('your 14:24 ask: say why at each hook')
   expect(await text('checkout-0-table-head-0')).toBe('part  stage      plan place test red fix green CI')
-  expect(await text('checkout-0-table-c1')).toBe('1     red         ●    ●     ●    ●   ○   ○     ○   the test fails, as it should before the fix · the code comes next · held by: conversation 16976e81')
-  expect(await text('checkout-0-table-c2')).toBe('2     waiting     ●    ●     ○    ·   ·   ·     ·   waits for part 1')
+  expect(await text('checkout-0-table-c1')).toBe('1     red         ●    ●     ●    ●   ○   ○     ○ ')
+  expect(await text('checkout-0-words-c1')).toBe('      greet says hello · the test fails, as it should before the fix · the code comes next · held by: conversation 16976e81')
+  expect(await text('checkout-0-table-c2')).toBe('2     waiting     ●    ●     ○    ·   ·   ·     · ')
+  expect(await text('checkout-0-words-c2')).toBe('      bye says goodbye · waits for part 1')
   expect(await text('checkout-0-part-c1')).toBe('part 1  greet says hello')
   expect(await text('checkout-0-rail-c1')).toBe('        plan ── place ── test ── red ── fix ── green ── CI')
   expect(await text('checkout-0-rail-dots-c1')).toBe('         ●       ●        ●       ●      ○      ○        ○')
@@ -256,7 +265,8 @@ test("another checkout's parts from an older binary, with no journey, still draw
   world(on, [ok({ ...STATUS, checkouts: [LANE([{ ...c1, ask: null }])] })])
   await start($)
   const text = await paneText($)
-  expect(await text('checkout-0-table-c1')).toBe('1     green       ·    ·     ·    ·   ·   ·     ·   locally green')
+  expect(await text('checkout-0-table-c1')).toBe('1     green       ·    ·     ·    ·   ·   ·     · ')
+  expect(await text('checkout-0-words-c1')).toBe('      greet says hello · locally green')
   expect(await text('checkout-0-rail-c1')).toBeUndefined()
 })
 
@@ -300,13 +310,13 @@ const answered = (answers: unknown[]) => ({ ...STATUS, criteria: [{ ...STATUS.cr
 test('a part cleared with no verified approval is marked answered, not verified in the pane', async ($, on) => {
   world(on, [ok(answered([{ hold: 'two_failures', choice: 'release', approval: null, verified: false, words: 'answered, not verified' }]))])
   await start($)
-  expect((await row($, PANE, 'table-c1')).text).toContain('answered, not verified')
+  expect((await row($, PANE, 'words-c1')).text).toContain('answered, not verified')
 })
 
 test('a part cleared by a verified approval reads answered, verified <t>', async ($, on) => {
   world(on, [ok(answered([{ hold: 'two_failures', choice: 'release', approval: '7', verified: true, words: 'answered, verified 7' }]))])
   await start($)
-  const text = (await row($, PANE, 'table-c1')).text
+  const text = (await row($, PANE, 'words-c1')).text
   expect(text).toContain('answered, verified 7')
   expect(text).not.toContain('not verified')
 })
@@ -314,7 +324,7 @@ test('a part cleared by a verified approval reads answered, verified <t>', async
 test('words that claim verified never make an unverified answer the person\'s verified approval', async ($, on) => {
   world(on, [ok(answered([{ hold: 'two_failures', choice: 'release', approval: '7', verified: false, words: 'answered, verified 7' }]))])
   await start($)
-  const text = (await row($, PANE, 'table-c1')).text
+  const text = (await row($, PANE, 'words-c1')).text
   expect(text).toContain('answered, not verified')
   expect(text).not.toContain('verified 7')
 })

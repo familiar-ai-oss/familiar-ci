@@ -166,3 +166,20 @@ fn on_the_bench_a_stop_with_only_the_persons_card_left_goes_carrying_the_card() 
     let out = p.hook_on("Stop", serde_json::json!({}), true);
     assert_eq!(out["decision"], "block", "{out}");
 }
+
+/// With every part cleared, an edit waits for a new part and a stop goes (the owner's answer,
+/// 2026-10-28: edits wait, stop goes). The binary's run closes once every part since its intent is
+/// done (`person::mode` reads idle), so the edit waits for a new intent and a part
+/// (`restrict::intent_first`) while the stop goes; the rules are asked only once a run is open.
+#[test]
+fn with_every_part_cleared_an_edit_waits_for_a_new_part_and_a_stop_goes() {
+    let p = project("cleared");
+    p.plan();
+    let (code, out, err) = p.run_as(None, &["clear"], "");
+    assert_eq!(code, 0, "{out}{err}");
+    let input = serde_json::json!({ "file_path": p.path("src/app.sh").to_string_lossy(), "old_string": "a", "new_string": "b" });
+    let v = p.hook("PreToolUse", serde_json::json!({ "tool_name": "Edit", "tool_input": input }));
+    assert_eq!(v["hookSpecificOutput"]["permissionDecision"], "deny", "{v}");
+    assert!(v["hookSpecificOutput"]["permissionDecisionReason"].as_str().unwrap_or("").contains("claim criterion"), "the reason names a new part's claim: {v}");
+    assert_eq!(p.hook("Stop", serde_json::json!({})), serde_json::json!({}), "a stop goes");
+}

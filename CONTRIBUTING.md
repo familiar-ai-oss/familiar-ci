@@ -130,8 +130,10 @@ carry the same version and change with it. Push the tag `v<version>`:
 version, builds the binary for the four targets
 (`x86_64-unknown-linux-gnu`, `aarch64-unknown-linux-gnu`,
 `aarch64-apple-darwin`, `x86_64-apple-darwin`), runs
-`scripts/check-no-c.sh`, and publishes each `familiar-ai-<target>.tar.gz`
-with its `.sha256` as the GitHub release. `/familiar-ai:setup` downloads
+`scripts/check-no-c.sh`, runs `.github/workflows/ci.yml` on the tag, and
+only once the builds and CI pass publishes each
+`familiar-ai-<target>.tar.gz` with its `.sha256` as the GitHub release. A
+red CI on the tag publishes nothing. `/familiar-ai:setup` downloads
 from that release, and the action installs from it. Then publish the
 crates to crates.io in dependency order (`familiar-ai-facts`,
 `familiar-ai-git`, `familiar-ai-run`, `familiar-ai-rules`,

@@ -70,9 +70,10 @@ pub fn traced(v: &View, c: &str) -> bool {
 }
 
 /// Whether `c` needs a red try before its place: traced, not on the light path (documentation
-/// only, where no function the test runs is the spot), its tests not yet committed.
+/// only, where no function the test runs is the spot), its tests not yet committed, and not released.
 pub fn needs_try(v: &View, c: &str) -> bool {
-    traced(v, c) && plan::path_of(v, c) != Some("light") && v.of("test_written", c).next().is_none()
+    // a released part owes no try (the owner, 2026-10-28)
+    traced(v, c) && plan::path_of(v, c) != Some("light") && v.of("test_written", c).next().is_none() && !crate::lifecycle::released(v, c)
 }
 
 /// The latest try of `c`, any.

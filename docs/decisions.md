@@ -1392,10 +1392,46 @@ good with its record kept and the next ask is planned fresh. Like the switch,
 it is refused from an agent's session and from an agent's command that runs
 it, whatever its environment, while off too.
 
-Code: `crates/familiar-ai/src/door/switch.rs` (`run_clear`),
+Each release it writes carries `from: "clear"` (the owner, 2026-10-28). Only
+the person can write one, so a cleared part is released by the person by
+construction: it leaves `familiar-ai status` and `status --json` (the pane's),
+and no "answered, not verified" line names it, the record keeping it. A part
+released on a card stays, with its answer's flag, as before. The pane draws
+each part's words and standing on their own line under its table line, since
+a narrow pane left them no room beside the dots.
+
+Code: `crates/familiar-ai/src/door/switch.rs` (`run_clear`, `cleared`),
+`crates/familiar-ai/src/teach/mod.rs`, `crates/familiar-ai/src/teach/words.rs`,
+`plugin/hooks/pane.tsx`,
 `plugin/hooks/band.tsx`, `plugin/hooks/register.tsx`.
 Tests: `crates/familiar-ai/tests/clear_releases_every_open_part.rs`,
 `plugin/tests/familiar-line.test.ts`.
+
+### A released part leaves the plan
+
+The plan's lines 2–11 read the parts in the plan, `plan::planned`: every
+criterion not released, on a card or with `familiar-ai clear` (the owner,
+2026-10-28). A released part never keeps the plan from being confirmed. In the
+Duet session four released parts, one anchored in a git-ignored file whose
+lines could never hold, kept the new parts' plan from ever confirming. A
+released part owes no red try (`trace::needs_try`), so it no longer reorders
+the lines or holds the work. The plan's checklist and the part its next claim
+names (`example::criterion_for`) read the same parts. With every part released
+no part is left in the plan: line 2 asks for a part claimed, ever, and the other
+lines hold with no part to hold them, as a plan released whole after its
+confirmation always did, so each released part reads released by you. Until a
+new part is claimed an edit waits and a stop goes (the owner's answer,
+2026-10-28): the binary's run closes once every part since its intent is done
+(`person::mode` reads idle), so code waits for a new intent and a part, and the
+rules are asked only once a run is open. Ids stay unique across every part,
+released or not.
+
+Code: `crates/familiar-ai-rules/src/plan.rs` (`planned`, lines 2–11),
+`crates/familiar-ai-rules/src/trace.rs` (`needs_try`),
+`crates/familiar-ai-rules/src/terminal.rs`,
+`crates/familiar-ai/src/teach/words.rs` (`plan_checklist`),
+`crates/familiar-ai/src/teach/example.rs` (`criterion_for`).
+Tests: `crates/familiar-ai-rules/tests/a_released_part_leaves_the_plan.rs`.
 
 ### Two-command install
 

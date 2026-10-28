@@ -27,6 +27,8 @@ use std::path::Path;
 use familiar_ai_facts::Log;
 use familiar_ai_rules::{terminal, View};
 
+use crate::door::switch::cleared;
+
 /// The state lines for the facts a call appended, in the person's words, then
 /// the first failed try since the seal when this call's run made it, then the
 /// cards this call opened.
@@ -238,10 +240,12 @@ pub(crate) fn picture_json(log: &Log, root: &Path, now: f64, judge_on: bool, oth
     let asks = person_words::asks(&v);
     let name = |c: &str| person_words::name_of(&asks, c);
     let approved = approved_if_answered(&v, root);
-    let criteria: Vec<Value> = plan::criteria(&v).iter().map(|c| criterion_json(&v, &asks, c, judge_on, &approved)).collect();
+    // a part the person cleared is left out (the owner, 2026-10-28); the record keeps it
+    let live: Vec<String> = plan::criteria(&v).into_iter().filter(|c| !cleared(&v, c)).collect();
+    let criteria: Vec<Value> = live.iter().map(|c| criterion_json(&v, &asks, c, judge_on, &approved)).collect();
     let cards = terminal::cards(&v);
     let runs = runs_json(log, now, &name);
-    let waiting = plan::criteria(&v)
+    let waiting = live
         .iter()
         .filter(|c| match lifecycle::state(&v, c) {
             "waiting" => true,
@@ -258,7 +262,7 @@ pub(crate) fn picture_json(log: &Log, root: &Path, now: f64, judge_on: bool, oth
     });
     // a part green or beyond owes CI, so it always has CI words, even with no
     // HEAD to read the CI line at
-    let owes_ci = plan::criteria(&v).iter().any(|c| matches!(lifecycle::state(&v, c), "green" | "proven"));
+    let owes_ci = live.iter().any(|c| matches!(lifecycle::state(&v, c), "green" | "proven"));
     let ci = ci::line_here(log, root).or_else(|| owes_ci.then(|| CI_PENDING.to_string()));
     json!({
         // the person's off switch
@@ -407,14 +411,14 @@ fn answers_json(v: &View, c: &str, approved: &[familiar_ai_rules::holds::Approve
 /// 2026-10-25) [draft].
 pub(crate) fn not_verified_count(v: &View, approved: &[familiar_ai_rules::holds::Approved]) -> usize {
     let counted = |a: &&familiar_ai_rules::holds::Answer| a.verified.is_none() && a.hold != familiar_ai_rules::cases::CARD;
-    familiar_ai_rules::plan::criteria(v).iter().map(|c| familiar_ai_rules::holds::answers(v, c, approved).iter().filter(counted).count()).sum()
+    familiar_ai_rules::plan::criteria(v).iter().filter(|c| !cleared(v, c)).map(|c| familiar_ai_rules::holds::answers(v, c, approved).iter().filter(counted).count()).sum()
 }
 
 /// One line per answer that reads not verified, for `status`.
 fn not_verified_lines(v: &View, approved: &[familiar_ai_rules::holds::Approved]) -> Vec<String> {
     let asks = person_words::asks(v);
     let mut out = Vec::new();
-    for c in familiar_ai_rules::plan::criteria(v) {
+    for c in familiar_ai_rules::plan::criteria(v).into_iter().filter(|c| !cleared(v, c)) {
         let name = person_words::name_of(&asks, &c).unwrap_or_else(|| c.clone());
         for a in familiar_ai_rules::holds::answers(v, &c, approved).iter().filter(|a| a.verified.is_none()) {
             out.push(format!("{}{name} · {} {}: {}", words::LEAD, a.hold, a.choice, answer_words(a)));
@@ -536,7 +540,7 @@ pub(crate) fn checkout_json(o: &crate::door::project::Other, now: f64, judge_on:
     switch.json_into(&mut out);
     let v = View::new(log);
     let asks = person_words::asks(&v);
-    let known = plan::criteria(&v);
+    let known: Vec<String> = plan::criteria(&v).into_iter().filter(|c| !cleared(&v, c)).collect();
     let approved = approved_if_answered(&v, &o.root);
     let mut shown: Vec<Value> = asks
         .iter()

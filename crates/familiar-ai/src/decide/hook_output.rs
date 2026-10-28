@@ -216,8 +216,9 @@ fn render_object(event: HookEvent, decision: &Decision, lines: &[String]) -> Map
                         json!({ "hookEventName": event.name(), "additionalContext": reason }),
                     );
                 }
-                HookEvent::PreModelSwitch => {
-                    // The switch is the person's, so the words are shown and it goes ahead.
+                HookEvent::PreModelSwitch | HookEvent::SessionEnd => {
+                    // The switch is the person's, so the words are shown and it goes ahead; at a
+                    // session's end nothing reads context.
                     top.insert("systemMessage".into(), Value::from(reason.as_str()));
                 }
             }

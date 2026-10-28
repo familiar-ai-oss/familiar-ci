@@ -138,7 +138,8 @@ pub fn model_events(input: &HookInput, log: &Log, root: &Path) -> Vec<Event> {
         | HookEvent::SubagentStart
         | HookEvent::PostToolUseFailure
         | HookEvent::PreModelSwitch
-        | HookEvent::PostModelSwitch => Vec::new(),
+        | HookEvent::PostModelSwitch
+        | HookEvent::SessionEnd => Vec::new(),
         HookEvent::PreToolUse | HookEvent::PostToolUse => {
             if let Some(file_path) = input.file_path() {
                 // A file outside the project's folder is not this project's code: no event.

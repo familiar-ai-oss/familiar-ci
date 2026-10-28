@@ -132,6 +132,51 @@ pub fn refusal(to: &str) -> String {
     format!("familiar-ai: not switched · familiar-ai {to} is the person's switch, not the agent's: the person turns it {to} with the button or by running familiar-ai {to} in a terminal of their own")
 }
 
+/// Why an agent may not clear the parts: from its own shell, or by a command the hook reads before
+/// it runs [draft words].
+pub const CLEAR_REFUSAL: &str = "familiar-ai: not cleared · familiar-ai clear is the person's, not the agent's: the person clears the parts with the button or by running familiar-ai clear in a terminal of their own";
+
+/// `familiar-ai clear` (the owner, 2026-10-27): every part not yet released or proven is released
+/// by the person (`hold_answered`, choice `release`, at the hold it stands at, or its state when it
+/// has none), its record kept. Refused from an agent's session, as the switch is.
+pub fn run_clear(around: &Surroundings) -> Outcome {
+    use familiar_ai_rules::{lifecycle, plan, View};
+    if around.session_id.is_some() {
+        return plain(1, String::new(), format!("{CLEAR_REFUSAL}\n"));
+    }
+    let (_, record) = match open_project(around) {
+        Ok(x) => x,
+        Err(out) => return out,
+    };
+    let log = match record.read_all() {
+        Ok(log) => log,
+        Err(e) => return plain(1, String::new(), format!("familiar-ai: {}\n", cannot("read its record", &e))),
+    };
+    let v = View::new(&log);
+    let open: Vec<(String, String)> = plan::criteria(&v)
+        .into_iter()
+        .filter(|c| !lifecycle::released(&v, c) && lifecycle::state(&v, c) != "proven")
+        .map(|c| {
+            let at = lifecycle::holds(&v, &c).first().map_or_else(|| lifecycle::state(&v, &c).to_string(), |h| h.why.to_string());
+            (c, at)
+        })
+        .collect();
+    let names: Vec<String> = open.iter().map(|(c, _)| crate::teach::words::quoted(&v, c)).collect();
+    for (c, at) in &open {
+        let fields = serde_json::json!({ "criterion_id": c, "hold": at, "choice": "release", "typed": "" });
+        if let Err(e) = record.append_raw("hold_answered", fields.as_object().cloned().unwrap_or_default(), around.now, TENANT) {
+            return plain(1, String::new(), format!("familiar-ai: {}\n", cannot("write its record", &e)));
+        }
+    }
+    // [draft words]
+    let words = match names.len() {
+        0 => "Familiar has no open part to clear in this project.\n".to_string(),
+        1 => format!("Familiar cleared 1 part of this project: {}. It is released, its record kept.\n", names[0]),
+        n => format!("Familiar cleared {n} parts of this project: {}. They are released, their record kept.\n", names.join(", ")),
+    };
+    plain(0, words, String::new())
+}
+
 /// `familiar-ai off` or `on`, refused from an agent's session so only the
 /// person can switch.
 pub fn run_switch(to: &str, around: &Surroundings) -> Outcome {

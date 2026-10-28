@@ -1,5 +1,5 @@
 {
-  "description": "familiar-ai hooks: every event is handed to the familiar-ai binary, which checks the action against the record. Besides edits and shell commands, the hooks see the Agent spawn, a subagent's start and stop, the model switch, a spawn that did not return normally (PostToolUseFailure, so a lens of the lens panel that failed is recorded failed), and AskUserQuestion, which is where the person's cards and the push question appear in Claude Code's own picker. In auto mode a background lens hands its answer back through SubagentHandback; that call's PostToolUse goes to the binary, its PreToolUse does not. PostToolUse and Stop have 1800 s: room for the test run, the judge, and the investigator, which the binary starts from the PostToolUse that records the second failed try (Stop is the fallback) and waits for. Every other hook that opens the record has 200 s, since any of them may ask the judge. PreModelSwitch has 30 s; it opens nothing.",
+  "description": "familiar-ai hooks: every event is handed to the familiar-ai binary, which checks the action against the record. Besides edits and shell commands, the hooks see the Agent spawn, a subagent's start and stop, the model switch, a spawn that did not return normally (PostToolUseFailure, so a lens of the lens panel that failed is recorded failed), and AskUserQuestion, which is where the person's cards and the push question appear in Claude Code's own picker. In auto mode a background lens hands its answer back through SubagentHandback; that call's PostToolUse goes to the binary, its PreToolUse does not. SessionEnd records that a session holding a part ended, so the next session takes its parts. PostToolUse and Stop have 1800 s: room for the test run, the judge, and the investigator, which the binary starts from the PostToolUse that records the second failed try (Stop is the fallback) and waits for. Every other hook that opens the record has 200 s, since any of them may ask the judge. PreModelSwitch has 30 s; it opens nothing.",
   "modules": ["./register.tsx"],
   "hooks": {
     "SessionStart": [
@@ -101,6 +101,17 @@
           {
             "type": "command",
             "command": "\"${CLAUDE_PLUGIN_ROOT}\"/hooks/run.sh SubagentStart",
+            "timeout": 200
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"${CLAUDE_PLUGIN_ROOT}\"/hooks/run.sh SessionEnd",
             "timeout": 200
           }
         ]

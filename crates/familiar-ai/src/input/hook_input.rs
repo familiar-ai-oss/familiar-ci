@@ -6,7 +6,7 @@ use serde::Deserialize;
 use serde_json::Value;
 
 /// Claude Code's event names, exactly.
-pub const EVENT_NAMES: [&str; 10] = [
+pub const EVENT_NAMES: [&str; 11] = [
     "SessionStart",
     "UserPromptSubmit",
     "PreToolUse",
@@ -17,6 +17,7 @@ pub const EVENT_NAMES: [&str; 10] = [
     "SubagentStart",
     "PreModelSwitch",
     "PostModelSwitch",
+    "SessionEnd",
 ];
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
@@ -33,6 +34,9 @@ pub enum HookEvent {
     SubagentStart,
     PreModelSwitch,
     PostModelSwitch,
+    /// The session ends (exit, /clear, logout; not a crash): a session that holds a part is
+    /// recorded ended, so the next session takes its parts (the owner, 2026-10-27).
+    SessionEnd,
 }
 
 impl HookEvent {
@@ -48,6 +52,7 @@ impl HookEvent {
             HookEvent::SubagentStart => "SubagentStart",
             HookEvent::PreModelSwitch => "PreModelSwitch",
             HookEvent::PostModelSwitch => "PostModelSwitch",
+            HookEvent::SessionEnd => "SessionEnd",
         }
     }
 
@@ -63,6 +68,7 @@ impl HookEvent {
             "SubagentStart" => HookEvent::SubagentStart,
             "PreModelSwitch" => HookEvent::PreModelSwitch,
             "PostModelSwitch" => HookEvent::PostModelSwitch,
+            "SessionEnd" => HookEvent::SessionEnd,
             _ => return None,
         })
     }

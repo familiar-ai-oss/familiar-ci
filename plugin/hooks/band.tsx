@@ -4,10 +4,10 @@ import type { FamiliarReading, FamiliarStatus } from '../types'
 import { IDLE_LINE, UNAVAILABLE_LINE, cardLine, offLine } from './words'
 
 // The band above the prompt: what needs the person now, CI, the way to the
-// details and the switch, each line as the binary words it.
+// details, the switch and clearing the parts, each line as the binary words it.
 
 type Ui = Pick<ElementTable, 'Box' | 'Button' | 'Text'>
-type Press = { details: () => unknown; turnOn: () => unknown; turnOff: () => unknown }
+type Press = { details: () => unknown; turnOn: () => unknown; turnOff: () => unknown; clear: () => unknown }
 
 // the open cards of the other checkouts, each named with its checkout's folder
 const elsewhere = (s: FamiliarStatus) =>
@@ -47,6 +47,8 @@ export const bandTree = ({ Box, Button, Text }: Ui, s: FamiliarStatus, failed: s
         </Box>
         <Text>{'   '}</Text>
         <Button key="turn-on" label="turn on" onPress={press.turnOn} />
+        <Text> </Text>
+        <Button key="clear" label="clear" onPress={press.clear} />
       </Box>
     )
     return failedRow || cardRows.length > 0 ? (
@@ -70,6 +72,8 @@ export const bandTree = ({ Box, Button, Text }: Ui, s: FamiliarStatus, failed: s
         <Button key="details" label="details" hotkey="d" onPress={press.details} />
         <Text> </Text>
         <Button key="turn-off" label="turn off" onPress={press.turnOff} />
+        <Text> </Text>
+        <Button key="clear" label="clear" onPress={press.clear} />
       </Box>
       {failedRow}
       {cardRows}

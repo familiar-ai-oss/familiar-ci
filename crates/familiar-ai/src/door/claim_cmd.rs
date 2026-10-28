@@ -198,6 +198,13 @@ pub(crate) fn claim_one(
     {
         return OneClaim::Refused(refused(kind, &e, Some(&project)));
     }
+    // the next session's first claim takes the parts of a session that ended (the owner, 2026-10-27)
+    if let Some(me) = around.session_id.as_deref() {
+        let mut seen = before.clone();
+        if let Err(e) = crate::door::take_ended_parts(&record, me, &mut seen, around.now) {
+            return OneClaim::Refused(refused(kind, &claim::ClaimError::Door(e), Some(&project)));
+        }
+    }
     let fact = match record.append_raw(kind, fields, around.now, TENANT) {
         Ok(fact) => fact,
         Err(e) => {

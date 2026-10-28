@@ -316,6 +316,21 @@ pub fn assigned_to<'a>(v: &View<'a>, c: &str) -> Option<&'a str> {
     }
 }
 
+/// Whether `c`'s holder has ended: since the part was last assigned, the latest of the holder's
+/// `subagent_ended` and `holder_resumed` is `subagent_ended` (a session's end is `subagent_ended`
+/// with agent_type `session`, the owner's answer of 2026-10-27), so the next session may take it.
+pub fn holder_ended(v: &View, c: &str) -> bool {
+    let Some(holder) = assigned_to(v, c) else {
+        return false;
+    };
+    let since = v.facts.iter().rev().find(|f| is_of(f, c) && (f.kind == "criterion_assigned" || f.kind == "criterion_transfer")).map_or(0, |f| f.t);
+    v.facts
+        .iter()
+        .rev()
+        .find(|f| f.t > since && (f.kind == "subagent_ended" || f.kind == "holder_resumed") && text(f, "agent_id") == Some(holder))
+        .is_some_and(|f| f.kind == "subagent_ended")
+}
+
 /// A stack counts only with a non-empty `test_command`; `test_stack`
 /// is free text and selects nothing.
 pub fn has_command(f: &Fact) -> bool {

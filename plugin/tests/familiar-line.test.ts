@@ -154,6 +154,7 @@ const band = async ($: Engine, bodyColumns = 200) => {
     details: tree ? await ui.find({ key: 'details' }) : undefined,
     turnOff: tree ? await ui.find({ key: 'turn-off' }) : undefined,
     turnOn: tree ? await ui.find({ key: 'turn-on' }) : undefined,
+    clear: tree ? await ui.find({ key: 'clear' }) : undefined,
   }
 }
 
@@ -450,6 +451,33 @@ test('while off and idle, the band shows the off line and turn on', async ($, on
   const { line, turnOn } = await band($)
   expect(line).toBe(OFF_LINE)
   expect(turnOn?.props.label).toBe('turn on')
+})
+
+// ---- clearing the parts (the owner, 2026-10-27) ----
+
+test('while on, the band shows a clear button beside turn off', async ($, on) => {
+  world(on, [json(PROVING)])
+  await start($)
+  const { clear } = await band($)
+  expect(clear?.type).toBe('Button')
+  expect(clear?.props.label).toBe('clear')
+})
+
+test('while off, the band shows a clear button beside turn on', async ($, on) => {
+  world(on, [json(OFF_IDLE)])
+  await start($)
+  const { clear } = await band($)
+  expect(clear?.type).toBe('Button')
+  expect(clear?.props.label).toBe('clear')
+})
+
+test('pressing clear runs familiar-ai clear and reads the status again', async ($, on) => {
+  const { seen } = world(on, [json(PROVING), 'Familiar cleared 1 part of this project.\n', json(IDLE)])
+  await start($)
+  const { ui } = await band($)
+  await ui.press({ key: 'clear' })
+  expect(seen.runs[1]).toEqual(['familiar-ai', 'clear'])
+  expect(seen.runs[2]).toEqual(['familiar-ai', 'status', '--json'])
 })
 
 test('pressing turn off while idle runs familiar-ai off and the band then shows the off line', async ($, on) => {

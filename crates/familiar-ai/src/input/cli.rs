@@ -135,6 +135,12 @@ pub enum Command {
     ///
     /// Refused from an agent's shell.
     On,
+    /// Release every part of this project not yet released or proven; the
+    /// person's, as a card's release is.
+    ///
+    /// Their record is kept and the next ask is planned fresh. Refused from an
+    /// agent's shell.
+    Clear,
     /// Say whether gap recordings may be shared; the person's choice.
     ///
     /// `share on` is the one-time yes to sending Familiar's own probe output

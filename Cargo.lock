@@ -556,7 +556,7 @@ dependencies = [
 
 [[package]]
 name = "familiar-ai"
-version = "0.1.5-prod"
+version = "0.1.6-prod"
 dependencies = [
  "clap",
  "familiar-ai-facts",
@@ -576,7 +576,7 @@ dependencies = [
 
 [[package]]
 name = "familiar-ai-facts"
-version = "0.1.5-prod"
+version = "0.1.6-prod"
 dependencies = [
  "redb",
  "serde",
@@ -585,7 +585,7 @@ dependencies = [
 
 [[package]]
 name = "familiar-ai-git"
-version = "0.1.5-prod"
+version = "0.1.6-prod"
 dependencies = [
  "familiar-ai-facts",
  "gix",
@@ -594,7 +594,7 @@ dependencies = [
 
 [[package]]
 name = "familiar-ai-plan"
-version = "0.1.5-prod"
+version = "0.1.6-prod"
 dependencies = [
  "familiar-ai-facts",
  "serde",
@@ -603,7 +603,7 @@ dependencies = [
 
 [[package]]
 name = "familiar-ai-rules"
-version = "0.1.5-prod"
+version = "0.1.6-prod"
 dependencies = [
  "familiar-ai-facts",
  "serde",
@@ -613,7 +613,7 @@ dependencies = [
 
 [[package]]
 name = "familiar-ai-run"
-version = "0.1.5-prod"
+version = "0.1.6-prod"
 dependencies = [
  "libc",
 ]

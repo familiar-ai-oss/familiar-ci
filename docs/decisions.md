@@ -681,6 +681,25 @@ Code: `crates/familiar-ai-rules/src/plan.rs`, `ladder.rs`.
 Test: `crates/familiar-ai-rules/tests/each_criterion_is_proved_on_its_own.rs`.
 (487fead)
 
+A holder can end (the owner's answers, 2026-10-27). At Claude Code's
+`SessionEnd` (exit, `/clear`, logout; not a crash) the binary writes
+`subagent_ended` with agent_type `session` for a session that holds a part,
+as a lane's Stop writes it with agent_type `lane`. `plan::holder_ended`
+reads it: since the part's latest assignment, the holder's latest
+`subagent_ended` or `holder_resumed` is `subagent_ended`. The next session's
+first claim or edit (a claim from its shell, an edit or shell write, an Agent
+spawn) writes `criterion_assigned` to itself for each part not released whose
+holder ended, so a new session can work the parts and release the lens panel's
+calls. A part whose holder still runs stays held. While off, or in plan mode,
+nothing is written at the session's end, and a crash ends a session with no
+`SessionEnd`: the person clears such parts with `familiar-ai clear`.
+
+Code: `crates/familiar-ai-rules/src/plan.rs` (`holder_ended`),
+`crates/familiar-ai/src/decide/hook.rs`, `crates/familiar-ai/src/door/mod.rs`
+(`take_ended_parts`), `plugin/hooks/hooks.json`.
+Tests: `crates/familiar-ai-rules/tests/a_part_whose_holder_ended_may_be_taken.rs`,
+`crates/familiar-ai/tests/the_next_session_takes_an_ended_sessions_parts.rs`.
+
 ### A fix outside the repository is a card
 
 Every criterion says where the failing code lives: `this_repository`,
@@ -1362,6 +1381,21 @@ Code: `crates/familiar-ai/src/door/switch.rs` (`here`),
 `crates/familiar-ai-facts/src/form_table.rs`.
 Tests: `crates/familiar-ai/tests/switch_off_on.rs`, `switch_off_shown.rs`,
 `switch_worktree_follows_main.rs`. (9b0b448, d1c06fe, 394ff9b)
+
+### Clearing the parts
+
+`familiar-ai clear`, the band's `clear` button (on or off) or the person's own
+terminal, releases every part of the project not yet released or proven (the
+owner, 2026-10-27): `hold_answered` with choice `release`, the person's, at the
+hold the part stands at (its state when it has none), so each part ends for
+good with its record kept and the next ask is planned fresh. Like the switch,
+it is refused from an agent's session and from an agent's command that runs
+it, whatever its environment, while off too.
+
+Code: `crates/familiar-ai/src/door/switch.rs` (`run_clear`),
+`plugin/hooks/band.tsx`, `plugin/hooks/register.tsx`.
+Tests: `crates/familiar-ai/tests/clear_releases_every_open_part.rs`,
+`plugin/tests/familiar-line.test.ts`.
 
 ### Two-command install
 

@@ -125,6 +125,22 @@ pub(crate) fn catch_up_with_run(record: &familiar_ai_facts::Record, root: &std::
     Ok((log, settled_from))
 }
 
+/// The next session's first claim or edit takes the parts of a session that ended (the owner,
+/// 2026-10-27): `criterion_assigned` to conversation `me` for each part not released whose holder
+/// ended, pushed onto `log`. `Err` only when the record cannot be written.
+pub(crate) fn take_ended_parts(record: &familiar_ai_facts::Record, me: &str, log: &mut familiar_ai_facts::Log, now: f64) -> Result<(), String> {
+    use familiar_ai_rules::{lifecycle, plan, View};
+    let taken: Vec<String> = {
+        let v = View::new(log);
+        plan::criteria(&v).into_iter().filter(|c| plan::holder_ended(&v, c) && plan::assigned_to(&v, c) != Some(me) && !lifecycle::released(&v, c)).collect()
+    };
+    for c in taken {
+        let fields = serde_json::json!({ "criterion_id": c, "agent_conversation_id": me });
+        log.push(record.append_raw("criterion_assigned", fields.as_object().cloned().unwrap_or_default(), now, TENANT).map_err(|e| cannot("write its record", &e))?);
+    }
+    Ok(())
+}
+
 /// Write the committed plan file from the record's claims; the binary never reads it.
 pub(crate) fn project_plan(root: &std::path::Path, log: &familiar_ai_facts::Log) -> Result<(), String> {
     let path = root.join(FAMILIAR_FOLDER).join(PLAN_FILE);

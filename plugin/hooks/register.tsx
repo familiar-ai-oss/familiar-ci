@@ -13,13 +13,13 @@ import { PANE } from './words'
 
 const reading = atom({ plugin: 'familiar-ai', key: 'reading' } as const, null)
 const refreshedAt = atom({ plugin: 'familiar-ai', key: 'refreshedAt' } as const, 0)
-// what a failed `familiar-ai on|off` said, shown on the band until a read succeeds
+// what a failed `familiar-ai on|off|clear` said, shown on the band until a read succeeds
 const switchFailed = atom({ plugin: 'familiar-ai', key: 'switchFailed' } as const, null)
 
-// the person's off switch: the button runs the binary as the person (never an
+// the person's off switch and clear: the button runs the binary as the person (never an
 // agent's shell), then reads the status again; a failed switch changed
 // nothing, so its own words stay on the band until a read succeeds
-const switchTo = async ($: EngineInterface, to: 'off' | 'on') => {
+const switchTo = async ($: EngineInterface, to: 'off' | 'on' | 'clear') => {
   let failed: string | undefined
   try {
     const ran = await $.process.run(['familiar-ai', to])
@@ -148,6 +148,7 @@ export const register: Register = on => {
       details: () => $.ui.open(PANE),
       turnOn: () => switchTo($, 'on'),
       turnOff: () => switchTo($, 'off'),
+      clear: () => switchTo($, 'clear'),
     })
   })
 

@@ -78,6 +78,8 @@ pub fn agent_command_refusal(input: &HookInput, governed: bool) -> Option<String
         let first = args.first().map(String::as_str);
         match program_name(&program) {
             "familiar-ai" if matches!(first, Some("on" | "off")) => return first.map(crate::door::switch::refusal),
+            // clearing the parts is the person's, refused while off too (the owner, 2026-10-27)
+            "familiar-ai" if first == Some("clear") => return Some(crate::door::switch::CLEAR_REFUSAL.to_string()),
             // The person's one-time yes to sharing gap recordings (plan A-6), refused while off too.
             "familiar-ai" if first == Some("share") && matches!(args.get(1).map(String::as_str), Some("on" | "off")) => return args.get(1).map(|to| crate::door::share::refusal(to)),
             // The person's signature on a card; refused even while switched off,

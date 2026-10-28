@@ -356,7 +356,8 @@ fn resumed_at_start(call: &mut Call) -> Result<(), String> {
 }
 
 /// At an allowed SubagentStop, write that the subagent ended; at a headless session's allowed
-/// Stop, that the lane ended (plan §1.2, §6.7). Nothing is told for it.
+/// Stop, that the lane ended (plan §1.2, §6.7); at a SessionEnd, that a session holding a part
+/// ended (agent_type `session`, the owner, 2026-10-27). Nothing is told for it.
 fn ended_at_stop(call: &mut Call, decided: &Decision) -> Result<(), String> {
     let input = call.input;
     if !matches!(decided, Decision::Allow { .. }) {
@@ -365,6 +366,15 @@ fn ended_at_stop(call: &mut Call, decided: &Decision) -> Result<(), String> {
     let (agent_id, agent_type) = match input.event {
         HookEvent::SubagentStop => (input.agent_id.clone(), input.agent_type.clone().unwrap_or_default()),
         HookEvent::Stop if call.around.bench && input.agent_id.is_none() => (input.session_id.clone(), "lane".to_string()),
+        // a session that holds a part ended, so the next session takes its parts (the owner, 2026-10-27)
+        HookEvent::SessionEnd if !input.in_subagent() => {
+            let me = input.session_conversation_id();
+            let v = familiar_ai_rules::View::new(&call.log);
+            if !familiar_ai_rules::plan::criteria(&v).iter().any(|c| familiar_ai_rules::plan::assigned_to(&v, c) == me.as_deref()) {
+                return Ok(());
+            }
+            (me, "session".to_string())
+        }
         _ => return Ok(()),
     };
     let Some(agent_id) = agent_id.filter(|a| !a.is_empty()) else {
@@ -414,6 +424,11 @@ fn record_the_call<'a>(
     let by = (hook_input.event == HookEvent::PostToolUse && hook_input.tool_name.as_deref() == Some("Bash")).then_some(door::commits::BY_AGENT);
     let (mut log, _) = catch_up_with_run(record, root, around, by)?;
     crate::door::investigator::hook_facts(record, hook_input, &mut log, around.now)?;
+    // the next session's first edit or spawn takes the parts of a session that ended (the owner, 2026-10-27)
+    let acts = hook_input.event == HookEvent::PreToolUse && !hook_input.in_subagent() && hook_input.conversation.is_none();
+    if let Some(me) = hook_input.session_conversation_id().filter(|_| acts && (hook_input.is_spawn() || crate::door::person::act(hook_input, root).is_some())) {
+        crate::door::take_ended_parts(record, &me, &mut log, around.now)?;
+    }
     // the lens panel [draft]: which Agent call is which lens, then each answer as it returns
     crate::door::lens::release(record, hook_input, &mut log, around.now)?;
     crate::door::lens::hook_facts(record, hook_input, &mut log, around.now)?;

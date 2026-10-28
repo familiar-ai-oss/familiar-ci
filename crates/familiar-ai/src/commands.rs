@@ -58,6 +58,7 @@ where
             Command::JudgePrompt { criterion_id } => crate::door::judge::prompt_command(&criterion_id, around),
             Command::Off => crate::door::switch::run_switch("off", around),
             Command::On => crate::door::switch::run_switch("on", around),
+            Command::Clear => crate::door::switch::run_clear(around),
             Command::Share { action } => crate::door::share::run_share(matches!(action, crate::input::cli::ShareAction::On), around),
             Command::Approve { criterion_id, hold, choice, run_id, typed, unsigned, key } => {
                 let card = crate::door::approval::Card { criterion_id, hold, choice, run_id, typed };

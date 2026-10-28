@@ -58,6 +58,8 @@ pub fn decide(input: &HookInput) -> Decision {
     }
     match input.event {
         HookEvent::PreToolUse | HookEvent::Stop | HookEvent::SubagentStop => Decision::Refuse { reason: REMOVED.to_string() },
+        // the session is ending: nothing to tell
+        HookEvent::SessionEnd => Decision::allow(),
         HookEvent::SessionStart
         | HookEvent::UserPromptSubmit
         | HookEvent::PostToolUse
